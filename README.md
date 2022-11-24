@@ -1,4 +1,4 @@
-# Local wb_faq #
+# Local coodle #
 
 ## Installing via uploaded ZIP file ##
 
