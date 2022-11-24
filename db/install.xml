@@ -23,6 +23,7 @@
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" COMMENT="Id"/>
                 <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Userid of the concerned user."/>
                 <FIELD NAME="advisorid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Userid of the advisor"/>
+                <FIELD NAME="usergroupid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="Usergroup"/>
                 <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Time this entry was created."/>
                 <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
                 <FIELD NAME="deleted" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
@@ -30,6 +31,7 @@
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
                 <KEY NAME="advisorid" TYPE="foreign" FIELDS="id"/>
+                <KEY NAME="usergroupid" TYPE="foreign" FIELDS="id"/>
             </KEYS>
         </TABLE>
     </TABLES>
