@@ -1,0 +1,5 @@
+/* Fixes Autocomplete in modal not showing perfectly. */
+.modal-body .form-autocomplete-suggestions {
+    position: fixed;
+    width: 40vw;
+}
