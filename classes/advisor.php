@@ -50,7 +50,12 @@ class advisor {
         if ($createadvisor) {
             $data = ['userid' => $userid, 'courseid' => $courseid, 'timecreated' => time()];
             $advisorid = $DB->insert_record('local_coodle_advisor', $data, true);
+            $this->data = $data;
+            $this->data['id'] = $advisorid;
         }
+        $this->userid = $userid;
+        $this->courseid = $courseid;
+
     }
 
     /**
@@ -60,13 +65,14 @@ class advisor {
      * @return int
      */
     public static function create_course_for_adivisor($userid) {
+        global $CFG;
         $userdata = \core_user::get_user($userid);
         $data = new stdClass();
-        $data->name = $userdata->firstname . '_'  . $userdata->lastname;
-        $data->shortname = $userdata->id . '_'  . $userdata->id;
-        $data->idnumber = $userdata->id  . ' ' . $userdata->id;
+        $data->fullname = $userdata->firstname . '_'  . $userdata->lastname;
+        $data->shortname = $userdata->username . '_'  . $userdata->id;
+        $data->idnumber = $userdata->username  . ' ' . $userdata->id;
         $data->category = \local_coodle\settings_manager::create_or_get_standard_coursecategory();
-        require_once('../../course/lib.php');
+        require_once($CFG->dirroot.'/course/lib.php');
         $course = create_course($data);
         return $course->id;
     }
@@ -197,4 +203,33 @@ class advisor {
             return self::get_enrol_instance($courseid);
         }
     }
+
+    public static function get_coodle_advisors() {
+        global $DB;
+        $sql = "SELECT * FROM {local_coodle_advisor} ca JOIN {user} u on ca.userid = u.id";
+        $data = $DB->get_records_sql($sql);
+        return $data;
+    }
+
+    public static function prepare_for_template() {
+        $coodleadvisors = self::get_coodle_advisors();
+        $templatedata = [];
+        foreach ($coodleadvisors as $coodleadvisor) {
+            $tdata = $coodleadvisor;
+            $tdata->advisordatecreated = date("Y-m-d", $coodleadvisor->timecreated);
+            $templatedata[] = $tdata;
+        }
+        return $templatedata;
+    }
+
+    public static function is_advisor(int $userid = 0) {
+        global $DB, $USER;
+        if (empty($userid)) {
+            $userid = $USER->id;
+        }
+
+        return $DB->record_exists('local_coodle_advisor', ['userid' => $userid]);
+    }
+
+
 }

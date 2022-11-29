@@ -30,7 +30,8 @@
 function local_coodle_render_navbar_output(\renderer_base $renderer) {
 
     // Early bail out conditions.
-    if (!isloggedin() || isguestuser() || !has_capability('local/musi:canedit', context_system::instance())) {
+    if (!isloggedin() || isguestuser() ||
+    (!has_capability('local/musi:canedit', context_system::instance()) && !local_coodle\advisor::is_advisor())) {
         return;
     }
 
@@ -39,3 +40,4 @@ function local_coodle_render_navbar_output(\renderer_base $renderer) {
     $nav = $OUTPUT->render_from_template('local_coodle/navicon', $templatedata);
     return $nav;
 }
+

@@ -37,3 +37,14 @@ $string['status:inprogress'] = 'In progress';
 $string['status:starting'] = 'Starting';
 $string['status:finshed'] = 'Finished';
 $string['selectusers'] = 'Select User for Advisorrole';
+
+$string['advisor'] = 'Advisor';
+$string['advisors'] = 'Advisors';
+$string['advisorsince'] = 'Advisor since';
+$string['client'] = 'Client';
+$string['clients'] = 'Clients';
+$string['clientsince'] = 'Client since';
+
+
+
+

@@ -42,19 +42,13 @@ class secondary extends core_secondary {
         $isadmin = is_siteadmin();
 
         if ($isadvisor) {
-            $this->add('Clientlist' , 'void(0)', \navigation_node::TYPE_CUSTOM,
+            $this->add('Clientlist' , '/local/coodle/myusers.php', \navigation_node::TYPE_CUSTOM,
             'clientlist', 'clientlist');
-            $this->add('Advisorlist' , '/local/coodle/myusers.php', \navigation_node::TYPE_CUSTOM,
-            'advisorlist', 'advisorlist');
         }
         if ($isadmin) {
-            $this->add('Add Client' , '/local/entities/categories.php', \navigation_node::TYPE_CUSTOM,
-            'categories', 'categories');
-            $this->add('Add Advisor',
-            new \moodle_url('/local/entities/customfield.php', array('id' => -1)),
-            \navigation_node::TYPE_CUSTOM, 'addcategory', 'addcategory',
-            new \pix_icon('t/add', get_string('addcategory', 'local_entities')));
-            $this->add('Calendar', '/admin/category.php?category=local_entities ', \navigation_node::TYPE_CUSTOM,
+            $this->add('Advisorlist' , '/local/coodle/advisorlist.php', \navigation_node::TYPE_CUSTOM,
+            'advisorlist', 'advisorlist');
+            $this->add('Calendar', '/admin/category.php?category=local_coodle ', \navigation_node::TYPE_CUSTOM,
             'calendar', 'settings');
         }
         $this->initialised = true;

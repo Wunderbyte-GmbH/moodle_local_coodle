@@ -29,7 +29,7 @@ use external_single_structure;
  * @copyright   2022 Thomas Winkler <thomas.winkler@wunderbyt.at>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class search_entities extends external_api {
+class add_user extends external_api {
 
     /**
      * Describes the external function parameters.

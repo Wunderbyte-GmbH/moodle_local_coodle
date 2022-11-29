@@ -1,0 +1,65 @@
+
+<div class="coodle_dashboard">
+	<div class="row">
+		<main role="main" class="col-md-12 col-lg-12 my-3">
+			<div class="mb-4">
+				<div class="btn btn-primary" data-action="coodle-user_create_form">{{#str}} add_new_user, local_coodle {{/str}}</div>
+				<div class="btn btn-primary" data-action="coodle-create_advisor_form">{{#str}} createadvisor, local_coodle {{/str}}</div>
+			</div>
+			<div class="projects mb-4">
+				<div class="projects-inner">
+					<header class="projects-header">
+						<div class="title">{{#str}} advisors, local_coodle {{/str}}</div>
+						<div class="count">| {{count}}</div>
+						<i class="zmdi zmdi-download"></i>
+					</header>
+					<table class="projects-table">
+						<thead>
+							<tr>
+								<th>{{#str}} advisorsince, local_coodle {{/str}}</th>
+								<th>{{#str}} user, local_coodle {{/str}}</th>
+								<th>{{#str}} advisorcourse, local_coodle {{/str}}</th>
+								<th class="text-right">{{#str}} actions, local_coodle {{/str}}</th>
+							</tr>
+						</thead>
+						{{#users}}
+						<tr>
+							<td>
+								<p>{{advisordatecreated}}</p>
+
+							</td>
+							<td class="member">
+								<figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png" /></figure>
+								<div class="member-info">
+									<p>{{firstname}} <b>{{lastname}}</b></p>
+									<p>{{email}}</p>
+								</div>
+							</td>
+							<td>
+
+							<a class="btn btn-primary" href="{{config.wwwroot}}/course/view.php?id={{courseid}}">Advisor course</a><p></p>							</td>
+							<td>
+								<form class="form" action="#" method="POST">
+								<select class="action-box">
+									<option>Actions</option>
+									<option>Start project</option>
+									<option>Send for QA</option>
+									<option>Send invoice</option>
+								</select>
+								</form>
+							</td>
+						</tr>
+						{{/users}}
+					</table>
+				</div>
+			</div>
+		</main>
+	</div>
+</div>
+
+{{#js}}
+require(['local_coodle/user_create_form', 'local_coodle/create_advisor_form'], function(userform, advisorform) {
+    userform.init();
+    advisorform.init();
+});
+{{/js}}

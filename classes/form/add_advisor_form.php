@@ -30,9 +30,7 @@ require_once("$CFG->libdir/formslib.php");
 
 use context;
 use core_form\dynamic_form;
-use local_coodle\advisor;
-use local_coodle\form\user_create_form_helper;
-use local_coodle\coodle_user;
+use local_coodle\user_create_form_helper;
 use moodle_url;
 use stdClass;
 /**
@@ -41,7 +39,7 @@ use stdClass;
  * @author Thomas Winkler
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class user_create_form extends dynamic_form {
+class set_advisor_form extends dynamic_form {
 
     /**
      * {@inheritdoc}
@@ -50,42 +48,13 @@ class user_create_form extends dynamic_form {
     public function definition() {
         $mform = $this->_form;
 
-        $data = $this->_ajaxformdata;
-/*         if (has_capability())
 
-        else if is_advisor
-
-        else (die()); */
-
-        $mform->addElement('text', 'username', get_string('username'), 'size="20"');
-        $mform->addHelpButton('username', 'username', 'auth');
-        $mform->setType('username', PARAM_RAW);
-
-        $mform->addElement('text', 'firstname', get_string('firstname'), 'size="20"');
-        $mform->setType('firstname', PARAM_RAW);
-
-        $mform->addElement('text', 'lastname', get_string('lastname'), 'size="20"');
-        $mform->setType('firstname', PARAM_RAW);
-
-        $mform->addElement('text', 'mail', get_string('email'), 'size="20"');
-        $mform->setType('email', PARAM_EMAIL);
-
-        if (!\local_coodle\advisor::is_advisor()) {
-            $options = array(
-                'ajax' => 'tool_lp/form-user-selector',
-                'multiple' => false
-            );
-            $mform->addElement('autocomplete', 'userid', get_string('selectusers', 'local_coodle'), array(), $options);
-            $mform->addRule('userid', null, 'required');
-        }
-
-        $mform->addElement('passwordunmask', 'newpassword', get_string('newpassword'), 'size="20"');
-        $mform->addHelpButton('newpassword', 'newpassword');
-        $mform->setType('newpassword', \core_user::get_property_type('password'));
-
-        // Shared fields.
-        // Next the customisable profile fields.
-        // profile_definition($mform, 0);
+        $options = array(
+            'ajax' => 'tool_lp/form-user-selector',
+            'multiple' => false
+        );
+        $mform->addElement('autocomplete', 'userid', get_string('selectusers', 'local_coodle'), array(), $options);
+        $mform->addRule('userid', null, 'required');
     }
 
     /**
@@ -94,6 +63,7 @@ class user_create_form extends dynamic_form {
      * @return void
      */
     protected function check_access_for_dynamic_submission(): void {
+        // TODO: capability to create advisors
         require_capability('moodle/user:manageownfiles', $this->get_context_for_dynamic_submission());
     }
 
@@ -108,8 +78,8 @@ class user_create_form extends dynamic_form {
      */
     public function process_dynamic_submission() {
         $data = $this->get_data();
-        $userid = user_create_form_helper::create_user($data);
-        coodle_user::create_coodle_user($userid);
+        $courseid = \local_coodle\advisor::create_course_for_adivisor($data->userid);
+        $advisor = new \local_coodle\advisor($data->userid, $courseid,  true);
         return $data;
     }
 
@@ -152,6 +122,7 @@ class user_create_form extends dynamic_form {
      * @return moodle_url
      */
     protected function get_page_url_for_dynamic_submission(): moodle_url {
+        // TODO: This is shit.
         $cmid = $this->_ajaxformdata['cmid'];
         if (!$cmid) {
             $cmid = $this->optional_param('cmid', '', PARAM_RAW);

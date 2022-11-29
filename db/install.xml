@@ -30,8 +30,7 @@
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-                <KEY NAME="advisorid" TYPE="foreign" FIELDS="id"/>
-                <KEY NAME="usergroupid" TYPE="foreign" FIELDS="id"/>
+                <KEY NAME="advisorid" TYPE="foreign" FIELDS="advisorid" REFFIELDS="id" REFTABLE="local_coodle_advisor"/>
             </KEYS>
         </TABLE>
     </TABLES>

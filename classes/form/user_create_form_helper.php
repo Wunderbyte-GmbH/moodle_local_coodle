@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace local_coodle;
+namespace local_coodle\form;
 
 use stdClass;
 
@@ -41,7 +41,6 @@ class user_create_form_helper {
         $user->confirmed = true;
         $user->mnethostid = $CFG->mnet_localhost_id;
         $clientid = user_create_user($user, true, false);
-        \local_coodle\advisor::course_manual_enrolments(array(3), array($guestuserid), 5);
         return $clientid;
     }
 }

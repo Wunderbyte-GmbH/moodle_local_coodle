@@ -51,10 +51,10 @@ class create_advisor_form extends dynamic_form {
 
         $options = array(
             'ajax' => 'tool_lp/form-user-selector',
-            'multiple' => true
+            'multiple' => false
         );
-        $mform->addElement('autocomplete', 'userids', get_string('selectusers', 'local_coodle'), array(), $options);
-        $mform->addRule('userids', null, 'required');
+        $mform->addElement('autocomplete', 'userid', get_string('selectusers', 'local_coodle'), array(), $options);
+        $mform->addRule('userid', null, 'required');
     }
 
     /**
@@ -79,7 +79,7 @@ class create_advisor_form extends dynamic_form {
     public function process_dynamic_submission() {
         $data = $this->get_data();
         $courseid = \local_coodle\advisor::create_course_for_adivisor($data->userid);
-        $advisor = new \local_coodle\advisor($courseid, $data->userid, true);
+        $advisor = new \local_coodle\advisor($data->userid, $courseid,  true);
         return $data;
     }
 

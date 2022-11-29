@@ -15,7 +15,6 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Testfile for developing
  * @package    local_coodle
  * @copyright  2022 Wunderbyte GmbH
  * @author     Thomas Winkler
@@ -23,9 +22,6 @@
  */
 
 require_once('../../config.php');
-require_once('../../course/lib.php');
-
-use local_coodle\form\user_create_form;
 use local_coodle\local\views\secondary;
 
 $delid = optional_param('del', 0, PARAM_INT);
@@ -33,19 +29,19 @@ $context = \context_system::instance();
 $PAGE->set_context($context);
 require_login();
 
-$PAGE->set_url(new moodle_url('/local/coodle/index.php', array()));
+$secondarynav = new secondary($PAGE);
+$secondarynav->initialise();
+$PAGE->set_secondarynav($secondarynav);
+$PAGE->set_secondary_navigation(true);
 
-$title = "cOOdle Manager";
+$PAGE->set_url(new moodle_url('/local/coodle/index.php', array()));
+$PAGE->set_pagelayout('standard');
+$title = "COOdLe Manager";
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
-
-
 echo $OUTPUT->header();
-$a = local_coodle\advisor::is_advisor(14);
-if ($a) {
-    echo "<h1>IS ADVISOR</h1>";
-}
-else {
-    echo "<h1>IS NOT ADVISOR</h1>";
-}
+$coodleusers = \local_coodle\advisor::prepare_for_template();
+$templatedata['users'] = array_values($coodleusers);
+$templatedata['count'] = count($templatedata['users']);
+echo $OUTPUT->render_from_template('local_coodle/advisorlist', $templatedata);
 echo $OUTPUT->footer();
