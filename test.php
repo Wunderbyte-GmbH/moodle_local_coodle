@@ -25,10 +25,6 @@
 require_once('../../config.php');
 require_once('../../course/lib.php');
 
-use local_coodle\form\user_create_form;
-use local_coodle\local\views\secondary;
-
-$delid = optional_param('del', 0, PARAM_INT);
 $context = \context_system::instance();
 $PAGE->set_context($context);
 require_login();
@@ -38,14 +34,19 @@ $PAGE->set_url(new moodle_url('/local/coodle/index.php', array()));
 $title = "cOOdle Manager";
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
-
-
 echo $OUTPUT->header();
-$a = local_coodle\advisor::is_advisor(14);
-if ($a) {
-    echo "<h1>IS ADVISOR</h1>";
-}
-else {
-    echo "<h1>IS NOT ADVISOR</h1>";
-}
+/**PUT IN A FUNCTION */
+$qrcodeforappstr = get_string('qrcodeformobileappaccess', 'tool_mobile');
+
+$mobilesettings = get_config('tool_mobile');
+$mobilesettings->qrcodetype = local_coodle\overrides\mobileapioverrides::QR_CODE_LOGIN;
+$qrcodeimg = local_coodle\overrides\mobileapioverrides::generate_login_qrcode_from_userid($mobilesettings, 130);
+$mobileqr .= html_writer::link('#qrcode', get_string('viewqrcode', 'tool_mobile'),
+    ['class' => 'btn btn-primary mt-2', 'data-toggle' => 'collapse',
+    'role' => 'button', 'aria-expanded' => 'false']);
+$mobileqr .= html_writer::div(html_writer::img($qrcodeimg, $qrcodeforappstr), 'collapse mt-4', ['id' => 'qrcode']);
+echo $mobileqr;
+
 echo $OUTPUT->footer();
+
+

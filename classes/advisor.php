@@ -204,6 +204,11 @@ class advisor {
         }
     }
 
+    /**
+     * Gets all coodle advisors with user data from MOODLE user table
+     *
+     * @return array
+     */
     public static function get_coodle_advisors() {
         global $DB;
         $sql = "SELECT * FROM {local_coodle_advisor} ca JOIN {user} u on ca.userid = u.id";
@@ -222,6 +227,12 @@ class advisor {
         return $templatedata;
     }
 
+    /**
+     * Checks if user is advisor
+     *
+     * @param integer $userid
+     * @return boolean
+     */
     public static function is_advisor(int $userid = 0) {
         global $DB, $USER;
         if (empty($userid)) {
@@ -231,5 +242,13 @@ class advisor {
         return $DB->record_exists('local_coodle_advisor', ['userid' => $userid]);
     }
 
-
+    /**
+     * Counts all advisors in $DB
+     *
+     * @return void
+     */
+    public static function count_advisors() {
+        global $DB;
+        return $DB->count_records('local_coodle_advisor', null);
+    }
 }

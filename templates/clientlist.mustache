@@ -20,7 +20,7 @@
 								<th>registered since</th>
 								<th>User</th>
 								<th>Advisor</th>
-								<th>Status</th>
+								<th style="width: 300px">Login</th>
 								<th class="text-right">Actions</th>
 							</tr>
 						</thead>
@@ -39,26 +39,51 @@
 							</td>
 							<td> {{#advisorfirstname}}
 								<p>{{advisorfirstname}} <b>{{advisorlastname}}</b></p>
-<a class="btn btn-primary" href="{{config.wwwroot}}/course/view.php?id={{courseid}}">Advisor course</a><p></p>
+<a class="btn btn-primary" href="{{config.wwwroot}}/course/view.php?id={{courseid}}"><i class="fa fa-home" aria-hidden="true"></i></a><p></p>
 							{{/advisorfirstname}}
 							{{^advisorfirstname}}
-							<a class="btn btn-primary" href="{{config.wwwroot}}/course/view.php?id={{courseid}}">Set advisor</a><p></p>
+							<a class="btn btn-primary" href="{{config.wwwroot}}/course/view.php?id={{courseid}}"><i class="fa fa-user-plus" aria-hidden="true"></i>
+							</a><p></p>
 							{{/advisorfirstname}}
 
 
-</td>
-							<td class="status">
-								<span class="status-text status-orange">In progress</span>
 							</td>
-							<td>
-								<form class="form" action="#" method="POST">
-								<select class="action-box">
-									<option>Actions</option>
-									<option>Start project</option>
-									<option>Send for QA</option>
-									<option>Send invoice</option>
-								</select>
-								</form>
+							<td class="status">
+								<span>{{{qrcode}}}</span>
+							</td>
+							<td class="text-right">
+								<i class="fa fa-cog" aria-hidden="true"></i>
+							</td>
+						</tr>
+						<tr>
+						{{#todos}}
+						{{/todos}}
+						<td colspan="100%">
+							<span class="toggler"
+							data-toggle="collapse"
+							data-target="{{id}}"
+							data-text="Collapse"><i class="fa fa-chevron-down fa-2x mr-2" aria-hidden="true"></i></span>
+							<span class="" data-action="local-coodle-add-todo"><i class="fa fa-plus fa-2x text-success" aria-hidden="true"></i></span></td>
+						</tr>
+						<tr class="text-light bg-light todos" data-clientid="{{id}}">
+							<td colspan="4">JSDJASDAJSDHKJAS D Hakerl Delete</td>
+							<td class="text-right">
+								<i class="fa fa-check-square-o fa-2x text-success mr-2" aria-hidden="true"></i>
+								<i class="fa fa-times fa-2x text-danger" aria-hidden="true"></i>
+							</td>
+						</tr>
+						<tr class="text-light bg-light todos" data-clientid="{{id}}">
+							<td colspan="4">JSDJASDAJSDHKJAS D Hakerl Delete</td>
+							<td class="text-right" >
+								<i class="fa fa-check-square-o fa-2x text-success mr-2" aria-hidden="true"></i>
+								<i class="fa fa-times fa-2x text-danger" aria-hidden="true"></i>
+							</td>
+						</tr>
+						<tr class="text-light bg-light todos" data-clientid="{{id}}">
+							<td colspan="4">JSDJASDAJSDHKJAS D Hakerl Delete</td>
+							<td class="text-right">
+								<i class="fa fa-check-square-o fa-2x text-success mr-2" aria-hidden="true"></i>
+								<i class="fa fa-times fa-2x text-danger" aria-hidden="true"></i>
 							</td>
 						</tr>
 						{{/users}}
@@ -69,9 +94,25 @@
 	</div>
 </div>
 
+<style>
+	.coodle_dashboard .todos td{
+		color: #161616;
+
+	}
+	[name="todotext"] {
+		width: 90% !important;
+	}
+
+	.qrcode {
+		border: 10px solid #fff;
+		background: #fff;
+	}
+</style>
+
 {{#js}}
-require(['local_coodle/user_create_form', 'local_coodle/create_advisor_form'], function(userform, advisorform) {
+require(['local_coodle/user_create_form', 'local_coodle/create_advisor_form', 'local_coodle/add_todo_form'], function(userform, advisorform, todoform) {
     userform.init();
     advisorform.init();
+	todoform.init();
 });
 {{/js}}

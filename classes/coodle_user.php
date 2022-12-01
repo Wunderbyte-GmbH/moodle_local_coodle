@@ -53,10 +53,11 @@ class coodle_user {
         return $coodleuserid;
     }
 
-    public static function enrol_coodle_user($advisorid) {
-        $a = 2;
-    }
-
+    /**
+     * Gets all coodle users (clients) with user data from MOODLE user table
+     *
+     * @return array
+     */
     public static function get_coodle_users() {
         global $DB;
         $sql = "SELECT cu.*, u.firstname as 'clientfirstname', u.lastname as 'clientlastname',
@@ -68,14 +69,40 @@ class coodle_user {
         return $data;
     }
 
+    /**
+     * Prepares date for mustache template
+     *
+     * @return array
+     */
     public static function prepare_for_template() {
         $coodleusers = self::get_coodle_users();
         $templatedata = [];
         foreach ($coodleusers as $coodleuser) {
             $tdata = $coodleuser;
             $tdata->userdatecreated = date("Y-m-d", $coodleuser->timecreated);
+            $qrcodeforappstr = get_string('qrcodeformobileappaccess', 'tool_mobile');
+
+            $mobilesettings = get_config('tool_mobile');
+            $mobilesettings->qrcodetype = \local_coodle\overrides\mobileapioverrides::QR_CODE_LOGIN;
+            $qrcodeimg = \local_coodle\overrides\mobileapioverrides::generate_login_qrcode_from_userid($mobilesettings, $coodleuser->userid);
+            $mobileqr = \html_writer::link('#qrcode-'.$coodleuser->userid, '',
+                ['class' => 'btn btn-primary mt-2 fa fa-qrcode', 'data-toggle' => 'collapse',
+                'role' => 'button', 'aria-expanded' => 'false']);
+            $mobileqr .= \html_writer::div(\html_writer::img($qrcodeimg, $qrcodeforappstr, ['class' => 'qrcode']), 'collapse mt-4', ['id' => 'qrcode-'.$coodleuser->userid]);
+            $tdata->qrcode = $mobileqr;
             $templatedata[] = $tdata;
         }
         return $templatedata;
+    }
+
+
+    /**
+     * Counts all clients in coodle DB
+     *
+     * @return int
+     */
+    public static function count_users() {
+        global $DB;
+        return $DB->count_records('local_coodle_user', null);
     }
 }

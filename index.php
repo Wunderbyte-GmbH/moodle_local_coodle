@@ -40,6 +40,11 @@ $title = "COOdLe Manager";
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
 echo $OUTPUT->header();
-$context = [];
-echo $OUTPUT->render_from_template('local_coodle/admin', $context);
+$templatedata = [];
+$templatedata['countusers'] = $DB->count_records('local_coodle_user', null);
+$templatedata['countadvisors'] = $DB->count_records('local_coodle_advisor', null);
+
+echo $OUTPUT->render_from_template('local_coodle/admin', $templatedata);
 echo $OUTPUT->footer();
+
+
