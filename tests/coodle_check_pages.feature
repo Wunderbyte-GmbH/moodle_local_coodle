@@ -1,4 +1,4 @@
-@local @local_shopping_cart @javascript
+@local @local_coodle @javascript
 
 Feature: Test purchase process in shopping cart.
   In order to buy an item

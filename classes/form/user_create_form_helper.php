@@ -18,8 +18,6 @@ namespace local_coodle\form;
 
 use stdClass;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Helper class for user_create_form .
  * @package local_coodle

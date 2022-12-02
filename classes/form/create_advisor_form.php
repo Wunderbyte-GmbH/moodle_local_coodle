@@ -63,7 +63,7 @@ class create_advisor_form extends dynamic_form {
      * @return void
      */
     protected function check_access_for_dynamic_submission(): void {
-        // TODO: capability to create advisors
+        // TODO: capability to create advisors.
         require_capability('moodle/user:manageownfiles', $this->get_context_for_dynamic_submission());
     }
 
@@ -82,7 +82,6 @@ class create_advisor_form extends dynamic_form {
         $advisor = new \local_coodle\advisor($data->userid, $courseid,  true);
         return $data;
     }
-
 
     /**
      * Load in existing data as form defaults
@@ -151,6 +150,4 @@ class create_advisor_form extends dynamic_form {
         $data = parent::get_data();
         return $data;
     }
-
-    // Helperfunctio
 }

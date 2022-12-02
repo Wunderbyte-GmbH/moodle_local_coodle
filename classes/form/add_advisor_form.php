@@ -83,7 +83,6 @@ class set_advisor_form extends dynamic_form {
         return $data;
     }
 
-
     /**
      * Load in existing data as form defaults
      *
@@ -151,6 +150,4 @@ class set_advisor_form extends dynamic_form {
         $data = parent::get_data();
         return $data;
     }
-
-    // Helperfunctio
 }

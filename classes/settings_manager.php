@@ -43,7 +43,7 @@ class settings_manager {
      */
     public static function create_or_get_standard_coursecategory() : int {
         $categoryid = get_config('local_coodle', 'coursecategory');
-        if(empty(get_config('local_coodle', 'coursecategory'))) {
+        if (empty(get_config('local_coodle', 'coursecategory'))) {
             $coursecategory = \core_course_category::create(array('name' => 'BeraterInnen'));
             set_config('coursecategory', $coursecategory->id, 'local_coodle');
             $categoryid = $coursecategory->id;
