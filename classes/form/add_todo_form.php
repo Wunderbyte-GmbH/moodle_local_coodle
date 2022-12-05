@@ -47,8 +47,10 @@ class add_todo_form extends dynamic_form {
     public function definition() {
         $mform = $this->_form;
 
+        $mform->addElement('html', '<div class="coodle_todolist">');
         $mform->addElement('text', 'todotext');
         $mform->addElement('hidden', 'clientid');
+        $mform->addElement('html', '</div>');
 
     }
 

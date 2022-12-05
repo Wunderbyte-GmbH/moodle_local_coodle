@@ -21,7 +21,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 import ModalForm from 'core_form/modalform';
 import {get_string as getString} from 'core/str';
 
