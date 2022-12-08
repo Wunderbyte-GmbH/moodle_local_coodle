@@ -38,18 +38,19 @@ class coodle_user {
      * @return int
      */
     public static function create_coodle_user(int $userid, int $advisorid = null) {
-        global $DB;
+        global $DB, $USER;
         $data = new stdClass();
         $data->userid = $userid;
+        if (empty($advisorid)) {
+            $advisorid = $USER->id;
+        }
         $data->advisorid = $advisorid;
         $data->timecreated = time();
         $data->timemodified = time();
         $data->deleted = 0;
 
         $coodleuserid = $DB->insert_record('local_coodle_user', $data, true);
-        if (!empty($advisorid)) {
-            //\local_coodle\advisor::course_manual_enrolments(array(3), array($guestuserid), 5);
-        }
+
         return $coodleuserid;
     }
 
@@ -60,8 +61,8 @@ class coodle_user {
      */
     public static function get_coodle_users() {
         global $DB;
-        $sql = "SELECT cu.*, u.firstname as 'clientfirstname', u.lastname as 'clientlastname',
-        ua.firstname as 'advisorfirstname', ua.lastname as 'advisorlastname', a.courseid
+        $sql = "SELECT cu.*, u.firstname AS clientfirstname, u.lastname as clientlastname,
+        ua.firstname as advisorfirstname, ua.lastname as advisorlastname, a.courseid
          FROM {local_coodle_advisor} a RIGHT JOIN {local_coodle_user} cu on a.userid = cu.advisorid
          JOIN {user} u on cu.userid = u.id
          LEFT JOIN {user} ua on cu.advisorid = ua.id";

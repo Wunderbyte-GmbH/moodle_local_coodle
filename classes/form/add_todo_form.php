@@ -48,7 +48,8 @@ class add_todo_form extends dynamic_form {
         $mform = $this->_form;
 
         $mform->addElement('html', '<div class="coodle_todolist">');
-        $mform->addElement('text', 'todotext');
+        $mform->addElement('text', 'todotext', 'todotext');
+        $mform->setType('todotext', PARAM_TEXT);
         $mform->addElement('hidden', 'clientid');
         $mform->addElement('html', '</div>');
 
@@ -118,12 +119,7 @@ class add_todo_form extends dynamic_form {
      * @return moodle_url
      */
     protected function get_page_url_for_dynamic_submission(): moodle_url {
-        // TODO: This is shit.
-        $cmid = $this->_ajaxformdata['cmid'];
-        if (!$cmid) {
-            $cmid = $this->optional_param('cmid', '', PARAM_RAW);
-        }
-        return new moodle_url('/local/coodle/newuser', array('id' => $cmid));
+        return new moodle_url('/local/coodle/myusers');
     }
 
     /**
