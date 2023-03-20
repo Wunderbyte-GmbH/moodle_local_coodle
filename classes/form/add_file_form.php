@@ -54,7 +54,7 @@ class add_file_form extends dynamic_form {
         $options['subdirs'] = 0;
         $options['maxbytes'] = 204800;
         $options['maxfiles'] = null;
-        $options['accepted_types'] = ['jpg', 'jpeg', 'png'];
+        $options['accepted_types'] = ['jpg', 'jpeg', 'png', 'pdf' , 'doc', 'xls', 'docx'];
         $mform->addElement('filemanager', 'clientfiles_filemanager', get_string('edit_image', 'local_cohorts'), null, $options);
         $this->add_action_buttons();
         $mform->addElement('hidden', 'id', $customdata['clientid']);
