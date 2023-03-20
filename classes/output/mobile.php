@@ -24,98 +24,27 @@
  */
 namespace local_coodle\output;
 
+use local_coodle\coodle_user;
+use stdClass;
+
 class mobile {
 
     public static function view_hello() {
+        global $USER, $OUTPUT;
+        $coodleuser = new coodle_user();
+        $coodleuser->load_user($USER->id);
+        $templatedata = new stdClass();
+        $templatedata->files = $coodleuser->get_coodleuser_files();
+
         return [
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => '<ion-content>
-                    <ion-grid>
-                      <ion-row>
-                        <ion-col class="landingcol col1">
-                          <ion-button class="gridbutton">
-                            <ion-grid>
-                              <ion-row>
-                                <ion-label>Button 1</ion-label>
-                              </ion-row>
-                              <ion-row>
-                                <ion-icon name="archive-outline"></ion-icon>
-                              </ion-row>
-                            </ion-grid>
-                          </ion-button>
-                        </ion-col>
-                        <ion-col class="landingcol col2">
-                          <ion-button class="gridbutton">
-                            <ion-grid>
-                              <ion-row>
-                                <ion-label>Button 2</ion-label>
-                              </ion-row>
-                              <ion-row>
-                                <ion-icon name="chatbox-ellipses-outline"></ion-icon>
-                              </ion-row>
-                            </ion-grid>
-                          </ion-button>
-                        </ion-col>
-                      </ion-row>
-                      <ion-row>
-                        <ion-col class="landingcol col3">
-                          <ion-button class="gridbutton">
-                            <ion-grid>
-                              <ion-row>
-                                <ion-label>Button 3</ion-label>
-                              </ion-row>
-                              <ion-row>
-                                <ion-icon name="file-tray-full-outline"></ion-icon>
-                              </ion-row>
-                            </ion-grid>
-                          </ion-button>
-                        </ion-col>
-                        <ion-col class="landingcol col4">
-                          <ion-button class="gridbutton">
-                            <ion-grid>
-                              <ion-row>
-                                <ion-label>Button 4</ion-label>
-                              </ion-row>
-                              <ion-row>
-                                <ion-icon name="person-outline"></ion-icon>
-                              </ion-row>
-                            </ion-grid>
-                          </ion-button>
-                        </ion-col>
-                      </ion-row>
-                      <ion-row>
-                        <ion-col class="landingcol col5">
-                          <ion-button class="gridbutton">
-                            <ion-grid>
-                              <ion-row>
-                                <ion-label>Button 5</ion-label>
-                              </ion-row>
-                              <ion-row>
-                                <ion-icon name="person-outline"></ion-icon>
-                              </ion-row>
-                            </ion-grid>
-                          </ion-button>
-                        </ion-col>
-                        <ion-col class="landingcol col6">
-                          <ion-button class="gridbutton">
-                            <ion-grid>
-                              <ion-row>
-                                <ion-label>Button 6</ion-label>
-                              </ion-row>
-                              <ion-row>
-                                <ion-icon name="reorder-four-outline"></ion-icon>
-                              </ion-row>
-                            </ion-grid>
-                          </ion-button>
-                        </ion-col>
-                      </ion-row>
-                    </ion-grid>
-                  </ion-content>
-                  ',
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
                 ],
             ],
+            'javascript' => '',
+            'otherdata' => '',
         ];
     }
 

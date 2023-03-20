@@ -1,0 +1,57 @@
+<ion-grid class="container mt-4">
+    <ion-row class="row my-4">
+      <ion-row class="col-md-6">
+        <h3 class="mb-4">File Explorer</h3>
+      </ion-row>
+    </ion-row>
+    <ion-row class="row">
+      <ion-row class="col-md-12">
+        <ion-row class="card p-0">
+          <ion-row class="card-header text-dark">
+            <h5 class="">User Files</h5>
+          </ion-row>
+          <ion-row class="card-body">
+            <h4>From Advisor</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Size</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#files}}
+                <tr>
+                  <td>{{name}}</td>
+                  <td><a href="{{url}}">Download</a></td>
+                </tr>
+                {{/files}}
+              </tbody>
+            </table>
+            <h4>From Client</h4>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Size</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#fromfiles}}
+                  <tr>
+                    <td>file1.txt</td>
+                    <td>Text File</td>
+                    <td>1 KB</td>
+                    <td><a href="#">Download</a></td>
+                  </tr>
+                  {{/fromfiles}}
+                </tbody>
+              </table>
+          </ion-row>
+        </ion-row>
+      </ion-row>
+    </ion-row>
+  </ion-grid>

@@ -246,4 +246,17 @@ class coodle_user {
     }
 
 
+
+    /**
+     * Counts all clients in coodle DB
+     *
+     * @return int
+     */
+    public static function delet_user($clientid) {
+        global $DB;
+        // TODO predelete
+        return $DB->count_records('local_coodle_user', null);
+    }
+
+
 }
