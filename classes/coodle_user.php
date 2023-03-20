@@ -220,7 +220,7 @@ class coodle_user {
                 $fileinfo->filesize = $file->get_filesize();
                 $fileinfo->filesize = $file->get_mimetype();
                 $fileinfo->timemodified = time(); // TODO:;
-
+                $fileinfo->fileurl = $file->get_url();
 
                 $fileinfo->url = \moodle_url::make_pluginfile_url(
                     $context->id,
@@ -258,6 +258,8 @@ class coodle_user {
     public static function delet_user($clientid) {
         global $DB;
         // TODO predelete
+        // Delete user from files
+        // USER
         return $DB->count_records('local_coodle_user', null);
     }
 

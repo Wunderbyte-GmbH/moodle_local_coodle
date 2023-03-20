@@ -56,3 +56,5 @@ $string[''] = 'Kalender';
 $string[''] = 'Forum';
 $string[''] = 'Vorlagen';
 $string[''] = 'User hinzufügen';
+
+$string['myfiles'] = 'Meine Dateien';

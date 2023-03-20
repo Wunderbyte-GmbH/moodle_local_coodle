@@ -29,7 +29,7 @@ use stdClass;
 
 class mobile {
 
-    public static function view_hello() {
+    public static function view_files() {
         global $USER, $OUTPUT;
         $coodleuser = new coodle_user();
         $coodleuser->load_user($USER->id);
@@ -46,7 +46,7 @@ class mobile {
             ],
             'javascript' => '',
             'otherdata' => '',
-            'files' => $templatedata->files,
+            'files' => $templatedata->otherfiles,
         ];
     }
 

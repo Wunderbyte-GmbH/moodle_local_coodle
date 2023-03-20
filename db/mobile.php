@@ -28,9 +28,9 @@ defined('MOODLE_INTERNAL') || die();
 $addons = [
     'local_coodle' => [
         'handlers' => [
-            'hello' => [
+            'files' => [
                 'delegate' => 'CoreMainMenuDelegate',
-                'method' => 'view_hello',
+                'method' => 'view_files',
                 'displaydata' => [
                     'title' => 'hello',
                     'icon' => 'earth',
@@ -39,7 +39,7 @@ $addons = [
             ],
         ],
         'lang' => [
-            ['hello', 'local_hello'],
+            ['myfiles', 'local_coodle'],
         ],
     ],
 ];

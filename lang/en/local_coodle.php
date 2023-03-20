@@ -57,3 +57,5 @@ $string['calendar'] = 'calendar';
 $string['forum'] = 'forum';
 $string['files'] = 'files';
 $string['add_user'] = 'add User';
+
+$string['myfiles'] = 'My Files';
