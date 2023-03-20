@@ -23,6 +23,22 @@
               </thead>
               <tbody>
                 {{#files}}
+                <p>otherstuff</p>
+                <core-file
+                    [file]="{
+                        fileurl: '<% {{url}} %>',
+                        filename: '<% {{name}} %>',
+                        timemodified: '<% issue.timemodified %>',
+                        filesize: '<% issue.size %>'
+                    }">
+                </core-file>
+                <p>Raute</p>
+                <core-file
+                [file]="{
+                    fileurl: '{{url}}',
+                    filename: '{{name}}',
+                }">
+            </core-file>
                 <tr>
                   <td>{{name}}</td>
                   <td><a href="{{url}}">Download</a></td>

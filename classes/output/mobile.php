@@ -35,6 +35,7 @@ class mobile {
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
         $templatedata->files = $coodleuser->get_coodleuser_files();
+        $templatedata->test = "Test";
 
         return [
             'templates' => [
