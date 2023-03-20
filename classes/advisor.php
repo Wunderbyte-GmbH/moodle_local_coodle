@@ -18,8 +18,6 @@ namespace local_coodle;
 
 use stdClass;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Class advisor.
  * @package local_coodle
@@ -71,9 +69,12 @@ class advisor {
         $data->fullname = $userdata->firstname . '_'  . $userdata->lastname;
         $data->shortname = $userdata->username . '_'  . $userdata->id;
         $data->idnumber = $userdata->username  . ' ' . $userdata->id;
+        // Enable seperate groups.
+        $data->groupmode = 1;
         $data->category = \local_coodle\settings_manager::create_or_get_standard_coursecategory();
         require_once($CFG->dirroot.'/course/lib.php');
         $course = create_course($data);
+        self::course_manual_enrolments(array($course->id), array($userid), 3);
         return $course->id;
     }
 
@@ -85,8 +86,8 @@ class advisor {
      */
     public static function get_courseid_from_advisorid(int $advisorid) : int {
         global $DB;
-        $courseid = $DB->get_record('local_coodle_advisor', ['userid' => $advisorid], 'courseid', IGNORE_MISSING);
-        return $courseid;
+        $record = $DB->get_record('local_coodle_advisor', ['userid' => $advisorid], 'courseid', IGNORE_MISSING);
+        return $record->courseid;
     }
 
     /**
@@ -98,6 +99,7 @@ class advisor {
      * @return void
      */
     public static function create_group_for_advisor(int $advisorid, int $userid) {
+        global $CFG, $DB;
         $courseid = self::get_courseid_from_advisorid($advisorid);
         $user = \core_user::get_user($userid);
         $coursectx = \context_course::instance($courseid);
@@ -107,11 +109,11 @@ class advisor {
             }
             require_once("$CFG->dirroot/group/lib.php");
             $groupname = fullname($user) . ' (' . $user->id . ')';
-            $group = $DB->get_record('groups', array('courseid' => $forum->course, 'name' => $groupname));
+            $group = $DB->get_record('groups', array('courseid' => $courseid, 'name' => $groupname));
             if (empty($group->id)) {
-                // create a group for this user.
+                // Create a group for this user.
                 $group = (object) array(
-                    'courseid' => $forum->course,
+                    'courseid' => $courseid,
                     'name' => $groupname,
                     'description' => '',
                     'descriptionformat' => 1,
@@ -211,7 +213,7 @@ class advisor {
      */
     public static function get_coodle_advisors() {
         global $DB;
-        $sql = "SELECT * FROM {local_coodle_advisor} ca JOIN {user} u on ca.userid = u.id";
+        $sql = "SELECT *, ca.timecreated as timecreated FROM {local_coodle_advisor} ca JOIN {user} u on ca.userid = u.id";
         $data = $DB->get_records_sql($sql);
         return $data;
     }
@@ -227,6 +229,34 @@ class advisor {
         return $templatedata;
     }
 
+    public static function get_advisor_course($advisorid) {
+        global $DB;
+        $record = $DB->get_record('local_coodle_advisor', array('userid' => $advisorid), 'courseid');
+        return $record->courseid;
+    }
+
+    /**
+     * get_advisor_list
+     *
+     * @return array
+     */
+    public static function get_advisor_list() {
+        $users = self::get_coodle_advisors();
+        if (isset($users)) {
+            foreach ($users as $user) {
+                $id = $user->id;
+                $userlist[$id] = $user->firstname . ' ' . $user->lastname;
+            }
+            return $userlist;
+        }
+        return array();
+    }
+
+    public static function set_coodle_advisor($data) {
+        global $DB;
+        $DB->update_record('local_coodle_user', $data);
+    }
+
     /**
      * Checks if user is advisor
      *
@@ -240,6 +270,34 @@ class advisor {
         }
 
         return $DB->record_exists('local_coodle_advisor', ['userid' => $userid]);
+    }
+
+
+    /**
+     * Create calendar entry
+     */
+    public function create_calendar_entry($advisorid, $userid, $eventdata) {
+        require_once($CFG->dirroot.'/calendar/lib.php');
+
+        $event = new stdClass();
+        $event = $eventdata;
+        $event->eventtype = 'user';
+        $event->type = CALENDAR_EVENT_TYPE_STANDARD; // Or: $event->type = CALENDAR_EVENT_TYPE_ACTION;
+        $event->name = "adsadasd";
+
+        $event->description = "asdadasd";
+        $event->format = FORMAT_HTML;
+        $event->courseid = 0;
+        $event->categoryid = 0;
+        $event->userid = $userid;
+        // Check some capability
+        \calendar_event::create($event, false);
+
+        $event->userid = $advisorid;
+        \calendar_event::create($event, false);
+
+        // TODO maybe create group event?
+
     }
 
     /**

@@ -20,12 +20,15 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+import Ajax from 'core/ajax';
+
 /**
  * Defines dataset Actions
  */
 const ACTIONS = {
     CHECK: 'local-coodle-todo-check',
     DELETE: 'local-coodle-todo-delete',
+    UNCHECK: 'local-coodle-todo-uncheck',
     COLLAPSE: 'local-coodle-todo-collapse',
 };
 
@@ -56,34 +59,91 @@ const initEventListener = () => {
             console.log('nix');
             return;
         }
-        if (target.dataset.action == ACTIONS.CHECK) {
-            todoCheck(target.dataset.id);
-        }
-        if (target.dataset.action == ACTIONS.DELETE) {
-            todoDelete(target.dataset.id);
-        }
-        if (target.dataset.action == ACTIONS.COLLAPSE) {
-            todoCollapse(target.dataset.id);
+        switch (target.dataset.action) {
+            case ACTIONS.CHECK:
+                todoCheck(target, target.dataset.id);
+                break;
+            case ACTIONS.DELETE:
+                todoDelete(target, target.dataset.id);
+                break;
+            case ACTIONS.UNCHECK:
+                todoUncheck(target, target.dataset.id);
+                break;
+            case ACTIONS.COLLAPSE:
+                todoCollapse(target, target.dataset.id);
+                break;
+            default:
+                break;
         }
     });
 };
 
 /**
  * Marks the todo as completed
+ * @param {EventTarget} target the id of the todo
  * @param {Integer} id the id of the todo
  */
-const todoCheck = (id) => {
-    // eslint-disable-next-line no-console
-    console.log('check' + id);
+const todoCheck = (target, id) => {
+    Ajax.call([{
+        methodname: "local_coodle_change_todo",
+        args: {
+            'todoid': parseInt(id),
+            'method': 'done',
+        },
+        done: function() {
+            target.closest('tr').classList.add('done');
+            switchbuttons(target, 'check', id);
+        },
+        fail: function(ex) {
+            // eslint-disable-next-line no-console
+            console.log("ex:" + ex);
+        },
+    }]);
 };
 
 /**
  * Deletes todo
+ * @param {EventTarget} target the id of the todo
  * @param {Integer} id the id of the todo
  */
-const todoDelete = (id) => {
-    // eslint-disable-next-line no-console
-    console.log('delete' + id);
+const todoDelete = (target, id) => {
+    Ajax.call([{
+        methodname: "local_coodle_change_todo",
+        args: {
+            'todoid': parseInt(id),
+            'method': 'delete',
+        },
+        done: function() {
+            target.closest('tr').remove();
+        },
+        fail: function(ex) {
+            // eslint-disable-next-line no-console
+            console.log("ex:" + ex);
+        },
+    }]);
+};
+
+/**
+ * Deletes todo
+ * @param {EventTarget} target the id of the todo
+ * @param {Integer} id the id of the todo
+ */
+const todoUncheck = (target, id) => {
+    Ajax.call([{
+        methodname: "local_coodle_change_todo",
+        args: {
+            'todoid': parseInt(id),
+            'method': 'uncheck',
+        },
+        done: function() {
+            target.closest('tr').classList.remove('done');
+            switchbuttons(target, 'uncheck', id);
+        },
+        fail: function(ex) {
+            // eslint-disable-next-line no-console
+            console.log("ex:" + ex);
+        },
+    }]);
 };
 
 /**
@@ -93,4 +153,19 @@ const todoDelete = (id) => {
 const todoCollapse = (userid) => {
     // eslint-disable-next-line no-console
     console.log('collapse' + userid);
+};
+
+const switchbuttons = (target, mode, id) => {
+    console.log('uncheck');
+    console.log('switchbuttons', target, mode, id);
+    let html = '';
+    if (mode == 'uncheck') {
+        html = '<button class="btn btn-primary-outline coodle-checkbutton" data-action="local-coodle-todo-check" data-id="' + id  + '"><i class="fa fa-check-square-o fa-2x text-success " aria-hidden="true" data-action="local-coodle-todo-check" data-id="' + id +'"></i></button>'
+    }
+    if (mode == 'check') {
+        html = '<button class="btn btn-primary-outline coodle-checkbutton" data-action="local-coodle-todo-uncheck" data-id="' + id  + '"><i class="fa fa-play fa-2x text-success " aria-hidden="true" data-action="local-coodle-todo-uncheck" data-id="' + id +'"></i></button>';
+    }
+    let button = target.closest('.coodle-checkbutton');
+    button.insertAdjacentHTML("afterend", html);
+    button.remove();
 };

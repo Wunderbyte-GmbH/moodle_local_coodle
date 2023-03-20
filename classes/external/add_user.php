@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
-namespace local_entities\external;
+namespace local_coodle\external;
 use external_api;
 use external_function_parameters;
 use external_value;
@@ -22,9 +22,9 @@ use external_single_structure;
 
 
 /**
- * Provides the local_entities_search_entities external function.
+ * Provides the local_coodle add user external function.
  *
- * @package     local_entities
+ * @package     local_coodle
  * @category    external
  * @copyright   2022 Thomas Winkler <thomas.winkler@wunderbyt.at>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

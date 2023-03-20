@@ -17,21 +17,19 @@
 /**
  * This class contains a list of webservice functions related to the Shopping Cart Module by Wunderbyte.
  *
- * @package    local_entities
+ * @package    local_coodle
  * @copyright  2022 Thomas Winkler <info@wunderbyte.at>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 declare(strict_types=1);
 
-namespace local_entities\external;
+namespace local_coodle\external;
 
 use external_api;
 use external_function_parameters;
 use external_value;
 use external_single_structure;
-use local_entities\entity;
-use local_entities\entities;
 
 defined('MOODLE_INTERNAL') || die();
 

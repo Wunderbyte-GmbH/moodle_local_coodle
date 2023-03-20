@@ -49,7 +49,11 @@ $string['add_new_user'] = 'Add new client';
 $string['adduserfromplatform'] = 'Add client from platform';
 $string['user'] = 'User';
 $string['add_todo'] = 'Add Todo';
+$string['todolist'] = 'Todolist';
 
-
-
-
+$string['users'] = 'users';
+$string['groups'] = 'groups';
+$string['calendar'] = 'calendar';
+$string['forum'] = 'forum';
+$string['files'] = 'files';
+$string['add_user'] = 'add User';

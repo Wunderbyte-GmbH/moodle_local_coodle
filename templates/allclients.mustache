@@ -42,8 +42,10 @@
 <a class="btn btn-primary" href="{{config.wwwroot}}/course/view.php?id={{courseid}}">Advisor course</a><p></p>
 							{{/advisorfirstname}}
 							{{^advisorfirstname}}
-							<a class="btn btn-primary" href="{{config.wwwroot}}/course/view.php?id={{courseid}}">Set advisor</a>
+							<a class="btn btn-primary" data-action="local-coodle-set-advisor" data-coodleid="{{id}}">Set advisor</a><p></p>
 							{{/advisorfirstname}}
+
+
 							</td>
 							<td class="status">
 								<span class="status-text status-orange">In progress</span>

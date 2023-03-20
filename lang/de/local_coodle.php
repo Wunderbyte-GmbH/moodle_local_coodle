@@ -37,3 +37,22 @@ $string['status:inprogress'] = 'In progress';
 $string['status:starting'] = 'Starting';
 $string['status:finshed'] = 'Finished';
 $string['selectusers'] = 'Select User for Advisorrole';
+
+$string['none'] = 'Select User for Advisorrole';
+$string['advisorlist'] = 'Advisorlist';
+$string['setadvisor'] = 'Set Advisor';
+
+$string['users'] = 'Teilnehmer_innen';
+$string['groups'] = 'Gruppen';
+$string['calendar'] = 'Kalender';
+$string['forum'] = 'Forum';
+$string['files'] = 'Vorlagen';
+$string['add_user'] = 'User hinzufügen';
+
+// TODO: add all strings.
+$string[''] = 'Teilnehmer_innen';
+$string[''] = 'Gruppen';
+$string[''] = 'Kalender';
+$string[''] = 'Forum';
+$string[''] = 'Vorlagen';
+$string[''] = 'User hinzufügen';

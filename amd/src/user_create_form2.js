@@ -67,7 +67,7 @@ export const init = () => {
             'nobuttons': true
         },
         // Pass any configuration settings to the modal dialogue, for example, the title:
-        modalConfig: {title: getString('create_user', 'local_coodle')},
+        modalConfig: {title: getString('add_user', 'local_coodle')},
         // DOM element that should get the focus after the modal dialogue is closed:
         returnFocus: button
     });

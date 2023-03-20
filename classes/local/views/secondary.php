@@ -32,24 +32,34 @@ class secondary extends core_secondary {
     /**
      * Define a custom secondary nav order/view.
      *
-     * @return array
+     * @return void
      */
 
     public function initialise(): void {
         $context = \context_system::instance();
 
-        $isadvisor = true;
+        $isadvisor = \local_coodle\settings_manager::is_advisor();
         $isadmin = is_siteadmin();
 
         if ($isadvisor) {
-            $this->add('Clientlist' , '/local/coodle/myusers.php', \navigation_node::TYPE_CUSTOM,
+            $this->add('Home' , '/local/coodle/advisor.php', \navigation_node::TYPE_CUSTOM,
             'clientlist', 'clientlist');
+            $this->add('MyClients' , '/local/coodle/myusers.php', \navigation_node::TYPE_CUSTOM,
+            'myclients', 'myclients');
+            $this->add('Todolist' , '/local/coodle/todos.php', \navigation_node::TYPE_CUSTOM,
+            'todos', 'todos');
+            $this->add('Calendar', '/local/coodle/calendar.php', \navigation_node::TYPE_CUSTOM,
+            'calendar', 'calendar');
         }
         if ($isadmin) {
             $this->add('Advisorlist' , '/local/coodle/advisorlist.php', \navigation_node::TYPE_CUSTOM,
             'advisorlist', 'advisorlist');
-            $this->add('Calendar', '/admin/category.php?category=local_coodle ', \navigation_node::TYPE_CUSTOM,
-            'calendar', 'settings');
+            /* $this->add('Add User' , '/local/coodle/advisorlist.php', \navigation_node::TYPE_CUSTOM,
+            'advisorlist', 'advisorlist');
+            $this->add('Add Advisor' , '/local/coodle/advisorlist.php', \navigation_node::TYPE_CUSTOM,
+            'advisorlist', 'advisorlist'); */
+            $this->add('All Clients' , '/local/coodle/allclients.php', \navigation_node::TYPE_CUSTOM,
+            'allclients', 'allclients');
         }
         $this->initialised = true;
     }

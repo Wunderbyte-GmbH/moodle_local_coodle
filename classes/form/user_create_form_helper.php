@@ -19,7 +19,7 @@ namespace local_coodle\form;
 use stdClass;
 
 /**
- * Helper class for user_create_form .
+ * Helper class for user_create_form.
  * @package local_coodle
  * @author Thomas Winkler
  * @copyright 2022 Wunderbyte GmbH

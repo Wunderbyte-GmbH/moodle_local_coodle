@@ -62,6 +62,6 @@ class settings_manager {
         if (empty($userid)) {
             $userid = $USER->id;
         }
-        return $DB->record_exists('local_coodle_advisors', array('userid' => $userid));
+        return $DB->record_exists('local_coodle_advisor', array('userid' => $userid));
     }
 }

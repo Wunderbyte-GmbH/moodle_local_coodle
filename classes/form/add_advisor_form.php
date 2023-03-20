@@ -16,7 +16,7 @@
 
 /**
  * Entitiesrelation form implemantion to use entities in other plugins
- * @package     local_entities
+ * @package     local_coodle
  * @copyright   2021 Wunderbyte GmbH
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -47,7 +47,6 @@ class set_advisor_form extends dynamic_form {
      */
     public function definition() {
         $mform = $this->_form;
-
 
         $options = array(
             'ajax' => 'tool_lp/form-user-selector',

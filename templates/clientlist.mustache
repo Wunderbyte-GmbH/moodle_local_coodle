@@ -4,8 +4,6 @@
 		<main role="main" class="col-md-12 col-lg-12 my-3">
 			<div class="mb-4">
 				<div class="btn btn-primary" data-action="coodle-user_create_form">{{#str}} add_new_user, local_coodle {{/str}}</div>
-				<div class="btn btn-primary" data-action="coodle-create_coodle_user_form">{{#str}} adduserfromplatform, local_coodle {{/str}}</div>
-				<div class="btn btn-primary" data-action="coodle-create_advisor_form">{{#str}} addadvisor, local_coodle {{/str}}</div>
 			</div>
 			<div class="projects mb-4">
 				<div class="projects-inner">
@@ -31,19 +29,18 @@
 
 							</td>
 							<td class="member">
-								<figure><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/people_8.png" /></figure>
 								<div class="member-info">
+									<a class="btn btn-primary" href="{{config.wwwroot}}/local/coodle/user.php?id={{userid}}">Detailpage</a>
 									<p>{{clientfirstname}} <b>{{clientlastname}}</b></p>
 									<p>WIEN</p>
 								</div>
 							</td>
 							<td> {{#advisorfirstname}}
 								<p>{{advisorfirstname}} <b>{{advisorlastname}}</b></p>
-<a class="btn btn-primary" href="{{config.wwwroot}}/course/view.php?id={{courseid}}" data-view="course"><i class="fa fa-home" aria-hidden="true"></i></a><p></p>
+<a class="btn btn-primary" href="{{config.wwwroot}}/course/view.php?id={{courseid}}"><i class="fa fa-home" aria-hidden="true"></i></a><p></p>
 							{{/advisorfirstname}}
 							{{^advisorfirstname}}
-							<a class="btn btn-primary" href="{{config.wwwroot}}/course/view.php?id={{courseid}}"><i class="fa fa-user-plus" aria-hidden="true"></i>
-							</a><p></p>
+							<a class="btn btn-primary" data-action="local-coodle-set-advisor" data-clientid="{{id}}">Set advisor</a>							</a><p></p>
 							{{/advisorfirstname}}
 
 
@@ -56,31 +53,25 @@
 							</td>
 						</tr>
 						<tr>
-						{{#todos}}
-						{{/todos}}
 							<td colspan="100%">
 								<button class="btn btn-primary-outline"
 								data-toggle="collapse"
-								data-target="{{id}}"
+								data-target="#collapse{{id}}"
 								data-action="local-coodle-todo-collapse"
 								data-text="Collapse">
-								<i class="fa fa-chevron-down fa-2x text-white" aria-hidden="true" data-target="{{id}}"
+								<i class="fa fa-chevron-down fa-2x text-white" aria-hidden="true" data-target="#collapse{{id}}"
 								data-action="local-coodle-todo-collapse"></i>
 								</button>
-								<button class="btn btn-primary-outline" data-action="local-coodle-add-todo">
-									<i class="fa fa-plus fa-2x text-success" aria-hidden="true" data-action="local-coodle-add-todo"></i>
+								<button class="btn btn-primary-outline" data-action="local-coodle-add-todo" data-clientid="{{userid}}">
+									<i class="fa fa-plus fa-2x text-success" aria-hidden="true" data-action="local-coodle-add-todo" data-clientid="{{userid}}"></i>
 								</button>
 							</td>
 						</tr>
-						<tr class="text-light bg-light todos" data-clientid="{{id}}">
-							<td colspan="4">JSDJASDAJSDHKJAS D Hakerl Delete</td>
-							<td class="text-right">
-								<button class="btn btn-primary-outline" data-action="local-coodle-todo-check" data-todo-id="{{id}}">
-								<i class="fa fa-check-square-o fa-2x text-success " aria-hidden="true" data-action="local-coodle-todo-check" data-todo-id="{{id}}"></i>
-								</button>
-								<button class="btn btn-primary-outline" data-action="local-coodle-todo-delete" data-todo-id="{{id}}">
-								<i class="fa fa-times fa-2x text-danger" aria-hidden="true" data-action="local-coodle-todo-delete" data-todo-id="{{id}}"></i>
-								</button>
+						<tr>
+							<td colspan="100%" class="bg-white">
+							<table id="collapse{{id}}" class="collapse w-100">
+								{{>local_coodle/todos}}
+							</table>
 							</td>
 						</tr>
 						{{/users}}
@@ -104,6 +95,9 @@
 		border: 10px solid #fff;
 		background: #fff;
 	}
+	.done {
+		opacity: 0.3;
+	}
 </style>
 
 {{#js}}
@@ -111,12 +105,14 @@ require([
 	'local_coodle/user_create_form',
   	'local_coodle/create_advisor_form',
   	'local_coodle/add_todo_form',
-	'local_coodle/todo'],
-  	function(userform, advisorform, todoform, todo
+	'local_coodle/todo',
+	'local_coodle/add_advisor'],
+  	function(userform, advisorform, todoform, todo, addadvisor
 	) {
 		userform.init();
 		advisorform.init();
 		todoform.init();
 		todo.init();
+		addadvisor.init();
 });
 {{/js}}

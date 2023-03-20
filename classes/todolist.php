@@ -21,7 +21,7 @@ use stdClass;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Class advisor.
+ * Class todolist. TODO: needed?
  * @package local_coodle
  * @author Thomas Winkler
  * @copyright 2022 Wunderbyte GmbH
@@ -66,6 +66,11 @@ class todolist {
         $this->todolist = $this->get_todos_for_client();
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     private function get_todos_for_client() {
         global $DB;
         $sql = "SELECT * FROM {local_coodle_todos} WHERE 'userid' = $this->userid GROUP BY 'clientid'";

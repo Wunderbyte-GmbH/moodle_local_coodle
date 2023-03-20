@@ -1,0 +1,103 @@
+<div class="coodle-dashboard">
+<div class="container">
+	<div class="row my-4">
+	  <div class="col-md-4 col-sm-2 col-xs-2">
+		<div class="btn-square">
+		  <a href="/local/coodle/myusers.php" class="btn btn-default btn-block btn-success"><h4>Teilnehmer_innen</h4></a>
+		</div>
+	  </div>
+	  <div class="col-md-4 col-sm-2 col-xs-2">
+		<div class="btn-square">
+		  <a href="/local/coodle/groups.php" class="btn btn-default btn-block btn-info"><h4>Gruppen</h4></a>
+		</div>
+	  </div>
+	  <div class="col-md-4 col-sm-2 col-xs-2">
+		<div class="btn-square">
+		  <a href="/local/coodle/calendar.php" class="btn btn-default btn-block btn-primary"><h4>Kalender</h4></a>
+		</div>
+	  </div>
+	</div>
+	<div class="row my-4">
+	  <div class="col-md-4 col-sm-6 col-xs-6">
+		<div class="btn-square">
+		  <a href="/local/coodle/forum.php" class="btn btn-default btn-block btn-warning"><h4>Forum</h4></a>
+		</div>
+	  </div>
+	  <div class="col-md-4 col-sm-6 col-xs-6">
+		<div class="btn-square">
+		  <a href="/local/coodle/vorlagen.php" class="btn btn-default btn-block btn-danger"><h4>Vorlagen</h4></a>
+		</div>
+	  </div>
+	  <div class="col-md-4 col-sm-6 col-xs-6">
+		<div class="btn-square">
+		  <a href="#" class="btn btn-default btn-block btn-danger" data-action="coodle-user_create_form"><h4>User hinzufügen</h4></a>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+  <div class="container">
+	<div class="row">
+		<div class="col-md-12 col-sm-2 col-xs-2">
+			<div class="card">
+				<div class="card-header"></div>
+					<table class="w-100 table">
+						{{> local_coodle/todos}}
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+<style>
+
+.btn-square {
+	  width: 100%;
+	  padding-top: 60%;
+	  position: relative;
+	}
+	.btn-square > .btn {
+	  position: absolute;
+	  top: 0;
+	  bottom: 0;
+	  left: 0;
+	  right: 0;
+	}
+	.btn-square h4 {
+	margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	}
+
+	.coodle_dashboard .todos td{
+		color: #161616;
+
+	}
+	[name="todotext"] {
+		width: 90% !important;
+	}
+
+	.qrcode {
+		border: 10px solid #fff;
+		background: #fff;
+	}
+	td, th {
+		padding: 20px;
+	}
+</style>
+
+{{#js}}
+require([
+	'local_coodle/user_create_form2',
+  	'local_coodle/add_todo_form',
+	'local_coodle/todo'],
+  	function(userform, advisorform, todoform, todo
+	) {
+		userform.init();
+		advisorform.init();
+		todoform.init();
+		todo.init();
+});
+{{/js}}

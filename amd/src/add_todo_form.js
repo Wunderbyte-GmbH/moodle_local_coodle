@@ -57,6 +57,7 @@ export const init = () => {
 
     let button = event.target;
 
+    console.log(button.dataset.clientid);
     const modalForm = new ModalForm({
 
         // Name of the class where form is defined (must extend \core_form\dynamic_form):

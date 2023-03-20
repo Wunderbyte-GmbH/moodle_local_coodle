@@ -16,8 +16,8 @@
 
 /**
  * Entitiesrelation form implemantion to use entities in other plugins
- * @package     local_entities
- * @copyright   2021 Wunderbyte GmbH
+ * @package     local_coodle
+ * @copyright   2022 Wunderbyte GmbH
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -30,13 +30,12 @@ require_once("$CFG->libdir/formslib.php");
 
 use context;
 use core_form\dynamic_form;
-use local_coodle\advisor;
 use local_coodle\form\user_create_form_helper;
 use local_coodle\coodle_user;
 use moodle_url;
 use stdClass;
 /**
- * Entities relation form.
+ * Create a user and add it to advisor course.
  * @copyright Wunderbyte GmbH <info@wunderbyte.at>
  * @author Thomas Winkler
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -51,34 +50,39 @@ class user_create_form extends dynamic_form {
         $mform = $this->_form;
 
         $data = $this->_ajaxformdata;
-/*         if (has_capability())
+        /*
+        if (has_capability())
 
         else if is_advisor
 
-        else (die()); */
+        else (die());
+        */
 
         $mform->addElement('text', 'username', get_string('username'), 'size="20"');
         $mform->addHelpButton('username', 'username', 'auth');
         $mform->setType('username', PARAM_RAW);
+        $mform->addRule('username', null, 'required', null, 'server');
 
         $mform->addElement('text', 'firstname', get_string('firstname'), 'size="20"');
         $mform->setType('firstname', PARAM_RAW);
+        $mform->addRule('firstname', null, 'required', null, 'server');
 
         $mform->addElement('text', 'lastname', get_string('lastname'), 'size="20"');
-        $mform->setType('firstname', PARAM_RAW);
+        $mform->setType('lastname', PARAM_RAW);
+        $mform->addRule('lastname', null, 'required', null, 'server');
 
-        $mform->addElement('text', 'mail', get_string('email'), 'size="20"');
+
+        $mform->addElement('text', 'email', get_string('email'), 'size="20"');
         $mform->setType('email', PARAM_EMAIL);
+        $mform->addRule('email', null, 'required', null, 'server');
 
         if (!\local_coodle\advisor::is_advisor()) {
-            $options = array(
-                'ajax' => 'tool_lp/form-user-selector',
-                'multiple' => false
-            );
-            $mform->addElement('autocomplete', 'userid', get_string('selectusers', 'local_coodle'), array(), $options);
-            $mform->addRule('userid', null, 'required');
+            //TODO add select
+            $userlist = \local_coodle\advisor::get_advisor_list();
+        } else {
+            global $USER;
+            $mform->addElement('hidden', 'advisorid', $USER->id);
         }
-
         $mform->addElement('passwordunmask', 'newpassword', get_string('newpassword'), 'size="20"');
         $mform->addHelpButton('newpassword', 'newpassword');
         $mform->setType('newpassword', \core_user::get_property_type('password'));
@@ -109,7 +113,7 @@ class user_create_form extends dynamic_form {
     public function process_dynamic_submission() {
         $data = $this->get_data();
         $userid = user_create_form_helper::create_user($data);
-        coodle_user::create_coodle_user($userid);
+        coodle_user::create_coodle_user($userid, $data->advisorid);
         return $data;
     }
 
@@ -152,7 +156,11 @@ class user_create_form extends dynamic_form {
      * @return moodle_url
      */
     protected function get_page_url_for_dynamic_submission(): moodle_url {
-        return new moodle_url('/local/coodle/newuser');
+        $cmid = $this->_ajaxformdata['cmid'];
+        if (!$cmid) {
+            $cmid = $this->optional_param('cmid', '', PARAM_RAW);
+        }
+        return new moodle_url('/local/coodle/newuser', array('id' => $cmid));
     }
 
     /**

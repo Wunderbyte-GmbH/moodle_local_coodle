@@ -41,3 +41,44 @@ function local_coodle_render_navbar_output(\renderer_base $renderer) {
     return $nav;
 }
 
+/**
+ * Serves the logo file settings.
+ *
+ * @param   stdClass $course course object
+ * @param   stdClass $cm course module object
+ * @param   stdClass $context context object
+ * @param   string $filearea file area
+ * @param   array $args extra arguments
+ * @param   bool $forcedownload whether or not force download
+ * @param   array $options additional options affecting the file serving
+ * @return  bool false|void
+ */
+function local_coodle_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = []) {
+    if ($context->contextlevel != CONTEXT_SYSTEM) {
+        return false;
+    }
+
+    if ($filearea !== 'clientfiles' ) {
+        return false;
+    }
+
+    // Check if user can view file
+    $itemid = array_shift($args);
+    // Extract the filename / filepath from the $args array.
+    $filename = array_pop($args);
+    if (!$args) {
+        $filepath = '/';
+    } else {
+        $filepath = '/' . implode('/', $args) . '/';
+    }
+
+    // Retrieve the file from the Files API.
+
+    $fs = get_file_storage();
+    $file = $fs->get_file($context->id, 'local_coodle', $filearea, $itemid, $filepath, $filename);
+    if (!$file) {
+        return false; // The file does not exist.
+    }
+
+    send_stored_file($file, null, 0, $forcedownload, $options);
+}

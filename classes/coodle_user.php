@@ -19,7 +19,7 @@ namespace local_coodle;
 use stdClass;
 
 /**
- * Class advisor.
+ * Class coodle user.
  * @package local_coodle
  * @author Thomas Winkler
  * @copyright 2022 Wunderbyte GmbH
@@ -27,9 +27,31 @@ use stdClass;
  */
 class coodle_user {
 
+    private $token;
+
+    private $id;
+
+    private $userid;
+
     public function __construct() {
+
     }
 
+    /**
+     * Load user
+     *
+     * @param integer $userid
+     * @return stdClass $coodleuser
+     */
+    public function load_user(int $userid) {
+        global $DB;
+        $coodleuser = $DB->get_record('local_coodle_user', array('userid' => $userid));
+        $this->token = $coodleuser->token;
+        $this->id = $coodleuser->id;
+        $this->userid = $coodleuser->userid;
+
+        return $coodleuser;
+    }
     /**
      * Creates a course with the name of the advisor
      *
@@ -38,20 +60,81 @@ class coodle_user {
      * @return int
      */
     public static function create_coodle_user(int $userid, int $advisorid = null) {
-        global $DB, $USER;
+        global $DB;
         $data = new stdClass();
         $data->userid = $userid;
-        if (empty($advisorid)) {
-            $advisorid = $USER->id;
-        }
         $data->advisorid = $advisorid;
         $data->timecreated = time();
         $data->timemodified = time();
         $data->deleted = 0;
+        $data->token = self::generate_coodle_token();
 
         $coodleuserid = $DB->insert_record('local_coodle_user', $data, true);
+        if (!empty($advisorid)) {
+            $advisorcourseid = \local_coodle\advisor::get_advisor_course($advisorid);
 
+            // Enrol user in course.
+            \local_coodle\advisor::course_manual_enrolments(array($advisorcourseid), array($coodleuserid), 5);
+
+            // Add user to contacts.
+            \core_message\api::create_contact_request($advisorid, $userid);
+            \core_message\api::confirm_contact_request($advisorid, $userid);
+            if (!$conversationid = \core_message\api::get_conversation_between_users([$advisorid, $userid])) {
+                // It's a private conversation between users.
+                $conversation = \core_message\api::create_conversation(
+                    \core_message\api::MESSAGE_CONVERSATION_TYPE_INDIVIDUAL,
+                    [
+                    $advisorid,
+                    $userid
+                    ]
+                );
+            }
+            // We either have found a conversation, or created one.
+            $conversationid = !empty($conversationid) ? $conversationid : $conversation->id;
+            \core_message\api::send_message_to_conversation($advisorid, $conversationid, 'testasdasd', FORMAT_HTML);
+
+            // Create a group between user and advisor.
+            \local_coodle\advisor::create_group_for_advisor($advisorid, $userid);
+        }
         return $coodleuserid;
+    }
+
+    private static function generate_coodle_token() {
+        $token = bin2hex(random_bytes(32));
+        return $token;
+    }
+
+    public function renew_token() {
+        global $DB;
+        $params = array(
+            'tokencreated' => time(),
+            'token' => self::generate_coodle_token(),
+            'id' => $this->id
+        );
+        $DB->update_record('local_coodle_user', $params);
+    }
+
+    public function compare_token($token) {
+        if ($this->token == $token) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function get_conversation_between_users($advisorid, $userid) {
+        if (!$conversationid = \core_message\api::get_conversation_between_users([$advisorid, $userid])) {
+            // It's a private conversation between users.
+            $conversation = \core_message\api::create_conversation(
+                \core_message\api::MESSAGE_CONVERSATION_TYPE_INDIVIDUAL,
+                [
+                $advisorid,
+                $userid
+                ]
+            );
+        }
+        // We either have found a conversation, or created one.
+        $conversationid = !empty($conversationid) ? $conversationid : $conversation->id;
+        return $conversationid;
     }
 
     /**
@@ -59,10 +142,10 @@ class coodle_user {
      *
      * @return array
      */
-    public static function get_coodle_users() {
+    public static function get_all_coodle_users() {
         global $DB;
-        $sql = "SELECT cu.*, u.firstname AS clientfirstname, u.lastname as clientlastname,
-        ua.firstname as advisorfirstname, ua.lastname as advisorlastname, a.courseid
+        $sql = "SELECT cu.*, u.firstname as 'clientfirstname', u.lastname as 'clientlastname',
+        ua.firstname as 'advisorfirstname', ua.lastname as 'advisorlastname', a.courseid
          FROM {local_coodle_advisor} a RIGHT JOIN {local_coodle_user} cu on a.userid = cu.advisorid
          JOIN {user} u on cu.userid = u.id
          LEFT JOIN {user} ua on cu.advisorid = ua.id";
@@ -70,32 +153,87 @@ class coodle_user {
         return $data;
     }
 
+    public static function get_coodle_users($userid) {
+        global $DB, $USER;
+
+        if(!$userid) {
+            $userid = $USER->id;
+        }
+        $sql = "SELECT cu.*, u.firstname as 'clientfirstname', u.lastname as 'clientlastname',
+        ua.firstname as 'advisorfirstname', ua.lastname as 'advisorlastname', a.courseid
+         FROM {local_coodle_advisor} a RIGHT JOIN {local_coodle_user} cu on a.userid = cu.advisorid
+         JOIN {user} u on cu.userid = u.id
+         LEFT JOIN {user} ua on cu.advisorid = ua.id
+         WHERE cu.advisorid = $userid";
+        $data = $DB->get_records_sql($sql);
+        return $data;
+    }
+
+    public static function get_coodle_todos($userid) {
+        global $DB;
+        $data = $DB->get_records('local_coodle_todos', array('userid' => $userid));
+        return $data;
+    }
     /**
      * Prepares date for mustache template
      *
      * @return array
      */
-    public static function prepare_for_template() {
-        $coodleusers = self::get_coodle_users();
+    public static function prepare_for_template($userid = 0) {
+        if (!$userid) {
+            $coodleusers = self::get_all_coodle_users();
+        } else {
+            $coodleusers = self::get_coodle_users($userid);
+        }
+
         $templatedata = [];
         foreach ($coodleusers as $coodleuser) {
             $tdata = $coodleuser;
             $tdata->userdatecreated = date("Y-m-d", $coodleuser->timecreated);
-            $qrcodeforappstr = get_string('qrcodeformobileappaccess', 'tool_mobile');
-
-            $mobilesettings = get_config('tool_mobile');
-            $mobilesettings->qrcodetype = \local_coodle\overrides\mobileapioverrides::QR_CODE_LOGIN;
-            $qrcodeimg = \local_coodle\overrides\mobileapioverrides::generate_login_qrcode_from_userid($mobilesettings, $coodleuser->userid);
+            $qrcodeimg = \local_coodle\overrides\mobileapioverrides::generate_login_qrcode_from_userid($tdata->token, $coodleuser->userid);
             $mobileqr = \html_writer::link('#qrcode-'.$coodleuser->userid, '',
                 ['class' => 'btn btn-primary mt-2 fa fa-qrcode', 'data-toggle' => 'collapse',
                 'role' => 'button', 'aria-expanded' => 'false']);
-            $mobileqr .= \html_writer::div(\html_writer::img($qrcodeimg, $qrcodeforappstr, ['class' => 'qrcode']), 'collapse mt-4', ['id' => 'qrcode-'.$coodleuser->userid]);
+            $mobileqr .= \html_writer::div(\html_writer::img($qrcodeimg, 'token', ['class' => 'qrcode']), 'collapse mt-4', ['id' => 'qrcode-'.$coodleuser->userid]);
             $tdata->qrcode = $mobileqr;
+            $tdata->todos = array_values(self::get_coodle_todos($coodleuser->userid));
             $templatedata[] = $tdata;
         }
         return $templatedata;
     }
 
+    public function get_coodleuser_files() {
+        $context = \context_system::instance();
+
+        // Get the file storage instance
+        $filestorage = get_file_storage();
+
+        // Get all files from the file storage
+        $files = $filestorage->get_directory_files($context->id, 'local_coodle', 'clientfiles', 0, '/' . $this->userid . '/');
+
+        // Output the file information
+        foreach ($files as $file) {
+            if ($file->get_filename() != '.') {
+                $fileinfo = new stdClass();
+                $fileinfo->id = $file->get_id();
+                $fileinfo->name = $file->get_filename();
+                $fileinfo->filesize = $file->get_filesize();
+
+                $fileinfo->url = \moodle_url::make_pluginfile_url(
+                    $context->id,
+                    'local_coodle',
+                    'clientfiles',
+                    0,
+                    '/' .$this->userid . '/',
+                    $file->get_filename(),
+                    false
+                );
+                $fileoutput[] = $fileinfo;
+            }
+        }
+
+        return $fileoutput;
+    }
 
     /**
      * Counts all clients in coodle DB
@@ -106,4 +244,6 @@ class coodle_user {
         global $DB;
         return $DB->count_records('local_coodle_user', null);
     }
+
+
 }

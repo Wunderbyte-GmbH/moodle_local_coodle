@@ -15,9 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Entitiesrelation form implemantion to use entities in other plugins
- * @package     local_entities
- * @copyright   2021 Wunderbyte GmbH
+ * Create an advisor form
+ * @package     local_coodle
+ * @copyright   2022 Wunderbyte GmbH
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -34,7 +34,7 @@ use local_coodle\user_create_form_helper;
 use moodle_url;
 use stdClass;
 /**
- * Entities relation form.
+ * Create an advisor form
  * @copyright Wunderbyte GmbH <info@wunderbyte.at>
  * @author Thomas Winkler
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

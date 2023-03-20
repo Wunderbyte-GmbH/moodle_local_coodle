@@ -1,0 +1,45 @@
+
+	{{#todos}}
+	<tr class="bg-light todos {{#deleted}} done {{/deleted}}" data-clientid="{{userid}}">
+			<td colspan="1">{{firstname}} {{lastname}}</td>
+			<td class="text-dark" colspan="4">{{text}}</td>
+			<td class="text-right">
+				<button class="btn btn-primary-outline coodle-checkbutton" data-action="local-coodle-todo-{{^deleted}}check{{/deleted}}{{#deleted}}uncheck{{/deleted}}" data-id="{{id}}">
+				{{^deleted}}<i class="fa fa-check-square-o fa-2x text-success " aria-hidden="true" data-action="local-coodle-todo-check" data-id="{{id}}"></i>{{/deleted}}
+				{{#deleted}}<i class="fa fa-play fa-2x text-danger" aria-hidden="true" data-action="local-coodle-todo-uncheck" data-id="{{id}}"></i>{{/deleted}}
+
+				</button>
+				<button class="btn btn-primary-outline" data-action="local-coodle-todo-delete" data-id="{{id}}" >
+				<i class="fa fa-times fa-2x text-danger" aria-hidden="true" data-action="local-coodle-todo-delete" data-id="{{id}}"></i>
+				</button>
+			</td>
+		</tr>
+	{{/todos}}
+
+<style>
+	.coodle-dashboard .todos td{
+		color: #161616;
+
+	}
+	[name="todotext"] {
+		width: 90% !important;
+	}
+	.qrcode {
+		border: 10px solid #fff;
+		background: #fff;
+	}
+	td, th {
+		padding: 20px;
+	}
+	.done {
+		opacity: 0.3;
+	}
+</style>
+
+{{#js}}
+require([
+	'local_coodle/todo'],
+  	function(todo) {
+		todo.init();
+});
+{{/js}}
