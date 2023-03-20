@@ -64,6 +64,7 @@ echo $OUTPUT->render_from_template('local_coodle/todolist', $templatedata);
 
 $coodle = new local_coodle\coodle_user();
 $coodle->load_user($id);
+$templatedata = new stdClass();
 $templatedata->files = $coodle->get_coodleuser_files();
 $templatedata->clientid = $id;
 echo $OUTPUT->render_from_template('local_coodle/files', $templatedata);
