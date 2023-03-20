@@ -46,6 +46,7 @@ class mobile {
             ],
             'javascript' => '',
             'otherdata' => '',
+            'files' => $templatedata->files,
         ];
     }
 

@@ -23,22 +23,15 @@
               </thead>
               <tbody>
                 {{#files}}
-                <p>otherstuff</p>
-                <core-file
-                    [file]="{
-                        fileurl: '<% {{url}} %>',
-                        filename: '<% {{name}} %>',
-                        timemodified: '<% issue.timemodified %>',
-                        filesize: '<% issue.size %>'
-                    }">
-                </core-file>
-                <p>Raute</p>
-                <core-file
-                [file]="{
-                    fileurl: '{{url}}',
-                    filename: '{{name}}',
-                }">
-            </core-file>
+                <ion-button expand="block" core-course-download-module-main-file
+                    [files]="[{
+                        fileurl: '<% files.fileurl %>',
+                        filename: '<% files.filename %>',
+                        timemodified: '<% files.timemodified %>', mimetype: '<% files.mimetype %>',
+                    }]">
+
+                    <ion-icon name="cloud-download" slot="start"></ion-icon>
+                </ion-button>
                 <tr>
                   <td>{{name}}</td>
                   <td><a href="{{url}}">Download</a></td>
