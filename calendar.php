@@ -52,7 +52,7 @@ $content->footer = '';
 $renderer = $PAGE->get_renderer('core_calendar');
 $content->text = $renderer->start_layout();
 
-$courseid = 14;
+$courseid = \local_coodle\advisor::get_advisor_course($USER->id);
 $categoryid = ($PAGE->context->contextlevel === CONTEXT_COURSECAT && !empty($PAGE->category)) ?
 $PAGE->category->id : null;
 $calendar = \calendar_information::create(time(), $courseid, $categoryid);

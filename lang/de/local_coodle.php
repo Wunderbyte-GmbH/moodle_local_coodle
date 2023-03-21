@@ -58,3 +58,4 @@ $string[''] = 'Vorlagen';
 $string[''] = 'User hinzufügen';
 
 $string['myfiles'] = 'Meine Dateien';
+$string['viewaddress'] = 'Adresse';

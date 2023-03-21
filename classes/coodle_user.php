@@ -91,7 +91,8 @@ class coodle_user {
             }
             // We either have found a conversation, or created one.
             $conversationid = !empty($conversationid) ? $conversationid : $conversation->id;
-            \core_message\api::send_message_to_conversation($advisorid, $conversationid, 'testasdasd', FORMAT_HTML);
+            $welcomemsg = "Herzlich Willkommen";
+            \core_message\api::send_message_to_conversation($advisorid, $conversationid, $welcomemsg, FORMAT_HTML);
 
             // Create a group between user and advisor.
             \local_coodle\advisor::create_group_for_advisor($advisorid, $userid);
@@ -220,8 +221,6 @@ class coodle_user {
                 $fileinfo->filesize = $file->get_filesize();
                 $fileinfo->filesize = $file->get_mimetype();
                 $fileinfo->timemodified = time(); // TODO:;
-                $fileinfo->fileurl = $file->get_url();
-
                 $fileinfo->url = \moodle_url::make_pluginfile_url(
                     $context->id,
                     'local_coodle',

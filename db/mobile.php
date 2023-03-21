@@ -32,7 +32,16 @@ $addons = [
                 'delegate' => 'CoreMainMenuDelegate',
                 'method' => 'view_files',
                 'displaydata' => [
-                    'title' => 'hello',
+                    'title' => 'myfiles',
+                    'icon' => 'earth',
+                ],
+                'priority'  => 10000000000000000,
+            ],
+            'test' => [
+                'delegate' => 'CoreMainMenuHomeDelegate',
+                'method' => 'view_address',
+                'displaydata' => [
+                    'title' => 'viewaddress',
                     'icon' => 'earth',
                 ],
                 'priority'  => 10000000000000000,
@@ -40,6 +49,9 @@ $addons = [
         ],
         'lang' => [
             ['myfiles', 'local_coodle'],
+            ['viewaddress', 'local_coodle'],
+
         ],
+
     ],
 ];

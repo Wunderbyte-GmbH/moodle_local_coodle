@@ -50,4 +50,43 @@ class mobile {
         ];
     }
 
+    public static function view_addres() {
+        global $USER, $OUTPUT;
+        $coodleuser = new coodle_user();
+        $coodleuser->load_user($USER->id);
+        $templatedata = new stdClass();
+        $templatedata->otherfiles = $coodleuser->get_coodleuser_files();
+        $templatedata->test = "Test";
+
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_address_view', $templatedata),
+                ],
+            ],
+            'javascript' => '',
+            'otherdata' => '',
+        ];
+    }
+
+    public static function view_faq() {
+        global $USER, $OUTPUT;
+        $coodleuser = new coodle_user();
+        $coodleuser->load_user($USER->id);
+        $templatedata = new stdClass();
+        $templatedata->otherfiles = $coodleuser->get_coodleuser_files();
+        $templatedata->test = "Test";
+
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_test', $templatedata),
+                ],
+            ],
+            'javascript' => '',
+            'otherdata' => '',
+        ];
+    }
 }

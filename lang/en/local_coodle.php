@@ -59,3 +59,5 @@ $string['files'] = 'files';
 $string['add_user'] = 'add User';
 
 $string['myfiles'] = 'My Files';
+
+$string['viewaddress'] = 'Address';
