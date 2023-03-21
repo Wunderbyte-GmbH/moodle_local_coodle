@@ -60,7 +60,7 @@ $functions = array(
 );
 
 $services = array(
-        'Coodle Tokens' => array( // Very important, don't rename or will break local_bookingapi plugin!!!
+        'Coodle Tokens' => array( // TODO check if needed?
                 'functions' => array (
                         'local_coodle_get_sesskey',
                 ),

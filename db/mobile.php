@@ -37,7 +37,7 @@ $addons = [
                 ],
                 'priority'  => 10000000000000000,
             ],
-            'test' => [
+            'viewaddress' => [
                 'delegate' => 'CoreMainMenuHomeDelegate',
                 'method' => 'view_address',
                 'displaydata' => [
@@ -45,6 +45,15 @@ $addons = [
                     'icon' => 'earth',
                 ],
                 'priority'  => 10000000000000000,
+            ],
+            'files' => [
+                'delegate' => 'CoreMainMenuHomeDelegate',
+                'method' => 'view_files',
+                'displaydata' => [
+                    'title' => 'myfiles',
+                    'icon' => 'earth',
+                ],
+                'priority'  => 1000000000000000,
             ],
         ],
         'lang' => [

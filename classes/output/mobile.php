@@ -50,14 +50,8 @@ class mobile {
         ];
     }
 
-    public static function view_addres() {
-        global $USER, $OUTPUT;
-        $coodleuser = new coodle_user();
-        $coodleuser->load_user($USER->id);
-        $templatedata = new stdClass();
-        $templatedata->otherfiles = $coodleuser->get_coodleuser_files();
-        $templatedata->test = "Test";
-
+    public static function view_address() {
+        global $OUTPUT;
         return [
             'templates' => [
                 [
