@@ -107,10 +107,11 @@
 
 {{#js}}
 require([
-  	'local_coodle/add_todo_form',
+  	'local_coodle/add_todo_form','local_coodle/add_file'
 	],
-  	function(todoform
+  	function(todoform,fileform
 	) {
 		todoform.init();
+    fileform.init()
 });
 {{/js}}

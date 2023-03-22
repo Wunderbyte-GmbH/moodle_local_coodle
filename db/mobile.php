@@ -28,12 +28,27 @@ defined('MOODLE_INTERNAL') || die();
 $addons = [
     'local_coodle' => [
         'handlers' => [
-            'files' => [
+            'files1' => [
                 'delegate' => 'CoreMainMenuDelegate',
-                'method' => 'view_files',
-                'args' => [
-                    'doctype' => 1,
+                'method' => 'view_files1',
+                'displaydata' => [
+                    'title' => 'myfiles',
+                    'icon' => 'earth',
                 ],
+                'priority'  => 10000000000000000,
+            ],
+            'files2' => [
+                'delegate' => 'CoreMainMenuDelegate',
+                'method' => 'view_files2',
+                'displaydata' => [
+                    'title' => 'myfiles',
+                    'icon' => 'earth',
+                ],
+                'priority'  => 10000000000000000,
+            ],
+            'files3' => [
+                'delegate' => 'CoreMainMenuDelegate',
+                'method' => 'view_files3',
                 'displaydata' => [
                     'title' => 'myfiles',
                     'icon' => 'earth',
@@ -49,9 +64,9 @@ $addons = [
                 ],
                 'priority'  => 10000000000000000,
             ],
-            'files2' => [
+            'files12' => [
                 'delegate' => 'CoreMainMenuHomeDelegate',
-                'method' => 'view_files',
+                'method' => 'view_files1',
                 'displaydata' => [
                     'title' => 'myfiles',
                     'icon' => 'earth',
@@ -61,9 +76,9 @@ $addons = [
                 ],
                 'priority'  => 1000000000000000,
             ],
-            'files3' => [
+            'files12' => [
                 'delegate' => 'CoreMainMenuHomeDelegate',
-                'method' => 'view_files',
+                'method' => 'view_files2',
                 'displaydata' => [
                     'title' => 'myfiles',
                     'icon' => 'earth',

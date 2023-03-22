@@ -29,12 +29,54 @@ use stdClass;
 
 class mobile {
 
-    public static function view_files(int $doctype) {
+    public static function view_files1() {
         global $USER, $OUTPUT;
         $coodleuser = new coodle_user();
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
-        $templatedata->otherfiles = $coodleuser->get_coodleuser_files($doctype);
+        $templatedata->otherfiles = $coodleuser->get_coodleuser_files(1);
+        $templatedata->test = "Test";
+
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
+                ],
+            ],
+            'javascript' => '',
+            'otherdata' => '',
+            'files' => $templatedata->otherfiles,
+        ];
+    }
+
+    public static function view_files2() {
+        global $USER, $OUTPUT;
+        $coodleuser = new coodle_user();
+        $coodleuser->load_user($USER->id);
+        $templatedata = new stdClass();
+        $templatedata->otherfiles = $coodleuser->get_coodleuser_files(2);
+        $templatedata->test = "Test";
+
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
+                ],
+            ],
+            'javascript' => '',
+            'otherdata' => '',
+            'files' => $templatedata->otherfiles,
+        ];
+    }
+
+    public static function view_files3() {
+        global $USER, $OUTPUT;
+        $coodleuser = new coodle_user();
+        $coodleuser->load_user($USER->id);
+        $templatedata = new stdClass();
+        $templatedata->otherfiles = $coodleuser->get_coodleuser_files(3);
         $templatedata->test = "Test";
 
         return [
