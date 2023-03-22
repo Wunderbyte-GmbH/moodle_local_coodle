@@ -203,14 +203,22 @@ class coodle_user {
         return $templatedata;
     }
 
-    public function get_coodleuser_files() {
+    public function get_coodleuser_links() {
+        return "<ul class='list-group'><li class='list-group-item'><a href='/local/coodle/advisoradress.php'>Lebenslauf schreiben leicht gemacht!</a></li></ul>";
+    }
+
+    public function get_coodleuser_directions() {
+        return "<ul class='list-group'><li class='list-group-item'><a href='/local/coodle/advisoradress.php'>Mein Büro</a></li></ul>";
+    }
+
+    public function get_coodleuser_files(int $doctype) {
         $context = \context_system::instance();
 
         // Get the file storage instance
         $filestorage = get_file_storage();
 
         // Get all files from the file storage
-        $files = $filestorage->get_directory_files($context->id, 'local_coodle', 'clientfiles', 0, '/' . $this->userid . '/');
+        $files = $filestorage->get_directory_files($context->id, 'local_coodle', 'clientfiles', 0, '/' . $this->userid . '/' . $doctype . '/');
 
         // Output the file information
         foreach ($files as $file) {
@@ -254,7 +262,7 @@ class coodle_user {
      *
      * @return int
      */
-    public static function delet_user($clientid) {
+    public static function delete_user($clientid) {
         global $DB;
         // TODO predelete
         // Delete user from files

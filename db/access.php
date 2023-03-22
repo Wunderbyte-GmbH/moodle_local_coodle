@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Local cohorts module capability definition
+ * Local coodle module capability definition
  *
  * @package         local_coodle
  * @author          Thomas Winkler

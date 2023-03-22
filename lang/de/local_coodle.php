@@ -49,6 +49,9 @@ $string['forum'] = 'Forum';
 $string['files'] = 'Vorlagen';
 $string['add_user'] = 'User hinzufügen';
 
+$string['usersite'] = 'TN Seite';
+
+
 // TODO: add all strings.
 $string[''] = 'Teilnehmer_innen';
 $string[''] = 'Gruppen';
@@ -59,3 +62,4 @@ $string[''] = 'User hinzufügen';
 
 $string['myfiles'] = 'Meine Dateien';
 $string['viewaddress'] = 'Adresse';
+$string['uploadfile'] = 'uploadfile';

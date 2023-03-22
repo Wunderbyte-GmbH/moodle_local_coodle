@@ -8,18 +8,12 @@
           </ion-card-header>
           <ion-card-content>
             <h4>From Advisor</h4>
-            <core-file  [file]="{fileurl: '<%otherfiles.0.url%>',
-              filename: '<%otherfiles.0.name%>'}"
+            <%#otherfiles%>
+            <core-file  [file]="{fileurl: '<%url%>',
+              filename: '<%name%>'}"
               canDownload = "true">
             </core-file>
-            <core-file  [file]="{fileurl: '<%otherfiles.1.url%>',
-              filename: '<%otherfiles.1.name%>'}"
-              canDownload = "true">
-            </core-file>
-            <core-file  [file]="{fileurl: '<%otherfiles.2.url%>',
-              filename: '<%otherfiles.2.name%>'}"
-              canDownload = "true">
-            </core-file>
+            <%/otherfiles%>
           </ion-card-content>
         </ion-card>
         </ion-col>

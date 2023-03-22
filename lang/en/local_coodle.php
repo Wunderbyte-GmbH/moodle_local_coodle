@@ -61,3 +61,6 @@ $string['add_user'] = 'add User';
 $string['myfiles'] = 'My Files';
 
 $string['viewaddress'] = 'Address';
+$string['uploadfile'] = 'upload file';
+
+$string['usersite'] = 'User Page';

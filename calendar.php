@@ -72,7 +72,8 @@ $content->text .= $renderer->complete_layout();
 
 echo $content->text;
 
-/**PUT IN A FUNCTION */
+$calendarexport = "<div class='container'><div class='mt-2'><a href='/calendar/export.php?' class='btn btn-primary' traget='_blank'>Export</a></div></div>";
 
+echo $calendarexport;
 
 echo $OUTPUT->footer();

@@ -41,32 +41,33 @@ $PAGE->set_secondary_navigation(true);
 
 $PAGE->set_url(new moodle_url('/local/coodle/user.php', array('id' => $id)));
 $PAGE->set_pagelayout('standard');
-//Get User Object
+// Get User Object
 $client->name = fullname(get_complete_user_data('id', $id));
 $title = $client->name;
-$PAGE->set_title($title);
-$PAGE->set_heading($title);
+$PAGE->set_title("cOOdle");
 
 echo $OUTPUT->header();
 
 $todo = new \local_coodle\todo();
-
+$templatedata = new stdClass();
 $todolist = $todo->load_todolist_by_userid($id);
 if (!empty($todolist)) {
-    $templatedata['todos'] = $todolist;
+    $templatedata->todos = $todolist;
 } else {
     $templatedata->empty = 1;
 }
-
+$templatedata->name = $client->name;
 $convid = local_coodle\coodle_user::get_conversation_between_users($USER->id, $id);
-echo \core_message\helper::render_messaging_widget(false, $id, $convid);
-echo $OUTPUT->render_from_template('local_coodle/todolist', $templatedata);
-
+$templatedata->widget = \core_message\helper::render_messaging_widget(false, $id, $convid);
+$templatedata->clientid = $id;
 $coodle = new local_coodle\coodle_user();
 $coodle->load_user($id);
-$templatedata = new stdClass();
-$templatedata->files = $coodle->get_coodleuser_files();
-$templatedata->clientid = $id;
-echo $OUTPUT->render_from_template('local_coodle/files', $templatedata);
+$templatedata->files[1] = $coodle->get_coodleuser_files(1);
+$templatedata->files[2] = $coodle->get_coodleuser_files(2);
+$templatedata->files[3] = $coodle->get_coodleuser_files(3);
+$templatedata->directions = $coodle->get_coodleuser_directions();
+$templatedata->links = $coodle->get_coodleuser_links();
+
+echo $OUTPUT->render_from_template('local_coodle/myuser', $templatedata);
 
 echo $OUTPUT->footer();

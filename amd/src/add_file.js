@@ -47,6 +47,8 @@ export const init = () => {
             console.log('unnecessary call of init');
         }
     });
+    console.log(element);
+
 };
 
 /**
@@ -56,15 +58,18 @@ export const init = () => {
  const openForm = event => {
 
     let button = event.target;
+    console.log(button.dataset.doctype);
+    console.log('dataset');
 
-    console.log(button.dataset.clientid);
+
     const modalForm = new ModalForm({
 
         // Name of the class where form is defined (must extend \core_form\dynamic_form):
         formClass: "local_coodle\\form\\add_file_form",
         // Add as many arguments as you need, they will be passed to the form:
         args: {
-            'clientid': button.dataset.clientid
+            'clientid': button.dataset.clientid,
+            'doctype': button.dataset.doctype
         },
         // Pass any configuration settings to the modal dialogue, for example, the title:
         modalConfig: {title: getString('add_file', 'local_coodle')},

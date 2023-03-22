@@ -33,7 +33,7 @@ use core_form\dynamic_form;
 use moodle_url;
 use stdClass;
 /**
- * Entities relation form.
+ * Coodle Todo Form
  * @copyright Wunderbyte GmbH <info@wunderbyte.at>
  * @author Thomas Winkler
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Local cohorts module capability definition
+ * Local coodle module mobile definition
  *
  * @package         local_coodle
  * @author          Christian Badusch
@@ -31,6 +31,9 @@ $addons = [
             'files' => [
                 'delegate' => 'CoreMainMenuDelegate',
                 'method' => 'view_files',
+                'args' => [
+                    'doctype' => 1,
+                ],
                 'displaydata' => [
                     'title' => 'myfiles',
                     'icon' => 'earth',
@@ -42,16 +45,31 @@ $addons = [
                 'method' => 'view_address',
                 'displaydata' => [
                     'title' => 'viewaddress',
-                    'icon' => 'earth',
+                    'icon' => 'map',
                 ],
                 'priority'  => 10000000000000000,
             ],
-            'files' => [
+            'files2' => [
                 'delegate' => 'CoreMainMenuHomeDelegate',
                 'method' => 'view_files',
                 'displaydata' => [
                     'title' => 'myfiles',
                     'icon' => 'earth',
+                ],
+                'args' => [
+                    'doctype' => 2,
+                ],
+                'priority'  => 1000000000000000,
+            ],
+            'files3' => [
+                'delegate' => 'CoreMainMenuHomeDelegate',
+                'method' => 'view_files',
+                'displaydata' => [
+                    'title' => 'myfiles',
+                    'icon' => 'earth',
+                ],
+                'args' => [
+                    'doctype' => 2,
                 ],
                 'priority'  => 1000000000000000,
             ],

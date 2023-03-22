@@ -55,10 +55,12 @@ class add_file_form extends dynamic_form {
         $options['maxbytes'] = 204800;
         $options['maxfiles'] = null;
         $options['accepted_types'] = ['jpg', 'jpeg', 'png', 'pdf' , 'doc', 'xls', 'docx'];
-        $mform->addElement('filemanager', 'clientfiles_filemanager', get_string('edit_image', 'local_cohorts'), null, $options);
+        $mform->addElement('filemanager', 'clientfiles_filemanager', get_string('uploadfile', 'local_coodle'), null, $options);
         $this->add_action_buttons();
         $mform->addElement('hidden', 'id', $customdata['clientid']);
         $mform->setType('id', PARAM_INT);
+        $mform->addElement('hidden', 'doctype', $customdata['doctype']);
+        $mform->setType('doctype', PARAM_INT);
 
     }
 
@@ -93,15 +95,15 @@ class add_file_form extends dynamic_form {
             $files = $fs->get_area_files($context->id, 'local_coodle', 'clientfiles', $data->id);
             foreach ($files as $file) {
                 if ($file->get_filename() != '.') {
-                $filerecord = [
-                    'contextid'    => $file->get_contextid(),
-                    'component'    => $file->get_component(),
-                    'filearea'     => 'clientfiles',
-                    'itemid'       => 0,
-                    'filepath'     => '/'.$data->id.'/',
-                    'filename'     => $file->get_filename(),
-                    'timecreated'  => time(),
-                    'timemodified' => time(),
+                    $filerecord = [
+                        'contextid'    => $file->get_contextid(),
+                        'component'    => $file->get_component(),
+                        'filearea'     => 'clientfiles',
+                        'itemid'       => 0,
+                        'filepath'     => '/'.$data->id.'/'.$data->doctype.'/',
+                        'filename'     => $file->get_filename(),
+                        'timecreated'  => time(),
+                        'timemodified' => time(),
                     ];
                     $fs->create_file_from_storedfile($filerecord, $file);
 
@@ -115,7 +117,6 @@ class add_file_form extends dynamic_form {
         return $data;
     }
 
-
     /**
      * Load in existing data as form defaults
      *
@@ -128,6 +129,8 @@ class add_file_form extends dynamic_form {
     public function set_data_for_dynamic_submission(): void {
         $data = $this->_ajaxformdata;
         $data['id'] = $this->_ajaxformdata['clientid'];
+        $data['doctype'] = $this->_ajaxformdata['doctype'];
+
         $this->set_data($data);
     }
 

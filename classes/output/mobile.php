@@ -29,12 +29,12 @@ use stdClass;
 
 class mobile {
 
-    public static function view_files() {
+    public static function view_files(int $doctype) {
         global $USER, $OUTPUT;
         $coodleuser = new coodle_user();
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
-        $templatedata->otherfiles = $coodleuser->get_coodleuser_files();
+        $templatedata->otherfiles = $coodleuser->get_coodleuser_files($doctype);
         $templatedata->test = "Test";
 
         return [
@@ -52,6 +52,7 @@ class mobile {
 
     public static function view_address() {
         global $OUTPUT;
+        $templatedata = new stdClass();
         return [
             'templates' => [
                 [

@@ -2,7 +2,7 @@
 <table class="w-100">
 	{{#todos}}
 	<tr class="bg-light todos {{#deleted}} done {{/deleted}}" data-clientid="{{userid}}">
-			<td colspan="1">{{firstname}} {{lastname}}</td>
+			<td colspan="1"><a href="/local/coodle/user.php?id={{userid}}">{{firstname}} {{lastname}}</a></td>
 			<td class="text-dark" colspan="4">{{text}}</td>
 			<td class="text-right td-coodle-checkbuttons">
 				<button class="btn btn-primary-outline coodle-checkbutton" data-action="local-coodle-todo-{{^deleted}}check{{/deleted}}{{#deleted}}uncheck{{/deleted}}" data-id="{{id}}">

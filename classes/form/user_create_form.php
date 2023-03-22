@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Entitiesrelation form implemantion to use entities in other plugins
+ * Create a User form
  * @package     local_coodle
  * @copyright   2022 Wunderbyte GmbH
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -117,7 +117,6 @@ class user_create_form extends dynamic_form {
         return $data;
     }
 
-
     /**
      * Load in existing data as form defaults
      *
@@ -184,6 +183,4 @@ class user_create_form extends dynamic_form {
         $data = parent::get_data();
         return $data;
     }
-
-    // Helperfunctio
 }
