@@ -35,7 +35,8 @@ class mobile {
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(1);
-        $templatedata->test = "Test";
+        $templatedata->hl = "Dokumente";
+        $templatedata->bg = "#64a44e";
 
         return [
             'templates' => [
@@ -56,7 +57,8 @@ class mobile {
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(2);
-        $templatedata->test = "Test";
+        $templatedata->hl = "Bewerbungsunterlagen";
+        $templatedata->bg = "#0f47ad";
 
         return [
             'templates' => [
@@ -77,7 +79,9 @@ class mobile {
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(3);
-        $templatedata->test = "Test";
+        $templatedata->hl = "Beratungsinhalt";
+        $templatedata->bg = "#ced4da";
+
 
         return [
             'templates' => [
