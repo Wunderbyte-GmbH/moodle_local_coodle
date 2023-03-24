@@ -36,7 +36,7 @@ $secondarynav->initialise();
 $PAGE->set_secondarynav($secondarynav);
 $PAGE->set_secondary_navigation(true);
 
-$PAGE->set_url(new moodle_url('/local/coodle/myuser.php', array()));
+$PAGE->set_url(new moodle_url('/local/coodle/files.php', array()));
 $PAGE->set_pagelayout('standard');
 $title = "COOdLe Manager";
 $PAGE->set_title($title);
@@ -60,4 +60,3 @@ foreach ($files as $file) {
         $templatecontext->image = moodle_url::make_file_url('/pluginfile.php', '/1/local_coodle/clientfiles/' . $cohort->id .  '/' . $filename);
     }
 }
-

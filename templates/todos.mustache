@@ -2,19 +2,20 @@
 <ul class="list-group">
 	{{#todos}}
 	<li class="bg-light todos list-group-item {{#deleted}} done {{/deleted}}" data-clientid="{{userid}}">
-			<td colspan="1">{{firstname}} {{lastname}}</td>
-			<td class="text-dark" colspan="4">{{text}}</td>
-			<td class="text-right">
-				<button class="btn btn-primary-outline coodle-checkbutton pull-right" data-action="local-coodle-todo-{{^deleted}}check{{/deleted}}{{#deleted}}uncheck{{/deleted}}" data-id="{{id}}">
-				{{^deleted}}<i class="fa fa-check-square-o fa-2x text-success " aria-hidden="true" data-action="local-coodle-todo-check" data-id="{{id}}"></i>{{/deleted}}
-				{{#deleted}}<i class="fa fa-play fa-2x text-danger" aria-hidden="true" data-action="local-coodle-todo-uncheck" data-id="{{id}}"></i>{{/deleted}}
-
-				</button>
-				<button class="btn btn-primary-outline pull-right" data-action="local-coodle-todo-delete" data-id="{{id}}" >
-				<i class="fa fa-times fa-2x text-danger" aria-hidden="true" data-action="local-coodle-todo-delete" data-id="{{id}}"></i>
-				</button>
-			</td>
-	</li>
+		<div class="row">
+			{{#firstname}}<div class="col-md-3">{{firstname}} {{lastname}}</div>{{/firstname}}
+		  <div class="{{#firstname}} col-md-5 {{/firstname}} {{^firstname}} col-md-8 {{/firstname}} text-dark">{{text}}</div>
+		  <div class="col-md-4 text-right">
+			<button class="btn btn-primary-outline coodle-checkbutton pull-right" data-action="local-coodle-todo-{{^deleted}}check{{/deleted}}{{#deleted}}uncheck{{/deleted}}" data-id="{{id}}">
+			  {{^deleted}}<i class="fa fa-check-square-o fa-2x text-success " aria-hidden="true" data-action="local-coodle-todo-check" data-id="{{id}}"></i>{{/deleted}}
+			  {{#deleted}}<i class="fa fa-play fa-2x text-danger" aria-hidden="true" data-action="local-coodle-todo-uncheck" data-id="{{id}}"></i>{{/deleted}}
+			</button>
+			<button class="btn btn-primary-outline pull-right" data-action="local-coodle-todo-delete" data-id="{{id}}" >
+			  <i class="fa fa-times fa-2x text-danger" aria-hidden="true" data-action="local-coodle-todo-delete" data-id="{{id}}"></i>
+			</button>
+		  </div>
+		</div>
+	  </li>
 	{{/todos}}
 </ul>
 

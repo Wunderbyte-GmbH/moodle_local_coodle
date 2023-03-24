@@ -59,7 +59,8 @@ class mobile {
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(2);
         $templatedata->hl = "Bewerbungsunterlagen";
         $templatedata->bg = "#0f47ad";
-
+        $templatedata->hl = "Beratungsinhalt";
+        $templatedata->bg = "#ced4da";
         return [
             'templates' => [
                 [
@@ -81,7 +82,6 @@ class mobile {
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(3);
         $templatedata->hl = "Beratungsinhalt";
         $templatedata->bg = "#ced4da";
-
 
         return [
             'templates' => [

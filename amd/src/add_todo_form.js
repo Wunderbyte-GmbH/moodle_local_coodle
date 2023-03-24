@@ -25,7 +25,14 @@ import ModalForm from 'core_form/modalform';
 import {get_string as getString} from 'core/str';
 
 const SELECTORS = {
-    ADD_TODO: '[data-action="local-coodle-add-todo"]',
+    TODO: '.coodle-dashboard',
+};
+
+/**
+ * Defines dataset Actions
+ */
+const ACTIONS = {
+    ADD_TODO: 'local-coodle-add-todo',
 };
 
 /**
@@ -33,18 +40,18 @@ const SELECTORS = {
  *
  */
 export const init = () => {
-
-    // Find all container.
-    const containers = document.querySelectorAll(SELECTORS.ADD_TODO);
-
-    containers.forEach(element => {
-        if (!element.dataset.initialized) {
-            element.addEventListener('click', openForm);
-            element.dataset.initialized = true;
-        } else {
-            // Just to make sure during development that this is not called to often.
-            // eslint-disable-next-line no-console
-            console.log('unnecessary call of init');
+    document.querySelector(SELECTORS.TODO).addEventListener('click', function(e) {
+        console.log(e);
+        let target = e.target;
+        if (!target.dataset.action) {
+            return;
+        }
+        switch (target.dataset.action) {
+            case ACTIONS.ADD_TODO:
+                openForm(e);
+                break;
+            default:
+                break;
         }
     });
 };

@@ -63,4 +63,4 @@ $string['myfiles'] = 'My Files';
 $string['viewaddress'] = 'Address';
 $string['uploadfile'] = 'upload file';
 
-$string['usersite'] = 'User Page';
+$string['userpage'] = 'User Page';

@@ -32,7 +32,7 @@ require_login();
 
 require_once($CFG->dirroot.'/calendar/lib.php');
 
-$PAGE->set_url(new moodle_url('/local/coodle/index.php', array()));
+$PAGE->set_url(new moodle_url('/local/coodle/calendar.php', array()));
 $secondarynav = new secondary($PAGE);
 $secondarynav->initialise();
 $PAGE->set_secondarynav($secondarynav);

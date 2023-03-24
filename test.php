@@ -27,11 +27,32 @@ $context = \context_system::instance();
 $PAGE->set_context($context);
 require_login();
 
+// TODO delete before production
+
 $PAGE->set_pagelayout('standard');
 $title = "COOdLe Manager";
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
 
 echo $OUTPUT->header();
+
+$repository = repository::get_instance(9);
+
+// Get the context
+$context = context_system::instance();
+
+// Loop through the file list and display the file names
+// Loop through the file list and display the file names and contents
+$file_list = $repository->get_listing($context->id, 'repository', 'file', '/', '', true);
+
+// Loop through the file list and display the file names and contents
+foreach ($file_list['list'] as $file) {
+    // Get the file contents
+    $file = $repository->get_file_by_id($file_id);
+
+    // Output the file name and contents
+    echo $file->get_filename() . " contents:<br>";
+    echo $file_contents . "<br>";
+}
 
 echo $OUTPUT->footer();

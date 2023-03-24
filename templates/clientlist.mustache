@@ -59,7 +59,7 @@
 								data-target="#collapse{{id}}"
 								data-action="local-coodle-todo-collapse"
 								data-text="Collapse">
-								<i class="fa fa-chevron-down fa-2x text-white" aria-hidden="true" data-target="#collapse{{id}}"
+								<i class="fa fa-list fa-2x text-white" aria-hidden="true" data-target="#collapse{{id}}"
 								data-action="local-coodle-todo-collapse"></i>
 								</button>
 								<button class="btn btn-primary-outline" data-action="local-coodle-add-todo" data-clientid="{{userid}}">
@@ -69,9 +69,9 @@
 						</tr>
 						<tr>
 							<td colspan="100%" class="bg-white">
-							<table id="collapse{{id}}" class="collapse w-100">
+							<ul id="collapse{{id}}" class="collapse w-100">
 								{{>local_coodle/todos}}
-							</table>
+							</ul>
 							</td>
 						</tr>
 						{{/users}}

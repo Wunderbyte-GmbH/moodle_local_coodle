@@ -46,8 +46,9 @@ class secondary extends core_secondary {
             'clientlist', 'clientlist');
             $this->add('MyClients' , '/local/coodle/myusers.php', \navigation_node::TYPE_CUSTOM,
             'myclients', 'myclients');
+            /*
             $this->add('Todolist' , '/local/coodle/todos.php', \navigation_node::TYPE_CUSTOM,
-            'todos', 'todos');
+            'todos', 'todos'); */
             $this->add('Calendar', '/local/coodle/calendar.php', \navigation_node::TYPE_CUSTOM,
             'calendar', 'calendar');
         }

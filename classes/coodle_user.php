@@ -234,7 +234,7 @@ class coodle_user {
                     'local_coodle',
                     'clientfiles',
                     0,
-                    '/' .$this->userid . '/',
+                    '/' .$this->userid . '/' . $doctype . '/',
                     $file->get_filename(),
                     false
                 );

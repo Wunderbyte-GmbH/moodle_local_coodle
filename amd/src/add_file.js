@@ -47,8 +47,6 @@ export const init = () => {
             console.log('unnecessary call of init');
         }
     });
-    console.log(element);
-
 };
 
 /**
@@ -58,9 +56,6 @@ export const init = () => {
  const openForm = event => {
 
     let button = event.target;
-    console.log(button.dataset.doctype);
-    console.log('dataset');
-
 
     const modalForm = new ModalForm({
 

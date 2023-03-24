@@ -49,7 +49,7 @@ $string['forum'] = 'Forum';
 $string['files'] = 'Vorlagen';
 $string['add_user'] = 'User hinzufügen';
 
-$string['usersite'] = 'TN Seite';
+$string['userpage'] = 'TN Seite';
 
 
 // TODO: add all strings.
@@ -63,3 +63,7 @@ $string[''] = 'User hinzufügen';
 $string['myfiles'] = 'Meine Dateien';
 $string['viewaddress'] = 'Adresse';
 $string['uploadfile'] = 'uploadfile';
+
+$string['Doks1'] = 'Meine Dateien';
+$string['Doks2'] = 'Adresse';
+$string['Doks3'] = 'uploadfile';

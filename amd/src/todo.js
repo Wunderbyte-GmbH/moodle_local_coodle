@@ -91,7 +91,7 @@ const todoCheck = (target, id) => {
             'method': 'done',
         },
         done: function() {
-            target.closest('tr').classList.add('done');
+            target.closest('li').classList.add('done');
             switchbuttons(target, 'check', id);
         },
         fail: function(ex) {
@@ -114,7 +114,7 @@ const todoDelete = (target, id) => {
             'method': 'delete',
         },
         done: function() {
-            target.closest('tr').remove();
+            target.closest('li').remove();
         },
         fail: function(ex) {
             // eslint-disable-next-line no-console
@@ -136,7 +136,7 @@ const todoUncheck = (target, id) => {
             'method': 'uncheck',
         },
         done: function() {
-            target.closest('tr').classList.remove('done');
+            target.closest('li').classList.remove('done');
             switchbuttons(target, 'uncheck', id);
         },
         fail: function(ex) {
@@ -160,10 +160,10 @@ const switchbuttons = (target, mode, id) => {
     console.log('switchbuttons', target, mode, id);
     let html = '';
     if (mode == 'uncheck') {
-        html = '<button class="btn btn-primary-outline coodle-checkbutton" data-action="local-coodle-todo-check" data-id="' + id  + '"><i class="fa fa-check-square-o fa-2x text-success " aria-hidden="true" data-action="local-coodle-todo-check" data-id="' + id +'"></i></button>'
+        html = '<button class="btn btn-primary-outline coodle-checkbutton pull-right" data-action="local-coodle-todo-check" data-id="' + id  + '"><i class="fa fa-check-square-o fa-2x text-success " aria-hidden="true" data-action="local-coodle-todo-check" data-id="' + id +'"></i></button>'
     }
     if (mode == 'check') {
-        html = '<button class="btn btn-primary-outline coodle-checkbutton" data-action="local-coodle-todo-uncheck" data-id="' + id  + '"><i class="fa fa-play fa-2x text-success " aria-hidden="true" data-action="local-coodle-todo-uncheck" data-id="' + id +'"></i></button>';
+        html = '<button class="btn btn-primary-outline coodle-checkbutton pull-right" data-action="local-coodle-todo-uncheck" data-id="' + id  + '"><i class="fa fa-play fa-2x text-success " aria-hidden="true" data-action="local-coodle-todo-uncheck" data-id="' + id +'"></i></button>';
     }
     let button = target.closest('.coodle-checkbutton');
     button.insertAdjacentHTML("afterend", html);

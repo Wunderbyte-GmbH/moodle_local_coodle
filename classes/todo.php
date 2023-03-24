@@ -61,8 +61,8 @@ class todo {
 
     public function load_todolist_by_userid($userid) {
         global $DB;
-        $sql = "SELECT t.*, u.firstname, u.lastname, u.id FROM {user} u
-        JOIN {local_coodle_todos} t ON u.id = t.userid
+        $sql = "SELECT t.*, u.firstname, u.lastname  FROM {local_coodle_todos} t
+        JOIN {user} u ON u.id = t.userid
         WHERE t.userid = $userid";
         $todolist = $DB->get_records_sql($sql);
         return array_values($todolist);

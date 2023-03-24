@@ -58,7 +58,9 @@ if (!empty($todolist)) {
 }
 $templatedata->name = $client->name;
 $convid = local_coodle\coodle_user::get_conversation_between_users($USER->id, $id);
-$templatedata->widget = \core_message\helper::render_messaging_widget(false, $id, $convid);
+if ($convid) {
+    $templatedata->widget = \core_message\helper::render_messaging_widget(false, $id, $convid);
+}
 $templatedata->clientid = $id;
 $coodle = new local_coodle\coodle_user();
 $coodle->load_user($id);

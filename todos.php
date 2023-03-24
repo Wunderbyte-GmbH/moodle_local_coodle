@@ -35,7 +35,7 @@ $secondarynav->initialise();
 $PAGE->set_secondarynav($secondarynav);
 $PAGE->set_secondary_navigation(true);
 
-$PAGE->set_url(new moodle_url('/local/coodle/todolist.php', array()));
+$PAGE->set_url(new moodle_url('/local/coodle/todos.php', array()));
 $PAGE->set_pagelayout('standard');
 $title = get_string('todolist', 'local_coodle');
 $PAGE->set_title($title);

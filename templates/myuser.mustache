@@ -18,10 +18,10 @@
               </ul>
             </div>
         </div>
-        <div class="card mb-4">
+    <div class="card mb-4 coodle-dashboard">
             <div class="card-body">
               <h5 class="card-title">Todos <button class="btn btn-primary-outline myuserbtn" data-action="local-coodle-add-todo" data-clientid="{{clientid}}">
-                <i class="fa fa-plus fa-2x text-success" aria-hidden="true" data-action="local-coodle-add-todo" data-clientid="{{userid}}"></i>
+                <i class="fa fa-plus fa-2x text-success" aria-hidden="true" data-action="local-coodle-add-todo" data-clientid="{{clientid}}"></i>
             </button>
         </h5>
               <div>{{>local_coodle/todos}}</div>
@@ -46,7 +46,7 @@
               {{/files.2}}
             </div>
         </div>
-        <div class="card linetrough bg-secondary mb-4">
+        <div class="card bg-secondary mb-4">
             <div class="card-body">
               <h5 class="card-title">Beratungsinhalt
                 <button class="btn btn-dark myuserbtn" data-toggle="modal" data-target="#uploadForm" data-action="local-coodle-add-file" data-clientid="{{clientid}}" data-doctype="3">Upload File</button>
