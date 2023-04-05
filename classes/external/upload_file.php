@@ -48,7 +48,8 @@ class upload_file extends external_api {
     public static function execute_parameters() {
         return new external_function_parameters(
             array(
-                'draftid' => new external_value(PARAM_INT, 'draft area id')
+                'draftid' => new external_value(PARAM_INT, 'draft area id'),
+                'filename' => new external_value(PARAM_TEXT, 'text')
             )
         );
     }
@@ -60,11 +61,11 @@ class upload_file extends external_api {
      * @return array An array of warnings
      * @since Moodle 2.6
      */
-    public static function execute($draftid) {
+    public static function execute($draftid, $filename) {
         global $CFG, $USER;
         require_once($CFG->libdir . "/filelib.php");
 
-        $params = self::validate_parameters(self::execute_parameters(), array('draftid' => $draftid));
+        $params = self::validate_parameters(self::execute_parameters(), array('draftid' => $draftid, 'filename' => $filename));
 
         if (isguestuser()) {
             throw new \invalid_parameter_exception('Guest users cannot upload files');
@@ -87,8 +88,17 @@ class upload_file extends external_api {
                          'areamaxbytes' => $maxareabytes);
 
         file_merge_files_from_draft_area_into_filearea($draftid, $context->id, 'local_coodle', 'clientfile', 0, $options);
-
-        return null;
+        $filestorage = get_file_storage();
+        $file = $filestorage->get_file($context->id, 'local_coodle', 'clientfile', 0, '/', $params['filename']);
+        $fileurl = \moodle_url::make_pluginfile_url(
+            $context->id,
+            'local_coodle',
+            'clientfile',
+            0,
+            '/' .  $file->get_filename(),
+            false
+        )->out();
+        return array('fileurl' => $fileurl);
     }
 
     /**
@@ -98,6 +108,9 @@ class upload_file extends external_api {
      * @since Moodle 2.2
      */
     public static function execute_returns() {
-        return null;
+        return new external_single_structure(array(
+            'fileurl' => new external_value(PARAM_TEXT, 'fileurl'),
+            )
+        );
     }
 }
