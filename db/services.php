@@ -71,6 +71,20 @@ $functions = array(
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
         ),
+        'local_coodle_get_files' => array(
+                'classname' => '\local_coodle\external\get_files',
+                'classpath' => '',
+                'description' => 'get_files',
+                'type' => 'write',
+                'ajax' => true,
+                'services'    => [
+                        // A standard Moodle install includes one default service:
+                        // - MOODLE_OFFICIAL_MOBILE_SERVICE.
+                        // Specifying this service means that your function will be available for
+                        // use in the Moodle Mobile App.
+                        MOODLE_OFFICIAL_MOBILE_SERVICE,
+                    ],
+        ),
 );
 
 $services = array(
