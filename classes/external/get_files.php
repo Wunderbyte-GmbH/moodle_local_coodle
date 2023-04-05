@@ -30,6 +30,7 @@ use moodle_exception;
 use external_function_parameters;
 use external_value;
 use external_util;
+use stdClass;
 
 class get_files extends external_api {
 
@@ -42,16 +43,54 @@ class get_files extends external_api {
      */
     public static function execute_parameters() : external_function_parameters {
         return new external_function_parameters(array(
-            'userid' => new external_value(PARAM_INT, 'The ID of the entry to delete'),
+            // 'userid' => new external_value(PARAM_INT, 'The ID of the entry to delete'),
         ));
     }
 
-    public static function execute($userid) {
+    public static function execute() {
         global $USER, $DB;
 
         $context = \context_user::instance($USER->id);
 
-        $testfiles['files'] = external_util::get_area_files($context->id, 'local_coodle', 'clientfile', false, false);
+
+        // Get the file storage instance
+        $filestorage = get_file_storage();
+
+        // Get all files from the file storage
+        $files = $filestorage->get_directory_files($context->id, 'local_coodle', 'clientfile', 0, '/' );
+
+        // Output the file information
+        foreach ($files as $file) {
+            if ($file->get_filename() != '.') {
+
+
+                $fileinfo = array(
+                    'contextid' => $context->id,
+                    'component' => 'local_coodle',
+                    'filearea'  => 'clientfile',
+                    'itemid'   => $file->get_id(),
+                    'filepath' => '/',
+                    'filename' => $file->get_filename(),
+                    'isdir'    => false,
+                    'url'      => \moodle_url::make_pluginfile_url(
+                        $context->id,
+                        'local_coodle',
+                        'clientfile',
+                        0,
+                        '/' .  $file->get_filename(),
+                        false
+                    )->out(),
+                    'timemodified' => time(),
+                );
+                $fileoutput[] = $fileinfo;
+            }
+        }
+
+        $testfiles['files'] = $fileoutput;
+        // TODO: get parents lol.
+        $parents = [];
+        $testfiles['parents'] = $parents;
+        // $testfiles['files'] = external_util::get_area_files($context->id, 'local_coodle', 'clientfile', false, false);
         return $testfiles;
     }
 
@@ -59,6 +98,9 @@ class get_files extends external_api {
     public static function execute_returns() {
         return new external_single_structure(
             array(
+                'parents' => new external_single_structure(
+                    array()
+                ),
                 'files' => new external_multiple_structure(
                     new external_single_structure(
                         array(

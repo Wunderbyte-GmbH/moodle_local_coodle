@@ -54,11 +54,11 @@ function local_coodle_render_navbar_output(\renderer_base $renderer) {
  * @return  bool false|void
  */
 function local_coodle_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = []) {
-    if ($context->contextlevel != CONTEXT_SYSTEM) {
-        return false;
-    }
+    // if ($context->contextlevel != CONTEXT_SYSTEM) {
+    //     return false;
+    // }
 
-    if ($filearea !== 'clientfiles' || $filearea !== 'vorlagen') {
+    if ($filearea !== 'clientfiles' && $filearea !== 'vorlagen' &&  $filearea !== 'clientfile') {
         return false;
     }
 

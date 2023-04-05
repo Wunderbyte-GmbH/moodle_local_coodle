@@ -42,6 +42,8 @@ echo $OUTPUT->header();
 $context = context_user::instance($USER->id);
 
 $testfiles = external_util::get_area_files($context->id, 'local_coodle', 'clientfile', false, false);
+$browser = get_file_browser();
+$fileinfo = $browser->get_file_info($context->id, 'local_coodle', 'clientfile');
 
 
 // Loop through the file list and display the file names
