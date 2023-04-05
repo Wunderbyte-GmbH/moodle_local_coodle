@@ -15,119 +15,73 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Local cohorts module capability definition
+ * Local coodle module mobile definition
  *
  * @package         local_coodle
- * @author          Christian Badusch, Thomsa Winkler
+ * @author          Christian Badusch
  * @copyright       2022 Wunderbyte GmbH
  * @license         http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later.
  */
-namespace local_coodle\output;
 
-use local_coodle\coodle_user;
-use stdClass;
+defined('MOODLE_INTERNAL') || die();
 
-class mobile {
-
-    public static function view_files1($args) {
-        global $OUTPUT, $USER;
-        $templatedata = new stdClass();
-        $coodleuser = new coodle_user();
-        $coodleuser->load_user($USER->id);
-        $templatedata->otherfiles = $coodleuser->get_coodleuser_files(1);
-        $templatedata->title = 'Dokumente';
-        $templatedata->bg = "#64a44e";
-
-        return [
-            'templates' => [
-                [
-                    'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
+$addons = [
+    'local_coodle' => [
+        'handlers' => [
+            'files1' => [
+                'delegate' => 'CoreMainMenuDelegate',
+                'method' => 'view_files1',
+                'displaydata' => [
+                    'title' => 'dok1',
+                    'icon' => 'files',
                 ],
+                'priority'  => 10000000000000000,
             ],
-            'javascript' => '',
-            'otherdata' => '',
-        ];
-    }
-
-    public static function view_files2($args) {
-        global $USER, $OUTPUT;
-        $coodleuser = new coodle_user();
-        $coodleuser->load_user($USER->id);
-        $templatedata = new stdClass();
-        $templatedata->title = 'Bewerbungsunterlagen';
-        $templatedata->otherfiles = $coodleuser->get_coodleuser_files(2);
-
-       // $templatedata->hl = $args['userid'];
-        $templatedata->bg = "#0f47ad";
-
-        return [
-            'templates' => [
-                [
-                    'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
+            'files2' => [
+                'delegate' => 'CoreMainMenuDelegate',
+                'method' => 'view_files2',
+                'displaydata' => [
+                    'title' => 'dok2',
+                    'icon' => 'files',
                 ],
+                'priority'  => 10000000000000000,
             ],
-            'javascript' => '',
-            'otherdata' => '',
-        ];
-    }
-
-    public static function view_files3($args) {
-        global $USER, $OUTPUT;
-        $coodleuser = new coodle_user();
-        $coodleuser->load_user($USER->id);
-        $templatedata = new stdClass();
-        $templatedata->title = 'Beratungsinhalt';
-        $templatedata->otherfiles = $coodleuser->get_coodleuser_files(3);
-
-        // $templatedata->hl = $args['userid'];
-        $templatedata->bg = "#ced4da";
-
-        return [
-            'templates' => [
-                [
-                    'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
+            'files3' => [
+                'delegate' => 'CoreMainMenuDelegate',
+                'method' => 'view_files3',
+                'displaydata' => [
+                    'title' => 'dok3',
+                    'icon' => 'files',
                 ],
+                'priority'  => 10000000000000000,
             ],
-            'javascript' => '',
-            'otherdata' => '',
-        ];
-    }
-
-    public static function view_address() {
-        global $OUTPUT;
-        $templatedata = new stdClass();
-        return [
-            'templates' => [
-                [
-                    'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_address_view', $templatedata),
+            'viewaddress' => [
+                'delegate' => 'CoreMainMenuHomeDelegate',
+                'method' => 'view_address',
+                'displaydata' => [
+                    'title' => 'viewaddress',
+                    'icon' => 'map',
                 ],
+                'priority'  => 10000000000000000,
             ],
-            'javascript' => '',
-            'otherdata' => '',
-        ];
-    }
-
-    public static function view_faq() {
-        global $USER, $OUTPUT;
-        $coodleuser = new coodle_user();
-        $coodleuser->load_user($USER->id);
-        $templatedata = new stdClass();
-        $templatedata->otherfiles = $coodleuser->get_coodleuser_files();
-        $templatedata->test = "Test";
-
-        return [
-            'templates' => [
-                [
-                    'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_test', $templatedata),
+            'viewdates' => [
+                'delegate' => 'CoreMainMenuHomeDelegate',
+                'method' => 'view_dates',
+                'displaydata' => [
+                    'title' => 'viewdates',
+                    'icon' => 'map',
                 ],
+                'priority'  => 10000000000000000,
             ],
-            'javascript' => '',
-            'otherdata' => '',
-        ];
-    }
-}
+        ],
+        'lang' => [
+            ['myfiles', 'local_coodle'],
+            ['viewaddress', 'local_coodle'],
+            ['dok1', 'local_coodle'],
+            ['dok2', 'local_coodle'],
+            ['dok3', 'local_coodle'],
+
+        ],
+
+    ],
+];

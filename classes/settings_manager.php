@@ -57,7 +57,7 @@ class settings_manager {
      * @param int $userid
      * @return boolean
      */
-    public function is_advisor($userid = 0) : bool {
+    public static function is_advisor($userid = 0) : bool {
         global $DB, $USER;
         if (empty($userid)) {
             $userid = $USER->id;

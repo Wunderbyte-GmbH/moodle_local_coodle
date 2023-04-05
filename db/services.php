@@ -51,10 +51,17 @@ $functions = array(
                 'loginrequired' => true,
         ),
         'local_coodle_get_sesskey' => array(
-                'classname' => 'local_rk_manager\external\get_sesskey',
+                'classname' => '\local_coodle\external\get_sesskey',
                 'classpath' => '',
                 'description' => 'Get calendardata from specific entity',
                 'type' => 'read',
+                'ajax' => true
+        ),
+        'local_coodle_upload_file' => array(
+                'classname' => '\local_coodle\external\upload_file',
+                'classpath' => '',
+                'description' => 'upload_file',
+                'type' => 'write',
                 'ajax' => true
         ),
 );
@@ -66,6 +73,16 @@ $services = array(
                 ),
                 'restrictedusers' => 0,
                 'shortname' => 'local_coodle_tokens',
+                'downloadfiles' => 1,    // Allow file downloads.
+                'uploadfiles'  => 1,      // Allow file uploads.
+                'enabled' => 1
+        ),
+        'coodle file upload' => array( // TODO check if needed?
+                'functions' => array (
+                        'local_coodle_upload_file',
+                ),
+                'restrictedusers' => 0,
+                'shortname' => 'local_coodle_upload_file',
                 'downloadfiles' => 1,    // Allow file downloads.
                 'uploadfiles'  => 1,      // Allow file uploads.
                 'enabled' => 1

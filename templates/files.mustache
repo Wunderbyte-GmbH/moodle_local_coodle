@@ -1,6 +1,8 @@
 <ul class="list-group">
   {{#files}}
-    <li class="list-group-item"><a href="{{url}}">{{name}}</a></li>
+    <li class="list-group-item"><a href="{{url}}">{{name}}</a><span class="pull-right" data-action="delete-file">
+      			<i class="fa fa-times fa-2x text-danger" aria-hidden="true" data-action="delete-file" data-id="{{id}}"></i>
+    </span></li>
   {{/files}}
 </ul>
 

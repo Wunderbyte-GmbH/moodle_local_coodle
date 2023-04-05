@@ -47,7 +47,6 @@ class mobile {
             ],
             'javascript' => '',
             'otherdata' => '',
-            'files' => $templatedata->otherfiles,
         ];
     }
 
@@ -59,8 +58,7 @@ class mobile {
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(2);
         $templatedata->hl = "Bewerbungsunterlagen";
         $templatedata->bg = "#0f47ad";
-        $templatedata->hl = "Beratungsinhalt";
-        $templatedata->bg = "#ced4da";
+
         return [
             'templates' => [
                 [
@@ -70,7 +68,6 @@ class mobile {
             ],
             'javascript' => '',
             'otherdata' => '',
-            'files' => $templatedata->otherfiles,
         ];
     }
 
@@ -92,7 +89,6 @@ class mobile {
             ],
             'javascript' => '',
             'otherdata' => '',
-            'files' => $templatedata->otherfiles,
         ];
     }
 
@@ -124,6 +120,25 @@ class mobile {
                 [
                     'id' => 'main',
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_test', $templatedata),
+                ],
+            ],
+            'javascript' => '',
+            'otherdata' => '',
+        ];
+    }
+
+    public static function viewdates() {
+        global $USER, $OUTPUT;
+        $coodleuser = new coodle_user();
+        $coodleuser->load_user($USER->id);
+        $templatedata = new stdClass();
+       // $templatedata->otherfiles = $coodleuser->get_coodleuser_dates();
+
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('local_coodle/get_coodleuser_dates', $templatedata),
                 ],
             ],
             'javascript' => '',

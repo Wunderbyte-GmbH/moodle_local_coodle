@@ -154,6 +154,7 @@ class coodle_user {
         return $data;
     }
 
+    // TODO: user to advisor
     public static function get_coodle_users($userid) {
         global $DB, $USER;
 
@@ -168,6 +169,15 @@ class coodle_user {
          WHERE cu.advisorid = $userid";
         $data = $DB->get_records_sql($sql);
         return $data;
+    }
+
+    public static function prepare_coodle_users_for_select(array $users) {
+        $select = [];
+        foreach ($users as $user) {
+            $id = $user->id;
+            $select[$id] = $user->clientfirstname . ' ' . $user->clientlastname;
+        }
+        return $select;
     }
 
     public static function get_coodle_todos($userid) {

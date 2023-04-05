@@ -64,3 +64,7 @@ $string['viewaddress'] = 'Address';
 $string['uploadfile'] = 'upload file';
 
 $string['userpage'] = 'User Page';
+
+$string['Dok1'] = 'Dokumente';
+$string['Dok2'] = 'Bewrbungsunterlagen';
+$string['Dok3'] = 'Beratungsinhalt';

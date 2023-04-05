@@ -45,14 +45,20 @@ class add_todo_form extends dynamic_form {
      * @see moodleform::definition()
      */
     public function definition() {
+        global $USER;
+
         $mform = $this->_form;
         $data = $this->_ajaxformdata;
 
         $mform->addElement('html', '<div class="coodle_todolist">');
         $mform->addElement('text', 'text', 'Todo');
-        $mform->addElement('hidden', 'clientid');
-        $mform->addElement('html', '</div>');
-
+        if ($data['clientid']) {
+            $mform->addElement('hidden', 'clientid');
+            $mform->addElement('html', '</div>');
+            $myclients = \local_coodle\coodle_user::get_coodle_users($USER->id);
+            $select = \local_coodle\coodle_user::prepare_coodle_users_for_select($myclients);
+            $mform->addElement('select', 'myselect', get_string('selectuser', 'local_coodle'), $select);
+        }
     }
 
     /**
@@ -126,7 +132,7 @@ class add_todo_form extends dynamic_form {
         if (!$cmid) {
             $cmid = $this->optional_param('cmid', '', PARAM_RAW);
         }
-        return new moodle_url('/local/coodle/newuser', array('id' => $cmid));
+        return new moodle_url('/local/coodle/addtodo', array('id' => $cmid));
     }
 
     /**

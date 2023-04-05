@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * External function to create a calendarentry
+ * This class contains a list of webservice functions related to the Shopping Cart Module by Wunderbyte.
  *
  * @package    local_coodle
  * @copyright  2022 Thomas Winkler <info@wunderbyte.at>
@@ -33,11 +33,9 @@ use external_single_structure;
 
 defined('MOODLE_INTERNAL') || die();
 
-// TODO: check names;
-
 require_once($CFG->libdir . '/externallib.php');
 
-class add_calendar_entry extends external_api {
+class add_advisor extends external_api {
 
     /**
      * Describes the paramters for add_advisor.
@@ -61,7 +59,10 @@ class add_calendar_entry extends external_api {
             'userid' => $userid,
         ]);
 
-        $
+        // CREATE COURSE.
+        // IF COURSE EXISTS WITH USERNAME.
+        // ADD USER TO COURSE AS TEACHER/MANAGER.
+
         $addadvisor['error'] = '';
 
         return $addadvisor;
