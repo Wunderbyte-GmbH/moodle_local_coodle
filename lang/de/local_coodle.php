@@ -64,6 +64,6 @@ $string['myfiles'] = 'Meine Dateien';
 $string['viewaddress'] = 'Adresse';
 $string['uploadfile'] = 'uploadfile';
 
-$string['Dok1'] = 'Dokumente';
-$string['Dok2'] = 'Bewrbungsunterlagen';
-$string['Dok3'] = 'Beratungsinhalt';
+$string['dok1'] = 'Dokumente';
+$string['dok2'] = 'Bewrbungsunterlagen';
+$string['dok3'] = 'Beratungsinhalt';

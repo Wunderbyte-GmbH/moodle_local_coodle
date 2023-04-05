@@ -36,10 +36,13 @@ $PAGE->set_heading($title);
 
 echo $OUTPUT->header();
 
-$repository = repository::get_instance(9);
+// $repository = repository::get_instance(9);
 
 // Get the context
-$context = context_system::instance();
+$context = context_user::instance($USER->id);
+
+$testfiles = external_util::get_area_files($context->id, 'local_coodle', 'clientfile', false, false);
+
 
 // Loop through the file list and display the file names
 // Loop through the file list and display the file names and contents
