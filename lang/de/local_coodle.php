@@ -48,9 +48,16 @@ $string['calendar'] = 'Kalender';
 $string['forum'] = 'Forum';
 $string['files'] = 'Vorlagen';
 $string['add_user'] = 'User hinzufügen';
-
+$string['add_file'] = 'Datei hochladen';
 $string['userpage'] = 'TN Seite';
+$string['selectuser'] = 'Teilnehmer_in?';
 
+// Menu.
+$string['home'] = 'cOOdLe';
+$string['myclients'] = 'Meine Teilnehmer_innen';
+$string['calendar'] = 'Kalendar';
+$string['advisorlist'] = 'Berater_innen';
+$string['allclients'] = 'Alle Teilnehmer_innen';
 
 // TODO: add all strings.
 $string[''] = 'Teilnehmer_innen';

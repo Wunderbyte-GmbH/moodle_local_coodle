@@ -42,24 +42,24 @@ class secondary extends core_secondary {
         $isadmin = is_siteadmin();
 
         if ($isadvisor) {
-            $this->add('Home' , '/local/coodle/advisor.php', \navigation_node::TYPE_CUSTOM,
+            $this->add(get_string('home', 'local_coodle') , '/local/coodle/advisor.php', \navigation_node::TYPE_CUSTOM,
             'clientlist', 'clientlist');
-            $this->add('MyClients' , '/local/coodle/myusers.php', \navigation_node::TYPE_CUSTOM,
+            $this->add(get_string('myclients', 'local_coodle') , '/local/coodle/myusers.php', \navigation_node::TYPE_CUSTOM,
             'myclients', 'myclients');
             /*
             $this->add('Todolist' , '/local/coodle/todos.php', \navigation_node::TYPE_CUSTOM,
             'todos', 'todos'); */
-            $this->add('Calendar', '/local/coodle/calendar.php', \navigation_node::TYPE_CUSTOM,
+            $this->add(get_string('calendar', 'local_coodle'), '/local/coodle/calendar.php', \navigation_node::TYPE_CUSTOM,
             'calendar', 'calendar');
         }
         if ($isadmin) {
-            $this->add('Advisorlist' , '/local/coodle/advisorlist.php', \navigation_node::TYPE_CUSTOM,
+            $this->add(get_string('advisorlist', 'local_coodle') , '/local/coodle/advisorlist.php', \navigation_node::TYPE_CUSTOM,
             'advisorlist', 'advisorlist');
             /* $this->add('Add User' , '/local/coodle/advisorlist.php', \navigation_node::TYPE_CUSTOM,
             'advisorlist', 'advisorlist');
             $this->add('Add Advisor' , '/local/coodle/advisorlist.php', \navigation_node::TYPE_CUSTOM,
             'advisorlist', 'advisorlist'); */
-            $this->add('All Clients' , '/local/coodle/allclients.php', \navigation_node::TYPE_CUSTOM,
+            $this->add(get_string('allclients', 'local_coodle') , '/local/coodle/allclients.php', \navigation_node::TYPE_CUSTOM,
             'allclients', 'allclients');
         }
         $this->initialised = true;

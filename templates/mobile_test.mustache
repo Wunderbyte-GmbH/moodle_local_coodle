@@ -1,0 +1,13 @@
+{{=<% %>=}}
+<ion-grid class="container mt-4">
+    <ion-row class="row">
+      <ion-col class="col-md-12">
+        <ion-button core-site-plugins-call-ws
+        name="local_coodle" [params]="{certificateid: <% certificate.id %>}"
+        [preSets]="{getFromCache: 0, saveToCache: 0}" confirmMessage successMessage
+        refreshOnSuccess="true">
+        {{ 'plugin.mod_certificate.senddata' | translate }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+</ion-grid>

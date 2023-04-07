@@ -35,7 +35,7 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . '/externallib.php');
 
-class add_advisor extends external_api {
+class delete_file extends external_api {
 
     /**
      * Describes the paramters for add_advisor.
@@ -44,7 +44,7 @@ class add_advisor extends external_api {
      */
     public static function execute_parameters() : external_function_parameters {
         return new external_function_parameters ([
-            'userid' => new external_value(PARAM_INT, 'entity id', VALUE_REQUIRED),
+            'fileid' => new external_value(PARAM_INT, 'file id', VALUE_REQUIRED),
         ]);
     }
     /**
@@ -52,16 +52,18 @@ class add_advisor extends external_api {
      *
      * @return array
      */
-    public static function execute(int $userid): array {
+    public static function execute(int $fileid): array {
         $addadvisor['error'] = "";
 
         $params = self::validate_parameters(self::execute_parameters(), [
-            'userid' => $userid,
+            'fileid' => $fileid,
         ]);
 
-        // CREATE COURSE.
-        // IF COURSE EXISTS WITH USERNAME.
-        // ADD USER TO COURSE AS TEACHER/MANAGER.
+        $fs = get_file_storage();
+        $file = $fs->get_file_by_id($params['fileid']);
+        if ($file) {
+            $file->delete();
+        }
 
         $addadvisor['error'] = '';
 

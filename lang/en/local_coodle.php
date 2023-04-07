@@ -50,6 +50,8 @@ $string['adduserfromplatform'] = 'Add client from platform';
 $string['user'] = 'User';
 $string['add_todo'] = 'Add Todo';
 $string['todolist'] = 'Todolist';
+$string['selectuser'] = 'User?';
+
 
 $string['users'] = 'users';
 $string['groups'] = 'groups';
@@ -57,6 +59,14 @@ $string['calendar'] = 'calendar';
 $string['forum'] = 'forum';
 $string['files'] = 'files';
 $string['add_user'] = 'add User';
+$string['add_file'] = 'add File';
+
+// Menu.
+$string['home'] = 'cOOdLe';
+$string['myclients'] = 'MyClients';
+$string['calendar'] = 'Calendar';
+$string['advisorlist'] = 'Advisors';
+$string['allclients'] = 'All Clients';
 
 $string['myfiles'] = 'My Files';
 

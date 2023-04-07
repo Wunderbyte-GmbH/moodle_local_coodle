@@ -42,6 +42,7 @@ $PAGE->set_secondary_navigation(true);
 $PAGE->set_url(new moodle_url('/local/coodle/user.php', array('id' => $id)));
 $PAGE->set_pagelayout('standard');
 // Get User Object
+$client = new stdClass();
 $client->name = fullname(get_complete_user_data('id', $id));
 $title = $client->name;
 $PAGE->set_title("cOOdle");
@@ -67,6 +68,8 @@ $coodle->load_user($id);
 $templatedata->files[1] = $coodle->get_coodleuser_files(1);
 $templatedata->files[2] = $coodle->get_coodleuser_files(2);
 $templatedata->files[3] = $coodle->get_coodleuser_files(3);
+$templatedata->files[4] = $coodle->get_coodleuser_files(4);
+
 $templatedata->directions = $coodle->get_coodleuser_directions();
 $templatedata->links = $coodle->get_coodleuser_links();
 

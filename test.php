@@ -39,12 +39,12 @@ echo $OUTPUT->header();
 // $repository = repository::get_instance(9);
 
 // Get the context
-$context = context_user::instance($USER->id);
 
-$testfiles = external_util::get_area_files($context->id, 'local_coodle', 'clientfile', false, false);
-$browser = get_file_browser();
-$fileinfo = $browser->get_file_info($context->id, 'local_coodle', 'clientfile');
-
+$fs = get_file_storage();
+$file = $fs->get_file_by_id(455);
+if ($file) {
+   $file->delete();
+}
 
 // Loop through the file list and display the file names
 // Loop through the file list and display the file names and contents

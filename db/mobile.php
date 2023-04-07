@@ -33,7 +33,7 @@ $addons = [
                 'method' => 'view_files1',
                 'displaydata' => [
                     'title' => 'dok1',
-                    'icon' => 'files',
+                    'icon' => 'file',
                 ],
                 'priority'  => 10000000000000000,
             ],
@@ -42,7 +42,7 @@ $addons = [
                 'method' => 'view_files2',
                 'displaydata' => [
                     'title' => 'dok2',
-                    'icon' => 'files',
+                    'icon' => 'file',
                 ],
                 'priority'  => 10000000000000000,
             ],
@@ -51,7 +51,7 @@ $addons = [
                 'method' => 'view_files3',
                 'displaydata' => [
                     'title' => 'dok3',
-                    'icon' => 'files',
+                    'icon' => 'file',
                 ],
                 'priority'  => 10000000000000000,
             ],

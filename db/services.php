@@ -57,6 +57,16 @@ $functions = array(
                 'type' => 'read',
                 'ajax' => true
         ),
+        'local_coodle_delete_file' => array(
+                'classname' => '\local_coodle\external\delete_file',
+                'classpath' => '',
+                'description' => 'delete_file',
+                'type' => 'write',
+                'ajax' => true,
+                'services'    => [
+                        MOODLE_OFFICIAL_MOBILE_SERVICE,
+                    ],
+        ),
         'local_coodle_upload_file' => array(
                 'classname' => '\local_coodle\external\upload_file',
                 'classpath' => '',
@@ -64,10 +74,6 @@ $functions = array(
                 'type' => 'write',
                 'ajax' => true,
                 'services'    => [
-                        // A standard Moodle install includes one default service:
-                        // - MOODLE_OFFICIAL_MOBILE_SERVICE.
-                        // Specifying this service means that your function will be available for
-                        // use in the Moodle Mobile App.
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
         ),
@@ -78,10 +84,6 @@ $functions = array(
                 'type' => 'write',
                 'ajax' => true,
                 'services'    => [
-                        // A standard Moodle install includes one default service:
-                        // - MOODLE_OFFICIAL_MOBILE_SERVICE.
-                        // Specifying this service means that your function will be available for
-                        // use in the Moodle Mobile App.
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
         ),
@@ -94,16 +96,6 @@ $services = array(
                 ),
                 'restrictedusers' => 0,
                 'shortname' => 'local_coodle_tokens',
-                'downloadfiles' => 1,    // Allow file downloads.
-                'uploadfiles'  => 1,      // Allow file uploads.
-                'enabled' => 1
-        ),
-        'coodle file upload' => array( // TODO check if needed?
-                'functions' => array (
-                        'local_coodle_upload_file',
-                ),
-                'restrictedusers' => 0,
-                'shortname' => 'local_coodle_upload_file',
                 'downloadfiles' => 1,    // Allow file downloads.
                 'uploadfiles'  => 1,      // Allow file uploads.
                 'enabled' => 1

@@ -43,7 +43,6 @@ class upload_file extends external_api {
      * Returns description of method parameters
      *
      * @return external_function_parameters
-     * @since Moodle 2.6
      */
     public static function execute_parameters() {
         return new external_function_parameters(
@@ -54,12 +53,11 @@ class upload_file extends external_api {
         );
     }
     /**
-     * Copy files from a draft area to users private files area.
+     * Copy files from a draft area to coodle files area.
      *
      * @throws invalid_parameter_exception
      * @param int $draftid Id of a draft area containing files.
-     * @return array An array of warnings
-     * @since Moodle 2.6
+     * @param string $filename of the uploaded file.
      */
     public static function execute($draftid, $filename) {
         global $CFG, $USER;
@@ -105,7 +103,6 @@ class upload_file extends external_api {
      * Returns description of method result value
      *
      * @return external_description
-     * @since Moodle 2.2
      */
     public static function execute_returns() {
         return new external_single_structure(array(

@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * This class contains a list of webservice functions related to the Shopping Cart Module by Wunderbyte.
+ * External function to create a calendarentry
  *
  * @package    local_coodle
  * @copyright  2022 Thomas Winkler <info@wunderbyte.at>
@@ -33,9 +33,11 @@ use external_single_structure;
 
 defined('MOODLE_INTERNAL') || die();
 
+// TODO: check names;
+
 require_once($CFG->libdir . '/externallib.php');
 
-class delete_coodle_user extends external_api {
+class add_calendar_entry extends external_api {
 
     /**
      * Describes the paramters for add_advisor.
@@ -44,7 +46,8 @@ class delete_coodle_user extends external_api {
      */
     public static function execute_parameters() : external_function_parameters {
         return new external_function_parameters ([
-            'userid' => new external_value(PARAM_INT, 'user id', VALUE_REQUIRED),
+            'eventid' => new external_value(PARAM_INT, 'entity id', VALUE_REQUIRED),
+            'acceptstatus' => new external_value(PARAM_INT, 'acceptstatus', VALUE_REQUIRED),
         ]);
     }
     /**
@@ -52,22 +55,13 @@ class delete_coodle_user extends external_api {
      *
      * @return array
      */
-    public static function execute(int $userid): array {
-        global $USER;
-
-        // TODO if user can delete coodle user -> delete coodle user;
-        
+    public static function execute(int $eventid, int $acceptstatus): array {
         $addadvisor['error'] = "";
 
         $params = self::validate_parameters(self::execute_parameters(), [
-            'userid' => $userid,
+            'eventid' => $eventid,
+            'acceptstatus' => $acceptstatus,
         ]);
-
-
-        // TODO: DELETE coodle_user.
-        // Check
-
-
 
         $addadvisor['error'] = '';
 

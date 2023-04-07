@@ -58,6 +58,17 @@ $PAGE->category->id : null;
 $calendar = \calendar_information::create(time(), $courseid, $categoryid);
 list($data, $template) = calendar_get_view($calendar, 'monthblock', isloggedin());
 
+
+$test = \core_calendar\local\api::get_events(
+    time(),
+    null,
+    null,
+    null,
+    null,
+    null,
+    20,
+    'group',
+);
 $renderer = $PAGE->get_renderer('core_calendar');
 $content->text .= $renderer->render_from_template($template, $data);
 
@@ -75,5 +86,7 @@ echo $content->text;
 $calendarexport = "<div class='container'><div class='mt-2'><a href='/calendar/export.php?' class='btn btn-primary' traget='_blank'>Export</a></div></div>";
 
 echo $calendarexport;
+
+$PAGE->requires->js_call_amd('local_coodle/calendarinterval', 'init');
 
 echo $OUTPUT->footer();

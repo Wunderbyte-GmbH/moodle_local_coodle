@@ -18,7 +18,7 @@
  * Local cohorts module capability definition
  *
  * @package         local_coodle
- * @author          Christian Badusch
+ * @author          Christian Badusch, Thomas Winkler
  * @copyright       2022 Wunderbyte GmbH
  * @license         http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later.
  */
@@ -37,6 +37,7 @@ class mobile {
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(1);
         $templatedata->hl = "Dokumente";
         $templatedata->bg = "#64a44e";
+        $templatedata->text = "#fff";
 
         return [
             'templates' => [
@@ -58,6 +59,7 @@ class mobile {
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(2);
         $templatedata->hl = "Bewerbungsunterlagen";
         $templatedata->bg = "#0f47ad";
+        $templatedata->text = "#fff";
 
         return [
             'templates' => [
@@ -79,6 +81,7 @@ class mobile {
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(3);
         $templatedata->hl = "Beratungsinhalt";
         $templatedata->bg = "#ced4da";
+        $templatedata->text = "#fff";
 
         return [
             'templates' => [
@@ -127,13 +130,35 @@ class mobile {
         ];
     }
 
-    public static function viewdates() {
+    public static function view_dates() {
         global $USER, $OUTPUT;
         $coodleuser = new coodle_user();
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
        // $templatedata->otherfiles = $coodleuser->get_coodleuser_dates();
 
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('local_coodle/get_coodleuser_dates', $templatedata),
+                ],
+            ],
+            'javascript' => '',
+            'otherdata' => '',
+        ];
+    }
+
+    public static function view_todos() {
+        global $USER, $OUTPUT;
+        $todo = new \local_coodle\todo();
+        $templatedata = new stdClass();
+        $todolist = $todo->load_todolist_by_userid($USER->id, 1);
+        if (!empty($todolist)) {
+            $templatedata->todos = $todolist;
+        } else {
+            $templatedata->empty = 1;
+        }
         return [
             'templates' => [
                 [

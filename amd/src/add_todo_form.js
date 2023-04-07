@@ -41,7 +41,6 @@ const ACTIONS = {
  */
 export const init = () => {
     document.querySelector(SELECTORS.TODO).addEventListener('click', function(e) {
-        console.log(e);
         let target = e.target;
         if (!target.dataset.action) {
             return;
@@ -63,8 +62,6 @@ export const init = () => {
  const openForm = event => {
 
     let button = event.target;
-
-    console.log(button.dataset.clientid);
     const modalForm = new ModalForm({
 
         // Name of the class where form is defined (must extend \core_form\dynamic_form):

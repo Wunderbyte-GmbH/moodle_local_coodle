@@ -59,11 +59,14 @@ class todo {
         return array_values($todolist);
     }
 
-    public function load_todolist_by_userid($userid) {
+    public function load_todolist_by_userid(int $userid, int $status = 0) {
         global $DB;
         $sql = "SELECT t.*, u.firstname, u.lastname  FROM {local_coodle_todos} t
         JOIN {user} u ON u.id = t.userid
         WHERE t.userid = $userid";
+        if ($status != 0) {
+            $sql .= " AND t.status = $status";
+        }
         $todolist = $DB->get_records_sql($sql);
         return array_values($todolist);
     }
@@ -98,6 +101,7 @@ class todo {
      */
     public static function set_todo_status(int $todoid, int $status) {
         global $DB, $USER;
+        // TODO: ADD constants. 1 2 3 4 -
         $params = array(
             'deleted' => $status,
             'id' => $todoid

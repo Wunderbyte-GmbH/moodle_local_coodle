@@ -13,9 +13,16 @@
 			<button class="btn btn-primary-outline pull-right" data-action="local-coodle-todo-delete" data-id="{{id}}" >
 			  <i class="fa fa-times fa-2x text-danger" aria-hidden="true" data-action="local-coodle-todo-delete" data-id="{{id}}"></i>
 			</button>
+			{{^usertodo}}
 			<button class="btn btn-primary-outline pull-right" data-action="local-coodle-todo-usertodo" data-id="{{id}}" >
-				<i class="fa fa-user-o fa-2x text-danger" aria-hidden="true" data-action="local-coodle-todo-delete-usertodo" data-id="{{id}}"></i>
-			  </button>
+				<i class="fa fa-user-o fa-2x text-dark" aria-hidden="true" data-action="local-coodle-todo-usertodo" data-id="{{id}}"></i>
+			</button>
+			{{/usertodo}}
+			{{#usertodo}}
+			<button class="btn btn-primary-outline pull-right" data-action="local-coodle-todo-usertodo" data-id="{{id}}" >
+				<i class="fa fa-user-o fa-2x text-success" aria-hidden="true" data-action="local-coodle-todo-usertodo" data-id="{{id}}"></i>
+			</button>
+			{{/usertodo}}
 		  </div>
 		</div>
 	  </li>

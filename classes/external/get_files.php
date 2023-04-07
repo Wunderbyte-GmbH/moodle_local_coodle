@@ -35,7 +35,7 @@ use stdClass;
 class get_files extends external_api {
 
     /**
-     * Delete an entry from the local_rk_manager_entry table.
+     * Get all the files from coodle user clientfile area.
      *
      * @param int $entryid The ID of the entry to delete
      * @return external_function_parameters
@@ -47,11 +47,15 @@ class get_files extends external_api {
         ));
     }
 
+    /**
+     * Execute the function
+     *
+     * @return array
+     */
     public static function execute() {
         global $USER, $DB;
 
         $context = \context_user::instance($USER->id);
-
 
         // Get the file storage instance
         $filestorage = get_file_storage();
@@ -62,7 +66,6 @@ class get_files extends external_api {
         // Output the file information
         foreach ($files as $file) {
             if ($file->get_filename() != '.') {
-
 
                 $fileinfo = array(
                     'contextid' => $context->id,
@@ -94,7 +97,11 @@ class get_files extends external_api {
         return $testfiles;
     }
 
-
+    /*
+     * Returns files of coodle userfilearea.
+     *
+     * @return external_single_structure
+     */
     public static function execute_returns() {
         return new external_single_structure(
             array(

@@ -56,6 +56,16 @@
               {{/files.3}}
             </div>
         </div>
+        <div class="card bg-secondary mb-4">
+          <div class="card-body">
+            <h5 class="card-title">User Files
+              <button class="btn btn-dark myuserbtn" data-toggle="modal" data-target="#uploadForm" data-action="local-coodle-add-file" data-clientid="{{clientid}}" data-doctype="4">Upload File</button>
+            </h5>
+            {{#files.4}}
+            <div>{{>local_coodle/files}}</div>
+            {{/files.4}}
+          </div>
+      </div>
         <div class="card linetrough bg-info text-white mb-4">
             <div class="card-body">
               <h5 class="card-title">Linksammlung</h5>

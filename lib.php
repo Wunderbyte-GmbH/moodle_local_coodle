@@ -35,9 +35,13 @@ function local_coodle_render_navbar_output(\renderer_base $renderer) {
         return;
     }
 
-    global $OUTPUT;
+    global $OUTPUT, $PAGE;
     $templatedata = array('image' => $OUTPUT->image_url('coodle', 'local_coodle'));
     $nav = $OUTPUT->render_from_template('local_coodle/navicon', $templatedata);
+
+    if (get_config('local_coodle', 'calendaronlyallowintervalls')) {
+        $PAGE->requires->js_call_amd('local_coodle/calendarinterval', 'init');
+    }
     return $nav;
 }
 
@@ -54,9 +58,9 @@ function local_coodle_render_navbar_output(\renderer_base $renderer) {
  * @return  bool false|void
  */
 function local_coodle_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = []) {
-    // if ($context->contextlevel != CONTEXT_SYSTEM) {
-    //     return false;
-    // }
+    if ($context->contextlevel != CONTEXT_SYSTEM && $context->contextlevel != CONTEXT_USER) {
+         return false;
+    }
 
     if ($filearea !== 'clientfiles' && $filearea !== 'vorlagen' &&  $filearea !== 'clientfile') {
         return false;

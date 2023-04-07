@@ -190,7 +190,7 @@ class coodle_user {
      *
      * @return array
      */
-    public static function prepare_for_template($userid = 0) {
+    public static function prepare_for_template($userid = 0): array {
         if (!$userid) {
             $coodleusers = self::get_all_coodle_users();
         } else {
@@ -213,15 +213,21 @@ class coodle_user {
         return $templatedata;
     }
 
-    public function get_coodleuser_links() {
+    public function get_coodleuser_links(): string {
         return "<ul class='list-group'><li class='list-group-item'><a href='/local/coodle/advisoradress.php'>Lebenslauf schreiben leicht gemacht!</a></li></ul>";
     }
 
-    public function get_coodleuser_directions() {
+    public function get_coodleuser_directions(): string {
         return "<ul class='list-group'><li class='list-group-item'><a href='/local/coodle/advisoradress.php'>Mein Büro</a></li></ul>";
     }
 
-    public function get_coodleuser_files(int $doctype) {
+    /**
+     * Get files from different areas
+     *
+     * @param integer $doctype
+     * @return array
+     */
+    public function get_coodleuser_files(int $doctype): array {
         $context = \context_system::instance();
 
         // Get the file storage instance
@@ -229,7 +235,7 @@ class coodle_user {
 
         // Get all files from the file storage
         $files = $filestorage->get_directory_files($context->id, 'local_coodle', 'clientfiles', 0, '/' . $this->userid . '/' . $doctype . '/');
-
+        $fileoutput = array();
         // Output the file information
         foreach ($files as $file) {
             if ($file->get_filename() != '.') {
@@ -255,6 +261,14 @@ class coodle_user {
         return $fileoutput;
     }
 
+
+    public static function delete_file($fileid) {
+        $fs = get_file_storage();
+        $file = $fs->get_file_by_id($fileid);
+        if ($file) {
+            $file->delete();
+        }
+    }
     /**
      * Counts all clients in coodle DB
      *
