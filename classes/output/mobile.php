@@ -115,7 +115,7 @@ class mobile {
         $coodleuser = new coodle_user();
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
-        $templatedata->otherfiles = $coodleuser->get_coodleuser_files();
+        $templatedata->otherfiles = $coodleuser->get_coodleuser_files(4);
         $templatedata->test = "Test";
 
         return [
@@ -135,7 +135,6 @@ class mobile {
         $coodleuser = new coodle_user();
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
-       // $templatedata->otherfiles = $coodleuser->get_coodleuser_dates();
 
         return [
             'templates' => [

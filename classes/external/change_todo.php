@@ -70,6 +70,9 @@ class change_todo extends external_api {
         if ($params['method'] == 'uncheck') {
             \local_coodle\todo::set_todo_status($params['todoid'], 0);
         }
+        if ($params['method'] == 'usertodo') {
+            \local_coodle\todo::set_todo_status($params['todoid'], 2);
+        }
 
         $changetodo['error'] = '';
 

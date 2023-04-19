@@ -19,7 +19,7 @@ namespace local_coodle\overrides;
 use stdClass;
 use core_qrcode;
 
-/* TODO: check if needed
+/* TODO: check if needed guess not needed anymore
  * Mobile API overrides tool_mobile
  * @package    local_coodle
  * @copyright  Wunderbyte GmbH <info@wunderbyte.at>

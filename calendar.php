@@ -37,7 +37,7 @@ $secondarynav = new secondary($PAGE);
 $secondarynav->initialise();
 $PAGE->set_secondarynav($secondarynav);
 $PAGE->set_secondary_navigation(true);
-$title = "Calendar";
+$title = get_string('calendar', 'local_coodle');
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
 echo $OUTPUT->header();
@@ -57,7 +57,6 @@ $categoryid = ($PAGE->context->contextlevel === CONTEXT_COURSECAT && !empty($PAG
 $PAGE->category->id : null;
 $calendar = \calendar_information::create(time(), $courseid, $categoryid);
 list($data, $template) = calendar_get_view($calendar, 'monthblock', isloggedin());
-
 
 $test = \core_calendar\local\api::get_events(
     time(),
@@ -79,11 +78,11 @@ list($footerdata, $footertemplate) = calendar_get_footer_options($calendar, $opt
 $content->footer .= $renderer->render_from_template($footertemplate, $footerdata);
 $content->text .= $renderer->complete_layout();
 
-//$PAGE->requires->js_call_amd('core_calendar/popover');
-
 echo $content->text;
 
-$calendarexport = "<div class='container'><div class='mt-2'><a href='/calendar/export.php?' class='btn btn-primary' traget='_blank'>Export</a></div></div>";
+$calendarexport = "<div class='container'>
+<div class='mt-2'><a href='/calendar/export.php?' class='btn btn-primary' traget='_blank'>Export</a></div>
+</div>";
 
 echo $calendarexport;
 

@@ -17,7 +17,7 @@
 /**
  * Plugin version and other meta-data are defined here.
  *
- * @package     local_wb_faq
+ * @package     local_coodle
  * @copyright   2022 Wunderbyte GmbH <info@wunderbyte.at>
  * @author      Thomas Winkler
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_coodle';
 $plugin->release = '1.1.1';
-$plugin->version = 2023040602;
+$plugin->version = 2023041902;
 $plugin->requires = 2020061500;
 $plugin->supported = [39, 40];
 $plugin->maturity = MATURITY_ALPHA;

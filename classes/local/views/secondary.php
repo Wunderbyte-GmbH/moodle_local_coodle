@@ -36,7 +36,6 @@ class secondary extends core_secondary {
      */
 
     public function initialise(): void {
-        $context = \context_system::instance();
 
         $isadvisor = \local_coodle\settings_manager::is_advisor();
         $isadmin = is_siteadmin();
@@ -46,19 +45,12 @@ class secondary extends core_secondary {
             'clientlist', 'clientlist');
             $this->add(get_string('myclients', 'local_coodle') , '/local/coodle/myusers.php', \navigation_node::TYPE_CUSTOM,
             'myclients', 'myclients');
-            /*
-            $this->add('Todolist' , '/local/coodle/todos.php', \navigation_node::TYPE_CUSTOM,
-            'todos', 'todos'); */
             $this->add(get_string('calendar', 'local_coodle'), '/local/coodle/calendar.php', \navigation_node::TYPE_CUSTOM,
             'calendar', 'calendar');
         }
         if ($isadmin) {
             $this->add(get_string('advisorlist', 'local_coodle') , '/local/coodle/advisorlist.php', \navigation_node::TYPE_CUSTOM,
             'advisorlist', 'advisorlist');
-            /* $this->add('Add User' , '/local/coodle/advisorlist.php', \navigation_node::TYPE_CUSTOM,
-            'advisorlist', 'advisorlist');
-            $this->add('Add Advisor' , '/local/coodle/advisorlist.php', \navigation_node::TYPE_CUSTOM,
-            'advisorlist', 'advisorlist'); */
             $this->add(get_string('allclients', 'local_coodle') , '/local/coodle/allclients.php', \navigation_node::TYPE_CUSTOM,
             'allclients', 'allclients');
         }

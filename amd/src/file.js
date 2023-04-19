@@ -31,6 +31,8 @@ const ACTIONS = {
 
 /**
  * Initialize function
+ *
+ * @param {int} id
  */
 export const init = (id) => {
     console.log(id);
@@ -38,7 +40,8 @@ export const init = (id) => {
 };
 
 /**
- * Initialize function
+ * Add eventlistener for Actions
+ * @param {*} id
  */
 const initEventListener = (id) => {
     document.getElementById(id).addEventListener('click', function(e) {
@@ -46,6 +49,7 @@ const initEventListener = (id) => {
         // eslint-disable-next-line no-console
         console.log(target.dataset.action);
         if (!target.dataset.action) {
+
             return;
         }
         switch (target.dataset.action) {
@@ -60,11 +64,12 @@ const initEventListener = (id) => {
 
 
 /**
- * Marks the todo as completed
+ * Deletes a file
  * @param {EventTarget} target the id of the todo
  * @param {Integer} id the id of the todo
  */
 const fileDelete = (target, id) => {
+    // TODO: modal question?
     Ajax.call([{
         methodname: "local_coodle_delete_file",
         args: {

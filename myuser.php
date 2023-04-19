@@ -29,8 +29,6 @@ $context = \context_system::instance();
 $PAGE->set_context($context);
 require_login();
 
-//if is my user or i am admin?
-
 $secondarynav = new secondary($PAGE);
 $secondarynav->initialise();
 $PAGE->set_secondarynav($secondarynav);

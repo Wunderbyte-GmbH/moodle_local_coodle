@@ -36,17 +36,6 @@ $PAGE->set_heading($title);
 
 echo $OUTPUT->header();
 
-// $repository = repository::get_instance(9);
-
-// Get the context
-
-$fs = get_file_storage();
-$file = $fs->get_file_by_id(455);
-if ($file) {
-   $file->delete();
-}
-
-// Loop through the file list and display the file names
-// Loop through the file list and display the file names and contents
+// File to test function till production TODO: Delete file before release.
 
 echo $OUTPUT->footer();

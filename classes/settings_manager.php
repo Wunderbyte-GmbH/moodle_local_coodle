@@ -64,4 +64,21 @@ class settings_manager {
         }
         return $DB->record_exists('local_coodle_advisor', array('userid' => $userid));
     }
+
+    /**
+     * Deletes an advisor fomr coodle table
+     */
+    private function delete_advisor($userid) {
+        global $DB;
+        return $DB->delete_records('local_coodle_advisor', array('userid' => $userid));
+    }
+
+    /**
+     * Deletes an advisor fomr coodle table
+     */
+    private function delete_coodle_user($userid) {
+        global $DB;
+        return $DB->delete_records('local_coodle_user', array('userid' => $userid));
+    }
+
 }

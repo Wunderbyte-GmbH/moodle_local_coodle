@@ -62,7 +62,7 @@ const changeminuteinterval = () => {
       // Loop through the options and remove the ones that are not 15, 30, or 45
       for (let i = select.options.length - 1; i >= 0; i--) {
         const value = parseInt(select.options[i].value);
-        if (![15, 30, 45].includes(value)) {
+        if (![0, 15, 30, 45].includes(value)) {
           select.remove(i);
         }
       }

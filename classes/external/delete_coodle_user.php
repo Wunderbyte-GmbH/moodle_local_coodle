@@ -30,6 +30,7 @@ use external_api;
 use external_function_parameters;
 use external_value;
 use external_single_structure;
+use local_coodle\settings_manager;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -56,22 +57,21 @@ class delete_coodle_user extends external_api {
         global $USER;
 
         // TODO if user can delete coodle user -> delete coodle user;
-        
-        $addadvisor['error'] = "";
+
+        $answer['error'] = "";
 
         $params = self::validate_parameters(self::execute_parameters(), [
             'userid' => $userid,
         ]);
+        
 
+        $settingsmanager = new settings_manager();
 
-        // TODO: DELETE coodle_user.
-        // Check
+        $settingsmanager->delete_user($params['userid']);
 
+        $answer['error'] = $settingsmanager->delete_user($params['userid']);;
 
-
-        $addadvisor['error'] = '';
-
-        return $addadvisor;
+        return $answer;
     }
 
     /*

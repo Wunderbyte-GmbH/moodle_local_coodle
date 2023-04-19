@@ -60,9 +60,6 @@ class delete_advisor extends external_api {
         ]);
 
         // TODO: DELETE ADVISOR.
-
-        
-
         $addadvisor['error'] = '';
 
         return $addadvisor;

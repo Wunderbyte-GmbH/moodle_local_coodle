@@ -89,7 +89,6 @@ class todo {
      */
     public static function delete_todo(int $todoid) {
         global $DB, $USER;
-        //Record exists
         $conditons = ['advisorid' => $USER->id, 'id' => $todoid];
         $DB->delete_records('local_coodle_todos', $conditons);
     }
@@ -101,7 +100,7 @@ class todo {
      */
     public static function set_todo_status(int $todoid, int $status) {
         global $DB, $USER;
-        // TODO: ADD constants. 1 2 3 4 -
+        // TODO: ADD constants. 1 2 3 4 -.
         $params = array(
             'deleted' => $status,
             'id' => $todoid
