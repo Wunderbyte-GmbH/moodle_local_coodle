@@ -162,7 +162,7 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/get_coodleuser_dates', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_todos', $templatedata),
                 ],
             ],
             'javascript' => '',

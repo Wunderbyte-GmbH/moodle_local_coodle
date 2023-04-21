@@ -70,6 +70,8 @@ $string[''] = 'User hinzufügen';
 $string['myfiles'] = 'Meine Dateien';
 $string['viewaddress'] = 'Adresse';
 $string['uploadfile'] = 'uploadfile';
+$string['usertodo'] = 'zum User senden';
+
 
 $string['dok1'] = 'Dokumente';
 $string['dok2'] = 'Bewrbungsunterlagen';

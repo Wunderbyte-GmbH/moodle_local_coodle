@@ -74,7 +74,8 @@ $string['viewaddress'] = 'Address';
 $string['uploadfile'] = 'upload file';
 
 $string['userpage'] = 'User Page';
+$string['usertodo'] = 'sendtouser';
 
 $string['dok1'] = 'Dokumente';
-$string['dok2'] = 'Bewrbungsunterlagen';
+$string['dok2'] = 'Bewerbungsunterlagen';
 $string['dok3'] = 'Beratungsinhalt';

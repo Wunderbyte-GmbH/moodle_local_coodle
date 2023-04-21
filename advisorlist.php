@@ -28,7 +28,7 @@ $delid = optional_param('del', 0, PARAM_INT);
 $context = \context_system::instance();
 $PAGE->set_context($context);
 require_login();
-// TODO: rights to view this page
+// TODO: rights to view this page.
 $secondarynav = new secondary($PAGE);
 $secondarynav->initialise();
 $PAGE->set_secondarynav($secondarynav);

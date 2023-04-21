@@ -35,7 +35,7 @@ $secondarynav->initialise();
 $PAGE->set_secondarynav($secondarynav);
 $PAGE->set_secondary_navigation(true);
 
-// Am i advisor
+// Am i advisor?
 
 $PAGE->set_url(new moodle_url('/local/coodle/advisoradress.php', array('advisorid' => $USER->id)));
 $PAGE->set_pagelayout('standard');
