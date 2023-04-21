@@ -169,4 +169,26 @@ class mobile {
             'otherdata' => '',
         ];
     }
+
+    public static function view_events() {
+        global $USER, $OUTPUT;
+        $todo = new \local_coodle\todo();
+        $templatedata = new stdClass();
+        $todolist = $todo->load_todolist_by_userid($USER->id, 1);
+        if (!empty($todolist)) {
+            $templatedata->todos = $todolist;
+        } else {
+            $templatedata->empty = 1;
+        }
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_todos', $templatedata),
+                ],
+            ],
+            'javascript' => '',
+            'otherdata' => '',
+        ];
+    }
 }

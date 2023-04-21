@@ -64,11 +64,20 @@ $addons = [
                 ],
                 'priority'  => 10000000000000000,
             ],
-            'viewdates' => [
+            'viewtodos' => [
                 'delegate' => 'CoreMainMenuHomeDelegate',
-                'method' => 'view_dates',
+                'method' => 'view_todos',
                 'displaydata' => [
-                    'title' => 'viewdates',
+                    'title' => 'viewtodos',
+                    'icon' => 'map',
+                ],
+                'priority'  => 10000000000000000,
+            ],
+            'viewevents' => [
+                'delegate' => 'CoreMainMenuHomeDelegate',
+                'method' => 'view_events',
+                'displaydata' => [
+                    'title' => 'viewevents',
                     'icon' => 'map',
                 ],
                 'priority'  => 10000000000000000,
@@ -77,6 +86,7 @@ $addons = [
         'lang' => [
             ['myfiles', 'local_coodle'],
             ['viewaddress', 'local_coodle'],
+            ['viewtodos', 'local_coodle'],
             ['dok1', 'local_coodle'],
             ['dok2', 'local_coodle'],
             ['dok3', 'local_coodle'],

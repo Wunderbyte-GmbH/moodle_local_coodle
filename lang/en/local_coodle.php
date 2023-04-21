@@ -75,6 +75,8 @@ $string['uploadfile'] = 'upload file';
 
 $string['userpage'] = 'User Page';
 $string['usertodo'] = 'sendtouser';
+$string['viewtodos'] = 'Todos';
+$string['viewdates'] = 'Events';
 
 $string['dok1'] = 'Dokumente';
 $string['dok2'] = 'Bewerbungsunterlagen';
