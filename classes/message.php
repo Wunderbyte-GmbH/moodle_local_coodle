@@ -21,13 +21,13 @@ defined('MOODLE_INTERNAL') || die();
 global $CFG;
 
 /**
- * Class settings_manager.
+ * Class message.
  *
  * @author Thomas Winkler
  * @copyright 2022 Wunderbyte GmbH
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class settings_manager {
+class message {
 
     /**
      * Userid of advisor
@@ -68,7 +68,7 @@ class settings_manager {
     /**
      * Deletes an advisor fomr coodle table
      */
-    public function delete_advisor($userid) {
+    public function get_message($userid) {
         global $DB;
         return $DB->delete_records('local_coodle_advisor', array('userid' => $userid));
     }

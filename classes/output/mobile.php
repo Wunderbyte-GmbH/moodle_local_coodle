@@ -152,7 +152,8 @@ class mobile {
         global $USER, $OUTPUT;
         $todo = new \local_coodle\todo();
         $templatedata = new stdClass();
-        $todolist = $todo->load_todolist_by_userid($USER->id, 1);
+        // TODO: change stats!
+        $todolist = $todo->load_todolist_by_userid($USER->id, 0);
         if (!empty($todolist)) {
             $templatedata->todos = $todolist;
         } else {
@@ -172,9 +173,10 @@ class mobile {
 
     public static function view_events() {
         global $USER, $OUTPUT;
+        // TODO: change and write functions!
         $todo = new \local_coodle\todo();
         $templatedata = new stdClass();
-        $todolist = $todo->load_todolist_by_userid($USER->id, 1);
+        $todolist = $todo->load_todolist_by_userid($USER->id, 0);
         if (!empty($todolist)) {
             $templatedata->todos = $todolist;
         } else {

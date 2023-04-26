@@ -56,20 +56,15 @@ class delete_coodle_user extends external_api {
     public static function execute(int $userid): array {
         global $USER;
 
-        // TODO if user can delete coodle user -> delete coodle user;
+        // TODO if user can delete coodle user -> delete coodle user.
 
         $answer['error'] = "";
 
         $params = self::validate_parameters(self::execute_parameters(), [
             'userid' => $userid,
         ]);
-        
 
-        $settingsmanager = new settings_manager();
-
-        $settingsmanager->delete_user($params['userid']);
-
-        $answer['error'] = $settingsmanager->delete_user($params['userid']);;
+        $answer['error'] = \local_coodle\coodle_user::delete_user($params['userid']);
 
         return $answer;
     }

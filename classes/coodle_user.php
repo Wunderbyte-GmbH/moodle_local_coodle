@@ -282,17 +282,17 @@ class coodle_user {
 
 
     /**
-     * Counts all clients in coodle DB
+     * Delete one User (sets flag in DB not deleted from whole Platform)
      *
      * @return int
      */
     public static function delete_user($clientid) {
         global $DB;
-        // TODO predelete
-        // Delete user from files
-        // USER
-        return $DB->count_records('local_coodle_user', null);
+        $params = array(
+            'timemodified' => time(),
+            'userid' => $clientid,
+            'deleted' => 1
+        );
+        return $DB->update_record('local_coodle_user', $params);
     }
-
-
 }

@@ -110,10 +110,9 @@ class add_file_form extends dynamic_form {
                     // Now delete the original file.
                     $file->delete();
                 }
-
             }
-
         }
+        // TODO : \local_coodle\message::send_file_notification();.
         return $data;
     }
 

@@ -73,15 +73,6 @@ $addons = [
                 ],
                 'priority'  => 10000000000000000,
             ],
-            'viewevents' => [
-                'delegate' => 'CoreMainMenuHomeDelegate',
-                'method' => 'view_events',
-                'displaydata' => [
-                    'title' => 'viewevents',
-                    'icon' => 'map',
-                ],
-                'priority'  => 10000000000000000,
-            ],
         ],
         'lang' => [
             ['myfiles', 'local_coodle'],
