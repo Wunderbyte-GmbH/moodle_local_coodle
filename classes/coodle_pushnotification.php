@@ -83,12 +83,11 @@ class coodle_pushnotification {
 
     public function send_newfile_message($file) {
         $this->message->name = 'newfilemsg';
-        $this->message->subject = get_string('newfile', 'local_coodle', $file->name);
-        $this->message->fullmessage = get_string('newfilewasadded:full', 'local_coodle', $file->name);
+        $this->message->subject = 'test'; //get_string('newfile', 'local_coodle', $file->name);
+        $this->message->fullmessage = 'test';//get_string('newfilewasadded:full', 'local_coodle', $file->name);
         $this->message->fullmessageformat = FORMAT_MARKDOWN;
-        $this->message->fullmessagehtml = '<p>' . get_string('newfilewasadded:small', 'local_coodle', $file->name)
-        . '</p>';
-        $this->message->smallmessage = get_string('newfilewasadded:small', 'local_coodle', $file->name);
+        $this->message->fullmessagehtml = 'test'; //'<p>' . get_string('newfilewasadded:small', 'local_coodle', $file->name)      . '</p>';
+        $this->message->smallmessage = 'test';//get_string('newfilewasadded:small', 'local_coodle', $file->name);
         $messageid = message_send($this->message);
         return $messageid;
     }
