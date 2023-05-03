@@ -16,6 +16,8 @@
 
 namespace local_coodle;
 
+use stdClass;
+
 defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
@@ -78,10 +80,12 @@ class coodle_pushnotification {
         $this->message->fullmessagehtml = '<p>' . get_string('newtodo:full', 'local_coodle', $todo['text'])
         . '</p>';
         $this->message->smallmessage = get_string('newtodo:small');
-        $this->message->customdata = json_encode(array(
-            'coodle' => true,
-            'coodleurl' => 'view_todos/0',
-        ));
+
+        $customdata = new stdClass();
+        $customdata->coodle = true;
+        $customdata->coodleurl =  'view_todos/0';
+
+        $this->message->customdata = json_encode($customdata);
         $messageid = message_send($this->message);
         return $messageid;
     }
@@ -93,10 +97,11 @@ class coodle_pushnotification {
         $this->message->fullmessageformat = FORMAT_MARKDOWN;
         $this->message->fullmessagehtml = '<p>' . get_string('newfilewasadded:small', 'local_coodle', $file->name)      . '</p>';
         $this->message->smallmessage = get_string('newfilewasadded:small', 'local_coodle', $file->name);
-        $this->message->customdata = json_encode(array(
-            'coodle' => true,
-            'coodleurl' => 'view_files2/0',
-        ));
+        $customdata = new stdClass();
+        $customdata->coodle = true;
+        $customdata->coodleurl = 'view_files2/0';
+
+        $this->message->customdata = json_encode($customdata);
 
         $messageid = message_send($this->message);
         return $messageid;
