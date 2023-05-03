@@ -78,6 +78,10 @@ class coodle_pushnotification {
         $this->message->fullmessagehtml = '<p>' . get_string('newtodo:full', 'local_coodle', $todo['text'])
         . '</p>';
         $this->message->smallmessage = get_string('newtodo:small');
+        $this->message->customdata = json_encode(array(
+            'coodle' => true,
+            'coodleurl' => 'view_todos/0',
+        ));
         $messageid = message_send($this->message);
         return $messageid;
     }
@@ -89,6 +93,11 @@ class coodle_pushnotification {
         $this->message->fullmessageformat = FORMAT_MARKDOWN;
         $this->message->fullmessagehtml = '<p>' . get_string('newfilewasadded:small', 'local_coodle', $file->name)      . '</p>';
         $this->message->smallmessage = get_string('newfilewasadded:small', 'local_coodle', $file->name);
+        $this->message->customdata = json_encode(array(
+            'coodle' => true,
+            'coodleurl' => 'view_files2/0',
+        ));
+
         $messageid = message_send($this->message);
         return $messageid;
     }
