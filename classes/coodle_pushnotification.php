@@ -39,9 +39,9 @@ class coodle_pushnotification {
     /**
      * userid of advisor (userfrom)
      *
-     * @var mixed
+     * @var stdClass
      */
-    public mixed $userfrom;
+    public \stdClass $userfrom;
 
     /**
      * The message object

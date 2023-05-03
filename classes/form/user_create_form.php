@@ -171,6 +171,9 @@ class user_create_form extends dynamic_form {
     public function validation($data, $files) {
 
         $errors = array();
+        if (preg_match('/[A-Z]/', $data['username'])) {
+            $errors['username'] = 'asdasd'; // TODO getstring.
+        }
 
         return $errors;
     }
