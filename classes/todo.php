@@ -106,5 +106,7 @@ class todo {
             'id' => $todoid
         );
         $DB->update_record('local_coodle_todos', $params);
+        unset($params['deleted']);
+        return $DB->get_record('local_coodle_todos', $params);
     }
 }

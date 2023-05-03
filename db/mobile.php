@@ -56,7 +56,7 @@ $addons = [
                 'priority'  => 10000000000000000,
             ],
             'viewaddress' => [
-                'delegate' => 'CoreMainMenuHomeDelegate',
+                'delegate' => 'CoreMainMenuDelegate',
                 'method' => 'view_address',
                 'displaydata' => [
                     'title' => 'viewaddress',
@@ -65,7 +65,7 @@ $addons = [
                 'priority'  => 10000000000000000,
             ],
             'viewtodos' => [
-                'delegate' => 'CoreMainMenuHomeDelegate',
+                'delegate' => 'CoreMainMenuDelegate',
                 'method' => 'view_todos',
                 'displaydata' => [
                     'title' => 'viewtodos',

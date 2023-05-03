@@ -106,13 +106,15 @@ class add_file_form extends dynamic_form {
                         'timemodified' => time(),
                     ];
                     $fs->create_file_from_storedfile($filerecord, $file);
-
+                    // Send a push notification
+                    $message = new \local_coodle\coodle_pushnotification($data->id);
+                    $message->send_newfile_message($file);
                     // Now delete the original file.
                     $file->delete();
                 }
             }
+
         }
-        // TODO : \local_coodle\message::send_file_notification();.
         return $data;
     }
 

@@ -61,7 +61,7 @@ class user_create_form extends dynamic_form {
         $mform->addElement('text', 'username', get_string('username'), 'size="20"');
         $mform->addHelpButton('username', 'username', 'auth');
         $mform->setType('username', PARAM_RAW);
-        $mform->addRule('username', null, 'required', null, 'server');
+        $mform->addRule('username', null, 'required', null, 'client');
 
         $mform->addElement('text', 'firstname', get_string('firstname'), 'size="20"');
         $mform->setType('firstname', PARAM_RAW);

@@ -30,7 +30,7 @@ const ACTIONS = {
     DELETE: 'local-coodle-todo-delete',
     UNCHECK: 'local-coodle-todo-uncheck',
     COLLAPSE: 'local-coodle-todo-collapse',
-    MAKEUSERTODO: 'local-coodle-todo-collapse',
+    MAKEUSERTODO: 'local-coodle-todo-usertodo',
 };
 
 /**
@@ -137,11 +137,10 @@ const todoMakeUserTodo = (target, id) => {
         methodname: "local_coodle_change_todo",
         args: {
             'todoid': parseInt(id),
-            'method': 'uncheck',
+            'method': 'usertodo',
         },
         done: function() {
-            target.closest('li').classList.remove('done');
-            switchbuttons(target, 'uncheck', id);
+            target.closest('li').classList.add('usertodo');
         },
         fail: function(ex) {
             // eslint-disable-next-line no-console

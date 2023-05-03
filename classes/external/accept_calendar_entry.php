@@ -22,6 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+ // TODO: not needed!
+
 declare(strict_types=1);
 
 namespace local_coodle\external;

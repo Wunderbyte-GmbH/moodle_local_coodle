@@ -71,7 +71,9 @@ class change_todo extends external_api {
             \local_coodle\todo::set_todo_status($params['todoid'], 0);
         }
         if ($params['method'] == 'usertodo') {
-            \local_coodle\todo::set_todo_status($params['todoid'], 2);
+            $todo = \local_coodle\todo::set_todo_status($params['todoid'], 2);
+            $message = new \local_coodle\coodle_pushnotification($todo['userid']);
+            $message->send_todo_message($todo);
         }
 
         $changetodo['error'] = '';

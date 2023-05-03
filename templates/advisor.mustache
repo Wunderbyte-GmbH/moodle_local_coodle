@@ -96,12 +96,10 @@
 {{#js}}
 require([
 	'local_coodle/user_create_form2',
-  	'local_coodle/add_todo_form',
-	'local_coodle/todo'],
+  	'local_coodle/add_todo_form'],
   	function(userform, todoform, todo
 	) {
 		userform.init();
 		todoform.init();
-		todo.init();
 });
 {{/js}}
