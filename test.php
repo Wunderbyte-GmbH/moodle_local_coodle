@@ -39,10 +39,10 @@ $PAGE->set_heading($title);
 
 echo $OUTPUT->header();
 
-// $user = ;
+$user = \core_user::get_user($id);
 $message = new \core\message\message();
 $message->component = 'local_coodle'; // Your plugin's name
-$message->name = 'testmessage'; // Your notification name from message.php
+$message->name = 'newfilemsg'; // Your notification name from message.php
 $message->userfrom = core_user::get_noreply_user(); // If the message is 'from' a specific user you can set them here
 $message->userto = $user;
 $message->subject = 'message subject 1';
@@ -51,20 +51,21 @@ $message->fullmessageformat = FORMAT_MARKDOWN;
 $message->fullmessagehtml = '<p>message body</p>';
 $message->smallmessage = 'small message';
 $message->notification = 1; // Because this is a notification generated from Moodle, not a user-to-user message
-$message->contexturl = (new \moodle_url('/course/'))->out(false); // A relevant URL for the notification
+$message->contexturl = "https://wuk.wunderbyte.at/course/view.php?id=9"; // A relevant URL for the notification
 $message->contexturlname = 'Course list'; // Link title explaining where users get to for the contexturl
-$content = array('*' => array('header' => ' test ', 'footer' => ' test ')); // Extra content for specific processor
-$message->set_additional_content('email', $content);
+$customdata = new stdClass();
+$customdata->appurl = "https://wuk.wunderbyte.at/course/view.php?id=9";
+$customdata->appurlopenin = 'browser';
+$customdata->coodle = true;
 
+//$customdata->appurl = "";
+//$customdata->appurl = "";
+
+$message->customdata = json_encode($customdata);
 // You probably don't need attachments but if you do, here is how to add one
 $usercontext = context_user::instance($USER->id);
 
-$message->attachment = $file;
-
 // Actually send the message
 $messageid = message_send($message);
-
-
-// File to test function till production TODO: Delete file before release.
 
 echo $OUTPUT->footer();

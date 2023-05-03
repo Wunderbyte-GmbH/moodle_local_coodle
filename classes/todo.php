@@ -96,7 +96,7 @@ class todo {
     /**
      * Prepares date for mustache template
      *
-     * @return array
+     * @return stdClass
      */
     public static function set_todo_status(int $todoid, int $status) {
         global $DB, $USER;

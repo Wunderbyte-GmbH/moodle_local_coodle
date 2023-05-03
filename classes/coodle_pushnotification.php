@@ -62,6 +62,7 @@ class coodle_pushnotification {
         $this->userid = $userid;
         //$this->messagetype = $messagetype;
         $message = new \core\message\message();
+        $message->component = 'local_coodle';
         $message->userfrom = $this->userfrom; // If the message is 'from' a specific user you can set them here
         $message->userto = \core_user::get_user($this->userid);
         $message->notification = 1;
@@ -72,9 +73,9 @@ class coodle_pushnotification {
     public function send_todo_message($todo) {
         $this->message->name = 'newtodomsg';
         $this->message->subject = get_string('newtodo', 'local_coodle');
-        $this->message->fullmessage = get_string('newtodo:full', 'local_coodle', $todo->name);
+        $this->message->fullmessage = get_string('newtodo:full', 'local_coodle', $todo['text']);
         $this->message->fullmessageformat = FORMAT_MARKDOWN;
-        $this->message->fullmessagehtml = '<p>' . get_string('newtodo:full', 'local_coodle', $todo->name)
+        $this->message->fullmessagehtml = '<p>' . get_string('newtodo:full', 'local_coodle', $todo['text'])
         . '</p>';
         $this->message->smallmessage = get_string('newtodo:small');
         $messageid = message_send($this->message);
@@ -83,11 +84,11 @@ class coodle_pushnotification {
 
     public function send_newfile_message($file) {
         $this->message->name = 'newfilemsg';
-        $this->message->subject = 'test'; //get_string('newfile', 'local_coodle', $file->name);
-        $this->message->fullmessage = 'test';//get_string('newfilewasadded:full', 'local_coodle', $file->name);
+        $this->message->subject = get_string('newfile', 'local_coodle', $file->name);
+        $this->message->fullmessage = get_string('newfilewasadded:full', 'local_coodle', $file->name);
         $this->message->fullmessageformat = FORMAT_MARKDOWN;
-        $this->message->fullmessagehtml = 'test'; //'<p>' . get_string('newfilewasadded:small', 'local_coodle', $file->name)      . '</p>';
-        $this->message->smallmessage = 'test';//get_string('newfilewasadded:small', 'local_coodle', $file->name);
+        $this->message->fullmessagehtml = '<p>' . get_string('newfilewasadded:small', 'local_coodle', $file->name)      . '</p>';
+        $this->message->smallmessage = get_string('newfilewasadded:small', 'local_coodle', $file->name);
         $messageid = message_send($this->message);
         return $messageid;
     }
