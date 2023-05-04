@@ -81,3 +81,5 @@ $string['viewdates'] = 'Events';
 $string['dok1'] = 'Dokumente';
 $string['dok2'] = 'Bewerbungsunterlagen';
 $string['dok3'] = 'Beratungsinhalt';
+
+$string['coodlewelcome'] = 'Welcome to the coodle App';

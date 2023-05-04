@@ -44,9 +44,11 @@
             <div class="card-body">
               <h5 class="card-title">Dokumente <button class="btn btn-dark myuserbtn" data-toggle="modal" data-target="#uploadForm" data-action="local-coodle-add-file" data-clientid="{{clientid}}" data-doctype="1">Upload File</button>
               </h5>
+              <ul class="list-group" id="files1-{{uniqid}}">
               {{#files.1}}
-              <div>{{>local_coodle/files}}</div>
+                {{>local_coodle/files}}
               {{/files.1}}
+              </ul>
             </div>
         </div>
         <div class="card bg-primary text-white mb-4">
@@ -54,9 +56,11 @@
               <h5 class="card-title">Bewerbungsunterlagen
                 <button class="btn btn-dark myuserbtn" data-toggle="modal" data-target="#uploadForm" data-action="local-coodle-add-file" data-clientid="{{clientid}}" data-doctype="2">Upload File</button>
               </h5>
-              {{#files.2}}
-              <div>{{>local_coodle/files}}</div>
-              {{/files.2}}
+              <ul class="list-group" id="files2-{{uniqid}}">
+                {{#files.2}}
+                  {{>local_coodle/files}}
+                {{/files.2}}
+              </ul>
             </div>
         </div>
         <div class="card bg-secondary mb-4">
@@ -64,9 +68,11 @@
               <h5 class="card-title">Beratungsinhalt
                 <button class="btn btn-dark myuserbtn" data-toggle="modal" data-target="#uploadForm" data-action="local-coodle-add-file" data-clientid="{{clientid}}" data-doctype="3">Upload File</button>
               </h5>
-              {{#files.3}}
-              <div>{{>local_coodle/files}}</div>
-              {{/files.3}}
+              <ul class="list-group" id="files3-{{uniqid}}">
+                {{#files.3}}
+                  {{>local_coodle/files}}
+                {{/files.3}}
+              </ul>
             </div>
         </div>
         <div class="card bg-secondary mb-4">
@@ -130,11 +136,14 @@
 
 {{#js}}
 require([
-  	'local_coodle/add_todo_form','local_coodle/add_file'
+  	'local_coodle/add_todo_form','local_coodle/add_file', 'local_coodle/file'
 	],
-  	function(todoform,fileform
+  	function(todoform,fileform,file
 	) {
 		todoform.init();
-    fileform.init()
+    fileform.init();
+    file.init('files1-{{uniqid}}');
+    file.init('files2-{{uniqid}}');
+    file.init('files3-{{uniqid}}');
 });
 {{/js}}

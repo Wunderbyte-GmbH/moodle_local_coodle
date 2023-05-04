@@ -1,0 +1,36 @@
+{{!
+  This file is part of Moodle - http://moodle.org/
+  Moodle is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Moodle is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+
+{{=<% %>=}}
+<ion-grid class="container mt-4">
+    <ion-row class="row">
+      <ion-col class="col-md-12">
+        <ion-card style="background-color: <%bg%>;">
+          <ion-card-header>
+            <ion-card-title style="color: #000">Meine Todos</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <%#todos%>
+              <ion-item style="color: #000">
+                {{title}}
+                <ion-checkbox [(ngModel)]="completed"></ion-checkbox>
+              </ion-item>
+              <%/todos%>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+        </ion-col>
+      </ion-row>
+  </ion-grid>

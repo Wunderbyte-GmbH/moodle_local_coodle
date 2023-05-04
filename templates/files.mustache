@@ -1,13 +1,7 @@
-<ul class="list-group" id="files-{{uniqid}}">
-  {{#files}}
-    <li class="list-group-item"><a href="{{url}}">{{name}}</a><span class="pull-right" data-action="local-coodle-delete-file" data-id="{{id}}">
+  <li class="list-group-item"><a href="{{url}}">{{name}}</a>
+    <span class="pull-right" data-action="local-coodle-delete-file" data-id="{{id}}">
       			<i class="fa fa-times fa-2x text-danger" aria-hidden="true" data-action="local-coodle-delete-file" data-id="{{id}}"></i>
-    </span></li>
-  {{/files}}
-</ul>
+    </span>
+  </li>
 
-{{#js}}
-require(['local_coodle/file'], function(fileform) {
-    fileform.init('files-{{uniqid}}');
-});
-{{/js}}
+

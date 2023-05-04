@@ -35,7 +35,6 @@ const ACTIONS = {
  * @param {int} id
  */
 export const init = (id) => {
-    console.log(id);
     initEventListener(id);
 };
 
@@ -49,7 +48,6 @@ const initEventListener = (id) => {
         // eslint-disable-next-line no-console
         console.log(target.dataset.action);
         if (!target.dataset.action) {
-
             return;
         }
         switch (target.dataset.action) {
@@ -61,7 +59,6 @@ const initEventListener = (id) => {
         }
     });
 };
-
 
 /**
  * Deletes a file

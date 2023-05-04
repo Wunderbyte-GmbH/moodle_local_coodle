@@ -86,9 +86,8 @@ class add_file_form extends dynamic_form {
     public function process_dynamic_submission() {
         $data = $this->get_data();
         $context = \context_system::instance();
-        $mform = $this->_form;
 
-        $options = array('subdirs' => 0, 'maxbytes' => 204800, 'maxfiles' => 1, 'accepted_types' => array('jpg', 'png', 'jpeg'));
+        $options = array('subdirs' => 0, 'maxbytes' => 204800, 'maxfiles' => 10, 'accepted_types' => array('jpg', 'png', 'jpeg'));
         if (isset($data->clientfiles_filemanager)) {
             file_postupdate_standard_filemanager($data, 'clientfiles', $options, $context, 'local_coodle', 'clientfiles', $data->id);
             $fs = get_file_storage();
