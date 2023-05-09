@@ -22,15 +22,53 @@
  */
 
 
-(function(t) {
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { CoreConfig } from '@services/config';
+import { CoreEvents } from '@singletons/events';
+import { CoreSites } from '@services/sites';
+import { CoreUtils } from '@services/utils/utils';
+import { CoreTextUtils } from '@services/utils/text';
+import { CoreConstants } from '@/core/constants';
+import { CoreForms } from '@singletons/form';
+import { CorePlatform } from '@services/platform';
+import { AddonPrivateFilesHelper } from '@addons/privatefiles/services/privatefiles-helper';
+import { CoreNetwork } from '@services/network';
+import { CoreDomUtils } from '@services/utils/dom';
+import { AddonPrivateFilesGetUserInfoWSResult } from '@addons/privatefiles/services/privatefiles';
 
-    t.uploadFile = function() {
-    let alert = this.AlertController.create({
-    title: 'Low battery',
-    subTitle: '10% of battery remaining',
-    buttons: ['Dismiss']
-    });
-    alert.present();
+
+export class ClassName implements OnInit {
+
+
+    @ViewChild('messageForm') formElement!: ElementRef;
+
+    filesInfo?: AddonPrivateFilesGetUserInfoWSResult;
+    filesLoaded = false; // Whether the files are loaded.
+
+    constructor() {
+
     }
 
-    })(this);
+    ngOnInit(): void {
+    }
+
+
+    async uploadFile(): Promise<void>{
+        console.log('upload');
+
+        try {
+            await AddonPrivateFilesHelper.uploadPrivateFile(this.filesInfo);
+
+            // File uploaded, refresh the list.
+            this.filesLoaded = false;
+
+            // await CoreUtils.ignoreErrors(this.refreshFiles());
+
+            this.filesLoaded = true;
+        } catch (error) {
+            // CoreDomUtils.showErrorModalDefault(error, 'core.fileuploader.errorwhileuploading', true);
+        }
+    }
+
+
+}
