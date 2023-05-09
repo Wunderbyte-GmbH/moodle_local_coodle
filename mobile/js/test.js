@@ -24,7 +24,7 @@
 
 (function(t) {
 
-    t.presentAlert = function() {
+    t.uploadFile = function() {
     let alert = this.AlertController.create({
     title: 'Low battery',
     subTitle: '10% of battery remaining',
