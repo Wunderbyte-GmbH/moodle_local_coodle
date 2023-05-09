@@ -40,7 +40,7 @@ class coodle_links {
         if(empty($data)) {
             return;
         }
-        $ = new stdClass();
+        $linkdata = new stdClass();
         $linkdata->userid = $data->clientid;
         $linkdata->advisorid = $USER->id;
         $linkdata->timecreated = time();

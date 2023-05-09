@@ -38,6 +38,7 @@ class mobile {
         $templatedata->hl = "Dokumente";
         $templatedata->bg = "#64a44e";
         $templatedata->text = "#fff";
+        $js = 'const uploadFile = () => { console.log("hijo");}';
 
         return [
             'templates' => [
@@ -46,7 +47,7 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
                 ],
             ],
-            'javascript' => '',
+            'javascript' => $js,
             'otherdata' => '',
         ];
     }
@@ -60,6 +61,7 @@ class mobile {
         $templatedata->hl = "Bewerbungsunterlagen";
         $templatedata->bg = "#0f47ad";
         $templatedata->text = "#fff";
+        $js = 'const uploadFile = () => { console.log("hijo");}';
 
         return [
             'templates' => [
@@ -68,7 +70,7 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
                 ],
             ],
-            'javascript' => '',
+            'javascript' => $js,
             'otherdata' => '',
         ];
     }
@@ -82,6 +84,8 @@ class mobile {
         $templatedata->hl = "Beratungsinhalt";
         $templatedata->bg = "#ced4da";
         $templatedata->text = "#fff";
+        $js = 'const uploadFile = () => { console.log("hijo");}';
+
 
         return [
             'templates' => [
@@ -90,7 +94,7 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
                 ],
             ],
-            'javascript' => '',
+            'javascript' => $js,
             'otherdata' => '',
         ];
     }
