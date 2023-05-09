@@ -221,6 +221,41 @@ class coodle_user {
         return "<ul class='list-group'><li class='list-group-item'><a href='/local/coodle/advisoradress.php'>Mein Büro</a></li></ul>";
     }
 
+    public function get_coodleuser_userfiles($userid): array {
+        $context = \context_user::instance($userid);
+
+        // Get the file storage instance
+        $filestorage = get_file_storage();
+
+        // Get all files from the file storage
+        $files = $filestorage->get_directory_files($context->id, 'local_coodle', 'clientfile', 0, '/');
+        $fileoutput = array();
+        // Output the file information
+        foreach ($files as $file) {
+            if ($file->get_filename() != '.') {
+                $fileinfo = new stdClass();
+                $fileinfo->id = $file->get_id();
+                $fileinfo->name = $file->get_filename();
+                $fileinfo->filesize = $file->get_filesize();
+                $fileinfo->filesize = $file->get_mimetype();
+                $fileinfo->timemodified = time(); // TODO:;
+                $fileinfo->url = \moodle_url::make_pluginfile_url(
+                    $context->id,
+                    'local_coodle',
+                    'clientfile',
+                    0,
+                    '/',
+                    $file->get_filename(),
+                    false
+                );
+                $fileoutput[] = $fileinfo;
+            }
+        }
+
+        return $fileoutput;
+    }
+
+
     /**
      * Get files from different areas
      *
