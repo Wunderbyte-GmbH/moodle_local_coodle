@@ -30,7 +30,7 @@ use stdClass;
 class mobile {
 
     public static function view_files1() {
-        global $USER, $OUTPUT;
+        global $USER, $OUTPUT, $CFG;
         $coodleuser = new coodle_user();
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
@@ -47,13 +47,13 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
                 ],
             ],
-            'javascript' => $js,
+            'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/test.js"),
             'otherdata' => '',
         ];
     }
 
     public static function view_files2() {
-        global $USER, $OUTPUT;
+        global $USER, $OUTPUT, $CFG;
         $coodleuser = new coodle_user();
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
@@ -70,13 +70,13 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
                 ],
             ],
-            'javascript' => $js,
+            'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/test.js"),
             'otherdata' => '',
         ];
     }
 
     public static function view_files3() {
-        global $USER, $OUTPUT;
+        global $USER, $OUTPUT, $CFG;
         $coodleuser = new coodle_user();
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
@@ -94,7 +94,7 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
                 ],
             ],
-            'javascript' => $js,
+            'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/test.js"),
             'otherdata' => '',
         ];
     }
