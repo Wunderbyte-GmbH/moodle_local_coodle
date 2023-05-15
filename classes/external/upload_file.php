@@ -75,13 +75,13 @@ class upload_file extends external_api {
         $params['filename'] = str_replace("dok3_", "", $params['filename'], $dok3count);
         $folder = "";
         if ($dok1count) {
-            $folder = "";
+            $folder = "1";
         }
         if ($dok2count) {
-            $folder = "";
+            $folder = "2";
         }
         if ($dok3count) {
-            $folder = "";
+            $folder = "3";
         }
 
         $context = \context_user::instance($USER->id);
@@ -101,31 +101,37 @@ class upload_file extends external_api {
                          'areamaxbytes' => $maxareabytes);
 
         file_merge_files_from_draft_area_into_filearea($draftid, $context->id, 'local_coodle', 'clientfile', 0, $options);
-        $filestorage = get_file_storage();
-        $file = $filestorage->get_file($context->id, 'local_coodle', 'clientfile', 0, '/', $params['filename']);
-        $filerecord = [
-            'contextid'    => $file->get_contextid(),
-            'component'    => $file->get_component(),
-            'filearea'     => 'clientfiles',
-            'itemid'       => 0,
-            'filepath'     => '/'.$USER->id.'/'.$folder.'/',
-            'filename'     => $file->get_filename(),
-            'timecreated'  => time(),
-            'timemodified' => time(),
-        ];
-        $fs->create_file_from_storedfile($filerecord, $file);
-        // Send a push notification
-        // Now delete the original file.
-        $file->delete();
-        $fileurl = \moodle_url::make_pluginfile_url(
-            $context->id,
-            'local_coodle',
-            'clientfiles',
-            0,
-            '/'.$USER->id.'/'.$folder.'/',
-            '/' .  $file->get_filename(),
-            false
-        )->out();
+        $fs = get_file_storage();
+        // $file = $filestorage->get_file($context->id, 'local_coodle', 'clientfile', 0, '/', $params['filename']);
+        $files = $fs->get_area_files($context->id, 'local_coodle', 'clientfile', 0);
+        foreach ($files as $file) {
+            if ($file->get_filename() == $params['filename']) {
+                $context = \context_system::instance();
+                $filerecord = [
+                    'contextid'    => $context->id,
+                    'component'    => $file->get_component(),
+                    'filearea'     => 'clientfiles',
+                    'itemid'       => 0,
+                    'filepath'     => '/'.$USER->id.'/'.$folder.'/',
+                    'filename'     => $file->get_filename(),
+                    'timecreated'  => time(),
+                    'timemodified' => time(),
+                ];
+                $fs->create_file_from_storedfile($filerecord, $file);
+                // // Send a push notification
+                // // Now delete the original file.
+                $file->delete();
+                $fileurl = \moodle_url::make_pluginfile_url(
+                    $context->id,
+                    'local_coodle',
+                    'clientfiles',
+                    0,
+                    '/'.$USER->id.'/'.$folder.'/',
+                    '/' .  $file->get_filename(),
+                    false
+                )->out();
+            }
+        }
         return array('fileurl' => $fileurl);
     }
 

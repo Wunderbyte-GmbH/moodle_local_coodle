@@ -29,6 +29,11 @@ use stdClass;
 
 class mobile {
 
+    /**
+     * view_files1
+     *
+     * 
+     */
     public static function view_files1() {
         global $USER, $OUTPUT, $CFG;
         $coodleuser = new coodle_user();
@@ -52,6 +57,10 @@ class mobile {
         ];
     }
 
+    /**
+     * view_files2
+     *
+     */
     public static function view_files2() {
         global $USER, $OUTPUT, $CFG;
         $coodleuser = new coodle_user();
@@ -75,6 +84,10 @@ class mobile {
         ];
     }
 
+    /**
+     * view_files3
+     *
+     */
     public static function view_files3() {
         global $USER, $OUTPUT, $CFG;
         $coodleuser = new coodle_user();
@@ -99,6 +112,11 @@ class mobile {
         ];
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public static function view_address() {
         global $OUTPUT;
         $templatedata = new stdClass();
@@ -114,6 +132,11 @@ class mobile {
         ];
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public static function view_faq() {
         global $USER, $OUTPUT;
         $coodleuser = new coodle_user();
@@ -134,6 +157,11 @@ class mobile {
         ];
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public static function view_dates() {
         global $USER, $OUTPUT;
         $coodleuser = new coodle_user();
@@ -152,6 +180,11 @@ class mobile {
         ];
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public static function view_todos() {
         global $USER, $OUTPUT;
         $todo = new \local_coodle\todo();
@@ -175,6 +208,11 @@ class mobile {
         ];
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public static function view_events() {
         global $USER, $OUTPUT;
         // TODO: change and write functions!
