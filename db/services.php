@@ -49,6 +49,9 @@ $functions = array(
                 'type' => 'write',
                 'ajax' => true,
                 'loginrequired' => true,
+                'services'    => [
+                        MOODLE_OFFICIAL_MOBILE_SERVICE,
+                    ],
         ),
         'local_coodle_get_sesskey' => array(
                 'classname' => '\local_coodle\external\get_sesskey',
