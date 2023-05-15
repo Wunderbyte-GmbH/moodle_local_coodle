@@ -289,6 +289,7 @@ class coodle_user {
                     $file->get_filename(),
                     false
                 );
+                // TODO: check if user or advisorfile
                 $fileoutput[] = $fileinfo;
             }
         }
