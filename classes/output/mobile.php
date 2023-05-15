@@ -34,7 +34,7 @@ class mobile {
         $coodleuser = new coodle_user();
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
-        $templatedata->otherfiles = $coodleuser->get_coodleuser_userfiles($USER->id);
+        $templatedata->otherfiles = $coodleuser->get_coodleuser_files(1);
         $templatedata->hl = "Dokumente";
         $templatedata->bg = "#64a44e";
         $templatedata->text = "#fff";
