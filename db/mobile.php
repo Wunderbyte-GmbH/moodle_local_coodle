@@ -73,15 +73,6 @@ $addons = [
                 ],
                 'priority'  => 10000000000000000,
             ],
-            'msgtest' => [
-                'delegate' => 'AddonMessageOutputDelegate',
-                'method' => 'view_todos',
-                'displaydata' => [
-                    'title' => 'viewtodos',
-                    'icon' => 'map',
-                ],
-                'priority'  => 10000000000000000,
-            ],
         ],
         'lang' => [
             ['myfiles', 'local_coodle'],

@@ -52,7 +52,6 @@ $string['add_todo'] = 'Add Todo';
 $string['todolist'] = 'Todolist';
 $string['selectuser'] = 'User?';
 
-
 $string['users'] = 'users';
 $string['groups'] = 'groups';
 $string['calendar'] = 'calendar';

@@ -263,6 +263,7 @@ class coodle_user {
      * @return array
      */
     public function get_coodleuser_files(int $doctype): array {
+        global $USER;
         $context = \context_system::instance();
 
         // Get the file storage instance
@@ -280,6 +281,10 @@ class coodle_user {
                 $fileinfo->filesize = $file->get_filesize();
                 $fileinfo->filesize = $file->get_mimetype();
                 $fileinfo->timemodified = time(); // TODO:;
+                $fileinfo->userid = $file->get_userid();
+                if ($fileinfo->userid == $USER->id) {
+                    $fileinfo->deleteable = true;
+                }
                 $fileinfo->url = \moodle_url::make_pluginfile_url(
                     $context->id,
                     'local_coodle',
