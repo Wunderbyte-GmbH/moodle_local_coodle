@@ -13,36 +13,36 @@
 }}
 
 {{=<% %>=}}
-
-<ion-card style="background-color: <%bg%>">
-  <ion-card-header>
-    <ion-card-title style="color: <%text%>"><%hl%></ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    <%#otherfiles%>
-    <ion-row style="background: #fff" class="ion-align-items-center">
-      <ion-col size="9">
-        <core-file
-          [file]="{ fileurl: '<%url%>', filename: '<%name%>' }"
-          canDownload="true"
-          style="border: none !important; padding: 0px"
-        >
-        </core-file>
-      </ion-col>
-      <ion-col size="auto" style="padding-left: 0">
-        <%#deletable%>
-        <ion-button
-          core-site-plugins-call-ws
-          name="local_coodle_delete_file"
-          [params]="{fileid: <%id%>}"
-          confirmMessage="are you sure?"
-          successMessage="file deleted"
-          refreshOnSuccess="true"
-          >X
-        </ion-button>
-        <%/deletable%>
-      </ion-col>
-    </ion-row>
-    <%/otherfiles%>
-  </ion-card-content>
-</ion-card>
+<div style="height:100%; background: <%bg%>">
+<ion-list color="black" style="background-color: transparent; background: transparent; --background: transparent">
+  <%#otherfiles%>
+  <ion-item-sliding class="ion-border" style="background-color: transparent;background: transparent; --background: transparent">
+    <ion-item style="background-color: transparent;background: transparent; --background: transparent">
+      <core-file color="none" lines="none" class="ion-no-border"
+        [file]="{ fileurl: '<%url%>', filename: '<%namewithoutextension%>' }"
+        canDownload="true"
+        style="border: none; padding: 0px"
+      >
+      </core-file>
+    </ion-item>
+    <%#deleteable%>
+    <ion-item-options side="end">
+      <ion-item-option color=""
+      core-site-plugins-call-ws
+      name="local_coodle_delete_file"
+      [params]="{fileid: <%id%>}"
+      confirmMessage="are you sure?"
+      successMessage="file deleted"
+      refreshOnSuccess="true">
+        <ion-icon
+          color="white"
+          slot="icon-only"
+          name="trash"
+        ></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+    <%/deleteable%>
+  </ion-item-sliding>
+  <%/otherfiles%>
+</ion-list>
+</div>

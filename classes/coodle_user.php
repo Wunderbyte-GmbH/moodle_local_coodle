@@ -278,6 +278,7 @@ class coodle_user {
                 $fileinfo = new stdClass();
                 $fileinfo->id = $file->get_id();
                 $fileinfo->name = $file->get_filename();
+                $fileinfo->namewithoutextension = pathinfo($fileinfo->name, PATHINFO_FILENAME);
                 $fileinfo->filesize = $file->get_filesize();
                 $fileinfo->filesize = $file->get_mimetype();
                 $fileinfo->timemodified = time(); // TODO:;
