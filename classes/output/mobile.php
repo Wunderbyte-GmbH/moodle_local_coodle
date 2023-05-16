@@ -32,7 +32,7 @@ class mobile {
     /**
      * view_files1
      *
-     * 
+     *
      */
     public static function view_files1() {
         global $USER, $OUTPUT, $CFG;

@@ -71,8 +71,10 @@ $string['myfiles'] = 'Meine Dateien';
 $string['viewaddress'] = 'Adresse';
 $string['uploadfile'] = 'uploadfile';
 $string['usertodo'] = 'zum User senden';
-$string['viewtodos'] = 'Todos';
+$string['viewtodos'] = 'Meine Aufgaben';
 $string['viewdates'] = 'Termine';
+
+$string['todos'] = 'Meine Aufgaben';
 
 $string['dok1'] = 'Dokumente';
 $string['dok2'] = 'Bewrbungsunterlagen';

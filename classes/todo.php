@@ -64,9 +64,9 @@ class todo {
         $sql = "SELECT t.*, u.firstname, u.lastname  FROM {local_coodle_todos} t
         JOIN {user} u ON u.id = t.userid
         WHERE t.userid = $userid";
-        if ($status != 0) {
-            $sql .= " AND t.status = $status";
-        }
+        // if ($status != 0) {
+        //     $sql .= " AND t.status = $status OR t.status = 0";
+        // }
         $todolist = $DB->get_records_sql($sql);
         return array_values($todolist);
     }

@@ -77,6 +77,7 @@ $string['userpage'] = 'User Page';
 $string['usertodo'] = 'sendtouser';
 $string['viewtodos'] = 'Todos';
 $string['viewdates'] = 'Events';
+$string['todos'] = 'Todos';
 
 $string['dok1'] = 'Dokumente';
 $string['dok2'] = 'Bewerbungsunterlagen';
