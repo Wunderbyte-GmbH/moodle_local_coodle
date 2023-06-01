@@ -73,6 +73,15 @@ $addons = [
                 ],
                 'priority'  => 10000000000000000,
             ],
+            'viewinfo' => [
+                'delegate' => 'CoreMainMenuDelegate',
+                'method' => 'view_info',
+                'displaydata' => [
+                    'title' => 'viewinfo',
+                    'icon' => 'map',
+                ],
+                'priority'  => 10000000000000000,
+            ],
         ],
         'lang' => [
             ['myfiles', 'local_coodle'],
