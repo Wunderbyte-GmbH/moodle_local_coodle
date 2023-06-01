@@ -91,6 +91,7 @@ $addons = [
             ['dok2', 'local_coodle'],
             ['dok3', 'local_coodle'],
             ['todos', 'local_coodle'],
+            ['viewinfo', 'local_coodle'],
         ],
     ],
 ];

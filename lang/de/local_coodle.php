@@ -80,4 +80,6 @@ $string['dok1'] = 'Dokumente';
 $string['dok2'] = 'Bewrbungsunterlagen';
 $string['dok3'] = 'Beratungsinhalt';
 
+$string['viewinfo'] = 'Info';
+
 $string['coodlewelcome'] = 'Herzlich Willkommen in der coodle App';

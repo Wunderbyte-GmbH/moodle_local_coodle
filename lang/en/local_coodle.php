@@ -81,5 +81,6 @@ $string['todos'] = 'Todos';
 $string['dok1'] = 'Dokumente';
 $string['dok2'] = 'Bewerbungsunterlagen';
 $string['dok3'] = 'Beratungsinhalt';
+$string['viewinfo'] = 'Info';
 
 $string['coodlewelcome'] = 'Welcome to the coodle App';
