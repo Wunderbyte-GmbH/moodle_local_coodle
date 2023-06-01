@@ -30,7 +30,21 @@ use stdClass;
 class mobile {
 
     /**
-     * view_files1
+     * Returns the javascript needed to initialize some Handlers
+     *
+     * @return array javascript
+     */
+    public static function mobile_init() {
+        global $CFG;
+
+        return [
+            'templates' => [],
+            'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/init.js"),
+        ];
+    }
+
+    /**
+     * Returns the view for "Dokumente"
      *
      *
      */
@@ -41,9 +55,8 @@ class mobile {
         $templatedata = new stdClass();
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(1);
         $templatedata->hl = "Dokumente";
-        $templatedata->bg = "#64a44e";
+        $templatedata->bg = "rgb(94, 160, 242)";
         $templatedata->text = "#fff";
-        $js = 'const uploadFile = () => { console.log("hijo");}';
 
         return [
             'templates' => [
@@ -95,7 +108,7 @@ class mobile {
         $templatedata = new stdClass();
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(3);
         $templatedata->hl = "Beratungsinhalt";
-        $templatedata->bg = "#ced4da";
+        $templatedata->bg = "rgb(33, 181, 98)";
         $templatedata->text = "#fff";
         $js = 'const uploadFile = () => { console.log("hijo");}';
 
@@ -120,6 +133,7 @@ class mobile {
     public static function view_address() {
         global $OUTPUT;
         $templatedata = new stdClass();
+        $templatedata->bg = "rgb(163, 96, 239)";
         return [
             'templates' => [
                 [
@@ -189,6 +203,7 @@ class mobile {
         global $USER, $OUTPUT;
         $todo = new \local_coodle\todo();
         $templatedata = new stdClass();
+        $templatedata->bg = "rgb(238, 58, 47)";
         // TODO: change stats!
         $todolist = $todo->load_todolist_by_userid($USER->id, 0);
         if (!empty($todolist)) {
@@ -213,11 +228,12 @@ class mobile {
      *
      * @return void
      */
-    public static function view_events() {
+    public static function view_info() {
         global $USER, $OUTPUT;
         // TODO: change and write functions!
         $todo = new \local_coodle\todo();
         $templatedata = new stdClass();
+        $templatedata->bg = "rgb(251, 135, 66)";
         $todolist = $todo->load_todolist_by_userid($USER->id, 0);
         if (!empty($todolist)) {
             $templatedata->todos = $todolist;
