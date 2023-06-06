@@ -49,14 +49,10 @@ class add_link_form extends dynamic_form {
         $customdata = $this->_customdata;
 
         $id = optional_param('userid', 0, PARAM_INT);
-
+        $mform->addElement('text', 'link', get_string('linktitle', 'local_coodle'));
         $mform->addElement('text', 'link', get_string('addlink', 'local_coodle'));
-        $this->add_action_buttons();
         $mform->addElement('hidden', 'id', $customdata['clientid']);
         $mform->setType('id', PARAM_INT);
-        $mform->addElement('hidden', 'doctype', $customdata['doctype']);
-        $mform->setType('doctype', PARAM_INT);
-
     }
 
     /**

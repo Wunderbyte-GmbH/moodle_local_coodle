@@ -174,7 +174,7 @@ class coodle_user {
     public static function prepare_coodle_users_for_select(array $users) {
         $select = [];
         foreach ($users as $user) {
-            $id = $user->id;
+            $id = $user->userid;
             $select[$id] = $user->clientfirstname . ' ' . $user->clientlastname;
         }
         return $select;

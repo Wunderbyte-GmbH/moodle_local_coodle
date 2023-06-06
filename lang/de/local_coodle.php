@@ -83,3 +83,4 @@ $string['dok3'] = 'Beratungsinhalt';
 $string['viewinfo'] = 'Info';
 
 $string['coodlewelcome'] = 'Herzlich Willkommen in der coodle App';
+$string['setadvisor'] = 'Berater_in setzen';

@@ -13,139 +13,192 @@
 }}
 
 <div class="container">
-    <div class="row">
+  <div class="row">
     <div class="col-md-4 coodle-msg">
-        <h3>{{name}}</h3>
-        <div>
-            {{{widget}}}
-        </div>
+      <h3>{{ name }}</h3>
+      <div>{{{widget}}}</div>
     </div>
-    <div class="col-md-8">
-        <div class="card linetrough bg-warning text-white mb-4">
-            <div class="card-body">
-              <h5 class="card-title">Termine</h5>
-              <ul>
-                <li>List item 1</li>
-                <li>List item 2</li>
-                <li>List item 3</li>
-              </ul>
-            </div>
+    <div class="col-md-8 coodle-user">
+      <div class="card linetrough bg-warning text-white mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Termine</h5>
+          <ul>
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+          </ul>
         </div>
-    <div class="card mb-4 coodle-dashboard">
-            <div class="card-body">
-              <h5 class="card-title">Todos <button class="btn btn-primary-outline myuserbtn" data-action="local-coodle-add-todo" data-clientid="{{clientid}}">
-                <i class="fa fa-plus fa-2x text-success" aria-hidden="true" data-action="local-coodle-add-todo" data-clientid="{{clientid}}"></i>
-            </button>
-        </h5>
-              <div>{{>local_coodle/todos}}</div>
-            </div>
-        </div>
-        <div class="card bg-success text-white mb-4">
-            <div class="card-body">
-              <h5 class="card-title">Dokumente <button class="btn btn-dark myuserbtn" data-toggle="modal" data-target="#uploadForm" data-action="local-coodle-add-file" data-clientid="{{clientid}}" data-doctype="1">Upload File</button>
-              </h5>
-              <ul class="list-group" id="files1-{{uniqid}}">
-              {{#files.1}}
-                {{>local_coodle/files}}
-              {{/files.1}}
-              </ul>
-            </div>
-        </div>
-        <div class="card bg-primary text-white mb-4">
-            <div class="card-body">
-              <h5 class="card-title">Bewerbungsunterlagen
-                <button class="btn btn-dark myuserbtn" data-toggle="modal" data-target="#uploadForm" data-action="local-coodle-add-file" data-clientid="{{clientid}}" data-doctype="2">Upload File</button>
-              </h5>
-              <ul class="list-group" id="files2-{{uniqid}}">
-                {{#files.2}}
-                  {{>local_coodle/files}}
-                {{/files.2}}
-              </ul>
-            </div>
-        </div>
-        <div class="card bg-secondary mb-4">
-            <div class="card-body">
-              <h5 class="card-title">Beratungsinhalt
-                <button class="btn btn-dark myuserbtn" data-toggle="modal" data-target="#uploadForm" data-action="local-coodle-add-file" data-clientid="{{clientid}}" data-doctype="3">Upload File</button>
-              </h5>
-              <ul class="list-group" id="files3-{{uniqid}}">
-                {{#files.3}}
-                  {{>local_coodle/files}}
-                {{/files.3}}
-              </ul>
-            </div>
-        </div>
-        <div class="card bg-secondary mb-4">
-          <div class="card-body">
-            <h5 class="card-title">User Files
-              <button class="btn btn-dark myuserbtn" data-toggle="modal" data-target="#uploadForm" data-action="local-coodle-add-file" data-clientid="{{clientid}}" data-doctype="4">Upload File</button>
-            </h5>
-            {{#files.4}}
-            <div>{{>local_coodle/files}}</div>
-            {{/files.4}}
-          </div>
       </div>
-        <div class="card linetrough bg-info text-white mb-4">
-            <div class="card-body">
-              <h5 class="card-title">Linksammlung<button class="btn btn-primary-outline myuserbtn" data-action="local-coodle-add-link" data-clientid="{{clientid}}">
-                <i class="fa fa-plus fa-2x text-success" aria-hidden="true" data-action="local-coodle-add-link" data-clientid="{{clientid}}"></i>
-            </button></h5>
-              {{{links}}}
-            </div>
+      <div class="card card-todos text-white mb-4 coodle-dashboard">
+        <div class="card-body">
+          <h5 class="card-title">
+            Aufgaben
+            <button
+              class="btn btn-dark btn-primary-outline myuserbtn"
+              data-action="local-coodle-add-todo"
+              data-clientid="{{ clientid }}"
+            >
+              <i
+                class="fa fa-plus"
+                aria-hidden="true"
+                data-action="local-coodle-add-todo"
+                data-clientid="{{ clientid }}"
+              ></i>
+            </button>
+          </h5>
+          <div>{{>local_coodle/todos}}</div>
         </div>
-        <div class="card bg-danger text-white mb-4">
-            <div class="card-body">
-              <h5 class="card-title">Wegbeschreibungen</h5>
-              {{{directions}}}
-            </div>
+      </div>
+      <div class="card card-docs text-white mb-4">
+        <div class="card-body">
+          <h5 class="card-title">
+            Dokumente
+            <button
+              class="btn btn-dark myuserbtn"
+              data-toggle="modal"
+              data-target="#uploadForm"
+              data-action="local-coodle-add-file"
+              data-clientid="{{ clientid }}"
+              data-doctype="1"
+            >
+              Upload File
+            </button>
+          </h5>
+          <ul class="list-group" id="files1-{{ uniqid }}">
+            {{#files.1}}
+            {{>local_coodle/files}}
+            {{/files.1}}
+          </ul>
         </div>
+      </div>
+      <div class="card card-beratung text-white mb-4">
+        <div class="card-body">
+          <h5 class="card-title">
+            Beratung
+            <button
+              class="btn btn-dark myuserbtn"
+              data-toggle="modal"
+              data-target="#uploadForm"
+              data-action="local-coodle-add-file"
+              data-clientid="{{ clientid }}"
+              data-doctype="3"
+            >
+              Upload File
+            </button>
+          </h5>
+          <ul class="list-group" id="files3-{{ uniqid }}">
+            {{#files.3}}
+            {{>local_coodle/files}}
+            {{/files.3}}
+          </ul>
         </div>
+      </div>
+      <div class="card card-info text-white mb-4">
+        <div class="card-body">
+          <h5 class="card-title">
+            Info<button
+              class="btn btn-dark btn-primary-outline myuserbtn"
+              data-action="local-coodle-add-link"
+              data-clientid="{{ clientid }}"
+            >
+              <i
+                class="fa fa-plus text-white"
+                aria-hidden="true"
+                data-action="local-coodle-add-link"
+                data-clientid="{{ clientid }}"
+              ></i>
+            </button>
+          </h5>
+          {{{links}}}
+        </div>
+      </div>
+      <div class="card card-direction text-white mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Wegbeschreibungen<button
+            class="btn btn-dark btn-primary-outline myuserbtn"
+            data-action="local-coodle-add-direction"
+            data-clientid="{{ clientid }}"
+          >
+            <i
+              class="fa fa-plus text-white"
+              aria-hidden="true"
+              data-action="local-coodle-add-direction"
+              data-clientid="{{ clientid }}"
+            ></i>
+          </button>
+        </h5>
+          {{{directions}}}
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
-
 <style>
-.coodle-msg .conversationcontainer,.coodle-msg [data-region="header-content"] {
+  .card-docs {
+    background-color: rgb(94, 160, 242);
+  }
+  .card-todos {
+    background-color: rgb(238, 58, 47);
+  }
+
+  .card-info {
+    background-color: rgb(251, 135, 66);
+  }
+  .card-beratung {
+    background-color: rgb(33, 181, 98);
+  }
+
+  .card-direction {
+    background-color: rgb(163, 96, 239);
+  }
+  .coodle-msg .conversationcontainer,
+  .coodle-msg [data-region="header-content"] {
     visibility: hidden !important;
     width: 0px;
     height: 0px;
-}
-.coodle-msg .container-fluid {
+  }
+  .coodle-msg .container-fluid {
     max-width: 100%;
     padding: 0;
-}
-.coodle-msg .col-8 {
+  }
+  .coodle-msg .col-8 {
     flex: 0 0 100%;
     max-width: 100%;
-}
-.coodle-msg .border-bottom {
-}
-.coodle-msg .col-8.d-flex.flex-column {
+  }
+  .coodle-msg .border-bottom {
+  }
+  .coodle-msg .col-8.d-flex.flex-column {
     height: 100%;
-}
+  }
 
-.myuserbtn {
+  .myuserbtn {
     position: absolute;
     top: 5px;
     right: 5px;
-}
+  }
 
-.linetrough {
-  background-image: linear-gradient(-45deg, #767676 25%, transparent 25%, transparent 50%, #767676 50%, #767676 75%, transparent 75%, transparent);
-  background-size: 50px 50px;
-}
+  .linetrough {
+    background-image: linear-gradient(
+      -45deg,
+      #767676 25%,
+      transparent 25%,
+      transparent 50%,
+      #767676 50%,
+      #767676 75%,
+      transparent 75%,
+      transparent
+    );
+    background-size: 50px 50px;
+  }
 </style>
 
 {{#js}}
-require([
-  	'local_coodle/add_todo_form','local_coodle/add_file', 'local_coodle/file'
-	],
-  	function(todoform,fileform,file
-	) {
-		todoform.init();
-    fileform.init();
-    file.init('files1-{{uniqid}}');
-    file.init('files2-{{uniqid}}');
-    file.init('files3-{{uniqid}}');
-});
-{{/js}}
+require([ 'local_coodle/add_todo_form','local_coodle/add_file',
+'local_coodle/file', 	'local_coodle/add_link_form', 'local_coodle/add_direction_form'], function(todoform, fileform, file, links, direction ) {
+  direction.init();
+  links.init();
+  todoform.init();
+fileform.init(); file.init('files1-{{ uniqid }}'); file.init('files2-{{
+  uniqid
+}}'); file.init('files3-{{ uniqid }}'); }); {{/js}}

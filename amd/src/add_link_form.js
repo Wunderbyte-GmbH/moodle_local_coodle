@@ -25,7 +25,7 @@ import ModalForm from 'core_form/modalform';
 import {get_string as getString} from 'core/str';
 
 const SELECTORS = {
-    LINK: '.coodle-dashboard',
+    LINK: '.card-info',
 };
 
 /**
@@ -46,7 +46,7 @@ export const init = () => {
             return;
         }
         switch (target.dataset.action) {
-            case ACTIONS.LINK:
+            case ACTIONS.ADD_LINK:
                 openForm(e);
                 break;
             default:

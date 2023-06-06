@@ -52,12 +52,14 @@ class add_todo_form extends dynamic_form {
 
         $mform->addElement('html', '<div class="coodle_todolist">');
         $mform->addElement('text', 'text', 'Todo');
-        if ($data['clientid']) {
+        if ($data['clientid'] != "undefined") {
             $mform->addElement('hidden', 'clientid');
+            $mform->addElement('html', '</div>');
+        } else {
             $mform->addElement('html', '</div>');
             $myclients = \local_coodle\coodle_user::get_coodle_users($USER->id);
             $select = \local_coodle\coodle_user::prepare_coodle_users_for_select($myclients);
-            $mform->addElement('select', 'myselect', get_string('selectuser', 'local_coodle'), $select);
+            $mform->addElement('select', 'clientid', get_string('selectuser', 'local_coodle'), $select);
         }
         $mform->addElement('checkbox', 'usertodo', get_string('usertodo', 'local_coodle'));
     }

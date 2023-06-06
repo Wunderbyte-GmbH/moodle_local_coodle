@@ -37,20 +37,20 @@
 							</td>
 							<td> {{#advisorfirstname}}
 								<p>{{advisorfirstname}} <b>{{advisorlastname}}</b></p>
-<a class="btn btn-primary" href="{{config.wwwroot}}/course/view.php?id={{courseid}}"><i class="fa fa-home" aria-hidden="true"></i></a><p></p>
+							<a class="btn btn-primary" href="{{config.wwwroot}}/course/view.php?id={{courseid}}"><i class="fa fa-home" aria-hidden="true"></i></a><p></p>
 							{{/advisorfirstname}}
 							{{^advisorfirstname}}
 							<a class="btn btn-primary" data-action="local-coodle-set-advisor" data-clientid="{{id}}">Set advisor</a>							</a><p></p>
 							{{/advisorfirstname}}
-
-
 							</td>
 							<td class="status">
 								<span>{{{qrcode}}}</span>
 							</td>
 							<td class="text-right">
-								<button type="button" class="btn btn-primary" data-confirmation="modal" data-clientid="{{id}}">Delete Client</button>
-								<i class="fa fa-delete" aria-hidden="true" data-clientid="{{id}}">Delete Client</i>
+								<button type="button" class="btn btn-primary" data-confirmation="modal" data-clientid="{{id}}">Löschen</button>
+								{{#advisorfirstname}}
+								<a class="btn btn-primary" data-action="local-coodle-set-advisor" data-clientid="{{id}}">Set advisor</a>
+								{{/advisorfirstname}}
 							</td>
 						</tr>
 						<tr>
