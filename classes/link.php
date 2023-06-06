@@ -62,7 +62,6 @@ class link {
 
     public function load_linklist_by_userid(int $userid) {
         global $DB;
-        global $DB;
         $data = $DB->get_records('local_coodle_links', array('userid' => $userid));
         return array_values($data);
     }
