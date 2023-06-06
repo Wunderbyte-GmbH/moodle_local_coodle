@@ -48,7 +48,7 @@ class add_link_form extends dynamic_form {
         $mform = $this->_form;
         $data = $this->_ajaxformdata;
         $id = optional_param('userid', 0, PARAM_INT);
-        $mform->addElement('text', 'linktitle', get_string('linktitle', 'local_coodle'));
+        $mform->addElement('text', 'linktitle', get_string('linkname', 'local_coodle'));
         $mform->addElement('text', 'link', get_string('addlink', 'local_coodle'));
         $mform->addElement('hidden', 'userid', $data['clientid']);
         $mform->setType('userid', PARAM_INT);
