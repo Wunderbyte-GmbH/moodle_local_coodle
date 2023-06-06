@@ -46,17 +46,10 @@ class add_direction_form extends dynamic_form {
      */
     public function definition() {
         $mform = $this->_form;
-        $customdata = $this->_customdata;
-
-        $id = optional_param('userid', 0, PARAM_INT);
-
-        $mform->addElement('text', 'link', get_string('addlink', 'local_coodle'));
-        $this->add_action_buttons();
-        $mform->addElement('hidden', 'id', $customdata['clientid']);
-        $mform->setType('id', PARAM_INT);
-        $mform->addElement('hidden', 'doctype', $customdata['doctype']);
-        $mform->setType('doctype', PARAM_INT);
-
+        $data = $this->_ajaxformdata;
+        $mform->addElement('editor', 'description', get_string('description', 'local_coodle'));
+        $mform->addElement('hidden', 'userid', $data['clientid']);
+        $mform->setType('userid', PARAM_INT);
     }
 
     /**

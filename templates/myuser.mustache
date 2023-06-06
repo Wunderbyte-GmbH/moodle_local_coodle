@@ -21,7 +21,20 @@
     <div class="col-md-8 coodle-user">
       <div class="card linetrough bg-warning text-white mb-4">
         <div class="card-body">
-          <h5 class="card-title">Termine</h5>
+          <h5 class="card-title">Termine
+            <button
+            class="btn btn-dark btn-primary-outline myuserbtn"
+            data-action="local-coodle-add-date"
+            data-clientid="{{ clientid }}"
+          >
+            <i
+              class="fa fa-plus"
+              aria-hidden="true"
+              data-action="local-coodle-add-date"
+              data-clientid="{{ clientid }}"
+            ></i>
+          </button>
+          </h5>
           <ul>
             <li>List item 1</li>
             <li>List item 2</li>

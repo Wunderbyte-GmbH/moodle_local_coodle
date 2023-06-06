@@ -231,12 +231,12 @@ class mobile {
     public static function view_info() {
         global $USER, $OUTPUT;
         // TODO: change and write functions!
-        $todo = new \local_coodle\todo();
+        $links = new \local_coodle\link();
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(251, 135, 66)";
-        $todolist = $todo->load_todolist_by_userid($USER->id, 0);
+        $linklist = $links->load_linklist_by_userid($USER->id, 0);
         if (!empty($todolist)) {
-            $templatedata->todos = $todolist;
+            $templatedata->links = $linklist;
         } else {
             $templatedata->empty = 1;
         }
@@ -244,7 +244,7 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_todos', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_linklist', $templatedata),
                 ],
             ],
             'javascript' => '',

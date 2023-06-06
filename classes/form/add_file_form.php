@@ -56,7 +56,6 @@ class add_file_form extends dynamic_form {
         $options['maxfiles'] = null;
         $options['accepted_types'] = ['jpg', 'jpeg', 'png', 'pdf' , 'doc', 'xls', 'docx'];
         $mform->addElement('filemanager', 'clientfiles_filemanager', get_string('uploadfile', 'local_coodle'), null, $options);
-        $this->add_action_buttons();
         $mform->addElement('hidden', 'id', $customdata['clientid']);
         $mform->setType('id', PARAM_INT);
         $mform->addElement('hidden', 'doctype', $customdata['doctype']);
