@@ -62,13 +62,9 @@ class link {
 
     public function load_linklist_by_userid(int $userid) {
         global $DB;
-        $sql = "SELECT t.* FROM {local_coodle_links} t
-        WHERE t.userid = $userid";
-        // if ($status != 0) {
-        //     $sql .= " AND t.status = $status OR t.status = 0";
-        // }
-        $linklist = $DB->get_records_sql($sql);
-        return array_values($linklist);
+        global $DB;
+        $data = $DB->get_records('local_coodle_links', array('userid' => $userid));
+        return array_values($data);
     }
 
     /**
