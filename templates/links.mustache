@@ -1,0 +1,71 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+
+<ul class="list-group">
+	{{#todos}}
+	<li class="bg-light todos list-group-item {{#deleted}} done {{/deleted}}" data-clientid="{{userid}}">
+		<div class="row">
+			{{#firstname}}<div class="col-md-3 text-dark">{{firstname}} {{lastname}}</div>{{/firstname}}
+		  <div class="{{#firstname}} col-md-5 {{/firstname}} {{^firstname}} col-md-8 {{/firstname}} text-dark">{{text}}</div>
+		  <div class="col-md-4 text-right">
+			<button class="btn btn-primary-outline coodle-checkbutton pull-right" data-action="local-coodle-todo-{{^deleted}}check{{/deleted}}{{#deleted}}uncheck{{/deleted}}" data-id="{{id}}">
+			  {{^deleted}}<i class="fa fa-check-square-o fa-2x text-success " aria-hidden="true" data-action="local-coodle-todo-check" data-id="{{id}}"></i>{{/deleted}}
+			  {{#deleted}}<i class="fa fa-play fa-2x text-danger" aria-hidden="true" data-action="local-coodle-todo-uncheck" data-id="{{id}}"></i>{{/deleted}}
+			</button>
+			<button class="btn btn-primary-outline pull-right" data-action="local-coodle-todo-delete" data-id="{{id}}" >
+			  <i class="fa fa-times fa-2x text-danger" aria-hidden="true" data-action="local-coodle-todo-delete" data-id="{{id}}"></i>
+			</button>
+			{{^usertodo}}
+			<button class="btn btn-primary-outline pull-right" data-action="local-coodle-todo-usertodo" data-id="{{id}}" >
+				<i class="fa fa-user-o fa-2x text-dark" aria-hidden="true" data-action="local-coodle-todo-usertodo" data-id="{{id}}"></i>
+			</button>
+			{{/usertodo}}
+			{{#usertodo}}
+			<button class="btn btn-primary-outline pull-right" data-action="local-coodle-todo-usertodo" data-id="{{id}}" >
+				<i class="fa fa-user-o fa-2x text-success" aria-hidden="true" data-action="local-coodle-todo-usertodo" data-id="{{id}}"></i>
+			</button>
+			{{/usertodo}}
+		  </div>
+		</div>
+	  </li>
+	{{/todos}}
+</ul>
+
+<style>
+	.coodle-dashboard .todos td{
+		color: #161616;
+
+	}
+	[name="todotext"] {
+		width: 90% !important;
+	}
+	.qrcode {
+		border: 10px solid #fff;
+		background: #fff;
+	}
+	td, th {
+		padding: 20px;
+	}
+	.done {
+		opacity: 0.3;
+	}
+</style>
+
+{{#js}}
+require([
+	'local_coodle/todo'],
+  	function(todo) {
+		todo.init();
+});
+{{/js}}
