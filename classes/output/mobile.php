@@ -234,7 +234,7 @@ class mobile {
         $links = new \local_coodle\link();
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(251, 135, 66)";
-        $linklist = $links->load_linklist_by_userid($USER->id, 0);
+        $linklist = $links->load_linklist_by_userid($USER->id);
         if (!empty($linklist)) {
             $templatedata->links = $linklist;
         } else {
