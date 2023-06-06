@@ -60,10 +60,9 @@ class link {
         return array_values($linklist);
     }
 
-    public function load_linklist_by_userid(int $userid, int $status = 0) {
+    public function load_linklist_by_userid(int $userid) {
         global $DB;
-        $sql = "SELECT t.*, u.firstname, u.lastname  FROM {local_coodle_links} t
-        JOIN {user} u ON u.id = t.userid
+        $sql = "SELECT t.* FROM {local_coodle_links} t
         WHERE t.userid = $userid";
         // if ($status != 0) {
         //     $sql .= " AND t.status = $status OR t.status = 0";
