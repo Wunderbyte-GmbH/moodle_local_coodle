@@ -71,7 +71,7 @@ $templatedata->files[3] = $coodle->get_coodleuser_files(3);
 $templatedata->files[4] = $coodle->get_coodleuser_userfiles($id);
 
 $templatedata->directions = $coodle->get_coodleuser_directions();
-$templatedata->links = $coodle->get_coodleuser_links();
+$templatedata->links = array_values($coodle->get_coodleuser_links($id));
 
 echo $OUTPUT->render_from_template('local_coodle/myuser', $templatedata);
 

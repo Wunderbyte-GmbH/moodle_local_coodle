@@ -22,14 +22,14 @@
             <ion-card-title style="color: #000"><%{ "plugin.local_coodle.todos" | translate }%></ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <%^empty%>
+            <%#empty%>
             <ion-list>
               <ion-item style="color: #000">
                 <ion-label style="margin-left: 10px;">Derzeit keine Todos</ion-label>
               </ion-item>
             </ion-list>
             <%/empty%>
-            <%#empty%>
+            <%^empty%>
             <ion-list>
               <%#todos%>
               <ion-item style="color: #000">

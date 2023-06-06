@@ -35,20 +35,28 @@ function xmldb_local_coodle_upgrade($oldversion) {
     // Automatically generated Moodle v3.9.0 release upgrade line.
     // Put any upgrade step following this.
 
-    if ($oldversion < 2020061501) {
+    if ($oldversion < 2023060601) { // Replace XXXXXXXXXX with the version you are upgrading to
+        // Add table local_coodle_links
+        $table = new xmldb_table('local_coodle_links');
+        $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE);
+        $table->add_field('userid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL);
+        $table->add_field('advisorid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL);
+        $table->add_field('text', XMLDB_TYPE_TEXT, 'big', null, null, null, null);
+        $table->add_field('url', XMLDB_TYPE_TEXT, 'big', null, null, null, null);
+        $table->add_field('timecreated', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL);
+        $table->add_field('timemodified', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table->add_field('deleted', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0');
 
-        // Define field completionminattempts to be added to quiz.
-        $table = new xmldb_table('quiz');
-        $field = new xmldb_field('completionminattempts', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0',
-            'completionpass');
+        $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
 
-        // Conditionally launch add field completionminattempts.
-        if (!$dbman->field_exists($table, $field)) {
-            $dbman->add_field($table, $field);
+        if (!$dbman->table_exists($table)) {
+            $dbman->create_table($table);
         }
 
-        // Quiz savepoint reached.
-        upgrade_mod_savepoint(true, 2020061501, 'quiz');
+        // Add other upgrade steps if needed
+
+        // Moodle upgrade complete.
+        upgrade_plugin_savepoint(true, 2023060601, 'local', 'coodle'); // Replace XXXXXXXXXX with the version you are upgrading to
     }
 
     // Automatically generated Moodle v4.0.0 release upgrade line.

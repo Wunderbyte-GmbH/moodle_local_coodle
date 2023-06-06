@@ -213,8 +213,10 @@ class coodle_user {
         return $templatedata;
     }
 
-    public function get_coodleuser_links(): string {
-        return "<ul class='list-group'><li class='list-group-item'><a href='/local/coodle/advisoradress.php'>Lebenslauf schreiben leicht gemacht!</a></li></ul>";
+    public function get_coodleuser_links($userid) {
+        global $DB;
+        $data = $DB->get_records('local_coodle_links', array('userid' => $userid));
+        return $data;
     }
 
     public function get_coodleuser_directions(): string {

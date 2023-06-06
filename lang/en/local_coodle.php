@@ -86,3 +86,12 @@ $string['viewinfo'] = 'Info';
 $string['coodlewelcome'] = 'Welcome to the coodle App';
 $string['setadvisor'] = 'Set advisor';
 
+// INFO
+$string['add_link'] = 'add link';
+$string['linkname'] = 'linktitle';
+$string['addlink'] = 'link';
+
+// Adresse
+$string['description'] = 'Description';
+$string['add_direction'] = 'Add directions';
+

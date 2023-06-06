@@ -109,8 +109,14 @@
               ></i>
             </button>
           </h5>
-          {{{links}}}
-        </div>
+          <ul class='list-group'>
+          {{#links}}
+            <li class='list-group-item'>
+              <a href='{{url}}'>{{text}}</a>
+            </li>
+          {{/links}}
+          </ul>
+           </div>
       </div>
       <div class="card card-direction text-white mb-4">
         <div class="card-body">
