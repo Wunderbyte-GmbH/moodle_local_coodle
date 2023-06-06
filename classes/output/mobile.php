@@ -235,7 +235,7 @@ class mobile {
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(251, 135, 66)";
         $linklist = $links->load_linklist_by_userid($USER->id, 0);
-        if (!empty($todolist)) {
+        if (!empty($linklist)) {
             $templatedata->links = $linklist;
         } else {
             $templatedata->empty = 1;
