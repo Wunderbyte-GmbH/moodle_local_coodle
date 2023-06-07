@@ -13,12 +13,13 @@
 }}
 <ion-content fullscreen="true">
     <ion-slides pager="true" [options]="slideOptions" class="slide-container">
-        {{#contentItems}}
+        {{#adresses}}
         <ion-slide class="slide-item">
             <!-- Your dynamic content goes here -->
+            <h2>{{ title }}</h2>
             <div>{{ content }}</div>
         </ion-slide>
-        {{/contentItems}}
+        {{/adresses}}
     </ion-slides>
 </ion-content>
 

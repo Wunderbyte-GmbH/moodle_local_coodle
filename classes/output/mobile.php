@@ -134,8 +134,8 @@ class mobile {
         global $OUTPUT;
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(163, 96, 239)";
-        $templatedata->adresses[0] = ['content'=>'asdhasjkdhaskjd'];
-        $templatedata->adresses[1] = ['content'=>'asdasdwqeqwe'];
+        $templatedata->adresses[0] = ['content'=>'asdhasjkdhaskjd', 'title' => 'test'];
+        $templatedata->adresses[1] = ['content'=>'asdasdwqeqwe','title' => 'test2'];
         return [
             'templates' => [
                 [
