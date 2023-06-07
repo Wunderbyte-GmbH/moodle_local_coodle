@@ -75,8 +75,6 @@ $addons = [
                     'icon' => 'map',
                 ],
                 'priority'  => 10000000000000000,
-                'styles' =>
-
             ],
             'viewtodos' => [
                 'delegate' => 'CoreMainMenuDelegate',
