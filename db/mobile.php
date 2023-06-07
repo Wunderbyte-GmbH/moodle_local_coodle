@@ -63,6 +63,8 @@ $addons = [
                     'icon' => 'map',
                 ],
                 'priority'  => 10000000000000000,
+                'styles' =>
+
             ],
             'viewtodos' => [
                 'delegate' => 'CoreMainMenuDelegate',
@@ -81,6 +83,10 @@ $addons = [
                     'icon' => 'map',
                 ],
                 'priority'  => 10000000000000000,
+                'styles' => array(
+                    'url' => $CFG->wwwroot . '/local/coodle/mobile/css/styles_app.css',
+                    'version' => '0.2'
+                ),
             ],
         ],
         'lang' => [
