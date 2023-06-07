@@ -11,32 +11,30 @@
   You should have received a copy of the GNU General Public License
   along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
-<div class="ion-page">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>App</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <ion-button id="open-modal" expand="block">Open</ion-button>
-
-      <ion-modal trigger="open-modal">
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Inline Modal</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-button expand="block" (click)="setOpen(true)">Open</ion-button>
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
         <ion-header>
           <ion-toolbar>
             <ion-title>Modal</ion-title>
             <ion-buttons slot="end">
-              <ion-button onclick="dismiss()">Close</ion-button>
+              <ion-button (click)="setOpen(false)">Close</ion-button>
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
-        <ion-content>
-          <p class="ion-padding-horizontal">You must accept the terms and conditions to close this modal.</p>
-          <ion-item>
-            <ion-label class="ion-text-wrap" for="terms">Do you accept the terms and conditions?</ion-label>
-            <ion-checkbox id="terms"></ion-checkbox>
-          </ion-item>
+        <ion-content class="ion-padding">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
+            reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
+            dicta.
+          </p>
         </ion-content>
-      </ion-modal>
-    </ion-content>
-  </div>
-
+      </ng-template>
+    </ion-modal>
+  </ion-content>
