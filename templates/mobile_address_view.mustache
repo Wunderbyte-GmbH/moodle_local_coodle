@@ -11,15 +11,23 @@
   You should have received a copy of the GNU General Public License
   along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
-<div style="height: 100%;">
-    <ion-content>
-        <ion-slides pager="true" [options]="slideOptions">
-          {{#adresses}}
-          <ion-slide>
+<ion-content fullscreen="true">
+    <ion-slides pager="true" [options]="slideOptions" class="slide-container">
+        {{#contentItems}}
+        <ion-slide class="slide-item">
             <!-- Your dynamic content goes here -->
-            <div>{{content}}</div>
-          </ion-slide>
-          {{/adresses}}
-        </ion-slides>
-    </ion-content>
-</div>
+            <div>{{ content }}</div>
+        </ion-slide>
+        {{/contentItems}}
+    </ion-slides>
+</ion-content>
+
+<style>
+    .slide-container {
+        height: 100%;
+    }
+
+    .slide-item {
+        height: 100%;
+    }
+</style>
