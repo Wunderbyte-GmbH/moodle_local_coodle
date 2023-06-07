@@ -32,15 +32,15 @@
                 <ion-checkbox
                 core-site-plugins-call-ws checked
                 name="local_coodle_change_todo" [params]="{todoid: <%id%>, method: 'done'}"
-                confirmMessage="Done?"
-                refreshOnSuccess="false"></ion-checkbox>
+                confirmMessage="Uncheck?"
+                refreshOnSuccess="true"></ion-checkbox>
 				<%/deleted%>
 				<%#deleted%>
                 <ion-checkbox
                 core-site-plugins-call-ws
                 name="local_coodle_change_todo" [params]="{todoid: <%id%>, method: 'uncheck'}"
-                confirmMessage="Uncheck?"
-                refreshOnSuccess="false"></ion-checkbox>
+                confirmMessage="Done?"
+                refreshOnSuccess="true"></ion-checkbox>
 				<%/deleted%>
                 <ion-label style="margin-left: 10px;"> <%text%></ion-label>
               </ion-item>
