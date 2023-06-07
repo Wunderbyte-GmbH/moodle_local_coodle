@@ -28,14 +28,14 @@
             <ion-list>
               <%#todos%>
               <ion-item style="color: #000">
-				<%#deleted%>
+				<%^deleted%>
                 <ion-checkbox
                 core-site-plugins-call-ws checked
                 name="local_coodle_change_todo" [params]="{todoid: <%id%>, method: 'done'}"
                 confirmMessage="Done?"
                 refreshOnSuccess="false"></ion-checkbox>
 				<%/deleted%>
-				<%^deleted%>
+				<%#deleted%>
                 <ion-checkbox
                 core-site-plugins-call-ws
                 name="local_coodle_change_todo" [params]="{todoid: <%id%>, method: 'uncheck'}"
