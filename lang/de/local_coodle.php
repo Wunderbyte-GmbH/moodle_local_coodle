@@ -40,14 +40,16 @@ $string['selectusers'] = 'Select User for Advisorrole';
 
 $string['none'] = 'Select User for Advisorrole';
 $string['advisorlist'] = 'Advisorlist';
-$string['setadvisor'] = 'Set Advisor';
+$string['setadvisor'] = 'Berater setzen';
 
 $string['users'] = 'Teilnehmer_innen';
+$string['user'] = 'Teilnehmer_in';
+
 $string['groups'] = 'Gruppen';
 $string['calendar'] = 'Kalender';
 $string['forum'] = 'Forum';
 $string['files'] = 'Vorlagen';
-$string['add_user'] = 'User hinzufügen';
+$string['add_user'] = 'Teilnehmer_in hinzufügen';
 $string['add_file'] = 'Datei hochladen';
 $string['userpage'] = 'TN Seite';
 $string['selectuser'] = 'Teilnehmer_in?';
@@ -71,14 +73,14 @@ $string['myfiles'] = 'Meine Dateien';
 $string['viewaddress'] = 'Adresse';
 $string['uploadfile'] = 'uploadfile';
 $string['usertodo'] = 'zum User senden';
-$string['viewtodos'] = 'Meine Aufgaben';
+$string['viewtodos'] = 'Aufgaben';
 $string['viewdates'] = 'Termine';
 
-$string['todos'] = 'Meine Aufgaben';
+$string['todos'] = 'Aufgaben';
 
 $string['dok1'] = 'Dokumente';
 $string['dok2'] = 'Bewrbungsunterlagen';
-$string['dok3'] = 'Beratungsinhalt';
+$string['dok3'] = 'Beratung';
 
 $string['viewinfo'] = 'Info';
 

@@ -38,11 +38,18 @@ $string['status:starting'] = 'Starting';
 $string['status:finshed'] = 'Finished';
 $string['selectusers'] = 'Select User for Advisorrole';
 
+
+// ADVISOR Page
 $string['advisor'] = 'Advisor';
 $string['advisors'] = 'Advisors';
 $string['advisorsince'] = 'Advisor since';
 $string['client'] = 'Client';
 $string['clients'] = 'Clients';
+$string['ongoing_clients'] = 'Ongoing Clients';
+$string['qrlogin'] = 'QR-Login';
+$string['actions'] = 'Bearbeiten';
+
+
 $string['clientsince'] = 'Client since';
 $string['addadvisor'] = 'Add advisor';
 $string['add_new_user'] = 'Add new client';
@@ -51,6 +58,7 @@ $string['user'] = 'User';
 $string['add_todo'] = 'Add Todo';
 $string['todolist'] = 'Todolist';
 $string['selectuser'] = 'User?';
+
 
 $string['users'] = 'users';
 $string['groups'] = 'groups';

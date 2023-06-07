@@ -1,119 +1,188 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
 
 <div class="coodle-dashboard">
-	<div class="row">
-		<main role="main" class="col-md-12 col-lg-12 my-3">
-			<div class="mb-4">
-				<div class="btn btn-primary" data-action="coodle-user_create_form">{{#str}} add_new_user, local_coodle {{/str}}</div>
-			</div>
-			<div class="projects mb-4">
-				<div class="projects-inner">
-					<header class="projects-header">
-						<div class="title">Ongoing Clients</div>
-						<div class="count">| {{count}} Clients</div>
-						<i class="zmdi zmdi-download"></i>
-					</header>
-					<table class="projects-table">
-						<thead>
-							<tr>
-								<th>registered since</th>
-								<th>User</th>
-								<th>Advisor</th>
-								<th style="width: 300px">Login</th>
-								<th class="text-right">Actions</th>
-							</tr>
-						</thead>
-						{{#users}}
-						<tr>
-							<td>
-								<p>{{userdatecreated}}</p>
-
-							</td>
-							<td class="member">
-								<div class="member-info">
-									<a class="btn btn-primary" href="{{config.wwwroot}}/local/coodle/user.php?id={{userid}}">{{#str}} userpage, local_coodle {{/str}}</a>
-									<p>{{clientfirstname}} <b>{{clientlastname}}</b></p>
-									<p>WIEN</p>
-								</div>
-							</td>
-							<td> {{#advisorfirstname}}
-								<p>{{advisorfirstname}} <b>{{advisorlastname}}</b></p>
-							<a class="btn btn-primary" href="{{config.wwwroot}}/course/view.php?id={{courseid}}"><i class="fa fa-home" aria-hidden="true"></i></a><p></p>
-							{{/advisorfirstname}}
-							{{^advisorfirstname}}
-							<a class="btn btn-primary" data-action="local-coodle-set-advisor" data-clientid="{{id}}">Set advisor</a>							</a><p></p>
-							{{/advisorfirstname}}
-							</td>
-							<td class="status">
-								<span>{{{qrcode}}}</span>
-							</td>
-							<td class="text-right">
-								<button type="button" class="btn btn-primary" data-confirmation="modal" data-clientid="{{id}}">Löschen</button>
-								{{#advisorfirstname}}
-								<a class="btn btn-primary" data-action="local-coodle-set-advisor" data-clientid="{{id}}">Set advisor</a>
-								{{/advisorfirstname}}
-							</td>
-						</tr>
-						<tr>
-							<td colspan="100%">
-								<button class="btn btn-primary-outline"
-								data-toggle="collapse"
-								data-target="#collapse{{id}}"
-								data-action="local-coodle-todo-collapse"
-								data-text="Collapse">
-								<i class="fa fa-list fa-2x text-white" aria-hidden="true" data-target="#collapse{{id}}"
-								data-action="local-coodle-todo-collapse"></i>
-								</button>
-								<button class="btn btn-primary-outline" data-action="local-coodle-add-todo" data-clientid="{{userid}}">
-									<i class="fa fa-plus fa-2x text-success" aria-hidden="true" data-action="local-coodle-add-todo" data-clientid="{{userid}}"></i>
-								</button>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="100%" class="bg-white">
-							<ul id="collapse{{id}}" class="collapse w-100">
-								{{>local_coodle/todos}}
-							</ul>
-							</td>
-						</tr>
-						{{/users}}
-					</table>
-				</div>
-			</div>
-		</main>
-	</div>
+    <div class="row">
+        <main role="main" class="col-md-12 col-lg-12 my-3">
+            <div class="mb-4">
+                <div
+                    class="btn btn-primary"
+                    data-action="coodle-user_create_form"
+                >
+                    {{#str}} add_user, local_coodle {{/str}}
+                </div>
+            </div>
+            <div class="projects mb-4">
+                <div class="projects-inner">
+                    <header class="projects-header">
+                        <div class="title">
+                            {{#str}} ongoing_clients, local_coodle {{/str}}
+                        </div>
+                        <div class="count">| {{ count }} Clients</div>
+                        <i class="zmdi zmdi-download"></i>
+                    </header>
+                    <table class="projects-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    {{#str}} clientsince, local_coodle {{/str}}
+                                </th>
+                                <th>{{#str}} user, local_coodle {{/str}}</th>
+                                <th>{{#str}} advisor, local_coodle {{/str}}</th>
+                                <th style="width: 300px">
+                                    {{#str}} qrlogin, local_coodle {{/str}}
+                                </th>
+                                <th class="text-right">
+                                    {{#str}} actions, local_coodle {{/str}}
+                                </th>
+                            </tr>
+                        </thead>
+                        {{#users}}
+                        <tr>
+                            <td>
+                                <p>{{ userdatecreated }}</p>
+                            </td>
+                            <td class="member">
+                                <div class="member-info">
+                                    <a
+                                        class="btn btn-primary"
+                                        href="{{
+                                            config.wwwroot
+                                        }}/local/coodle/user.php?id={{
+                                            userid
+                                        }}"
+                                        >{{ clientfirstname }}
+                                        <b>{{ clientlastname }}</b></a
+                                    >
+                                </div>
+                            </td>
+                            <td>
+                                {{#advisorfirstname}}
+                                <a
+                                    class="btn btn-primary"
+                                    href="{{
+                                        config.wwwroot
+                                    }}/course/view.php?id={{ courseid }}"
+                                    ><i
+                                        class="fa fa-home"
+                                        aria-hidden="true"
+                                    ></i>
+                                    {{ advisorfirstname }}
+                                    <b>{{ advisorlastname }}</b></a
+                                >
+                                {{/advisorfirstname}}
+                                {{^advisorfirstname}}
+                                <a
+                                    class="btn btn-primary"
+                                    data-action="local-coodle-set-advisor"
+                                    data-clientid="{{ id }}"
+                                    >{{#str}} setadvisor, local_coodle
+                                    {{/str}}</a
+                                >
+                                {{/advisorfirstname}}
+                            </td>
+                            <td class="status">
+                                <span>{{{qrcode}}}</span>
+                            </td>
+                            <td class="text-right">
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    data-confirmation="modal"
+                                    data-clientid="{{ id }}"
+                                >
+                                    {{#str}} delete {{/str}}
+                                </button>
+                                {{#advisorfirstname}}
+                                <a
+                                    class="btn btn-primary"
+                                    data-action="local-coodle-set-advisor"
+                                    data-clientid="{{ id }}"
+                                    >{{#str}} setadvisor, local_coodle
+                                    {{/str}}</a
+                                >
+                                {{/advisorfirstname}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="100%">
+                                <button
+                                    class="btn btn-primary-outline"
+                                    data-toggle="collapse"
+                                    data-target="#collapse{{ id }}"
+                                    data-action="local-coodle-todo-collapse"
+                                    data-text="Collapse"
+                                >
+                                    <i
+                                        class="fa fa-list fa-2x text-white"
+                                        aria-hidden="true"
+                                        data-target="#collapse{{ id }}"
+                                        data-action="local-coodle-todo-collapse"
+                                    ></i>
+                                </button>
+                                <button
+                                    class="btn btn-primary-outline"
+                                    data-action="local-coodle-add-todo"
+                                    data-clientid="{{ userid }}"
+                                >
+                                    <i
+                                        class="fa fa-plus fa-2x text-success"
+                                        aria-hidden="true"
+                                        data-action="local-coodle-add-todo"
+                                        data-clientid="{{ userid }}"
+                                    ></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="100%" class="bg-white">
+                                <ul
+                                    id="collapse{{ id }}"
+                                    class="collapse w-100"
+                                >
+                                    {{>local_coodle/todos}}
+                                </ul>
+                            </td>
+                        </tr>
+                        {{/users}}
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
 </div>
 
 <style>
-	.coodle_dashboard .todos td{
-		color: #161616;
+    .coodle_dashboard .todos td {
+        color: #161616;
+    }
+    [name="todotext"] {
+        width: 90% !important;
+    }
 
-	}
-	[name="todotext"] {
-		width: 90% !important;
-	}
-
-	.qrcode {
-		border: 10px solid #fff;
-		background: #fff;
-	}
-	.done {
-		opacity: 0.3;
-	}
+    .qrcode {
+        border: 10px solid #fff;
+        background: #fff;
+    }
+    .done {
+        opacity: 0.3;
+    }
 </style>
 
 {{#js}}
-require([
-	'local_coodle/user_create_form',
-  	'local_coodle/create_advisor_form',
-  	'local_coodle/add_todo_form',
-	'local_coodle/todo',
-	'local_coodle/add_advisor'],
-  	function(userform, advisorform, todoform, todo, addadvisor
-	) {
-		userform.init();
-		advisorform.init();
-		todoform.init();
-		todo.init();
-		addadvisor.init();
-});
+require([ 'local_coodle/user_create_form', 'local_coodle/create_advisor_form',
+'local_coodle/add_todo_form', 'local_coodle/todo', 'local_coodle/add_advisor'],
+function(userform, advisorform, todoform, todo, addadvisor ) { userform.init();
+advisorform.init(); todoform.init(); todo.init(); addadvisor.init(); });
 {{/js}}

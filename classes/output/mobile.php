@@ -141,7 +141,7 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_address_view', $templatedata),
                 ],
             ],
-            'javascript' => '',
+            'javascript' => 'setTimeout(function() { console.log("DOM is available now"); });',
             'otherdata' => '',
         ];
     }

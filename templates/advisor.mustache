@@ -1,85 +1,114 @@
+{{!
+  This file is part of Moodle - http://moodle.org/
+  Moodle is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Moodle is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
 <div class="coodle-dashboard">
-<div class="container">
-	<div class="row mt-4">
-	  <div class="col-md-4">
-		<div class="btn-square">
-		  <a href="/local/coodle/myusers.php" class="btn btn-default btn-block btn-success">
-			<h4><i class="fa fa-user fa-2x pr-2"></i><br>Teilnehmer_innen</h4></a>
-		</div>
-	  </div>
-	  <div class="col-md-4">
-		<div class="btn-square">
-		  <a href="#" class="btn btn-default btn-block btn-danger" data-action="coodle-user_create_form">
-			<h4><i class="fa fa-plus-square-o fa-2x pr-2"></i><br>User hinzufügen</h4></a>
-		</div>
-	  </div>
-	  <div class="col-md-4">
-		<div class="btn-square">
-		  <a href="/local/coodle/calendar.php" class="btn btn-default btn-block btn-primary">
-			<h4><i class="fa fa-calendar fa-2x pr-2"></i><br>Kalender</h4></a>
-		</div>
-	  </div>
-	</div>
+  <div class="container">
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <div class="btn-square">
+          <a
+            href="/local/coodle/myusers.php"
+            class="btn btn-default btn-block btn-primary"
+          >
+            <h4>
+              <i class="fa fa-user fa-2x pr-2"></i><br />Teilnehmer_innen
+            </h4></a
+          >
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="btn-square">
+          <a
+            href="#"
+            class="btn btn-default btn-block btn-primary"
+            data-action="coodle-user_create_form"
+          >
+            <h4>
+              <i class="fa fa-plus-square-o fa-2x pr-2"></i><br />User
+              hinzufügen
+            </h4></a
+          >
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="btn-square">
+          <a
+            href="/local/coodle/calendar.php"
+            class="btn btn-default btn-block btn-primary"
+          >
+            <h4><i class="fa fa-calendar fa-2x pr-2"></i><br />Kalender</h4></a
+          >
+        </div>
+      </div>
+    </div>
   </div>
-
   <div class="container mt-2">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="card">
-				<a href="#" class="btn btn-default m-2 btn-info" data-action="local-coodle-add-todo">+ todo</a>
-					<table class="w-100 table">
-						{{> local_coodle/todos}}
-					</table>
-			</div>
-		</div>
-	</div>
-	</div>
-<style>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <a
+            href="#"
+            class="btn btn-default m-2 btn-info"
+            data-action="local-coodle-add-todo"
+            >+ todo</a
+          >
+          <table class="w-100 table">
+            {{> local_coodle/todos}}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    .btn-square {
+      width: 100%;
+      padding-top: 60%;
+      position: relative;
+    }
+    .btn-square > .btn {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    .btn-square h4 {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
-.btn-square {
-	  width: 100%;
-	  padding-top: 60%;
-	  position: relative;
-	}
-	.btn-square > .btn {
-	  position: absolute;
-	  top: 0;
-	  bottom: 0;
-	  left: 0;
-	  right: 0;
-	}
-	.btn-square h4 {
-	margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-	}
+    .coodle_dashboard .todos td {
+      color: #161616;
+    }
+    [name="todotext"] {
+      width: 90% !important;
+    }
 
-	.coodle_dashboard .todos td{
-		color: #161616;
+    .qrcode {
+      border: 10px solid #fff;
+      background: #fff;
+    }
+    td,
+    th {
+      padding: 20px;
+    }
+  </style>
 
-	}
-	[name="todotext"] {
-		width: 90% !important;
-	}
-
-	.qrcode {
-		border: 10px solid #fff;
-		background: #fff;
-	}
-	td, th {
-		padding: 20px;
-	}
-</style>
-
-{{#js}}
-require([
-	'local_coodle/user_create_form2',
-  	'local_coodle/add_todo_form'],
-  	function(userform, todoform, todo
-	) {
-		userform.init();
-		todoform.init();
-});
-{{/js}}
+  {{#js}}
+  require([ 'local_coodle/user_create_form2', 'local_coodle/add_todo_form'],
+  function(userform, todoform, todo ) { userform.init(); todoform.init(); });
+  {{/js}}
+</div>
