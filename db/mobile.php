@@ -36,6 +36,10 @@ $addons = [
                     'icon' => 'file',
                 ],
                 'priority'  => 10000000000000000,
+                'styles' => array(
+                    'url' => $CFG->wwwroot . '/local/coodle/mobile/css/styles_app.css',
+                    'version' => '0.2'
+                ),
             ],
             'files2' => [
                 'delegate' => 'CoreMainMenuDelegate',
@@ -45,6 +49,10 @@ $addons = [
                     'icon' => 'file',
                 ],
                 'priority'  => 10000000000000000,
+                'styles' => array(
+                    'url' => $CFG->wwwroot . '/local/coodle/mobile/css/styles_app.css',
+                    'version' => '0.2'
+                ),
             ],
             'files3' => [
                 'delegate' => 'CoreMainMenuDelegate',
@@ -54,6 +62,10 @@ $addons = [
                     'icon' => 'file',
                 ],
                 'priority'  => 10000000000000000,
+                'styles' => array(
+                    'url' => $CFG->wwwroot . '/local/coodle/mobile/css/styles_app.css',
+                    'version' => '0.2'
+                ),
             ],
             'viewaddress' => [
                 'delegate' => 'CoreMainMenuDelegate',
