@@ -136,7 +136,7 @@ class mobile {
         $templatedata->bg = "rgb(163, 96, 239)";
         $templatedata->adresses[0] = ['content'=>'asdhasjkdhaskjd'];
         $templatedata->adresses[1] = ['content'=>'asdasdwqeqwe'];
-
+        return [
             'templates' => [
                 [
                     'id' => 'main',
