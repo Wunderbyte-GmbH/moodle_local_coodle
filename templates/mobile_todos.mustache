@@ -13,32 +13,40 @@
 }}
 
 {{=<% %>=}}
-<div style="height:100%; background: <%bg%>">
-  <ion-grid class="container mt-4">
-    <ion-row class="row">
-      <ion-col class="col-md-12">
-            <%#empty%>
-            <ion-list>
-              <ion-item style="color: #000">
-                <ion-label style="margin-left: 10px;">Derzeit keine Todos</ion-label>
-              </ion-item>
-            </ion-list>
-            <%/empty%>
-            <%^empty%>
-            <ion-list>
-              <%#todos%>
-              <ion-item style="color: #000">
-                <ion-checkbox
-                core-site-plugins-call-ws <%#deleted%>checked<%/deleted%>
-                name="local_coodle_change_todo" [params]="{todoid: <%id%>, method: 'done'}"
-                confirmMessage="Done?"
-                refreshOnSuccess="false"></ion-checkbox>
-                <ion-label style="margin-left: 10px;"> <%text%></ion-label>
-              </ion-item>
-              <%/todos%>
-            </ion-list>
-            <%/empty%>
-        </ion-col>
-      </ion-row>
-  </ion-grid>
+<div style="height: 100%; background: <%bg%>">
+    <ion-grid class="container mt-4">
+        <ion-row class="row">
+            <ion-col class="col-md-12">
+                <%#empty%>
+                <ion-list>
+                    <ion-item style="color: #000">
+                        <ion-label style="margin-left: 10px"
+                            >Derzeit keine Todos</ion-label
+                        >
+                    </ion-item>
+                </ion-list>
+                <%/empty%> <%^empty%>
+                <ion-list>
+                    <%#todos%>
+                    <ion-item style="color: #000">
+                        <ion-checkbox core-site-plugins-call-ws <%#deleted%
+                            >checked<%/deleted%> name="local_coodle_change_todo"
+                            [params]="{todoid: <%id%>, method: <%#deleted%
+								>'done'<%/deleted%>
+								<%^deleted%
+								>'uncheck'<%/deleted%>
+							}"
+                            confirmMessage="Done?"
+                            refreshOnSuccess="false"></ion-checkbox
+                        >
+                        <ion-label style="margin-left: 10px">
+                            <%text%></ion-label
+                        >
+                    </ion-item>
+                    <%/todos%>
+                </ion-list>
+                <%/empty%>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </div>
