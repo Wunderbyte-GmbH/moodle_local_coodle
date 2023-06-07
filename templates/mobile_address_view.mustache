@@ -11,24 +11,32 @@
   You should have received a copy of the GNU General Public License
   along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
-<ion-content fullscreen="true">
-    <ion-slides pager="true" [options]="slideOptions" class="slide-container">
-        {{#adresses}}
-        <ion-slide class="slide-item">
-            <!-- Your dynamic content goes here -->
-            <h2>{{ title }}</h2>
-            <div>{{ content }}</div>
-        </ion-slide>
-        {{/adresses}}
-    </ion-slides>
-</ion-content>
+<div class="ion-page">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>App</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-button id="open-modal" expand="block">Open</ion-button>
 
-<style>
-    .slide-container {
-        height: 100%;
-    }
+      <ion-modal trigger="open-modal">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Modal</ion-title>
+            <ion-buttons slot="end">
+              <ion-button onclick="dismiss()">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <p class="ion-padding-horizontal">You must accept the terms and conditions to close this modal.</p>
+          <ion-item>
+            <ion-label class="ion-text-wrap" for="terms">Do you accept the terms and conditions?</ion-label>
+            <ion-checkbox id="terms"></ion-checkbox>
+          </ion-item>
+        </ion-content>
+      </ion-modal>
+    </ion-content>
+  </div>
 
-    .slide-item {
-        height: 100%;
-    }
-</style>

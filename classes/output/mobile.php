@@ -143,7 +143,25 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_address_view', $templatedata),
                 ],
             ],
-            'javascript' => 'setTimeout(function() { console.log("DOM is available now"); });',
+            'javascript' => 'setTimeout(function() {
+
+                var modal = document.querySelector("ion-modal");
+
+                modal.canDismiss = false;
+                modal.presentingElement = document.querySelector(".ion-page");
+
+                function dismiss() {
+                  modal.dismiss();
+                }
+
+                modal.addEventListener("didPresent", () => {
+                  var terms = document.getElementById("terms");
+                  terms.addEventListener("ionChange", (ev) => {
+                    modal.canDismiss = ev.detail.checked;
+                  });
+                });
+
+            });',
             'otherdata' => '',
         ];
     }

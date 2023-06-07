@@ -14,18 +14,18 @@
 <h1>adasdasd</h1>
 <table class="w-100">
 {{#.}}
-		<tr class="bg-light todos" data-clientid="{{userid}}">
-			<td class="text-dark" colspan="1">{{userid}}</td>
-			<td class="text-dark" colspan="4">{{text}}</td>
-			<td class="text-right">
-				<button class="btn btn-primary-outline" data-action="local-coodle-todo-check" data-id="{{id}}">
-				<i class="fa fa-check-square-o fa-2x text-success " aria-hidden="true" data-action="local-coodle-todo-check" data-id="{{id}}"></i>
-				</button>
-				<button class="btn btn-primary-outline" data-action="local-coodle-todo-delete" data-id="{{id}}" >
-				<i class="fa fa-times fa-2x text-danger" aria-hidden="true" data-action="local-coodle-todo-delete" data-id="{{id}}"></i>
-				</button>
-			</td>
-		</tr>
+	<tr class="bg-light todos" data-clientid="{{userid}}">
+		<td class="text-dark" colspan="1">{{userid}}</td>
+		<td class="text-dark" colspan="4">{{text}}</td>
+		<td class="text-right">
+			<button class="btn btn-primary-outline" data-action="local-coodle-todo-check" data-id="{{id}}">
+			<i class="fa fa-check-square-o fa-2x text-success " aria-hidden="true" data-action="local-coodle-todo-check" data-id="{{id}}"></i>
+			</button>
+			<button class="btn btn-primary-outline" data-action="local-coodle-todo-delete" data-id="{{id}}" >
+			<i class="fa fa-times fa-2x text-danger" aria-hidden="true" data-action="local-coodle-todo-delete" data-id="{{id}}"></i>
+			</button>
+		</td>
+	</tr>
 {{/.}}
 </table>
 
