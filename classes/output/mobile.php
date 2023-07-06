@@ -256,4 +256,30 @@ class mobile {
             'otherdata' => '',
         ];
     }
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public static function select_user() {
+        global $USER, $OUTPUT;
+        // TODO: change and write functions!
+        $links = new \local_coodle\link();
+        $templatedata = new stdClass();
+        $templatedata->bg = "rgb(251, 135, 66)";
+        $linklist = $links->load_linklist_by_userid($USER->id);
+        $templatedata->links = $linklist;
+
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_select_user', $templatedata),
+                ],
+            ],
+            'javascript' => '',
+            'otherdata' => '',
+        ];
+    }
 }

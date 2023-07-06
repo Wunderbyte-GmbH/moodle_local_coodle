@@ -98,6 +98,19 @@ $addons = [
                     'version' => '0.2'
                 ),
             ],
+            'viewinfo' => [
+                'delegate' => 'CoreMainMenuDelegate',
+                'method' => 'select_user',
+                'displaydata' => [
+                    'title' => 'selectuser',
+                    'icon' => 'map',
+                ],
+                'priority'  => 10000000000000000,
+                'styles' => array(
+                    'url' => $CFG->wwwroot . '/local/coodle/mobile/css/styles_app.css',
+                    'version' => '0.2'
+                ),
+            ],
         ],
         'lang' => [
             ['myfiles', 'local_coodle'],
