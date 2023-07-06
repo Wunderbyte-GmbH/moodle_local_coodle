@@ -38,6 +38,8 @@ $userid = required_param('userid', PARAM_INT);
 $serviceshortname  = required_param('service',  PARAM_ALPHANUMEXT);
 $coodlesessionkey  = required_param('coodlesessionkey',  PARAM_ALPHANUMEXT);
 
+$systemcontext = context_system::instance();
+
 // Load advisor or user.
 if (settings_manager::is_advisor($userid)) {
     $coodleuser = new settings_manager(COODLEADVISOR);

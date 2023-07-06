@@ -106,6 +106,29 @@ function xmldb_local_coodle_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2023070601, 'local', 'coodle');
     }
 
+    if ($oldversion < 2023070601) {
+        // Add table local_coodle_adresses
+        $table = new xmldb_table('local_coodle_advisor');
+        $field = new xmldb_field('settings', XMLDB_TYPE_TEXT, null, null, null, null, null, 'tokencreated');
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Moodle upgrade complete.
+        upgrade_plugin_savepoint(true, 2023070601, 'local', 'coodle');
+    }
+
+    if ($oldversion < 2023070602) {
+        global $DB;
+        $records = $DB->get_records('local_coodle_advisor', 'userid', '1=1');
+        foreach($records as $record) {
+            $settings = json_encode(['isadvisor' => true, 'isuser' => false]);
+            set_user_preference('coodle_settings', $settings, $record->userid);
+        }
+
+        // Moodle upgrade complete.
+        upgrade_plugin_savepoint(true, 2023070602, 'local', 'coodle');
+    }
     // Automatically generated Moodle v4.0.0 release upgrade line.
     // Put any upgrade step following this.
 
