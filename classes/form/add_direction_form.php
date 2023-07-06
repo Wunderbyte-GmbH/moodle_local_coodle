@@ -31,6 +31,8 @@ require_once("$CFG->libdir/formslib.php");
 use context;
 use core_form\dynamic_form;
 use moodle_url;
+use context_system;
+use local_coodle\direction;
 use stdClass;
 /**
  * Add file form.
@@ -47,7 +49,16 @@ class add_direction_form extends dynamic_form {
     public function definition() {
         $mform = $this->_form;
         $data = $this->_ajaxformdata;
-        $mform->addElement('editor', 'description', get_string('description', 'local_coodle'));
+        $mform->addElement('text', 'title', get_string('description', 'local_coodle'));
+
+        $context = context_system::instance();
+
+        $editoroptions = array('maxfiles' => EDITOR_UNLIMITED_FILES,
+        'noclean' => true,
+        'context' => $context,
+        'format' => FORMAT_HTML);
+
+        $mform->addElement('editor', 'description', get_string('description', 'local_coodle'), '', $editoroptions);
         $mform->addElement('hidden', 'userid', $data['clientid']);
         $mform->setType('userid', PARAM_INT);
     }
@@ -73,7 +84,18 @@ class add_direction_form extends dynamic_form {
      */
     public function process_dynamic_submission() {
         $data = $this->get_data();
+        $context = context_system::instance();
+        $draftitemid = $data->description['itemid'];
+        $data->description = $data->description['text'] ?? $data->description ?? '';
+        //$data->id = 0;
 
+        $adress = new \local_coodle\direction($data);
+        $adressid = $adress->add_direction();
+        if (isset($draftitemid)) {
+            $data->description = file_save_draft_area_files($draftitemid, $context->id,
+            'local_coodle', 'direction',
+            $adressid, array('subdirs' => true), $data->description);
+        }
         return $data;
     }
 
@@ -88,8 +110,12 @@ class add_direction_form extends dynamic_form {
      */
     public function set_data_for_dynamic_submission(): void {
         $data = $this->_ajaxformdata;
-        $data['id'] = $this->_ajaxformdata['clientid'];
-
+        if (isset($data['directionid']) && is_numeric($data['directionid']) && $data['directionid'] > 0) {
+            $direction = new direction(null, $data['directionid']);
+            $data['title'] = $direction->direction->title;
+            $data['description']['text'] = $direction->direction->text;
+            $data['description']['format'] = FORMAT_HTML;
+        }
         $this->set_data($data);
     }
 

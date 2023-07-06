@@ -66,6 +66,7 @@ class get_sesskey extends external_api {
 
     public static function execute_returns() {
         return new external_single_structure(
-            'sesskey' => new \external_value(PARAM_TEXT, 'sesskey'),
+            'sesskey' => new \external_value(PARAM_TEXT, 'sesskey')
+        );
     }
 }

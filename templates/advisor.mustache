@@ -51,6 +51,45 @@
         </div>
       </div>
     </div>
+    <div class="row mt-4">
+      <div class="col-md-4" data-coodleaction="local-coodle-add-advisor-settings">
+        <div class="btn-square">
+          <a
+            data-action="local-coodle-add-advisor-settings"
+            class="btn btn-default btn-block btn-primary"
+          >
+            <h4>
+              <i class="fa fa-cog fa-2x pr-2"></i><br />
+              {{#str}} settings, local_coodle {{/str}}
+            </h4></a
+          >
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="btn-square">
+          <a
+            href="#"
+            class="btn btn-default btn-block btn-primary"
+            data-action="coodle-user_create_form"
+          >
+            <h4>
+              <i class="fa fa-plus-square-o fa-2x pr-2"></i><br />User
+              hinzufügen
+            </h4></a
+          >
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="btn-square">
+          <a
+            href="/local/coodle/calendar.php"
+            class="btn btn-default btn-block btn-primary"
+          >
+            <h4><i class="fa fa-calendar fa-2x pr-2"></i><br />Kalender</h4></a
+          >
+        </div>
+      </div>
+    </div>
   </div>
   <div class="container mt-2">
     <div class="row">
@@ -69,6 +108,10 @@
       </div>
     </div>
   </div>
+</div>
+
+
+
   <style>
     .btn-square {
       width: 100%;
@@ -108,7 +151,10 @@
   </style>
 
   {{#js}}
-  require([ 'local_coodle/user_create_form2', 'local_coodle/add_todo_form'],
-  function(userform, todoform, todo ) { userform.init(); todoform.init(); });
+  require([ 'local_coodle/form_user_create', 'local_coodle/form_add_todo', 'local_coodle/form_add_advisor_settings'],
+  function(userform, todoform, addadvisorsettings ) {
+    userform.init();
+    todoform.init();
+    addadvisorsettings.init();}
+    );
   {{/js}}
-</div>

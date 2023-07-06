@@ -21,7 +21,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use local_coodle\coodle_user;
+use local_coodle\settings_manager;
+use tool_admin_presets\local\action\load;
 
 define('AJAX_SCRIPT', true);
 define('REQUIRE_CORRECT_ACCESS', true);
@@ -37,10 +38,13 @@ $userid = required_param('userid', PARAM_INT);
 $serviceshortname  = required_param('service',  PARAM_ALPHANUMEXT);
 $coodlesessionkey  = required_param('coodlesessionkey',  PARAM_ALPHANUMEXT);
 
-$systemcontext = context_system::instance();
+// Load advisor or user.
+if (settings_manager::is_advisor($userid)) {
+    $coodleuser = new settings_manager(COODLEADVISOR);
+} else {
+    $coodleuser = new settings_manager(COODLEUSER);
+}
 
-//Do some security check
-$coodleuser = new coodle_user();
 $currentcoodleuser = $coodleuser->load_user($userid);
 if (empty($coodleuser)) {
     throw new moodle_exception('coodleuser', 'coodleuser');

@@ -55,11 +55,12 @@ $string['userpage'] = 'TN Seite';
 $string['selectuser'] = 'Teilnehmer_in?';
 
 // Menu.
-$string['home'] = 'cOOdLe';
+$string['home'] = 'Mein Bereich';
 $string['myclients'] = 'Meine Teilnehmer_innen';
 $string['calendar'] = 'Kalendar';
 $string['advisorlist'] = 'Berater_innen';
 $string['allclients'] = 'Alle Teilnehmer_innen';
+$string['mobilelogin'] = 'Mobile';
 
 // TODO: add all strings.
 $string[''] = 'Teilnehmer_innen';

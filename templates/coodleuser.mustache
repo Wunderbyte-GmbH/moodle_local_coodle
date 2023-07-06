@@ -11,7 +11,6 @@
     You should have received a copy of the GNU General Public License
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
-<h1>adasdasd</h1>
 <table class="w-100">
 {{#.}}
 	<tr class="bg-light todos" data-clientid="{{userid}}">
@@ -47,9 +46,9 @@
 
 {{#js}}
 require([
-	'local_coodle/user_create_form',
-  	'local_coodle/create_advisor_form',
-  	'local_coodle/add_todo_form',
+	'local_coodle/form_user_create',
+  	'local_coodle/form_create_advisor',
+  	'local_coodle/form_add_todo',
 	'local_coodle/todo'
 	],
   	function(userform, advisorform, todoform, todo, links

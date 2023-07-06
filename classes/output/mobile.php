@@ -145,7 +145,6 @@ class mobile {
             ],
             'javascript' => 'export class ExampleComponent {
                 isModalOpen = false;
-
                 setOpen(isOpen: boolean) {
                   this.isModalOpen = isOpen;
                 }

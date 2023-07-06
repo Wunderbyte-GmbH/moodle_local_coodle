@@ -17,7 +17,7 @@
 /**
  * Class for exporting a course module summary from an stdClass.
  *
- * @package    local_rk_manager
+ * @package    local_coodle
  * @copyright  2022 Thomas Winkler
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

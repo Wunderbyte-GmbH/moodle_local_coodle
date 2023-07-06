@@ -24,7 +24,6 @@
 require_once('../../config.php');
 use local_coodle\local\views\secondary;
 
-
 // TODO: probably delete.
 $delid = optional_param('del', 0, PARAM_INT);
 $context = \context_system::instance();

@@ -62,7 +62,7 @@ function local_coodle_pluginfile($course, $cm, $context, $filearea, $args, $forc
          return false;
     }
 
-    if ($filearea !== 'clientfiles' && $filearea !== 'vorlagen' &&  $filearea !== 'clientfile') {
+    if ($filearea !== 'clientfiles' && $filearea !== 'vorlagen' &&  $filearea !== 'clientfile' && $filearea !== 'direction') {
         return false;
     }
 

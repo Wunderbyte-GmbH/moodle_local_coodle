@@ -59,7 +59,7 @@
               ></i>
             </button>
           </h5>
-          <div>{{>local_coodle/todos}}</div>
+          <div class="bg-white">{{>local_coodle/todos}}</div>
         </div>
       </div>
       <div class="card card-docs text-white mb-4">
@@ -146,7 +146,38 @@
             ></i>
           </button>
         </h5>
-          {{{directions}}}
+          {{#directions}}
+          <div data-type="direction">
+          {{title}}
+          <button
+          class="btn btn-dark pull-right btn-primary-outline text-white ml-2"
+          data-action="local-coodle-edit-direction"
+          data-clientid="{{ clientid }}"
+          data-directionid="{{ id }}"
+        >
+          <i
+            class="fa fa-cog text-white"
+            aria-hidden="true"
+            data-action="local-coodle-edit-direction"
+            data-clientid="{{ clientid }}"
+            data-directionid="{{ id }}"
+                      ></i></button>
+          <button
+          class="btn btn-dark pull-right btn-primary-outline text-white"
+          data-action="local-coodle-delete-direction"
+          data-id="{{ id }}"
+        >
+          <i
+            class="fa fa-trash text-white"
+            aria-hidden="true"
+            data-action="local-coodle-delete-direction"
+            data-clientid="{{ clientid }}"
+            data-id="{{ id }}"
+          ></i></button>
+
+            {{{text}}}
+          </div>
+          {{/directions}}
         </div>
       </div>
     </div>
@@ -171,6 +202,11 @@
   .card-direction {
     background-color: rgb(163, 96, 239);
   }
+  .card-direction img {
+    max-width: 100%;
+    height: auto;
+  }
+
   .coodle-msg .conversationcontainer,
   .coodle-msg [data-region="header-content"] {
     visibility: hidden !important;
@@ -213,11 +249,11 @@
 </style>
 
 {{#js}}
-require([ 'local_coodle/add_todo_form','local_coodle/add_file',
-'local_coodle/file', 	'local_coodle/add_link_form', 'local_coodle/add_direction_form'], function(todoform, fileform, file, links, direction ) {
-  direction.init();
+require([ 'local_coodle/form_add_todo','local_coodle/form_add_file',
+'local_coodle/actions_file', 	'local_coodle/form_add_link', 'local_coodle/form_add_direction', 'local_coodle/actions_direction'], function(todoform, fileform, file, links, directionform, directionactions ) {
+  directionform.init();
+  directionactions.init();
   links.init();
   todoform.init();
-fileform.init(); file.init('files1-{{ uniqid }}'); file.init('files2-{{
-  uniqid
-}}'); file.init('files3-{{ uniqid }}'); }); {{/js}}
+  fileform.init(); file.init('files1-{{ uniqid }}');
+  file.init('files3-{{ uniqid }}'); }); {{/js}}

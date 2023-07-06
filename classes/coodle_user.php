@@ -16,6 +16,12 @@
 
 namespace local_coodle;
 
+use dml_exception;
+use coding_exception;
+use file_reference_exception;
+use moodle_exception;
+use file_exception;
+use dml_transaction_exception;
 use stdClass;
 
 /**
@@ -37,6 +43,7 @@ class coodle_user {
 
     }
 
+    // TODO Replace with setting manager
     /**
      * Load user
      *
@@ -67,7 +74,7 @@ class coodle_user {
         $data->timecreated = time();
         $data->timemodified = time();
         $data->deleted = 0;
-        $data->token = self::generate_coodle_token();
+        $data->token = \local_coodle\settings_manager::generate_coodle_token();
 
         $coodleuserid = $DB->insert_record('local_coodle_user', $data, true);
         if (!empty($advisorid)) {
@@ -91,7 +98,8 @@ class coodle_user {
             }
             // We either have found a conversation, or created one.
             $conversationid = !empty($conversationid) ? $conversationid : $conversation->id;
-            $welcomemsg = "Herzlich Willkommen in der coodle App"; //TODO crete string
+            $welcomemsg = "Herzlich Willkommen in der coodle App";
+            //TODO crete string.
             \core_message\api::send_message_to_conversation($advisorid, $conversationid, $welcomemsg, FORMAT_HTML);
 
             // Create a group between user and advisor.
@@ -100,28 +108,14 @@ class coodle_user {
         return $coodleuserid;
     }
 
-    private static function generate_coodle_token() {
-        $token = bin2hex(random_bytes(32));
-        return $token;
-    }
 
-    public function renew_token() {
-        global $DB;
-        $params = array(
-            'tokencreated' => time(),
-            'token' => self::generate_coodle_token(),
-            'id' => $this->id
-        );
-        $DB->update_record('local_coodle_user', $params);
-    }
-
-    public function compare_token($token) {
-        if ($this->token == $token) {
-            return true;
-        }
-        return false;
-    }
-
+    /**
+     * Given the id of both users it returns the conversation for message API
+     *
+     * @param int $advisorid
+     * @param int $userid
+     * @return void
+     */
     public static function get_conversation_between_users($advisorid, $userid) {
         if (!$conversationid = \core_message\api::get_conversation_between_users([$advisorid, $userid])) {
             // It's a private conversation between users.
@@ -213,16 +207,54 @@ class coodle_user {
         return $templatedata;
     }
 
+    /**
+     * Returns all the links saved in Database for given User
+     *
+     * @param int $userid
+     * @return array $data
+     */
     public function get_coodleuser_links($userid) {
         global $DB;
         $data = $DB->get_records('local_coodle_links', array('userid' => $userid));
         return $data;
     }
 
-    public function get_coodleuser_directions(): string {
-        return "<ul class='list-group'><li class='list-group-item'><a href='/local/coodle/advisoradress.php'>Mein Büro</a></li></ul>";
+    public function get_coodleuser_directions($userid) {
+        $direction = new direction();
+        $directions = $direction->load_directionlist_by_userid($userid);
+        $context = \context_system::instance();
+
+        $templatedata = [];
+        foreach ($directions as $direction) {
+            $tmpdata = new stdClass();
+            $tmpdata->id = $direction->id;
+            $tmpdata->userid = $direction->userid;
+            $tmpdata->text = file_rewrite_pluginfile_urls(
+                // The content of the text stored in the database.
+                $direction->text,
+                // The pluginfile URL which will serve the request.
+                'pluginfile.php',
+
+                // The combination of contextid / component / filearea / itemid
+                // form the virtual bucket that file are stored in.
+                $context->id,
+                'local_coodle',
+                'direction',
+                $direction->id
+            );
+            $tmpdata->title = $direction->title;
+            $templatedata[] = $tmpdata;
+        }
+
+        return $templatedata;
     }
 
+    /**
+     * Returns all the files for a given User
+     *
+     * @param int $userid
+     * @return array $data
+     */
     public function get_coodleuser_userfiles($userid): array {
         $context = \context_user::instance($userid);
 
@@ -240,7 +272,8 @@ class coodle_user {
                 $fileinfo->name = $file->get_filename();
                 $fileinfo->filesize = $file->get_filesize();
                 $fileinfo->filesize = $file->get_mimetype();
-                $fileinfo->timemodified = time(); // TODO:;
+                $fileinfo->timemodified = time();
+                // TODO.
                 $fileinfo->url = \moodle_url::make_pluginfile_url(
                     $context->id,
                     'local_coodle',
@@ -283,7 +316,8 @@ class coodle_user {
                 $fileinfo->namewithoutextension = pathinfo($fileinfo->name, PATHINFO_FILENAME);
                 $fileinfo->filesize = $file->get_filesize();
                 $fileinfo->filesize = $file->get_mimetype();
-                $fileinfo->timemodified = time(); // TODO:;
+                $fileinfo->timemodified = time();
+                // TODO.
                 $fileinfo->userid = $file->get_userid();
                 if ($fileinfo->userid == $USER->id) {
                     $fileinfo->deleteable = true;
@@ -297,7 +331,7 @@ class coodle_user {
                     $file->get_filename(),
                     false
                 );
-                // TODO: check if user or advisorfile
+                // TODO: check if user or advisorfile.
                 $fileoutput[] = $fileinfo;
             }
         }
@@ -305,7 +339,18 @@ class coodle_user {
         return $fileoutput;
     }
 
-
+    /**
+     * Delete the file with given fileid
+     *
+     * @param mixed $fileid
+     * @return void
+     * @throws dml_exception
+     * @throws coding_exception
+     * @throws file_reference_exception
+     * @throws moodle_exception
+     * @throws file_exception
+     * @throws dml_transaction_exception
+     */
     public static function delete_file($fileid) {
         $fs = get_file_storage();
         $file = $fs->get_file_by_id($fileid);
@@ -313,6 +358,23 @@ class coodle_user {
             $file->delete();
         }
     }
+
+    /**
+     * Checks if user is coodleuser
+     *
+     * @param integer $userid
+     * @return boolean
+     */
+    public static function is_user(int $userid = 0) {
+        global $DB, $USER;
+        if (empty($userid)) {
+            $userid = $USER->id;
+        }
+
+        return $DB->record_exists('local_coodle_users', ['userid' => $userid]);
+    }
+
+
     /**
      * Counts all clients in coodle DB
      *
@@ -322,8 +384,6 @@ class coodle_user {
         global $DB;
         return $DB->count_records('local_coodle_user', null);
     }
-
-
 
     /**
      * Delete one User (sets flag in DB not deleted from whole Platform)

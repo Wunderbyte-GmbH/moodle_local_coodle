@@ -21,51 +21,72 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+
+use core_files\archive_writer;
+use ZipArchive;
 require_once('../../config.php');
-$id = required_param('userid', PARAM_INT);
 
 $context = \context_system::instance();
 $PAGE->set_context($context);
 
-
 require_login();
 
-// TODO delete before production
+// TODO delete before production.
 
 $PAGE->set_pagelayout('standard');
 $title = "COOdLe Manager";
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
 
-echo $OUTPUT->header();
+// Create a new ZipArchive object
 
-$user = \core_user::get_user($id);
-$message = new \core\message\message();
-$message->component = 'local_coodle'; // Your plugin's name
-$message->name = 'newfilemsg'; // Your notification name from message.php
-$message->userfrom = core_user::get_noreply_user(); // If the message is 'from' a specific user you can set them here
-$message->userto = $user;
-$message->subject = 'message subject 1';
-$message->fullmessage = 'message body';
-$message->fullmessageformat = FORMAT_MARKDOWN;
-$message->fullmessagehtml = '<p>message body</p>';
-$message->smallmessage = 'small message';
-$message->notification = 1; // Because this is a notification generated from Moodle, not a user-to-user message
-$message->contexturl = "https://wuk.wunderbyte.at/course/view.php?id=9"; // A relevant URL for the notification
-$message->contexturlname = 'Course list'; // Link title explaining where users get to for the contexturl
-$customdata = new stdClass();
-$customdata->appurl = "https://wuk.wunderbyte.at/course/view.php?id=9";
-$customdata->appurlopenin = 'browser';
-$customdata->coodle = true;
+$pathtofileinzip = '/some/made/up/name.txt';
 
-//$customdata->appurl = "";
-//$customdata->appurl = "";
+// $zipwriter = archive_writer::get_file_writer('test.zip', archive_writer::ZIP_WRITER);
+// $zipwriter->add_file_from_stored_file($pathtofileinzip, $storedfile);
+// $zipwriter->finish();
 
-$message->customdata = json_encode($customdata);
-// You probably don't need attachments but if you do, here is how to add one
-$usercontext = context_user::instance($USER->id);
+// $zip = new ZipArchive();
 
-// Actually send the message
-$messageid = message_send($message);
+// Specify the name and path of the output zip file.
+// Create a new ZipArchive object.
+$zip = new ZipArchive();
 
-echo $OUTPUT->footer();
+// Create a temporary file to hold the zip archive.
+$tempfile = tempnam(sys_get_temp_dir(), 'zip');
+
+// Open the temporary file for writing.
+if ($zip->open($tempfile, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
+    // Array of files to add to the zip archive.
+    $files = [
+        '/path/to/file1.txt',
+        '/path/to/file2.jpg',
+        '/path/to/file3.pdf',
+    ];
+
+    // Add each file to the zip archive.
+    foreach ($files as $file) {
+        // Read the file contents.
+        $filecontents = file_get_contents($file);
+
+        // Add the file to the zip archive with a custom name (optional).
+        $zip->addFromString(basename($file), $filecontents);
+    }
+
+    // Close the zip archive.
+    $zip->close();
+
+    // Set appropriate headers for the download.
+    header('Content-Type: application/zip');
+    header('Content-Disposition: attachment; filename="archive.zip"');
+    header('Content-Length: ' . filesize($tempfile));
+
+    // Read and output the zip file.
+    readfile($tempfile);
+
+    // Delete the temporary file.
+    unlink($tempfile);
+} else {
+    // Failed to create the zip archive.
+    echo 'Failed to create the zip file.';
+}

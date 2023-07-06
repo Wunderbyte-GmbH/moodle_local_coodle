@@ -65,12 +65,13 @@ if ($convid) {
 $templatedata->clientid = $id;
 $coodle = new local_coodle\coodle_user();
 $coodle->load_user($id);
+// Load different templatedata
 $templatedata->files[1] = $coodle->get_coodleuser_files(1);
 $templatedata->files[2] = $coodle->get_coodleuser_files(2);
 $templatedata->files[3] = $coodle->get_coodleuser_files(3);
 $templatedata->files[4] = $coodle->get_coodleuser_userfiles($id);
 
-$templatedata->directions = $coodle->get_coodleuser_directions();
+$templatedata->directions = $coodle->get_coodleuser_directions($id);
 $templatedata->links = array_values($coodle->get_coodleuser_links($id));
 
 echo $OUTPUT->render_from_template('local_coodle/myuser', $templatedata);

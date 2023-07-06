@@ -16,6 +16,9 @@
 
 namespace local_coodle;
 
+use coding_exception;
+use dml_exception;
+use moodle_exception;
 use stdClass;
 
 defined('MOODLE_INTERNAL') || die();
@@ -62,7 +65,6 @@ class coodle_pushnotification {
         global $USER;
         $this->userfrom = $USER;
         $this->userid = $userid;
-        //$this->messagetype = $messagetype;
         $message = new \core\message\message();
         $message->component = 'local_coodle';
         $message->userfrom = $this->userfrom; // If the message is 'from' a specific user you can set them here
@@ -71,7 +73,12 @@ class coodle_pushnotification {
         $this->message = $message;
     }
 
-
+    /**
+     * Send a todomsg
+     *
+     * @param mixed $todo
+     * @return void
+     */
     public function send_todo_message($todo) {
         $this->message->name = 'newtodomsg';
         $this->message->subject = get_string('newtodo', 'local_coodle');
@@ -91,6 +98,15 @@ class coodle_pushnotification {
         return $messageid;
     }
 
+    /**
+     * Send a msg when a new file is sent
+     *
+     * @param mixed $file
+     * @return mixed
+     * @throws coding_exception
+     * @throws dml_exception
+     * @throws moodle_exception
+     */
     public function send_newfile_message($file) {
         $this->message->name = 'newfilemsg';
         $this->message->subject = get_string('newfile', 'local_coodle', $file->name);

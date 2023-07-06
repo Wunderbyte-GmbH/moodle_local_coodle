@@ -32,9 +32,26 @@ function xmldb_local_coodle_upgrade($oldversion) {
     global $DB;
     $dbman = $DB->get_manager();
 
-    if ($oldversion < 2023060601) {
+    if ($oldversion < 2023062903) {
+
         // Add table local_coodle_adresses
-        $table = new xmldb_table('local_coodle_adresses');
+        $table = new xmldb_table('local_coodle_advisor');
+        $field = new xmldb_field('token', XMLDB_TYPE_CHAR, '255', null, null, null, null, 'timemodified');
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+        $field = new xmldb_field('tokencreated', XMLDB_TYPE_INTEGER, '10', null, null, null, null, 'token');
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Moodle upgrade complete.
+        upgrade_plugin_savepoint(true, 2023062903, 'local', 'coodle');
+    }
+
+    if ($oldversion < 2023060701) {
+        // Add table local_coodle_adresses
+        $table = new xmldb_table('local_coodle_directions');
         $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE);
         $table->add_field('userid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL);
         $table->add_field('advisorid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL);
@@ -42,7 +59,7 @@ function xmldb_local_coodle_upgrade($oldversion) {
         $table->add_field('title', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null);
         $table->add_field('timecreated', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL);
         $table->add_field('timemodified', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
-        $table->add_field('deleted', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0');
+        $table->add_field('status', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0');
 
         $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
 
@@ -53,7 +70,7 @@ function xmldb_local_coodle_upgrade($oldversion) {
         // Add other upgrade steps if needed
 
         // Moodle upgrade complete.
-        upgrade_plugin_savepoint(true, 2023060601, 'local', 'coodle');
+        upgrade_plugin_savepoint(true, 2023060701, 'local', 'coodle');
     }
 
     if ($oldversion < 2023060601) {
@@ -73,7 +90,20 @@ function xmldb_local_coodle_upgrade($oldversion) {
         if (!$dbman->table_exists($table)) {
             $dbman->create_table($table);
         }
-        upgrade_plugin_savepoint(true, 2023060601, 'local', 'coodle'); // Replace XXXXXXXXXX with the version you are upgrading to
+        upgrade_plugin_savepoint(true, 2023060601, 'local', 'coodle');
+        // Replace XXXXXXXXXX with the version you are upgrading to
+    }
+
+    if ($oldversion < 2023070601) {
+        // Add table local_coodle_adresses
+        $table = new xmldb_table('local_coodle_advisor');
+        $field = new xmldb_field('settings', XMLDB_TYPE_TEXT, null, null, null, null, null, 'tokencreated');
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Moodle upgrade complete.
+        upgrade_plugin_savepoint(true, 2023070601, 'local', 'coodle');
     }
 
     // Automatically generated Moodle v4.0.0 release upgrade line.

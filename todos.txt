@@ -1,7 +1,6 @@
 -delete user
 -delete advisor
--add possibility to record a video or picture or sound
+-delete/edit directions
+-add comments
 
-
-add user file?
 move style to css instead of mustache

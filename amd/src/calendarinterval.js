@@ -24,30 +24,52 @@
 export const init = () => {
     // Get the select element
     // Get the button that opens the modal
-    var btn = document.querySelector('[data-action="new-event-button"]');
+    // var btn = document.querySelector('[data-action="new-event-button"]');
 
-    // When the user clicks on the button, open the modal
-    btn.onclick = function() {
+    // // When the user clicks on the button, open the modal
+    // btn.onclick = function() {
 
-    // Create a new MutationObserver instance to observe changes to the DOM
-    var observer = new MutationObserver(function(mutations) {
-        // Loop through the mutations and check if the modal element has been added
-        mutations.forEach(function(mutation) {
+    // // Create a new MutationObserver instance to observe changes to the DOM
+    // var observer = new MutationObserver(function(mutations) {
+    //     // Loop through the mutations and check if the modal element has been added
+    //     mutations.forEach(function(mutation) {
 
-        var modal = mutation.target.querySelector(".modal");
-        if (modal) {
-            // If the modal element has been added, disconnect the observer and call the myFunction() function
-            observer.disconnect();
-            changeminuteinterval();
-        }
-        });
+    //     var modal = mutation.target.querySelector(".modal");
+    //     if (modal) {
+    //         // If the modal element has been added, disconnect the observer and call the myFunction() function
+    //         observer.disconnect();
+    //         changeminuteinterval();
+    //     }
+    //     });
+    // });
+    //  // Set the observer to watch for changes to the body element
+    //  observer.observe(document.body, { childList: true, subtree: true });
+    // };
+
+    var buttons = Array.from(document.querySelectorAll('.maincalendar .clickable'));
+    buttons.push(document.querySelector('[data-action="new-event-button"]'));
+    // Loop through each button and attach a click event listener
+    buttons.forEach(function(btn) {
+        btn.onclick = function() {
+
+            // Create a new MutationObserver instance to observe changes to the DOM
+            var observer = new MutationObserver(function(mutations) {
+                // Loop through the mutations and check if the modal element has been added
+                mutations.forEach(function(mutation) {
+                    var modal = mutation.target.querySelector(".modal");
+                    if (modal) {
+                        // If the modal element has been added, disconnect the observer and call the changeminuteinterval() function
+                        observer.disconnect();
+                        changeminuteinterval();
+                    }
+                });
+            });
+
+            // Start observing the DOM changes
+            observer.observe(document.body, { childList: true, subtree: true });
+        };
     });
-
-    // Set the observer to watch for changes to the body element
-    observer.observe(document.body, { childList: true, subtree: true });
-    };
 };
-
 
 // Function that should be triggered after the modal content is loaded
 const changeminuteinterval = () => {

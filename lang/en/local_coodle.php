@@ -69,11 +69,12 @@ $string['add_user'] = 'add User';
 $string['add_file'] = 'add File';
 
 // Menu.
-$string['home'] = 'cOOdLe';
+$string['home'] = 'My Space';
 $string['myclients'] = 'MyClients';
 $string['calendar'] = 'Calendar';
 $string['advisorlist'] = 'Advisors';
 $string['allclients'] = 'All Clients';
+$string['mobilelogin'] = 'Mobile Login';
 
 $string['myfiles'] = 'My Files';
 

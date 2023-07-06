@@ -47,6 +47,8 @@ class secondary extends core_secondary {
             'myclients', 'myclients');
             $this->add(get_string('calendar', 'local_coodle'), '/local/coodle/calendar.php', \navigation_node::TYPE_CUSTOM,
             'calendar', 'calendar');
+            $this->add(get_string('mobilelogin', 'local_coodle'), '/local/coodle/myqrcode.php', \navigation_node::TYPE_CUSTOM,
+            'mobilelogin', 'mobilelogin');
         }
         if ($isadmin) {
             $this->add(get_string('advisorlist', 'local_coodle') , '/local/coodle/advisorlist.php', \navigation_node::TYPE_CUSTOM,

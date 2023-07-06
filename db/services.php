@@ -34,6 +34,14 @@ $functions = array(
                 'ajax' => true,
                 'loginrequired' => true,
         ),
+        'local_coodle_delete_coodle_advisor' => array(
+                'classname' => '\local_coodle\external\delete_coodle_user',
+                'methodname' => 'execute',
+                'description' => 'Delete a advisor',
+                'type' => 'write',
+                'ajax' => true,
+                'loginrequired' => true,
+        ),
         'local_coodle_add_user' => array(
                 'classname' => '\local_coodle\external\add_user',
                 'methodname' => 'execute',
@@ -52,13 +60,6 @@ $functions = array(
                 'services'    => [
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
-        ),
-        'local_coodle_get_sesskey' => array(
-                'classname' => '\local_coodle\external\get_sesskey',
-                'classpath' => '',
-                'description' => 'Get calendardata from specific entity',
-                'type' => 'read',
-                'ajax' => true
         ),
         'local_coodle_delete_file' => array(
                 'classname' => '\local_coodle\external\delete_file',
@@ -90,17 +91,34 @@ $functions = array(
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
         ),
-);
-
-$services = array(
-        'Coodle Tokens' => array( // TODO check if needed?
-                'functions' => array (
-                        'local_coodle_get_sesskey',
-                ),
-                'restrictedusers' => 0,
-                'shortname' => 'local_coodle_tokens',
-                'downloadfiles' => 1,    // Allow file downloads.
-                'uploadfiles'  => 1,      // Allow file uploads.
-                'enabled' => 1
+        'local_coodle_get_user_settings' => array(
+                'classname' => '\local_coodle\external\get_user_settings',
+                'classpath' => '',
+                'description' => 'gets settings',
+                'type' => 'write',
+                'ajax' => true,
+                'services'    => [
+                        MOODLE_OFFICIAL_MOBILE_SERVICE,
+                    ],
+        ),
+        'local_coodle_delete_direction' => array(
+                'classname' => '\local_coodle\external\delete_direction',
+                'classpath' => '',
+                'description' => 'delete_direction',
+                'type' => 'write',
+                'ajax' => true,
+                'services'    => [
+                        MOODLE_OFFICIAL_MOBILE_SERVICE,
+                    ],
+        ),
+        'local_coodle_delete_link' => array(
+                'classname' => '\local_coodle\external\delete_link',
+                'classpath' => '',
+                'description' => 'delete_link',
+                'type' => 'write',
+                'ajax' => true,
+                'services'    => [
+                        MOODLE_OFFICIAL_MOBILE_SERVICE,
+                    ],
         ),
 );

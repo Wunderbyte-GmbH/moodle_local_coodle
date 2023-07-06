@@ -41,19 +41,47 @@ class advisor {
      */
     public $courseid;
 
+    public $settings;
+
+    public $timecreated;
+
+    public $timemodified;
+
+    public $token;
+
+    public $tokencreated;
+
+    public $deleted;
+
     protected $data;
 
-    public function __construct(int $userid, int $courseid = 0, bool $createadvisor) {
+    public function __construct(int $userid, int $courseid = 0, bool $createadvisor = false) {
         global $DB;
         if ($createadvisor) {
-            $data = ['userid' => $userid, 'courseid' => $courseid, 'timecreated' => time()];
+            $token = \local_coodle\settings_manager::generate_coodle_token();
+            $data = ['userid' => $userid, 'courseid' => $courseid, 'timecreated' => time(), 'token' => $token];
             $advisorid = $DB->insert_record('local_coodle_advisor', $data, true);
             $this->data = $data;
             $this->data['id'] = $advisorid;
         }
         $this->userid = $userid;
         $this->courseid = $courseid;
+    }
 
+    /**
+     *
+     * @return $this
+     */
+    public function get_advisor() {
+        global $DB;
+        $record = $DB->get_record('local_coodle_advisor', array('userid' => $this->userid));
+        $this->data = $record;
+        $this->timecreated = $record->timecreated;
+        $this->token = $record->token;
+        $this->tokencreated = $record->tokencreated;
+        $this->courseid = $record->courseid;
+        $this->settings = $record->settings;
+        return $this;
     }
 
     /**
@@ -268,10 +296,8 @@ class advisor {
         if (empty($userid)) {
             $userid = $USER->id;
         }
-
         return $DB->record_exists('local_coodle_advisor', ['userid' => $userid]);
     }
-
 
     /**
      * Create calendar entry
