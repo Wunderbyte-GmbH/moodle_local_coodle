@@ -25,6 +25,7 @@
 namespace local_coodle\output;
 
 use local_coodle\coodle_user;
+use local_coodle\settings_manager;
 use stdClass;
 
 class mobile {
@@ -51,7 +52,18 @@ class mobile {
     public static function view_files1() {
         global $USER, $OUTPUT, $CFG;
         $coodleuser = new coodle_user();
-        $coodleuser->load_user($USER->id);
+        $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
+        $template = 'local_coodle/mobile_todos';
+        if ($coodleusersettings['isadvisor']) {
+            if($coodleusersettings['userchosen']) {
+                $userid = $coodleusersettings['userchosen'];
+            } else {
+                $template = 'local_coodle/mobile_nouserchosen';
+            }
+        } else {
+            $userid = $USER->id;
+        }
+        $coodleuser->load_user($userid);
         $templatedata = new stdClass();
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(1);
         $templatedata->hl = "Dokumente";
@@ -104,7 +116,18 @@ class mobile {
     public static function view_files3() {
         global $USER, $OUTPUT, $CFG;
         $coodleuser = new coodle_user();
-        $coodleuser->load_user($USER->id);
+        $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
+        $template = 'local_coodle/mobile_todos';
+        if ($coodleusersettings['isadvisor']) {
+            if($coodleusersettings['userchosen']) {
+                $userid = $coodleusersettings['userchosen'];
+            } else {
+                $template = 'local_coodle/mobile_nouserchosen';
+            }
+        } else {
+            $userid = $USER->id;
+        }
+        $coodleuser->load_user($userid);
         $templatedata = new stdClass();
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(3);
         $templatedata->hl = "Beratungsinhalt";
@@ -134,6 +157,7 @@ class mobile {
         global $OUTPUT;
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(163, 96, 239)";
+
         $templatedata->adresses[0] = ['content'=>'asdhasjkdhaskjd', 'title' => 'test'];
         $templatedata->adresses[1] = ['content'=>'asdasdwqeqwe','title' => 'test2'];
         return [
@@ -212,8 +236,22 @@ class mobile {
         $todo = new \local_coodle\todo();
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(238, 58, 47)";
+        $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
+        $todolist = [];
+        $template = 'local_coodle/mobile_todos';
+        if ($coodleusersettings['isadvisor']) {
+            if($coodleusersettings['userchosen']) {
+                $userid = $coodleusersettings['userchosen'];
+            } else {
+                $template = 'local_coodle/mobile_nouserchosen';
+            }
+        } else {
+            $userid = $USER->id;
+        }
+
+        $todolist = $todo->load_todolist_by_userid($userid, 0);
+
         // TODO: change stats!
-        $todolist = $todo->load_todolist_by_userid($USER->id, 0);
         if (!empty($todolist)) {
             $templatedata->todos = $todolist;
         } else {
@@ -223,7 +261,7 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_todos', $templatedata),
+                    'html' => $OUTPUT->render_from_template($template, $templatedata),
                 ],
             ],
             'javascript' => '',
@@ -238,6 +276,8 @@ class mobile {
      */
     public static function view_info() {
         global $USER, $OUTPUT;
+
+
         // TODO: change and write functions!
         $links = new \local_coodle\link();
         $templatedata = new stdClass();
@@ -265,6 +305,7 @@ class mobile {
     public static function select_user() {
         global $USER, $OUTPUT;
         // TODO: change and write functions!
+        $userlist = new
         $links = new \local_coodle\link();
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(251, 135, 66)";
