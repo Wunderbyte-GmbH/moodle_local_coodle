@@ -121,4 +121,14 @@ $functions = array(
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
         ),
+        'local_coodle_set_coodle_preferences' => array(
+                'classname' => '\local_coodle\external\set_coodle_preferences',
+                'classpath' => '',
+                'description' => 'set_coodle_preferences',
+                'type' => 'write',
+                'ajax' => true,
+                'services'    => [
+                        MOODLE_OFFICIAL_MOBILE_SERVICE,
+                    ],
+        ),
 );
