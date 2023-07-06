@@ -54,11 +54,13 @@ class mobile {
         $coodleuser = new coodle_user();
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
         $template = 'local_coodle/mobile_todos';
-        if ($coodleusersettings['isadvisor']) {
-            if($coodleusersettings['userchosen']) {
-                $userid = $coodleusersettings['userchosen'];
+        if ($coodleusersettings->isadvisor) {
+            if($coodleusersettings->userchosen) {
+                $userid = $coodleusersettings->userchosen;
             } else {
-                $template = 'local_coodle/mobile_nouserchosen';
+                $userid = $USER->id;
+                self::select_user();
+                return;
             }
         } else {
             $userid = $USER->id;
@@ -118,10 +120,11 @@ class mobile {
         $coodleuser = new coodle_user();
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
         $template = 'local_coodle/mobile_todos';
-        if ($coodleusersettings['isadvisor']) {
-            if($coodleusersettings['userchosen']) {
-                $userid = $coodleusersettings['userchosen'];
+        if ($coodleusersettings->isadvisor) {
+            if($coodleusersettings->userchosen) {
+                $userid = $coodleusersettings->userchosen;
             } else {
+                $userid = $USER->id;
                 $template = 'local_coodle/mobile_nouserchosen';
             }
         } else {
@@ -239,10 +242,11 @@ class mobile {
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
         $todolist = [];
         $template = 'local_coodle/mobile_todos';
-        if ($coodleusersettings['isadvisor']) {
-            if($coodleusersettings['userchosen']) {
-                $userid = $coodleusersettings['userchosen'];
+        if ($coodleusersettings->isadvisor) {
+            if($coodleusersettings->userchosen) {
+                $userid = $coodleusersettings->userchosen;
             } else {
+                $userid = $USER->id;
                 $template = 'local_coodle/mobile_nouserchosen';
             }
         } else {
@@ -305,7 +309,6 @@ class mobile {
     public static function select_user() {
         global $USER, $OUTPUT;
         // TODO: change and write functions!
-        $userlist = new
         $links = new \local_coodle\link();
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(251, 135, 66)";
