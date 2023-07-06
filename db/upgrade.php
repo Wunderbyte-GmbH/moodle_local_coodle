@@ -120,7 +120,7 @@ function xmldb_local_coodle_upgrade($oldversion) {
 
     if ($oldversion < 2023070602) {
         global $DB;
-        $records = $DB->get_records('local_coodle_advisor', 'userid', '1=1');
+        $records = $DB->get_records('local_coodle_advisor');
         foreach($records as $record) {
             $settings = json_encode(['isadvisor' => true, 'isuser' => false]);
             set_user_preference('coodle_settings', $settings, $record->userid);
