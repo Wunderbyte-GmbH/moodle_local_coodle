@@ -59,8 +59,7 @@ class mobile {
                 $userid = $coodleusersettings->userchosen;
             } else {
                 $userid = $USER->id;
-                self::select_user();
-                return;
+                return self::select_user();
             }
         } else {
             $userid = $USER->id;
@@ -246,8 +245,7 @@ class mobile {
             if($coodleusersettings->userchosen) {
                 $userid = $coodleusersettings->userchosen;
             } else {
-                $userid = $USER->id;
-                $template = 'local_coodle/mobile_nouserchosen';
+                return self::select_user();
             }
         } else {
             $userid = $USER->id;
@@ -309,11 +307,7 @@ class mobile {
     public static function select_user() {
         global $USER, $OUTPUT;
         // TODO: change and write functions!
-        $links = new \local_coodle\link();
-        $templatedata = new stdClass();
-        $templatedata->bg = "rgb(251, 135, 66)";
-        $linklist = $links->load_linklist_by_userid($USER->id);
-        $templatedata->links = $linklist;
+
 
         return [
             'templates' => [
