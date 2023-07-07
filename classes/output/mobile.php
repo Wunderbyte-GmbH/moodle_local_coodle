@@ -308,16 +308,16 @@ class mobile {
         global $USER, $OUTPUT;
         // TODO: change and write functions!
         if (\local_coodle\settings_manager::is_advisor()) {
-            $userlist = \local_coodle\coodle_user::prepare_coodle_users_for_select(
-                \local_coodle\coodle_user::get_coodle_users($USER->id)
-            );
+            $users =  \local_coodle\coodle_user::get_coodle_users($USER->id);
+            $users = array_values($users);
         }
+
 
         return [
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_select_user', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_select_user', ['users' => $users]),
                 ],
             ],
             'javascript' => '',
