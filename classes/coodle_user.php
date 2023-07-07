@@ -149,7 +149,7 @@ class coodle_user {
     }
 
     // TODO: user to advisor
-    public static function get_coodle_users($userid) {
+    public static function get_coodle_users(int $userid = null) {
         global $DB, $USER;
 
         if(!$userid) {

@@ -37,8 +37,15 @@ $PAGE->set_pagelayout('standard');
 $title = "COOdLe Manager";
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
+
+if (\local_coodle\settings_manager::is_advisor()) {
+    $out = array();
+    $users =  \local_coodle\coodle_user::get_coodle_users($USER->id);
+    $users = array_values($users);
+}
+
 echo $OUTPUT->header();
 
-echo $OUTPUT->render_from_template('local_coodle/coodleheader', array());
+echo $OUTPUT->render_from_template('local_coodle/mobile_select_user', ['users' => $users]);
 
 echo $OUTPUT->footer();

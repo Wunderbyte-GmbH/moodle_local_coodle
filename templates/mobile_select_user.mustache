@@ -11,16 +11,15 @@
   You should have received a copy of the GNU General Public License
   along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
+{{=<% %>=}}
 <div>asds
     <h1>Select User</h1>
-    <ion-button expand="block" color="light" core-site-plugins-call-ws
-        name="local_coodle_set_coodle_preferences" [params]="{myVar: CONTENT_OTHERDATA.myVar}">
-    {{ 'plugin.mod_certificate.send | translate }}
-</ion-button>
+    <%#users%>
 <ion-button expand="block" color="light" core-site-plugins-call-ws
-    name="local_coodle_set_coodle_preferences" [params]='{ "preferences": [ { "name": "coodletest", "value": "preference_value", "userid": 19 }, { "name": "another_coodletest", "value": "another_value", "userid": 19 } ] }'>
-    {{ 'plugin.mod_certificate.send | translate }}
+    name="local_coodle_set_coodle_preferences" [params]='{ "preferences": [ { "name": "coodleuser_chosen", "value": "<%userid%>", "userid": <%advisorid%> } ] }'>
+    <%clientfirstname%> <%clientlastname%>
 </ion-button>
+    <%/users%>
 
 </div>
 

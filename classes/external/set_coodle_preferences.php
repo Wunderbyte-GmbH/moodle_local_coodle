@@ -78,7 +78,6 @@ class set_coodle_preferences extends external_api {
         $context = context_system::instance();
         self::validate_context($context);
 
-        $userscache = array();
         foreach ($params['preferences'] as $pref) {
             // Check to which user set the preference.
             if ($USER->id == $pref['userid']) {

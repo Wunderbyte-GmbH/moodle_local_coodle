@@ -307,7 +307,11 @@ class mobile {
     public static function select_user() {
         global $USER, $OUTPUT;
         // TODO: change and write functions!
-
+        if (\local_coodle\settings_manager::is_advisor()) {
+            $userlist = \local_coodle\coodle_user::prepare_coodle_users_for_select(
+                \local_coodle\coodle_user::get_coodle_users($USER->id)
+            );
+        }
 
         return [
             'templates' => [
