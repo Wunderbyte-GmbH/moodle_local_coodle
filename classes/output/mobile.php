@@ -137,7 +137,6 @@ class mobile {
         $templatedata->text = "#fff";
         $js = 'const uploadFile = () => { console.log("hijo");}';
 
-
         return [
             'templates' => [
                 [
@@ -156,12 +155,18 @@ class mobile {
      * @return void
      */
     public static function view_address() {
-        global $OUTPUT;
+        global $OUTPUT, $USER;
+
+        if (\local_coodle\settings_manager::is_advisor()) {
+            $userid = get_user_preferences('coodle_settings_user_selected', 'null');
+        }
+        $coodle = new \local_coodle\coodle_user();
+        $coodle->load_user($userid);
+
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(163, 96, 239)";
+        $templatedata->adresses = $coodle->get_coodleuser_directions($USER->id);
 
-        $templatedata->adresses[0] = ['content'=>'asdhasjkdhaskjd', 'title' => 'test'];
-        $templatedata->adresses[1] = ['content'=>'asdasdwqeqwe','title' => 'test2'];
         return [
             'templates' => [
                 [
@@ -279,7 +284,6 @@ class mobile {
     public static function view_info() {
         global $USER, $OUTPUT;
 
-
         // TODO: change and write functions!
         $links = new \local_coodle\link();
         $templatedata = new stdClass();
@@ -308,10 +312,9 @@ class mobile {
         global $USER, $OUTPUT;
         // TODO: change and write functions!
         if (\local_coodle\settings_manager::is_advisor()) {
-            $users =  \local_coodle\coodle_user::get_coodle_users($USER->id);
+            $users = \local_coodle\coodle_user::get_coodle_users($USER->id);
             $users = array_values($users);
         }
-
 
         return [
             'templates' => [

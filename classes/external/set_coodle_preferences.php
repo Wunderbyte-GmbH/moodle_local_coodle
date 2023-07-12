@@ -40,6 +40,11 @@ defined('MOODLE_INTERNAL') || die();
 require_once($CFG->libdir . '/externallib.php');
 
 class set_coodle_preferences extends external_api {
+
+    private static $allowedsettingsarray = [
+        'coodle_settings',
+        'coodle_user'
+    ];
     /**
      * Returns description of method parameters
      *
@@ -80,12 +85,14 @@ class set_coodle_preferences extends external_api {
 
         foreach ($params['preferences'] as $pref) {
             // Check to which user set the preference.
-            if ($USER->id == $pref['userid']) {
-                set_user_preference($pref['name'], $pref['value'], $pref['userid']);
-                $saved[] = array(
-                    'name' => $pref['name'],
-                    'userid' => $pref['userid'],
-                );
+            if (in_array($pref['name'], self::$allowedsettingsarray)) {
+                if ($USER->id == $pref['userid']) {
+                    set_user_preference($pref['name'], $pref['value'], $pref['userid']);
+                    $saved[] = array(
+                        'name' => $pref['name'],
+                        'userid' => $pref['userid'],
+                    );
+                }
             }
         }
 

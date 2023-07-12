@@ -43,7 +43,7 @@ class coodle_user {
 
     }
 
-    // TODO Replace with setting manager
+    // TODO Replace with setting manager.
     /**
      * Load user
      *
@@ -99,7 +99,7 @@ class coodle_user {
             // We either have found a conversation, or created one.
             $conversationid = !empty($conversationid) ? $conversationid : $conversation->id;
             $welcomemsg = "Herzlich Willkommen in der coodle App";
-            //TODO crete string.
+            // TODO crete string.
             \core_message\api::send_message_to_conversation($advisorid, $conversationid, $welcomemsg, FORMAT_HTML);
 
             // Create a group between user and advisor.
@@ -148,7 +148,7 @@ class coodle_user {
         return $data;
     }
 
-    // TODO: user to advisor
+    // TODO: user to advisor.
     public static function get_coodle_users(int $userid = null) {
         global $DB, $USER;
 
@@ -195,11 +195,15 @@ class coodle_user {
         foreach ($coodleusers as $coodleuser) {
             $tdata = $coodleuser;
             $tdata->userdatecreated = date("Y-m-d", $coodleuser->timecreated);
-            $qrcodeimg = \local_coodle\overrides\mobileapioverrides::generate_login_qrcode_from_userid($tdata->token, $coodleuser->userid);
+            $qrcodeimg = \local_coodle\overrides\mobileapioverrides::generate_login_qrcode_from_userid(
+                $tdata->token,
+                $coodleuser->userid
+            );
             $mobileqr = \html_writer::link('#qrcode-'.$coodleuser->userid, '',
                 ['class' => 'btn btn-primary mt-2 fa fa-qrcode', 'data-toggle' => 'collapse',
                 'role' => 'button', 'aria-expanded' => 'false']);
-            $mobileqr .= \html_writer::div(\html_writer::img($qrcodeimg, 'token', ['class' => 'qrcode']), 'collapse mt-4', ['id' => 'qrcode-'.$coodleuser->userid]);
+            $mobileqr .= \html_writer::div(\html_writer::img($qrcodeimg, 'token',
+             ['class' => 'qrcode']), 'collapse mt-4', ['id' => 'qrcode-'.$coodleuser->userid]);
             $tdata->qrcode = $mobileqr;
             $tdata->todos = array_values(self::get_coodle_todos($coodleuser->userid));
             $templatedata[] = $tdata;
@@ -258,13 +262,13 @@ class coodle_user {
     public function get_coodleuser_userfiles($userid): array {
         $context = \context_user::instance($userid);
 
-        // Get the file storage instance
+        // Get the file storage instance.
         $filestorage = get_file_storage();
 
-        // Get all files from the file storage
+        // Get all files from the file storage.
         $files = $filestorage->get_directory_files($context->id, 'local_coodle', 'clientfile', 0, '/');
         $fileoutput = array();
-        // Output the file information
+        // Output the file information.
         foreach ($files as $file) {
             if ($file->get_filename() != '.') {
                 $fileinfo = new stdClass();
@@ -301,13 +305,15 @@ class coodle_user {
         global $USER;
         $context = \context_system::instance();
 
-        // Get the file storage instance
+        // Get the file storage instance.
         $filestorage = get_file_storage();
 
-        // Get all files from the file storage
-        $files = $filestorage->get_directory_files($context->id, 'local_coodle', 'clientfiles', 0, '/' . $this->userid . '/' . $doctype . '/');
+        // Get all files from the file storage.
+        $files = $filestorage->get_directory_files(
+            $context->id, 'local_coodle', 'clientfiles', 0, '/' . $this->userid . '/' . $doctype . '/'
+        );
         $fileoutput = array();
-        // Output the file information
+        // Output the file information.
         foreach ($files as $file) {
             if ($file->get_filename() != '.') {
                 $fileinfo = new stdClass();
