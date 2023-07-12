@@ -157,15 +157,24 @@ class mobile {
     public static function view_address() {
         global $OUTPUT, $USER;
 
-        if (\local_coodle\settings_manager::is_advisor()) {
-            $userid = get_user_preferences('coodle_settings_user_selected', 'null');
+        $coodleuser = new coodle_user();
+        $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
+        $template = 'local_coodle/mobile_todos';
+        if ($coodleusersettings->isadvisor) {
+            if($coodleusersettings->userchosen) {
+                $userid = $coodleusersettings->userchosen;
+            } else {
+                $userid = $USER->id;
+                return self::select_user();
+            }
+        } else {
+            $userid = $USER->id;
         }
-        $coodle = new \local_coodle\coodle_user();
-        $coodle->load_user($userid);
+        $coodleuser->load_user($userid);
 
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(163, 96, 239)";
-        $templatedata->adresses = $coodle->get_coodleuser_directions($USER->id);
+        $templatedata->adresses = $coodleuser->get_coodleuser_directions($USER->id);
 
         return [
             'templates' => [
