@@ -233,7 +233,7 @@ class coodle_user {
             $tmpdata = new stdClass();
             $tmpdata->id = $direction->id;
             $tmpdata->userid = $direction->userid;
-            $tmpdata->text = file_rewrite_pluginfile_urls(
+            $tmpdata->text = \file_rewrite_pluginfile_urls(
                 // The content of the text stored in the database.
                 $direction->text,
                 // The pluginfile URL which will serve the request.
