@@ -12,7 +12,7 @@
   along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 <ion-content fullscreen="true">
-    <ion-slides pager="true" [options]="slideOptions" class="slide-container">
+    <ion-slides pager="true" [options]="slideOptions" class="slide-container" style="background: {{ bg }}">
         {{#adresses}}
         <ion-slide class="slide-item">
             <ion-card>
@@ -28,11 +28,6 @@
 </ion-content>
 
 <style>
-    .slide-container {
-        height: 100%;
-        background: {{ bg }};
-    }
-
     .slide-item {
         height: 100%;
     }
