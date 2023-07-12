@@ -16,6 +16,10 @@
 
 namespace local_coodle;
 
+defined('MOODLE_INTERNAL') || die();
+
+require_once($CFG->libdir . '/filelib.php');
+
 use dml_exception;
 use coding_exception;
 use file_reference_exception;
@@ -224,6 +228,7 @@ class coodle_user {
     }
 
     public function get_coodleuser_directions($userid) {
+
         $direction = new direction();
         $directions = $direction->load_directionlist_by_userid($userid);
         $context = \context_system::instance();
@@ -233,7 +238,7 @@ class coodle_user {
             $tmpdata = new stdClass();
             $tmpdata->id = $direction->id;
             $tmpdata->userid = $direction->userid;
-            $tmpdata->text = \file_rewrite_pluginfile_urls(
+            $tmpdata->text = file_rewrite_pluginfile_urls(
                 // The content of the text stored in the database.
                 $direction->text,
                 // The pluginfile URL which will serve the request.
