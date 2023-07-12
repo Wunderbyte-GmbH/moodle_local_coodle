@@ -104,6 +104,18 @@ class direction {
         return $directionid;
     }
 
+
+    /**
+     * Creates a course with the name of the advisor
+     *
+     * @return boolean
+     */
+    public function update_direction($data) {
+        global $DB;
+        $directionupdated = $DB->update_record('local_coodle_directions', $data, true);
+        return $directionupdated;
+    }
+
     /**
      * Gets all coodle users (clients) with user data from MOODLE user table
      *

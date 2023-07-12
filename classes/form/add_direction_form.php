@@ -95,7 +95,12 @@ class add_direction_form extends dynamic_form {
             $data->description = file_save_draft_area_files($draftitemid, $context->id,
             'local_coodle', 'direction',
             $adressid, array('subdirs' => true), $data->description);
+            $updatedate = new stdClass();
+            $updatedate->id = $adressid;
+            $updatedate->text = $data->description;
+            $adress->update_direction($updatedate);
         }
+
         return $data;
     }
 
