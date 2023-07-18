@@ -71,9 +71,9 @@ export const init = () => {
             'clientid': button.dataset.clientid
         },
         // Pass any configuration settings to the modal dialogue, for example, the title:
-        modalConfig: {title: getString('add_todo', 'local_coodle')},
+        modalConfig: {title: getString('add_adresscard', 'local_coodle')},
 
-        saveButtonText: getString('add_todo', 'local_coodle'),
+        saveButtonText: getString('add_adresscard', 'local_coodle'),
         // DOM element that should get the focus after the modal dialogue is closed:
         returnFocus: button
     });

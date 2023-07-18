@@ -88,11 +88,18 @@ $string['viewinfo'] = 'Info';
 $string['coodlewelcome'] = 'Herzlich Willkommen in der coodle App';
 $string['setadvisor'] = 'Berater_in setzen';
 
-// INFO
+// INFO.
 $string['add_link'] = 'Link hinzufügen';
 $string['linkname'] = 'Linkname';
 $string['addlink'] = 'Link';
 
-// Adresse
+// Adresse.
 $string['description'] = 'Beschreibung';
 $string['add_direction'] = 'Wegbeschreibung hinzufügen';
+
+// Visitenkarte.
+$string['add_adresscard'] = 'Visitenkarte hinzufügen';
+$string['adress'] = 'Straße';
+$string['doornr'] = 'Nr';
+$string['zipcode'] = 'PLZ';
+$string['city'] = 'Stadt';

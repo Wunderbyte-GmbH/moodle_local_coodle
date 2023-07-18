@@ -44,6 +44,18 @@ if (\local_coodle\settings_manager::is_advisor()) {
     $users = array_values($users);
 }
 
+global $USER, $OUTPUT;
+
+// TODO: change and write functions!
+$links = new \local_coodle\link();
+$templatedata = new stdClass();
+$templatedata->bg = "rgb(251, 135, 66)";
+$linklist = $links->load_linklist_by_userid($USER->id);
+$templatedata->links = $linklist;
+$coodleuser = new \local_coodle\coodle_user();
+$coodleuser->load_user($USER->id);
+$templatedata->adresscard = \local_coodle\advisor::get_advisor_addrescard($USER->id);
+
 echo $OUTPUT->header();
 
 echo $OUTPUT->render_from_template('local_coodle/mobile_select_user', ['users' => $users]);

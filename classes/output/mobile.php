@@ -47,7 +47,7 @@ class mobile {
     /**
      * Returns the view for "Dokumente"
      *
-     *
+     * @return array mobiletemplatedata
      */
     public static function view_files1() {
         global $USER, $OUTPUT, $CFG;
@@ -86,6 +86,7 @@ class mobile {
     /**
      * view_files2
      *
+     * @return array mobiletemplatedata
      */
     public static function view_files2() {
         global $USER, $OUTPUT, $CFG;
@@ -113,6 +114,7 @@ class mobile {
     /**
      * view_files3
      *
+     * @return array mobiletemplatedata
      */
     public static function view_files3() {
         global $USER, $OUTPUT, $CFG;
@@ -150,9 +152,9 @@ class mobile {
     }
 
     /**
-     * Undocumented function
+     * View adress page on mobile
      *
-     * @return void
+     * @return array mobiletemplatedata
      */
     public static function view_address() {
         global $OUTPUT, $USER;
@@ -195,9 +197,9 @@ class mobile {
     }
 
     /**
-     * Undocumented function
+     * Not needed!
      *
-     * @return void
+     * @return array mobiletemplatedata
      */
     public static function view_faq() {
         global $USER, $OUTPUT;
@@ -220,7 +222,7 @@ class mobile {
     }
 
     /**
-     * Undocumented function
+     * Not needed!
      *
      * @return void
      */
@@ -243,9 +245,9 @@ class mobile {
     }
 
     /**
-     * Undocumented function
+     * View Todos on Mobile
      *
-     * @return void
+     * @return array mobiletemplatedata
      */
     public static function view_todos() {
         global $USER, $OUTPUT;
@@ -286,9 +288,9 @@ class mobile {
     }
 
     /**
-     * Undocumented function
+     * View Info Page on Mobile
      *
-     * @return void
+     * @return array mobiletemplatedata
      */
     public static function view_info() {
         global $USER, $OUTPUT;
@@ -299,6 +301,9 @@ class mobile {
         $templatedata->bg = "rgb(251, 135, 66)";
         $linklist = $links->load_linklist_by_userid($USER->id);
         $templatedata->links = $linklist;
+        $coodleuser = new \local_coodle\coodle_user();
+        $coodleuser->load_user($USER->id);
+        $templatedata->adresscard = \local_coodle\advisor::get_advisor_addrescard($coodleuser->advisorid);
 
         return [
             'templates' => [
@@ -313,9 +318,9 @@ class mobile {
     }
 
     /**
-     * Undocumented function
+     * User Selection for coodle advisors
      *
-     * @return void
+     * @return array mobiletemplatedata
      */
     public static function select_user() {
         global $USER, $OUTPUT;

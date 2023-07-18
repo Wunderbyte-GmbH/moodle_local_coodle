@@ -246,6 +246,11 @@ class advisor {
         return $data;
     }
 
+    /**
+     * Prepare advisors for template
+     *
+     * @return array templatedata
+     */
     public static function prepare_for_template() {
         $coodleadvisors = self::get_coodle_advisors();
         $templatedata = [];
@@ -257,10 +262,29 @@ class advisor {
         return $templatedata;
     }
 
-    public static function get_advisor_course($advisorid) {
+    /**
+     * Get advisorcourse
+     *
+     * @param int $advisorid
+     * @return int courseid
+     */
+    public static function get_advisor_course(int $advisorid) {
         global $DB;
         $record = $DB->get_record('local_coodle_advisor', array('userid' => $advisorid), 'courseid');
         return $record->courseid;
+    }
+
+    /**
+     * Output data for advisor adresscard
+     *
+     * @param int $advisorid
+     * @return stdClass
+     */
+    public static function get_advisor_addrescard(int $advisorid) {
+        global $DB;
+        $record = $DB->get_record('local_coodle_advisor', array('userid' => $advisorid), 'settings');
+        $settings = json_decode($record->settings);
+        return $settings;
     }
 
     /**

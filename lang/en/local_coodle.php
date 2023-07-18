@@ -104,3 +104,9 @@ $string['addlink'] = 'link';
 $string['description'] = 'Description';
 $string['add_direction'] = 'Add directions';
 
+// Adresscard.
+$string['add_adresscard'] = 'add Adresscard';
+$string['adress'] = 'Street';
+$string['doornr'] = 'Nr';
+$string['zipcode'] = 'Zip';
+$string['city'] = 'City';

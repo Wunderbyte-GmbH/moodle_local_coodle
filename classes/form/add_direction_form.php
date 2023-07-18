@@ -61,6 +61,8 @@ class add_direction_form extends dynamic_form {
         $mform->addElement('editor', 'description', get_string('description', 'local_coodle'), '', $editoroptions);
         $mform->addElement('hidden', 'userid', $data['clientid']);
         $mform->setType('userid', PARAM_INT);
+        $mform->addElement('hidden', 'id', $data['directionid']);
+        $mform->setType('id', PARAM_INT);
     }
 
     /**
@@ -87,10 +89,15 @@ class add_direction_form extends dynamic_form {
         $context = context_system::instance();
         $draftitemid = $data->description['itemid'];
         $data->description = $data->description['text'] ?? $data->description ?? '';
-        //$data->id = 0;
+        $data->text = $data->description;
 
         $adress = new \local_coodle\direction($data);
-        $adressid = $adress->add_direction();
+        $adressid = $data->id;
+        if (!empty($adressid)) {
+            $adress->update_direction($data);
+        } else {
+            $adressid = $adress->add_direction();
+        }
         if (isset($draftitemid)) {
             $data->description = file_save_draft_area_files($draftitemid, $context->id,
             'local_coodle', 'direction',

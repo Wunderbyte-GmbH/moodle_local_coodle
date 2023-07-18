@@ -43,6 +43,8 @@ class coodle_user {
 
     private $userid;
 
+    public $advisorid;
+
     public function __construct() {
 
     }
@@ -60,7 +62,7 @@ class coodle_user {
         $this->token = $coodleuser->token;
         $this->id = $coodleuser->id;
         $this->userid = $coodleuser->userid;
-
+        $this->advisorid = $coodleuser->advisorid;
         return $coodleuser;
     }
     /**

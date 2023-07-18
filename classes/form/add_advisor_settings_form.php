@@ -48,10 +48,13 @@ class add_advisor_settings_form extends dynamic_form {
     public function definition() {
         $mform = $this->_form;
         $data = $this->_ajaxformdata;
-        $mform->addElement('text', 'name', get_string('linkname', 'local_coodle'));
-        $mform->addElement('text', 'adress', get_string('addlink', 'local_coodle'));
-        $mform->addElement('text', 'linktitle', get_string('linkname', 'local_coodle'));
-        $mform->addElement('text', 'link', get_string('addlink', 'local_coodle'));
+        $mform->addElement('text', 'name', get_string('name', ''));
+        $mform->addElement('text', 'adress', get_string('adress', 'local_coodle'));
+        $mform->addElement('text', 'nr', get_string('doornr', 'local_coodle'));
+        $mform->addElement('text', 'zipcode', get_string('zipcode', 'local_coodle'));
+        $mform->addElement('text', 'city', get_string('city', 'local_coodle'));
+        $mform->addElement('text', 'phone', get_string('phone', ''));
+
         $mform->addElement('hidden', 'userid', $data['clientid']);
         $mform->setType('userid', PARAM_INT);
     }
@@ -104,12 +107,8 @@ class add_advisor_settings_form extends dynamic_form {
     public function set_data_for_dynamic_submission(): void {
         global $USER;
         if (\local_coodle\advisor::is_advisor()) {
-            $advisor = new \local_coodle\advisor($USER->id);
-            $testarray = ['name' => 'THOMAS', 'adress' => 'test'];
-            $data = json_encode( $testarray);//$advisor->get_advisor()->settings);
-            $data = json_decode($data);
+            $data = \local_coodle\advisor::get_advisor_addrescard($USER->id);
             $data->id = $this->_ajaxformdata['clientid'];
-            // TODO get real data and save realdata.
         }
         $this->set_data($data);
     }
