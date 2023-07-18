@@ -98,7 +98,7 @@ $addons = [
                     'version' => '0.2'
                 ),
             ],
-            'viewinfo' => [
+            'selectuser' => [
                 'delegate' => 'CoreMainMenuDelegate',
                 'method' => 'select_user',
                 'displaydata' => [
