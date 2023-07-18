@@ -19,10 +19,21 @@
   <ion-row class="row">
     <ion-col class="col-md-12">
             <%#adresscard%>
-              <%name%>
-              <%adress%><%nr%>
-              <%zipcode%> <%city%>
-              <%phone%>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>
+                  <%name%>
+                </ion-card-title>
+                <ion-card-subtitle>
+                  Visitenkarte
+                </ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                <p><%adress%><%nr%></p>
+                <p><%zipcode%> <%city%></p>
+                <p><%phone%></p>
+              </ion-card-content>
+            </ion-card>
             <%/adresscard%>
       </ion-col>
     </ion-row>
