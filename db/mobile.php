@@ -84,7 +84,7 @@ $addons = [
                 'displaydata' => [
                     'title' => 'viewtodos',
                     'icon' => 'map',
-                    'class' => 'CoreSitePluginsPluginPage',
+                    'class' => 'base-handler',
                 ],
                 'priority'  => 10000000000000000,
             ],
