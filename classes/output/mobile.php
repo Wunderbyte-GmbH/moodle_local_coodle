@@ -149,6 +149,7 @@ class mobile {
                 [
                     'id' => 'main',
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
+                    'cache-view' => false
                 ],
             ],
             'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/test.js"),
@@ -288,6 +289,7 @@ class mobile {
                 [
                     'id' => 'main',
                     'html' => $OUTPUT->render_from_template($template, $templatedata),
+                    'cache-view' => false
                 ],
             ],
             'javascript' => 'setTimeout(function() { console.log("DOM is available now"); this.refreshData(); });',

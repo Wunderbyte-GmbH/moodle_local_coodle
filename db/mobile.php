@@ -77,6 +77,7 @@ $addons = [
                 'priority'  => 10000000000000000,
             ],
             'viewtodos' => [
+                'class' => 'CoreSitePluginsPluginPage',
                 'delegate' => 'CoreMainMenuDelegate',
                 'method' => 'view_todos',
                 'displaydata' => [
