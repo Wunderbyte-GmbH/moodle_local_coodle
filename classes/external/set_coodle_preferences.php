@@ -43,7 +43,8 @@ class set_coodle_preferences extends external_api {
 
     private static $allowedsettingsarray = [
         'coodle_settings',
-        'coodle_user'
+        'coodle_user',
+        'coodleuser_chosen',
     ];
     /**
      * Returns description of method parameters
