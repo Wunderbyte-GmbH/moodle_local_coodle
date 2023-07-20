@@ -54,9 +54,11 @@ class mobile {
         $coodleuser = new coodle_user();
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
         $template = 'local_coodle/mobile_todos';
+        $userchosen = get_user_preferences('coodleuser_chosen');
+
         if ($coodleusersettings->isadvisor) {
-            if($coodleusersettings->userchosen) {
-                $userid = $coodleusersettings->userchosen;
+            if($userchosen) {
+                $userid = $userchosen;
             } else {
                 $userid = $USER->id;
                 return self::select_user();
@@ -70,6 +72,7 @@ class mobile {
         $templatedata->hl = "Dokumente";
         $templatedata->bg = "rgb(94, 160, 242)";
         $templatedata->text = "#fff";
+
 
         return [
             'templates' => [
@@ -121,9 +124,11 @@ class mobile {
         $coodleuser = new coodle_user();
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
         $template = 'local_coodle/mobile_todos';
+        $userchosen = get_user_preferences('coodleuser_chosen');
+
         if ($coodleusersettings->isadvisor) {
-            if($coodleusersettings->userchosen) {
-                $userid = $coodleusersettings->userchosen;
+            if($userchosen) {
+                $userid = $userchosen;
             } else {
                 $userid = $USER->id;
                 $template = 'local_coodle/mobile_nouserchosen';
@@ -162,9 +167,11 @@ class mobile {
         $coodleuser = new coodle_user();
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
         $template = 'local_coodle/mobile_todos';
+        $userchosen = get_user_preferences('coodleuser_chosen');
+
         if ($coodleusersettings->isadvisor) {
             if($coodleusersettings->userchosen) {
-                $userid = $coodleusersettings->userchosen;
+                $userid = $userchosen;
             } else {
                 $userid = $USER->id;
                 return self::select_user();
@@ -176,7 +183,7 @@ class mobile {
 
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(163, 96, 239)";
-        $templatedata->adresses = $coodleuser->get_coodleuser_directions($USER->id);
+        $templatedata->adresses = $coodleuser->get_coodleuser_directions($userid);
 
         return [
             'templates' => [
@@ -255,11 +262,12 @@ class mobile {
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(238, 58, 47)";
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
+        $userchosen = get_user_preferences('coodleuser_chosen');
         $todolist = [];
         $template = 'local_coodle/mobile_todos';
         if ($coodleusersettings->isadvisor) {
-            if($coodleusersettings->userchosen) {
-                $userid = $coodleusersettings->userchosen;
+            if($userchosen) {
+                $userid = $userchosen;
             } else {
                 return self::select_user();
             }

@@ -30,7 +30,6 @@ require_once("$CFG->libdir/formslib.php");
 
 use context;
 use core_form\dynamic_form;
-use local_coodle\user_create_form_helper;
 use moodle_url;
 use stdClass;
 /**

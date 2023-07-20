@@ -39,7 +39,7 @@ $string['status:finshed'] = 'Finished';
 $string['selectusers'] = 'Select User for Advisorrole';
 
 
-// ADVISOR Page
+// ADVISOR Page.
 $string['advisor'] = 'Advisor';
 $string['advisors'] = 'Advisors';
 $string['advisorsince'] = 'Advisor since';
@@ -95,12 +95,12 @@ $string['viewinfo'] = 'Info';
 $string['coodlewelcome'] = 'Welcome to the coodle App';
 $string['setadvisor'] = 'Set advisor';
 
-// INFO
+// INFO.
 $string['add_link'] = 'add link';
 $string['linkname'] = 'linktitle';
 $string['addlink'] = 'link';
 
-// Adresse
+// Adresse.
 $string['description'] = 'Description';
 $string['add_direction'] = 'Add directions';
 
