@@ -290,7 +290,7 @@ class mobile {
                     'html' => $OUTPUT->render_from_template($template, $templatedata),
                 ],
             ],
-            'javascript' => '',
+            'javascript' => 'refreshContent(showSpinner = true);',
             'otherdata' => '',
         ];
     }
