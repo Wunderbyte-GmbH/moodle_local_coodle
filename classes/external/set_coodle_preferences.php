@@ -45,6 +45,7 @@ class set_coodle_preferences extends external_api {
         'coodle_settings',
         'coodle_user',
         'coodleuser_chosen',
+        'refresh',
     ];
     /**
      * Returns description of method parameters
@@ -87,6 +88,9 @@ class set_coodle_preferences extends external_api {
         foreach ($params['preferences'] as $pref) {
             // Check to which user set the preference.
             if (in_array($pref['name'], self::$allowedsettingsarray)) {
+                if ($pref['name'] == 'refresh') {
+                    return array();
+                }
                 if ($USER->id == $pref['userid']) {
                     set_user_preference($pref['name'], $pref['value'], $pref['userid']);
                     $saved[] = array(
