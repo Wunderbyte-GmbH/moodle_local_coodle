@@ -170,7 +170,7 @@ class mobile {
         $userchosen = get_user_preferences('coodleuser_chosen');
 
         if ($coodleusersettings->isadvisor) {
-            if($coodleusersettings->userchosen) {
+            if ($userchosen) {
                 $userid = $userchosen;
             } else {
                 $userid = $USER->id;
