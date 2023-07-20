@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_coodle';
 $plugin->release = '1.1.1';
-$plugin->version = 2023070659;
+$plugin->version = 2023070669;
 $plugin->requires = 2020061500;
 $plugin->supported = [40, 41];
 $plugin->maturity = MATURITY_ALPHA;
