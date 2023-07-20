@@ -292,7 +292,7 @@ class mobile {
                     'cache-view' => false
                 ],
             ],
-            'javascript' => 'setTimeout(function() { console.log("DOM is available now"); this.refreshData(); });',
+            'javascript' => 'setTimeout(function() { console.log("DOM is available now"); refreshContent(true); });',
             'otherdata' => '',
         ];
     }
