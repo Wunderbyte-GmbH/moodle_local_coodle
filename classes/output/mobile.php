@@ -290,7 +290,7 @@ class mobile {
                     'html' => $OUTPUT->render_from_template($template, $templatedata),
                 ],
             ],
-            'javascript' => 'setTimeout(function() { console.log("DOM is available now"); refreshContent(); });',
+            'javascript' => 'setTimeout(function() { console.log("DOM is available now"); this.refreshData(); });',
             'otherdata' => '',
         ];
     }
