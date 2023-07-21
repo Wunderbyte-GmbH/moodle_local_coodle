@@ -18,7 +18,7 @@
  * Local coodle module mobile definition
  *
  * @package         local_coodle
- * @author          Christian Badusch
+ * @author          Christian Badusch, Thomas Winkler
  * @copyright       2022 Wunderbyte GmbH
  * @license         http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later.
  */
