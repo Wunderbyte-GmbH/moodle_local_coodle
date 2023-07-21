@@ -305,10 +305,21 @@ class mobile {
         $links = new \local_coodle\link();
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(251, 135, 66)";
-        $linklist = $links->load_linklist_by_userid($USER->id);
+        $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
+        $userchosen = get_user_preferences('coodleuser_chosen');
+        if ($coodleusersettings->isadvisor) {
+            if($userchosen) {
+                $userid = $userchosen;
+            } else {
+                return self::select_user();
+            }
+        } else {
+            $userid = $USER->id;
+        }
+        $linklist = $links->load_linklist_by_userid($userid);
         $templatedata->links = $linklist;
         $coodleuser = new \local_coodle\coodle_user();
-        $coodleuser->load_user($USER->id);
+        $coodleuser->load_user($userid);
         $templatedata->adresscard = \local_coodle\advisor::get_advisor_addrescard($coodleuser->advisorid);
 
         return [
