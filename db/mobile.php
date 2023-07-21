@@ -81,6 +81,7 @@ $addons = [
                 'class' => 'CoreSitePluginsPluginPage',
                 'delegate' => 'CoreMainMenuDelegate',
                 'method' => 'view_todos',
+                'init' => 'mobile_init',
                 'displaydata' => [
                     'title' => 'viewtodos',
                     'icon' => 'map',

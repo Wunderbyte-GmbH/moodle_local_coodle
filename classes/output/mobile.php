@@ -193,12 +193,8 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_address_view', $templatedata),
                 ],
             ],
-            'javascript' => 'export class ExampleComponent {
-                isModalOpen = false;
-                setOpen(isOpen: boolean) {
-                  this.isModalOpen = isOpen;
-                }
-              }'
+            'javascript' => 'var that = this;
+                            that.doRefresh();'
                 ,
             'otherdata' => '',
         ];
