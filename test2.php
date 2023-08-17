@@ -40,24 +40,17 @@ $PAGE->set_heading($title);
 
 if (\local_coodle\settings_manager::is_advisor()) {
     $out = array();
-    $users =  \local_coodle\coodle_user::get_coodle_users($USER->id);
+    $users = \local_coodle\coodle_user::get_coodle_users($USER->id);
     $users = array_values($users);
 }
 
 global $USER, $OUTPUT;
+require_once($CFG->dirroot.'/calendar/lib.php');
+$paramevents = array ();
 
-// TODO: change and write functions!
-$links = new \local_coodle\link();
-$templatedata = new stdClass();
-$templatedata->bg = "rgb(251, 135, 66)";
-$linklist = $links->load_linklist_by_userid($USER->id);
-$templatedata->links = $linklist;
-$coodleuser = new \local_coodle\coodle_user();
-$coodleuser->load_user($USER->id);
-$templatedata->adresscard = \local_coodle\advisor::get_advisor_addrescard($USER->id);
+$options = array ('siteevents' => true, 'userevents' => true);
+$userid = 1003;
+$events = \local_coodle\external\get_calendar_events::execute($userid);
 
-echo $OUTPUT->header();
+$a = "test";
 
-echo $OUTPUT->render_from_template('local_coodle/mobile_select_user', ['users' => $users]);
-
-echo $OUTPUT->footer();

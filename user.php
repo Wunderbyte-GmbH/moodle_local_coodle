@@ -73,6 +73,14 @@ $templatedata->files[4] = $coodle->get_coodleuser_userfiles($id);
 
 $templatedata->directions = $coodle->get_coodleuser_directions($id);
 $templatedata->links = array_values($coodle->get_coodleuser_links($id));
+$events = \local_coodle\external\get_calendar_events::execute($id);
+$templatedata->events = [];
+foreach($events['events'] as $event) {
+    $templatedata->events[] = [
+        'name' => $event->name,
+        'timestart' => date("d.m H:i", $event->timestart),
+    ];
+}
 
 echo $OUTPUT->render_from_template('local_coodle/myuser', $templatedata);
 

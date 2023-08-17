@@ -19,7 +19,7 @@
       <div>{{{widget}}}</div>
     </div>
     <div class="col-md-8 coodle-user">
-      <div class="card linetrough bg-warning text-white mb-4">
+      <div class="card bg-warning text-white mb-4">
         <div class="card-body">
           <h5 class="card-title">Termine
             <button
@@ -36,9 +36,9 @@
           </button>
           </h5>
           <ul>
-            <li>List item 1</li>
-            <li>List item 2</li>
-            <li>List item 3</li>
+            {{#events}}
+            <li><b>{{timestart}}</b> - {{name}}</li>
+            {{/events}}
           </ul>
         </div>
       </div>

@@ -57,9 +57,6 @@ class add_advisor_settings_form extends dynamic_form {
         $mform->addElement('text', 'email', get_string('email', ''));
         $mform->addElement('text', 'berufsbezeichnung', get_string('berufsbezeichnung', ''));
         $mform->addElement('text', 'institution', get_string('institution', ''));
-
-
-
         $mform->addElement('hidden', 'userid', $data['clientid']);
         $mform->setType('userid', PARAM_INT);
     }

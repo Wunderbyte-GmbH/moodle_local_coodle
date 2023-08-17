@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'coodle Manager';
+$string['pluginname'] = 'COOdLe Manager';
 $string['create_user'] = 'Create User';
 $string['createadvisor'] = 'Create Advisor';
 $string['advisorcourse'] = 'Advisor Course';
@@ -55,7 +55,7 @@ $string['userpage'] = 'TN Seite';
 $string['selectuser'] = 'Teilnehmer_in?';
 
 // Menu.
-$string['home'] = 'Mein Bereich';
+$string['home'] = 'COOdLe';
 $string['myclients'] = 'Meine Teilnehmer_innen';
 $string['calendar'] = 'Kalendar';
 $string['advisorlist'] = 'Berater_innen';
@@ -103,3 +103,4 @@ $string['adress'] = 'Straße';
 $string['doornr'] = 'Nr';
 $string['zipcode'] = 'PLZ';
 $string['city'] = 'Stadt';
+$string['berufsbezeichnung'] = 'Berufsbezeichnung';

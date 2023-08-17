@@ -28,6 +28,7 @@ global $USER;
 $delid = optional_param('del', 0, PARAM_INT);
 $context = \context_system::instance();
 $PAGE->set_context($context);
+
 require_login();
 
 $secondarynav = new secondary($PAGE);
@@ -38,7 +39,6 @@ $PAGE->set_secondary_navigation(true);
 // Am i advisor
 
 $PAGE->set_url(new moodle_url('/local/coodle/advisor.php', array('advisorid' => $USER->id)));
-$PAGE->set_pagelayout('standard');
 $title = $USER->firstname . ' ' . $USER->lastname;
 $PAGE->set_title($title);
 $PAGE->set_heading($title);

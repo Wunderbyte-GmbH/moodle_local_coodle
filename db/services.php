@@ -73,7 +73,7 @@ $functions = array(
         ),
         'local_coodle_upload_file' => array(
                 'classname' => '\local_coodle\external\upload_file',
-                'classpath' => '',
+                'method' => 'execute',
                 'description' => 'upload_file',
                 'type' => 'write',
                 'ajax' => true,
@@ -83,7 +83,7 @@ $functions = array(
         ),
         'local_coodle_get_files' => array(
                 'classname' => '\local_coodle\external\get_files',
-                'classpath' => '',
+                'method' => 'execute',
                 'description' => 'get_files',
                 'type' => 'write',
                 'ajax' => true,
@@ -93,7 +93,7 @@ $functions = array(
         ),
         'local_coodle_get_user_settings' => array(
                 'classname' => '\local_coodle\external\get_user_settings',
-                'classpath' => '',
+                'method' => 'execute',
                 'description' => 'gets settings',
                 'type' => 'write',
                 'ajax' => true,
@@ -103,7 +103,7 @@ $functions = array(
         ),
         'local_coodle_delete_direction' => array(
                 'classname' => '\local_coodle\external\delete_direction',
-                'classpath' => '',
+                'method' => 'execute',
                 'description' => 'delete_direction',
                 'type' => 'write',
                 'ajax' => true,
@@ -113,7 +113,7 @@ $functions = array(
         ),
         'local_coodle_delete_link' => array(
                 'classname' => '\local_coodle\external\delete_link',
-                'classpath' => '',
+                'method' => 'execute',
                 'description' => 'delete_link',
                 'type' => 'write',
                 'ajax' => true,
@@ -123,7 +123,7 @@ $functions = array(
         ),
         'local_coodle_set_coodle_preferences' => array(
                 'classname' => '\local_coodle\external\set_coodle_preferences',
-                'classpath' => '',
+                'method' => 'execute',
                 'description' => 'set_coodle_preferences',
                 'type' => 'write',
                 'ajax' => true,
@@ -131,4 +131,15 @@ $functions = array(
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
         ),
+        'local_coodle_get_calendar_events' => array(
+                'classname' => '\local_coodle\external\get_calendar_events',
+                'method' => 'execute',
+                'description' => 'get_calendar_events',
+                'type' => 'write',
+                'ajax' => true,
+                'services'    => [
+                        MOODLE_OFFICIAL_MOBILE_SERVICE,
+                    ],
+        ),
+
 );

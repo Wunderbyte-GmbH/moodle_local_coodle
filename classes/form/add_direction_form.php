@@ -122,11 +122,26 @@ class add_direction_form extends dynamic_form {
      */
     public function set_data_for_dynamic_submission(): void {
         $data = $this->_ajaxformdata;
+        $context = \context_system::instance();
+
         if (isset($data['directionid']) && is_numeric($data['directionid']) && $data['directionid'] > 0) {
             $direction = new direction(null, $data['directionid']);
             $data['title'] = $direction->direction->title;
             $data['description']['text'] = $direction->direction->text;
             $data['description']['format'] = FORMAT_HTML;
+            $data['description']['text'] = file_rewrite_pluginfile_urls(
+                // The content of the text stored in the database.
+                $data['description']['text'],
+                // The pluginfile URL which will serve the request.
+                'pluginfile.php',
+
+                // The combination of contextid / component / filearea / itemid
+                // form the virtual bucket that file are stored in.
+                $context->id,
+                'local_coodle',
+                'direction',
+                $data['directionid']
+            );
         }
         $this->set_data($data);
     }

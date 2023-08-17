@@ -76,6 +76,9 @@ class change_todo extends external_api {
 
             $message->send_todo_message($todo);
         }
+        if ($params['method'] == 'undousertodo') {
+            $todo = \local_coodle\todo::set_todo_status($params['todoid'], 0);
+        }
 
         $changetodo['error'] = '';
 

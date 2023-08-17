@@ -31,6 +31,7 @@ const ACTIONS = {
     UNCHECK: 'local-coodle-todo-uncheck',
     COLLAPSE: 'local-coodle-todo-collapse',
     MAKEUSERTODO: 'local-coodle-todo-usertodo',
+    UNDOUSERTODO: 'local-coodle-todo-usertodo-revoke',
 };
 
 /**
@@ -75,6 +76,9 @@ const initEventListener = () => {
                 break;
             case ACTIONS.MAKEUSERTODO:
                 todoMakeUserTodo(target, target.dataset.id);
+                break;
+            case ACTIONS.UNDOUSERTODO:
+                todoUndoUserTodo(target, target.dataset.id);
                 break;
             default:
                 break;
@@ -138,6 +142,28 @@ const todoMakeUserTodo = (target, id) => {
         args: {
             'todoid': parseInt(id),
             'method': 'usertodo',
+        },
+        done: function() {
+            target.closest('li').classList.add('usertodo');
+        },
+        fail: function(ex) {
+            // eslint-disable-next-line no-console
+            console.log("ex:" + ex);
+        },
+    }]);
+};
+
+/**
+ * Deletes todo
+ * @param {EventTarget} target the id of the todo
+ * @param {Integer} id the id of the todo
+ */
+const todoUndoUserTodo = (target, id) => {
+    Ajax.call([{
+        methodname: "local_coodle_change_todo",
+        args: {
+            'todoid': parseInt(id),
+            'method': 'usertodoundo',
         },
         done: function() {
             target.closest('li').classList.add('usertodo');

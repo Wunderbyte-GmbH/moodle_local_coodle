@@ -77,10 +77,21 @@ const changeminuteinterval = () => {
 
   // Wait until the select element is visible
   var intervalId = setInterval(function() {
+
     var select = document.getElementById('id_timestart_minute');
     if (select && select.offsetParent !== null) {
       clearInterval(intervalId);
 
+      const selectElement = document.getElementById("id_eventtype");
+
+      // Create a new "change" event
+      const changeEvent = new Event("change");
+
+      // Set the value of the select to "option3"
+      selectElement.value = "group";
+
+      // Dispatch the "change" event on the select element
+      selectElement.dispatchEvent(changeEvent);
       // Loop through the options and remove the ones that are not 15, 30, or 45
       for (let i = select.options.length - 1; i >= 0; i--) {
         const value = parseInt(select.options[i].value);

@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Create an advisor form
+ * Entitiesrelation form implemantion to use entities in other plugins
  * @package     local_coodle
  * @copyright   2022 Wunderbyte GmbH
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -33,12 +33,12 @@ use core_form\dynamic_form;
 use moodle_url;
 use stdClass;
 /**
- * Create an advisor form
+ * Add file form.
  * @copyright Wunderbyte GmbH <info@wunderbyte.at>
  * @author Thomas Winkler
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class create_advisor_form extends dynamic_form {
+class advanced_message_form extends dynamic_form {
 
     /**
      * {@inheritdoc}
@@ -46,13 +46,7 @@ class create_advisor_form extends dynamic_form {
      */
     public function definition() {
         $mform = $this->_form;
-
-        $options = array(
-            'ajax' => 'tool_lp/form-user-selector',
-            'multiple' => false
-        );
-        $mform->addElement('autocomplete', 'userid', get_string('selectusers', 'local_coodle'), array(), $options);
-        $mform->addRule('userid', null, 'required');
+        $mform->addElement('editor', 'description', get_string('description', 'local_coodle'));
     }
 
     /**
@@ -61,7 +55,7 @@ class create_advisor_form extends dynamic_form {
      * @return void
      */
     protected function check_access_for_dynamic_submission(): void {
-        // TODO: capability to create advisors.
+        // TODO: capability to create advisors
         require_capability('moodle/user:manageownfiles', $this->get_context_for_dynamic_submission());
     }
 
@@ -76,8 +70,7 @@ class create_advisor_form extends dynamic_form {
      */
     public function process_dynamic_submission() {
         $data = $this->get_data();
-        $courseid = \local_coodle\advisor::create_course_for_adivisor($data->userid);
-        $advisor = new \local_coodle\advisor($data->userid, $courseid,  true);
+
         return $data;
     }
 
@@ -91,7 +84,9 @@ class create_advisor_form extends dynamic_form {
      *     $this->set_data(get_entity($this->_ajaxformdata['cmid']));
      */
     public function set_data_for_dynamic_submission(): void {
-        $data = new stdClass();
+        $data = $this->_ajaxformdata;
+        $data['id'] = $this->_ajaxformdata['clientid'];
+
         $this->set_data($data);
     }
 
@@ -120,11 +115,11 @@ class create_advisor_form extends dynamic_form {
      */
     protected function get_page_url_for_dynamic_submission(): moodle_url {
         // TODO: This is shit.
-        $cmid = $this->_ajaxformdata['cmid'];
+        $cmid = $this->_ajaxformdata['clientid'];
         if (!$cmid) {
             $cmid = $this->optional_param('cmid', '', PARAM_RAW);
         }
-        return new moodle_url('/local/coodle/newuser', array('id' => $cmid));
+        return new moodle_url('/local/coodle/user', array('id' => $cmid));
     }
 
     /**
