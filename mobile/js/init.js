@@ -15,15 +15,15 @@
 
 const that = this;
 
-this.syncData2 = async () => {
+this.syncData2 = () => {
     console.log('test');
-    const currentSiteId = that.CoreSites.getCurrentSiteId();
+    const currentSiteId = this.CoreSites.getCurrentSiteId();
     console.warn('my sync');
             // Using syncOnlyOnWifi false to force manual sync.
             try {
-                await that.CoreSettingsHelper.synchronizeSite(false, currentSiteId);
+                await this.CoreSettingsHelper.synchronizeSite(false, currentSiteId);
             } catch (error) {
-                that.CoreDomUtils.showErrorModalDefault(error, 'core.settings.sitesyncfailed', true);
+                this.CoreDomUtils.showErrorModalDefault(error, 'core.settings.sitesyncfailed', true);
             }
-    that.refreshContent();
+    this.refreshContent();
 }
