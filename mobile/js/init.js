@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-async syncData2 = () => {
+export const syncData2 = async () => {
     console.log('test');
     const currentSiteId = CoreSites.getCurrentSiteId();
     console.warn('my sync');
