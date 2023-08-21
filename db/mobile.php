@@ -116,7 +116,7 @@ $addons = [
                 ),
             ],
             'impressum' => [
-                'delegate' => 'CoreUserDelegate',
+                'delegate' => 'CoreSettingsDelegate',
                 'method' => 'view_impressum',
                 'displaydata' => [
                     'title' => 'impressum',
