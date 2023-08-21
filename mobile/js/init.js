@@ -22,7 +22,7 @@ this.syncData2 = async () => {
     console.warn(currentSiteId);
             // Using syncOnlyOnWifi false to force manual sync.
             try {
-                await this.CoreSettingsHelperProvvider.synchronizeSite(false, currentSiteId);
+                await this.CoreSettingsHelperProvider.synchronizeSite(false, currentSiteId);
             } catch (error) {
                 this.CoreDomUtilsProvider.showErrorModalDefault(error, 'core.settings.sitesyncfailed', true);
             }
