@@ -134,6 +134,7 @@ $addons = [
                 'displaydata' => [
                     'title' => 'impressum',
                     'icon' => 'map',
+                    'type' => 'newpage',
                 ],
                 'priority'  => 10000000000000000,
                 'styles' => array(
