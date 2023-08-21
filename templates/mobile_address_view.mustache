@@ -14,16 +14,14 @@
 
 {{=<% %>=}}
 
-<ion-slides pager="true" [options]="slideOptions" class="slide-container" style="background: <%bg%>">
+<ion-slides pager="true"  class="slide-container" style="background: <%bg%>">
     <%#adresses%>
     <ion-slide class="slide-item">
         <ion-card style="width:100vw;
         padding:20px;">
             <h2><% title %></h2>
-            <div>{{{ text }}}</div>
+            <div><% { text }%></div>
         </ion-card>
-        <!-- Your dynamic content goes here -->
-
     </ion-slide>
     <%/adresses%>
 </ion-slides>
