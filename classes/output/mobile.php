@@ -407,12 +407,11 @@ class mobile {
                 ],
             ],
             'javascript' => 'setTimeout(function() { console.log("DOM is available now");
-                var button = document.getElementById("reload");
-                if (button) {
-                    button.click();
-                  } else {
-                    console.log("Button not found.");
-                  }
+                var button = document.getElementById("myIonButton");
+                button.addEventListener("click", function() {
+                    console.log("Ion button clicked!");
+                    syncData();
+                  });
                 });',
             'otherdata' => '',
         ];
