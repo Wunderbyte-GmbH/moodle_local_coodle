@@ -17,7 +17,7 @@ const that = this;
 
 this.syncData2 = () => {
     console.log('test');
-    const currentSiteId = this.CoreSites.getCurrentSiteId();
+    const currentSiteId = this.CoreSitesProvider.getCurrentSiteId();
     console.warn('my sync');
     console.warn(currentSiteId);
             // // Using syncOnlyOnWifi false to force manual sync.
