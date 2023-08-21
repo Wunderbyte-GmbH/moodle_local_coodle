@@ -15,16 +15,16 @@
 
 const that = this;
 
-this.syncData2 = () => {
+this.syncData2 = async () => {
     console.log('test');
     const currentSiteId = this.CoreSitesProvider.getCurrentSiteId();
     console.warn('my sync');
     console.warn(currentSiteId);
-            // // Using syncOnlyOnWifi false to force manual sync.
-            // try {
-            //     await this.CoreSettingsHelper.synchronizeSite(false, currentSiteId);
-            // } catch (error) {
-            //     this.CoreDomUtils.showErrorModalDefault(error, 'core.settings.sitesyncfailed', true);
-            // }
+            // Using syncOnlyOnWifi false to force manual sync.
+            try {
+                await this.CoreSettingsHelper.synchronizeSite(false, currentSiteId);
+            } catch (error) {
+                this.CoreDomUtils.showErrorModalDefault(error, 'core.settings.sitesyncfailed', true);
+            }
     this.refreshContent();
 }
