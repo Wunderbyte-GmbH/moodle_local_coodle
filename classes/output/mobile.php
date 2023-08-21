@@ -167,7 +167,6 @@ class mobile {
 
         $coodleuser = new coodle_user();
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
-        $template = 'local_coodle/mobile_todos';
         $userchosen = get_user_preferences('coodleuser_chosen');
 
         if ($coodleusersettings->isadvisor) {
@@ -193,9 +192,7 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_address_view', $templatedata),
                 ],
             ],
-            'javascript' => 'var that = this;
-                            that.doRefresh();'
-                ,
+            'javascript' => '',
             'otherdata' => '',
         ];
     }

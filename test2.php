@@ -52,5 +52,19 @@ $options = array ('siteevents' => true, 'userevents' => true);
 $userid = 1003;
 $events = \local_coodle\external\get_calendar_events::execute($userid);
 
+
+global $OUTPUT, $USER;
+
+$coodleuser = new \local_coodle\coodle_user();
+$coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
+$userchosen = get_user_preferences('coodleuser_chosen');
+$userid = $USER->id;
+
+$coodleuser->load_user($userid);
+
+$templatedata = new stdClass();
+$templatedata->bg = "rgb(163, 96, 239)";
+$templatedata->adresses = $coodleuser->get_coodleuser_directions($userid);
+
 $a = "test";
 
