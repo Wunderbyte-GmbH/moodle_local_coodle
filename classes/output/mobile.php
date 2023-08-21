@@ -142,7 +142,6 @@ class mobile {
         $templatedata->hl = "Beratungsinhalt";
         $templatedata->bg = "rgb(33, 181, 98)";
         $templatedata->text = "#fff";
-        $js = 'const uploadFile = () => { console.log("hijo");}';
 
         return [
             'templates' => [
@@ -386,7 +385,7 @@ class mobile {
      * @return array mobiletemplatedata
      */
     public static function view_test() {
-        global $USER, $OUTPUT;
+        global $USER, $OUTPUT, $CFG;
         // TODO: change and write functions!
         $sitename = 'test';
         $templatedata = [];
@@ -406,13 +405,7 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_test', $templatedata),
                 ],
             ],
-            'javascript' => 'setTimeout(function() { console.log("DOM is available now");
-                var button = document.getElementById("myIonButton");
-                button.addEventListener("click", function() {
-                    console.log("Ion button clicked!");
-                    syncData();
-                  });
-                });',
+            'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/init.js"),
             'otherdata' => '',
         ];
     }
