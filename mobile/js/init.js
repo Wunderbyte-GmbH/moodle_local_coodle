@@ -19,11 +19,12 @@ this.syncData2 = () => {
     console.log('test');
     const currentSiteId = this.CoreSites.getCurrentSiteId();
     console.warn('my sync');
-            // Using syncOnlyOnWifi false to force manual sync.
-            try {
-                await this.CoreSettingsHelper.synchronizeSite(false, currentSiteId);
-            } catch (error) {
-                this.CoreDomUtils.showErrorModalDefault(error, 'core.settings.sitesyncfailed', true);
-            }
+    console.warn(currentSiteId);
+            // // Using syncOnlyOnWifi false to force manual sync.
+            // try {
+            //     await this.CoreSettingsHelper.synchronizeSite(false, currentSiteId);
+            // } catch (error) {
+            //     this.CoreDomUtils.showErrorModalDefault(error, 'core.settings.sitesyncfailed', true);
+            // }
     this.refreshContent();
 }
