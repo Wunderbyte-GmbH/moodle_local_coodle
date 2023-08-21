@@ -384,7 +384,7 @@ class mobile {
      *
      * @return array mobiletemplatedata
      */
-    public static function test() {
+    public static function view_test() {
         global $USER, $OUTPUT;
         // TODO: change and write functions!
         $templatedata = [];
