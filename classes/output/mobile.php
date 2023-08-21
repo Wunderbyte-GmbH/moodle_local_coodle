@@ -379,7 +379,8 @@ class mobile {
             'otherdata' => '',
         ];
     }
-        /**
+    
+    /**
      * User Selection for coodle advisors
      *
      * @return array mobiletemplatedata
