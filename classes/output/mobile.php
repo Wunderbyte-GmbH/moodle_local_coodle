@@ -360,7 +360,7 @@ class mobile {
      * @return array mobiletemplatedata
      */
     public static function select_user() {
-        global $USER, $OUTPUT;
+        global $USER, $OUTPUT, $CFG;
         // TODO: change and write functions!
         if (\local_coodle\settings_manager::is_advisor()) {
             $users = \local_coodle\coodle_user::get_coodle_users($USER->id);
@@ -374,7 +374,7 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_select_user', ['users' => $users]),
                 ],
             ],
-            'javascript' => '',
+            'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/syncData.js"),
             'otherdata' => '',
         ];
     }
@@ -405,7 +405,7 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_test', $templatedata),
                 ],
             ],
-            'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/init.js"),
+            'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/syncData.js"),
             'otherdata' => '',
         ];
     }
