@@ -24,7 +24,7 @@ this.syncData2 = async () => {
             try {
                 await this.CoreSettingsHelper.synchronizeSite(false, currentSiteId);
             } catch (error) {
-                this.CoreDomUtils.showErrorModalDefault(error, 'core.settings.sitesyncfailed', true);
+                this.CoreDomUtilsProvider.showErrorModalDefault(error, 'core.settings.sitesyncfailed', true);
             }
     this.refreshContent();
 }
