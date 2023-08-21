@@ -141,5 +141,15 @@ $functions = array(
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
         ),
+        'local_coodle_dummy' => array(
+                'classname' => '\local_coodle\external\dummy',
+                'method' => 'execute',
+                'description' => 'dummy',
+                'type' => 'read',
+                'ajax' => true,
+                'services'    => [
+                        MOODLE_OFFICIAL_MOBILE_SERVICE,
+                    ],
+        ),
 
 );

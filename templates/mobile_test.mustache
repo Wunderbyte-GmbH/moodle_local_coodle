@@ -20,9 +20,16 @@
         <a href="https://wuk.wunderbyte.at" data-open-in="app">test</a>
         <a href="/local/coodle/user.php?id=68" autoLogin="Yes" core-link>test2</a>
 
+        <ion-button core-site-plugins-call-ws
+        name="local_coodle_dummy" [params]=""
+        [preSets]="" confirmMessage successMessage
+        refreshOnSuccess="true">
+button</ion-button>
         </ion-col>
       </ion-row>
   </ion-grid>
 </div>
 
-
+<script>
+  console.log("test");
+</script>
