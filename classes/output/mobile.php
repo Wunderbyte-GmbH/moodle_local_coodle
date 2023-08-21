@@ -230,7 +230,7 @@ class mobile {
      *
      * @return void
      */
-    public static function view_dates() {
+    public static function view_impressum() {
         global $USER, $OUTPUT;
         $coodleuser = new coodle_user();
         $coodleuser->load_user($USER->id);
@@ -240,7 +240,7 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/get_coodleuser_dates', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_impressum', $templatedata),
                 ],
             ],
             'javascript' => '',
