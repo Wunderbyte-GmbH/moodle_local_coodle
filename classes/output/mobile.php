@@ -248,6 +248,30 @@ class mobile {
         ];
     }
 
+
+    /**
+     * Impressum
+     *
+     * @return array mobiletemplatedata
+     */
+    public static function view_dates() {
+        global $USER, $OUTPUT;
+        $coodleuser = new coodle_user();
+        $coodleuser->load_user($USER->id);
+        $templatedata = new stdClass();
+
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('local_coodle/get_coodleuser_dates', $templatedata),
+                ],
+            ],
+            'javascript' => '',
+            'otherdata' => '',
+        ];
+    }
+
     /**
      * View Todos on Mobile
      *

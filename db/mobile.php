@@ -115,6 +115,19 @@ $addons = [
                     'version' => '0.2'
                 ),
             ],
+            'impressum' => [
+                'delegate' => 'CoreUserDelegate',
+                'method' => 'view_impressum',
+                'displaydata' => [
+                    'title' => 'impressum',
+                    'icon' => 'map',
+                ],
+                'priority'  => 10000000000000000,
+                'styles' => array(
+                    'url' => $CFG->wwwroot . '/local/coodle/mobile/css/styles_app.css',
+                    'version' => '0.2'
+                ),
+            ],
         ],
         'lang' => [
             ['myfiles', 'local_coodle'],
