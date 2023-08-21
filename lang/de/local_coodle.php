@@ -80,7 +80,7 @@ $string['viewdates'] = 'Termine';
 $string['todos'] = 'Aufgaben';
 
 $string['dok1'] = 'Dokumente';
-$string['dok2'] = 'Bewrbungsunterlagen';
+$string['dok2'] = 'Bewerbungsunterlagen';
 $string['dok3'] = 'Beratung';
 
 $string['viewinfo'] = 'Info';
