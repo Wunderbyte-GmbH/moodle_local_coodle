@@ -379,7 +379,7 @@ class mobile {
             'otherdata' => '',
         ];
     }
-    
+
     /**
      * User Selection for coodle advisors
      *
@@ -397,7 +397,9 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_test', $templatedata),
                 ],
             ],
-            'javascript' => '',
+            'javascript' => 'setTimeout(function() { console.log("DOM is available now");
+                var button = document.getElementById("reload");
+                button.click(); });',
             'otherdata' => '',
         ];
     }
