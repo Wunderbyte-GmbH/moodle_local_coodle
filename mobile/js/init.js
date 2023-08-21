@@ -13,16 +13,17 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+const that = this;
 
 this.syncData2 = async () => {
     console.log('test');
-    const currentSiteId = CoreSites.getCurrentSiteId();
+    const currentSiteId = this.CoreSites.getCurrentSiteId();
     console.warn('my sync');
             // Using syncOnlyOnWifi false to force manual sync.
             try {
-                await CoreSettingsHelper.synchronizeSite(false, currentSiteId);
+                await this.CoreSettingsHelper.synchronizeSite(false, currentSiteId);
             } catch (error) {
-                CoreDomUtils.showErrorModalDefault(error, 'core.settings.sitesyncfailed', true);
+                this.CoreDomUtils.showErrorModalDefault(error, 'core.settings.sitesyncfailed', true);
             }
-            this.refreshContent();
+    this.refreshContent();
 }
