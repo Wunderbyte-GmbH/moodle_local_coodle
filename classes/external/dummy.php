@@ -35,7 +35,7 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . '/externallib.php');
 
-class delete_link extends external_api {
+class dummy extends external_api {
 
     /**
      * Describes the paramters for add_advisor.
