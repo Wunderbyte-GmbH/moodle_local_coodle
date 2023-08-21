@@ -388,7 +388,16 @@ class mobile {
     public static function view_test() {
         global $USER, $OUTPUT;
         // TODO: change and write functions!
+        $sitename = 'test';
         $templatedata = [];
+
+        $refresh = get_user_preferences('refresh');
+
+        $templatedata['refresh'] = $refresh[$sitename];
+
+        unset($refresh[$sitename]);
+
+        set_user_preference('refresh', $refresh);
 
         return [
             'templates' => [
@@ -399,7 +408,12 @@ class mobile {
             ],
             'javascript' => 'setTimeout(function() { console.log("DOM is available now");
                 var button = document.getElementById("reload");
-                button.click(); });',
+                if (button) {
+                    button.click();
+                  } else {
+                    console.log("Button not found.");
+                  }
+                });',
             'otherdata' => '',
         ];
     }

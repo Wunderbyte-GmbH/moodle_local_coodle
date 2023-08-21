@@ -20,11 +20,8 @@
         <a href="https://wuk.wunderbyte.at" data-open-in="app">test</a>
         <a href="/local/coodle/user.php?id=68" autoLogin="Yes" core-link>test2</a>
 
-        <ion-button id="reload" core-site-plugins-call-ws
-        name="local_coodle_dummy" [params]=""
-        [preSets]=""
-        refreshOnSuccess="true">
-        </ion-button>
+        <ion-button id="myIonButton" (click)="syncData()">Sync me</ion-button>
+        <ion-button id="myIonButton" (click)="console.log('test')">Click me</ion-button>
         </ion-col>
       </ion-row>
   </ion-grid>
