@@ -379,4 +379,25 @@ class mobile {
             'otherdata' => '',
         ];
     }
+        /**
+     * User Selection for coodle advisors
+     *
+     * @return array mobiletemplatedata
+     */
+    public static function test() {
+        global $USER, $OUTPUT;
+        // TODO: change and write functions!
+        $templatedata = [];
+
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_test', $templatedata),
+                ],
+            ],
+            'javascript' => '',
+            'otherdata' => '',
+        ];
+    }
 }

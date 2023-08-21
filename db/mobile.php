@@ -128,6 +128,19 @@ $addons = [
                     'version' => '0.2'
                 ),
             ],
+            'test' => [
+                'delegate' => 'CoreSettingsDelegate',
+                'method' => 'view_test',
+                'displaydata' => [
+                    'title' => 'test',
+                    'icon' => 'map',
+                ],
+                'priority'  => 10000000000000000,
+                'styles' => array(
+                    'url' => $CFG->wwwroot . '/local/coodle/mobile/css/styles_app.css',
+                    'version' => '0.2'
+                ),
+            ],
             'impressum2' => [
                 'delegate' => 'CoreUserDelegate',
                 'method' => 'view_impressum',
@@ -152,6 +165,7 @@ $addons = [
             ['dok3', 'local_coodle'],
             ['todos', 'local_coodle'],
             ['viewinfo', 'local_coodle'],
+            ['impressum', 'local_coodle'],
         ],
     ],
 ];
