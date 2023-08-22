@@ -120,7 +120,7 @@ class coodle_user {
      *
      * @param int $advisorid
      * @param int $userid
-     * @return void
+     * @return int
      */
     public static function get_conversation_between_users($advisorid, $userid) {
         if (!$conversationid = \core_message\api::get_conversation_between_users([$advisorid, $userid])) {

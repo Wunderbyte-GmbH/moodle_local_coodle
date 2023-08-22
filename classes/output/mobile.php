@@ -245,9 +245,8 @@ class mobile {
         ];
     }
 
-
     /**
-     * Impressum
+     * View Dates
      *
      * @return array mobiletemplatedata
      */
@@ -257,11 +256,20 @@ class mobile {
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
 
+        $events = \local_coodle\external\get_calendar_events::execute($USER->id);
+        $templatedata->events = [];
+        foreach($events['events'] as $event) {
+            $templatedata->events[] = [
+                'name' => $event->name,
+                'timestart' => date("d.m H:i", $event->timestart),
+            ];
+        }
+
         return [
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/get_coodleuser_dates', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_dates', $templatedata),
                 ],
             ],
             'javascript' => '',
@@ -394,22 +402,23 @@ class mobile {
     public static function view_test() {
         global $USER, $OUTPUT, $CFG;
         // TODO: change and write functions!
-        $sitename = 'test';
-        $templatedata = [];
+        $templatedata = new stdClass();
 
-        $refresh = get_user_preferences('refresh');
-
-        $templatedata['refresh'] = $refresh[$sitename];
-
-        unset($refresh[$sitename]);
-
-        set_user_preference('refresh', $refresh);
+        $events = \local_coodle\external\get_calendar_events::execute($USER->id);
+        $templatedata->events = [];
+        foreach($events['events'] as $event) {
+            $templatedata->events[] = [
+                'name' => $event->name,
+                'place' => $event->place,
+                'timestart' => date("d.m H:i", $event->timestart),
+            ];
+        }
 
         return [
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_test', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_dates', $templatedata),
                 ],
             ],
             'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/syncData.js"),
