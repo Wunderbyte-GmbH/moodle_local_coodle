@@ -362,16 +362,22 @@ class mobile {
     public static function select_user() {
         global $USER, $OUTPUT, $CFG;
         // TODO: change and write functions!
+        $userchosen = get_user_preferences('coodleuser_chosen');
+
         if (\local_coodle\settings_manager::is_advisor()) {
             $users = \local_coodle\coodle_user::get_coodle_users($USER->id);
             $users = array_values($users);
+        }
+
+        if ($userchosen > 0) {
+            $user = \local_coodle\coodle_user::get_coodle_user($userchosen);
         }
 
         return [
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_select_user', ['users' => $users]),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_select_user', ['users' => $users, 'userchosen' => $user]),
                 ],
             ],
             'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/syncData.js"),

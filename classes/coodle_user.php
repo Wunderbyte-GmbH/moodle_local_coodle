@@ -171,6 +171,16 @@ class coodle_user {
         return $data;
     }
 
+    public static function get_coodle_user(int $userid) {
+        global $DB;
+        $sql = "SELECT cu.*, u.firstname as 'clientfirstname', u.lastname as 'clientlastname'
+         FROM {local_coodle_user} cu
+         JOIN {user} u on cu.userid = u.id
+         WHERE cu.userid = $userid";
+        $data = $DB->get_record_sql($sql);
+        return $data;
+    }
+
     public static function prepare_coodle_users_for_select(array $users) {
         $select = [];
         foreach ($users as $user) {

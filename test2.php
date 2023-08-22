@@ -60,11 +60,14 @@ $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
 $userchosen = get_user_preferences('coodleuser_chosen');
 $userid = $USER->id;
 
+
+
 $coodleuser->load_user($userid);
 
 $templatedata = new stdClass();
 $templatedata->bg = "rgb(163, 96, 239)";
 $templatedata->adresses = $coodleuser->get_coodleuser_directions($userid);
 
+\local_coodle\coodle_user::get_coodle_user(1003);
 $a = "test";
 
