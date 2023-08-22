@@ -413,6 +413,7 @@ class mobile {
                 'timestart' => date("d.m H:i", $event->timestart),
             ];
         }
+        $templatedata->today = date("d.m H:i", time());
 
         return [
             'templates' => [
