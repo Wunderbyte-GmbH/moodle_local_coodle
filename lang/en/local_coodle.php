@@ -111,3 +111,5 @@ $string['doornr'] = 'Nr';
 $string['zipcode'] = 'Zip';
 $string['city'] = 'City';
 $string['berufsbezeichnung'] = 'job title';
+
+$string['impressum'] = 'Impressum';

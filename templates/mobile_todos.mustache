@@ -19,7 +19,7 @@
       <ion-col class="col-md-12">
             <%#empty%>
             <ion-list>
-              <ion-item style="color: #000">
+              <ion-item>
                 <ion-label style="margin-left: 10px;">Derzeit keine Todos</ion-label>
               </ion-item>
             </ion-list>
@@ -27,21 +27,21 @@
             <%^empty%>
             <ion-list>
               <%#todos%>
-              <ion-item style="color: #000">
-				<%^deleted%>
+              <ion-item>
+				      <%^deleted%>
                 <ion-checkbox
                 core-site-plugins-call-ws checked
                 name="local_coodle_change_todo" [params]="{todoid: <%id%>, method: 'done'}"
                 confirmMessage="Confirm?"
                 refreshOnSuccess="false"></ion-checkbox>
-				<%/deleted%>
-				<%#deleted%>
+		      		<%/deleted%>
+				      <%#deleted%>
                 <ion-checkbox
                 core-site-plugins-call-ws
                 name="local_coodle_change_todo" [params]="{todoid: <%id%>, method: 'uncheck'}"
                 confirmMessage="Confirm?"
                 refreshOnSuccess="false"></ion-checkbox>
-				<%/deleted%>
+				      <%/deleted%>
                 <ion-label style="margin-left: 10px;"> <%text%></ion-label>
               </ion-item>
               <%/todos%>
