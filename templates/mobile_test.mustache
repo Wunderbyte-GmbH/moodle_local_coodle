@@ -19,29 +19,8 @@
       <ion-col class="col-md-12">
         <a href="https://wuk.wunderbyte.at" data-open-in="app">test</a>
         <a href="/local/coodle/user.php?id=68" autoLogin="Yes" core-link>test2</a>
-
-        <ion-button id="myIonButton">Sync me</ion-button>
-        <ion-button (click)="syncData()">syncfunction</ion-button>
-        <ion-button (click)="refreshContent()">refresh</ion-button>
-        <ion-button (click)="fetchContent()">fetch</ion-button>
-        <ion-button core-site-plugins-call-ws
-        name="local_coodle_dummy" [params]=""
-        [preSets]="" confirmMessage successMessage
-         (onSuccess)="syncData()">
-onsucs sync1</ion-button>
-<ion-button core-site-plugins-call-ws
-name="local_coodle_dummy" [params]=""
-[preSets]="" confirmMessage successMessage
- (onSuccess)="syncData2()">
-onsucs sync2</ion-button>
-<ion-button core-site-plugins-call-ws
-name="local_coodle_dummy" [params]=""
-[preSets]="" confirmMessage successMessage
-(onSuccess)="refreshContent()">
-onsucs refresh2</ion-button>
-
-        </ion-col>
-      </ion-row>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </div>
 
@@ -52,6 +31,3 @@ onsucs refresh2</ion-button>
     visibility: hidden;
   }
 </style>
-<script>
-  console.log("test");
-</script>

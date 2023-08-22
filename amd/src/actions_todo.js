@@ -163,10 +163,10 @@ const todoUndoUserTodo = (target, id) => {
         methodname: "local_coodle_change_todo",
         args: {
             'todoid': parseInt(id),
-            'method': 'usertodoundo',
+            'method': 'undousertodo',
         },
         done: function() {
-            target.closest('li').classList.add('usertodo');
+            target.closest('li').classList.remove('usertodo');
         },
         fail: function(ex) {
             // eslint-disable-next-line no-console
