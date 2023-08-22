@@ -71,12 +71,12 @@ class change_todo extends external_api {
             \local_coodle\todo::set_todo_status($params['todoid'], 0);
         }
         if ($params['method'] == 'usertodo') {
-            $todo = \local_coodle\todo::set_todo_status($params['todoid'], 2);
+            $todo = \local_coodle\todo::set_todo_usertodo($params['todoid'], 1);
             $message = new \local_coodle\coodle_pushnotification((int) $todo->userid);
             $message->send_todo_message($todo);
         }
         if ($params['method'] == 'undousertodo') {
-            $todo = \local_coodle\todo::set_todo_status($params['todoid'], 0);
+            $todo = \local_coodle\todo::set_todo_usertodo($params['todoid'], 0);
         }
 
         $changetodo['error'] = '';

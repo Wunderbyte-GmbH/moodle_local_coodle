@@ -306,7 +306,11 @@ class advisor {
 
     public static function set_coodle_advisor($data) {
         global $DB;
-        $DB->update_record('local_coodle_user', $data);
+        if ($DB->update_record('local_coodle_user', $data)) {
+            $record = $DB->get_record('local_coodle_user', array('id' => $data->id),);
+            self::create_group_for_advisor($record->advisorid, $record->userid);
+        }
+
     }
 
     /**

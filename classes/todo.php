@@ -109,10 +109,24 @@ class todo {
      * @return stdClass
      */
     public static function set_todo_status(int $todoid, int $status) {
-        global $DB, $USER;
-        // TODO: ADD constants. 1 2 3 4 -.
+        global $DB;
+
+
         $params = array(
             'deleted' => $status,
+            'id' => $todoid
+        );
+        $DB->update_record('local_coodle_todos', $params);
+        unset($params['deleted']);
+        return $DB->get_record('local_coodle_todos', $params);
+    }
+
+    public static function set_todo_usertodo(int $todoid, int $usertodo) {
+        global $DB;
+
+
+        $params = array(
+            'usertodo' => $usertodo,
             'id' => $todoid
         );
         $DB->update_record('local_coodle_todos', $params);
