@@ -66,9 +66,10 @@ class get_calendar_events extends external_api {
      * @return array
      */
     public static function execute(int $userid): array {
+        global $DB, $CFG;
+
         require_once($CFG->dirroot.'/calendar/lib.php');
 
-        global $DB;
         // Parameter validation.
         $params = self::validate_parameters(self::execute_parameters(), array('userid' => $userid));
         $warnings = array();
