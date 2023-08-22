@@ -227,11 +227,12 @@ class mobile {
      * @return void
      */
     public static function view_impressum() {
-        global $USER, $OUTPUT;
+        global $USER, $OUTPUT, $CFG;
         $coodleuser = new coodle_user();
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
-
+        $pixurl = $CFG->wwwroot."/https://wuk.wunderbyte.at/local/coodle/pix/";
+        $templatedata->pixurl = $pixurl;
         return [
             'templates' => [
                 [
