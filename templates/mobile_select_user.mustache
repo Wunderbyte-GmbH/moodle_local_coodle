@@ -14,11 +14,9 @@
 {{=<% %>=}}
 <div>
     <h1>Select User</h1>
-    <%#userchosen/>
     <h3>
-        <%clientfirstname%> <%clientlastname%>
+        <%userchosen.clientfirstname%> <%userchosen.clientlastname%>
     </h3>
-    <%/userchosen/>
     <%#users%>
 <ion-button expand="block" color="light" core-site-plugins-call-ws
     name="local_coodle_set_coodle_preferences" [params]='{ "preferences": [ { "name": "coodleuser_chosen", "value": "<%userid%>", "userid": <%advisorid%> } ] }'
