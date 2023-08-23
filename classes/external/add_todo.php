@@ -68,6 +68,7 @@ class add_todo extends external_api {
         $data->usertodo = 1;
 
         $todo = new \local_coodle\todo();
+        $todo->add_todo();
 
         $todoanswer['error'] = '';
 
