@@ -151,5 +151,15 @@ $functions = array(
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
         ),
+        'local_coodle_add_todo' => array(
+                'classname' => '\local_coodle\external\add_todo',
+                'method' => 'execute',
+                'description' => 'add_todo',
+                'type' => 'write',
+                'ajax' => true,
+                'services'    => [
+                        MOODLE_OFFICIAL_MOBILE_SERVICE,
+                    ],
+        ),
 
 );

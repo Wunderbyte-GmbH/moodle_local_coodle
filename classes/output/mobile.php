@@ -309,6 +309,7 @@ class mobile {
 
         $templatedata->todosopen = $todolist['open'];
         $templatedata->todosdone = $todolist['done'];
+        $templatedata->userid = $userid;
 
         return [
             'templates' => [
