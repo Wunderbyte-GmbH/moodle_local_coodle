@@ -126,7 +126,6 @@ class todo {
     public static function set_todo_usertodo(int $todoid, int $usertodo) {
         global $DB;
 
-
         $params = array(
             'usertodo' => $usertodo,
             'id' => $todoid

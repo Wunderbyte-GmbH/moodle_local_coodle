@@ -130,7 +130,6 @@ function xmldb_local_coodle_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2023070602, 'local', 'coodle');
     }
 
-
     if ($oldversion < 2023082200) {
         // Add table local_coodle_adresses
         $table = new xmldb_table('local_coodle_todos');
