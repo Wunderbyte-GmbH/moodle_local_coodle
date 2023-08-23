@@ -47,6 +47,7 @@ class todo {
         $tododata->timemodified = time();
         $tododata->deleted = 0;
         $tododata->text = $data->text;
+        $tododata->usertodo = $data->usertodo;
         $this->todo = $tododata;
     }
 
