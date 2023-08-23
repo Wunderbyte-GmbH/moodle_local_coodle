@@ -134,7 +134,7 @@ function xmldb_local_coodle_upgrade($oldversion) {
     if ($oldversion < 2023082200) {
         // Add table local_coodle_adresses
         $table = new xmldb_table('local_coodle_todos');
-        $field = new xmldb_field('usertodo', XMLDB_TYPE_INTEGER, null, null, null, null, null);
+        $field = new xmldb_field('usertodo', XMLDB_TYPE_INTEGER, '1', null, null, null, null);
         if (!$dbman->field_exists($table, $field)) {
             $dbman->add_field($table, $field);
         }

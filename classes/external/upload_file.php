@@ -84,7 +84,13 @@ class upload_file extends external_api {
             $folder = "3";
         }
 
-        $context = \context_user::instance($USER->id);
+        // Check if a different user was chosen in the app
+        $userid = get_user_preferences('coodleuser_chosen');
+
+        if ($userid < 1) {
+            $userid = $USER->id;
+        }
+        $context = \context_user::instance($userid);
         require_capability('moodle/user:manageownfiles', $context);
 
         $maxbytes = $CFG->userquota;
@@ -112,7 +118,7 @@ class upload_file extends external_api {
                     'component'    => $file->get_component(),
                     'filearea'     => 'clientfiles',
                     'itemid'       => 0,
-                    'filepath'     => '/'.$USER->id.'/'.$folder.'/',
+                    'filepath'     => '/'.$userid.'/'.$folder.'/',
                     'filename'     => $file->get_filename(),
                     'timecreated'  => time(),
                     'timemodified' => time(),
