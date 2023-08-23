@@ -26,7 +26,7 @@
             <%/empty%>
             <%^empty%>
             <ion-list>
-              <%#open%>
+              <%#todos.open%>
               <ion-item>
 				      <%^deleted%>
                 <ion-checkbox
@@ -44,10 +44,10 @@
 				      <%/deleted%>
                 <ion-label style="margin-left: 10px;"> <%text%></ion-label>
               </ion-item>
-              <%/open%>
+              <%/todos.open%>
             </ion-list>
             <ion-list>
-              <%#done%>
+              <%#todos.done%>
               <ion-item>
 				      <%^deleted%>
                 <ion-checkbox
@@ -65,7 +65,7 @@
 				      <%/deleted%>
                 <ion-label style="margin-left: 10px;"> <%text%></ion-label>
               </ion-item>
-              <%/done%>
+              <%/todos.done%>
             </ion-list>
             <%/empty%>
         </ion-col>
