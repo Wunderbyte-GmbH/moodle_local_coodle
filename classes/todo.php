@@ -69,15 +69,16 @@ class todo {
             $sql .= " AND t.deleted = $status";
         }
         $todos = $DB->get_records_sql($sql);
-        $todolist = [];
+        $todolist['open'] = [];
+        $todolist['done'] = [];
         foreach ($todos as $todo) {
             if ($todo->deleted == 1) {
                 $todo->del = 1;
+                $todolistopen['done'][] = $todo;
+            } else {
+                $todo->del = 0;
+                $todolistopen['open'][] = $todo;
             }
-            if ($todo->deleted == 2) {
-                $todo->usertodo = 1;
-            }
-            $todolist[] = $todo;
         }
         return $todolist;
     }

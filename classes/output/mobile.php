@@ -290,7 +290,6 @@ class mobile {
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
         $userchosen = get_user_preferences('coodleuser_chosen');
         $todolist = [];
-        $template = 'local_coodle/mobile_todos';
         if ($coodleusersettings->isadvisor) {
             if($userchosen) {
                 $userid = $userchosen;
@@ -304,8 +303,9 @@ class mobile {
         $todolist = $todo->load_todolist_by_userid($userid, 0);
 
         // TODO: change stats!
-        if (!empty($todolist)) {
-            $templatedata->todos = $todolist;
+        if (!empty($todolist['open'])) {
+            $templatedata->todosopen = $todolist['open'];
+            $templatedata->todosdone = $todolist['done'];
         } else {
             $templatedata->empty = 1;
         }
@@ -313,7 +313,7 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template($template, $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_todos', $templatedata),
                     'cache-view' => false
                 ],
             ],
