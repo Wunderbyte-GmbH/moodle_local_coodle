@@ -74,10 +74,10 @@ class todo {
         foreach ($todos as $todo) {
             if ($todo->deleted == 1) {
                 $todo->del = 1;
-                $todolistopen['done'][] = $todo;
+                $todolist['done'][] = $todo;
             } else {
                 $todo->del = 0;
-                $todolistopen['open'][] = $todo;
+                $todolist['open'][] = $todo;
             }
         }
         return $todolist;
