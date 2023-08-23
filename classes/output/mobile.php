@@ -303,12 +303,13 @@ class mobile {
         $todolist = $todo->load_todolist_by_userid($userid, 0);
 
         // TODO: change stats!
-        if (!empty($todolist['open'])) {
-            $templatedata->todosopen = $todolist['open'];
-            $templatedata->todosdone = $todolist['done'];
-        } else {
+        if (empty($todolist['open'])) {
             $templatedata->empty = 1;
         }
+
+        $templatedata->todosopen = $todolist['open'];
+        $templatedata->todosdone = $todolist['done'];
+
         return [
             'templates' => [
                 [

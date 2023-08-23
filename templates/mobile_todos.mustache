@@ -24,50 +24,30 @@
               </ion-item>
             </ion-list>
             <%/empty%>
-            <%^empty%>
             <ion-list>
-              <%#todos.open%>
+              <%#todosopen%>
               <ion-item>
-				      <%^deleted%>
                 <ion-checkbox
-                core-site-plugins-call-ws checked
+                core-site-plugins-call-ws
                 name="local_coodle_change_todo" [params]="{todoid: <%id%>, method: 'done'}"
                 confirmMessage="Confirm?"
                 refreshOnSuccess="true"></ion-checkbox>
-		      		<%/deleted%>
-				      <%#deleted%>
-                <ion-checkbox
-                core-site-plugins-call-ws
-                name="local_coodle_change_todo" [params]="{todoid: <%id%>, method: 'uncheck'}"
-                confirmMessage="Confirm?"
-                refreshOnSuccess="true"></ion-checkbox>
-				      <%/deleted%>
                 <ion-label style="margin-left: 10px;"> <%text%></ion-label>
               </ion-item>
-              <%/todos.open%>
+              <%/todosopen%>
             </ion-list>
-            <ion-list>
-              <%#todos.done%>
+            <ion-list style="margin-top: 20px">
+              <%#todosdone%>
               <ion-item>
-				      <%^deleted%>
                 <ion-checkbox
                 core-site-plugins-call-ws checked
-                name="local_coodle_change_todo" [params]="{todoid: <%id%>, method: 'done'}"
-                confirmMessage="Confirm?"
-                refreshOnSuccess="true"></ion-checkbox>
-		      		<%/deleted%>
-				      <%#deleted%>
-                <ion-checkbox
-                core-site-plugins-call-ws
                 name="local_coodle_change_todo" [params]="{todoid: <%id%>, method: 'uncheck'}"
                 confirmMessage="Confirm?"
                 refreshOnSuccess="true"></ion-checkbox>
-				      <%/deleted%>
                 <ion-label style="margin-left: 10px;"> <%text%></ion-label>
               </ion-item>
-              <%/todos.done%>
+              <%/todosdone%>
             </ion-list>
-            <%/empty%>
         </ion-col>
       </ion-row>
   </ion-grid>
