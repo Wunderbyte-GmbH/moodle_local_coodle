@@ -402,7 +402,7 @@ class mobile {
      * @return array mobiletemplatedata
      */
     public static function view_test() {
-        global $USER, $OUTPUT, $CFG;
+        global $OUTPUT, $CFG;
         // TODO: change and write functions!
         $templatedata = new stdClass();
 
