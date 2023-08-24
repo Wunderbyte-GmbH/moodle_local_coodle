@@ -413,17 +413,10 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_test', $templatedata),
                 ],
             ],
-            'javascript' => "async presentAlert() {
-                console.log('testi');
-                const alert = await this.AlertController.create({
-                  header: 'Alert',
-                  subHeader: 'Subtitle',
-                  message: 'This is an alert message.',
-                  buttons: ['OK']
-                });
-
-                await alert.present();
-              }",
+            'javascript' => "this.openModal = async () => {
+                this.AlertController.create({header: 'Hallo Welt'}).then(alert => alert.present());
+            }
+            }",
             'otherdata' => '',
         ];
     }
