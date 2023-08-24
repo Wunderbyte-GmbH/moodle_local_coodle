@@ -86,23 +86,50 @@
       </div>
       <div class="card card-beratung text-white mb-4">
         <div class="card-body">
-          <h5 class="card-title">
+          <h5 class="card-title my-2">
             Beratung
             <button
-              class="btn btn-dark myuserbtn"
+              class="btn btn-dark pull-right"
               data-toggle="modal"
               data-target="#uploadForm"
               data-action="local-coodle-add-file"
               data-clientid="{{ clientid }}"
               data-doctype="3"
             >
-              Upload File
+            <i
+            class="fa fa-file text-white"
+            aria-hidden="true"
+            data-action="local-coodle-add-file"
+            data-clientid="{{ clientid }}"
+          ></i>
             </button>
           </h5>
-          <ul class="list-group" id="files3-{{ uniqid }}">
+          <ul class="list-group mt-4" id="files3-{{ uniqid }}">
             {{#files.3}}
             {{>local_coodle/files}}
             {{/files.3}}
+          </ul>
+
+          <h5 class="card-title my-2">
+            Info<button
+              class="btn btn-dark btn-primary-outline pull-right"
+              data-action="local-coodle-add-link"
+              data-clientid="{{ clientid }}"
+            >
+              <i
+                class="fa fa-link text-white"
+                aria-hidden="true"
+                data-action="local-coodle-add-link"
+                data-clientid="{{ clientid }}"
+              ></i>
+            </button>
+          </h5>
+          <ul class='list-group mt-4'>
+          {{#links}}
+            <li class='list-group-item'>
+              <a href='{{url}}'>{{text}}</a>
+            </li>
+          {{/links}}
           </ul>
         </div>
       </div>
@@ -147,7 +174,7 @@
           </button>
         </h5>
           {{#directions}}
-          <div class="mt-2" data-type="direction">
+          <div class="mt-4" data-type="direction">
           {{title}}
           <button
           class="btn btn-dark pull-right btn-primary-outline text-white ml-2"
@@ -174,7 +201,6 @@
             data-clientid="{{ clientid }}"
             data-id="{{ id }}"
           ></i></button>
-
             {{{text}}}
           </div>
           {{/directions}}

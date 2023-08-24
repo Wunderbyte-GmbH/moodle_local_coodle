@@ -64,9 +64,9 @@ $string['mobilelogin'] = 'Mobile';
 
 // TODO: add all strings.
 $string[''] = 'Teilnehmer_innen';
-$string[''] = 'Gruppen';
-$string[''] = 'Kalender';
-$string[''] = 'Forum';
+$string['groups'] = 'Gruppen';
+$string['calendar'] = 'Kalender';
+$string['forum'] = 'BeraterinnenAustausch';
 $string[''] = 'Vorlagen';
 $string[''] = 'User hinzufügen';
 

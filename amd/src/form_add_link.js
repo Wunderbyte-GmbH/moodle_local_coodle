@@ -25,14 +25,7 @@ import ModalForm from 'core_form/modalform';
 import {get_string as getString} from 'core/str';
 
 const SELECTORS = {
-    LINK: '.card-info',
-};
-
-/**
- * Defines dataset Actions
- */
-const ACTIONS = {
-    ADD_LINK: 'local-coodle-add-link',
+    ADD_FILE: '[data-action="local-coodle-add-link"]',
 };
 
 /**
@@ -40,17 +33,18 @@ const ACTIONS = {
  *
  */
 export const init = () => {
-    document.querySelector(SELECTORS.LINK).addEventListener('click', function(e) {
-        let target = e.target;
-        if (!target.dataset.action) {
-            return;
-        }
-        switch (target.dataset.action) {
-            case ACTIONS.ADD_LINK:
-                openForm(e);
-                break;
-            default:
-                break;
+
+    // Find all container.
+    const containers = document.querySelectorAll(SELECTORS.ADD_FILE);
+
+    containers.forEach(element => {
+        if (!element.dataset.initialized) {
+            element.addEventListener('click', openForm);
+            element.dataset.initialized = true;
+        } else {
+            // Just to make sure during development that this is not called to often.
+            // eslint-disable-next-line no-console
+            console.log('unnecessary call of init');
         }
     });
 };

@@ -65,7 +65,7 @@ const initEventListener = () => {
                 todoCheck(target, target.dataset.id);
                 break;
             case ACTIONS.DELETE:
-                todoDelete(target, target.dataset.id);
+                linkDelete(target, target.dataset.id);
                 break;
             case ACTIONS.UNCHECK:
                 todoUncheck(target, target.dataset.id);
