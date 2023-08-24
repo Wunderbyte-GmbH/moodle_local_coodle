@@ -413,11 +413,10 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_coodle/mobile_test', $templatedata),
                 ],
             ],
-            'javascript' => "this.openModal = async () => {
-                this.AlertController.create({header: 'Hallo Welt'}).then(alert => alert.present());
-            }
-            ",
+            'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/modal.js"),
             'otherdata' => '',
         ];
     }
 }
+
+
