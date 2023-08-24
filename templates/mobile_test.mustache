@@ -13,7 +13,13 @@
 }}
 
 {{=<% %>=}}
-
+<ion-button (click)="if(CONTENT_OTHERDATA.showmodal == 1) {
+  this.CONTENT_OTHERDATA.showmodal = 0;
+} else {
+  this.CONTENT_OTHERDATA.showmodal = 1;
+}">
+  test
+</ion-button>
 
 <ion-item lines="none" *ngIf="CONTENT_OTHERDATA.showmodal">
   <ion-input placeholder="Type here" [(ngModel)]="todo"></ion-input>
