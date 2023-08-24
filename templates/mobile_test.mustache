@@ -13,9 +13,12 @@
 }}
 
 {{=<% %>=}}
+<ion-button (click)="this.CONTENT_OTHERDATA.showModal = 1">
+  test
+</ion-button>
 
-<ion-content class="ion-padding">
-  <ion-button id="open-modal" (click)="openModal()" expand="block">Open</ion-button>
-  <p>{{ message }}</p>
-</ion-content>
-
+<ion-item lines="none" *ngIf = "CONTENT_OTHERDATA.showModal">
+  <ion-input placeholder="Type here" [(ngModel)]="todo"></ion-input>
+  <ion-button slot="end" name="local_coodle_add_todo" refreshOnSuccess="true"
+  core-site-plugins-call-ws [params]="{userid: <%userid%>, todo: todo}">Submit</ion-button>
+</ion-item>
