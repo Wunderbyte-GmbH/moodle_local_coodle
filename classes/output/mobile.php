@@ -415,7 +415,7 @@ class mobile {
             ],
             'javascript' => "async presentAlert() {
                 console.log('testi');
-                const alert = await this.alertControllerProvider.create({
+                const alert = await this.AlertController.create({
                   header: 'Alert',
                   subHeader: 'Subtitle',
                   message: 'This is an alert message.',
