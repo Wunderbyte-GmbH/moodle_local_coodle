@@ -414,7 +414,7 @@ class mobile {
                 ],
             ],
             'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/modal.js"),
-            'otherdata' => '[showmodal => false]',
+            'otherdata' => ['showmodal' => false],
         ];
     }
 }
