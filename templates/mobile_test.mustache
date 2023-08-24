@@ -13,10 +13,12 @@
 }}
 
 {{=<% %>=}}
+<ion-button (click)="this.CONTENT_OTHERDATA.showmodal = 1">
+  test
+</ion-button>
 
-
-<ion-item lines="none">
+<ion-item lines="none" \*ngIf="CONTENT_OTHERDATA.showmodal">
   <ion-input placeholder="Type here" [(ngModel)]="todo"></ion-input>
   <ion-button slot="end" name="local_coodle_add_todo" refreshOnSuccess="true"
-  core-site-plugins-call-ws [params]="{userid: <%userid%>, todo: todo}">Submit</ion-button>
+  core-site-plugins-call-ws [params]="{todo: todo}">Submit</ion-button>
 </ion-item>
