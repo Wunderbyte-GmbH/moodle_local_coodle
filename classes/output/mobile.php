@@ -406,17 +406,6 @@ class mobile {
         // TODO: change and write functions!
         $templatedata = new stdClass();
 
-        $events = \local_coodle\external\get_calendar_events::execute($USER->id);
-        $templatedata->events = [];
-        foreach($events['events'] as $event) {
-            $templatedata->events[] = [
-                'name' => $event->name,
-                'place' => $event->place,
-                'timestart' => date("d.m H:i", $event->timestart),
-            ];
-        }
-        $templatedata->today = date("d.m H:i", time());
-
         return [
             'templates' => [
                 [
