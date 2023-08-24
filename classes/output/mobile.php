@@ -416,7 +416,7 @@ class mobile {
             'javascript' => "this.openModal = async () => {
                 this.AlertController.create({header: 'Hallo Welt'}).then(alert => alert.present());
             }
-            }",
+            ",
             'otherdata' => '',
         ];
     }
