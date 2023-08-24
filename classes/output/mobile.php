@@ -421,10 +421,10 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_dates', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_test', $templatedata),
                 ],
             ],
-            'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/syncData.js"),
+            'javascript' => '',
             'otherdata' => '',
         ];
     }
