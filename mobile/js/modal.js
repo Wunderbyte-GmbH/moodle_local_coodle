@@ -1,6 +1,6 @@
 this.openModal = async () => {
     this.AlertController.create({header: 'Hallo Welt', message:
-    <ion-toolbar>
+    '<ion-toolbar>
       <ion-item lines="none">
         <ion-input placeholder="Type here" [(ngModel)]="todo"></ion-input>
         <ion-button slot="end" name="local_coodle_add_todo" refreshOnSuccess="true"
