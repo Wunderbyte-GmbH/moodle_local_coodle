@@ -60,9 +60,19 @@
 </ion-fab>
 
   <ion-modal lines="none" *ngIf="CONTENT_OTHERDATA.showmodal">
-    <ion-input placeholder="Type here" [(ngModel)]="todo"></ion-input>
-    <ion-button slot="end" name="local_coodle_add_todo" refreshOnSuccess="true"
-    core-site-plugins-call-ws [params]="{userid: <%userid%>, todo: todo}">Submit</ion-button>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Modal</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="setOpen(false)">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-input placeholder="Type here" [(ngModel)]="todo"></ion-input>
+      <ion-button slot="end" name="local_coodle_add_todo" refreshOnSuccess="true"
+      core-site-plugins-call-ws [params]="{userid: <%userid%>, todo: todo}">Submit</ion-button>
+    </ion-content>
   </ion-modal>
 
 
