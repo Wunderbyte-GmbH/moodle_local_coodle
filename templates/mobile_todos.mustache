@@ -59,7 +59,7 @@
   </ion-fab-button>
 </ion-fab>
 
-<div style="position: absolute; bottom: 0; height: 300px; background: white;" *ngIf="CONTENT_OTHERDATA.showmodal">
+<div style="position: absolute; bottom: 0; height: 300px; width:100vw; background: white;" *ngIf="CONTENT_OTHERDATA.showmodal">
   <ion-input placeholder="Type here" [(ngModel)]="todo"></ion-input>
   <ion-button slot="end" name="local_coodle_add_todo" refreshOnSuccess="true"
   core-site-plugins-call-ws [params]="{userid: <%userid%>, todo: todo}">Submit</ion-button>
