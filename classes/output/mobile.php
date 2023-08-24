@@ -283,7 +283,7 @@ class mobile {
      * @return array mobiletemplatedata
      */
     public static function view_todos() {
-        global $USER, $OUTPUT;
+        global $USER, $OUTPUT, $CFG;
         $todo = new \local_coodle\todo();
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(238, 58, 47)";
@@ -319,8 +319,8 @@ class mobile {
                     'cache-view' => false
                 ],
             ],
-            'javascript' => '',
-            'otherdata' => '',
+            'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/modal.js"),
+            'otherdata' => ['showmodal' => 0],
         ];
     }
 
