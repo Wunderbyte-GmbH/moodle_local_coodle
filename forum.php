@@ -41,7 +41,7 @@ $PAGE->set_secondary_navigation(true);
 
 $PAGE->set_url(new moodle_url('/local/coodle/forum.php', array('id' => $id)));
 $PAGE->set_pagelayout('standard');
-//Get User Object
+// Get User Object
 $client->name = fullname(get_complete_user_data('id', $id));
 $title = $client->name;
 $PAGE->set_title($title);

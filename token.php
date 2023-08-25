@@ -88,7 +88,7 @@ if (!empty($user)) {
     // setup user session to check capability
     \core\session\manager::set_user($user);
 
-    //check if the service exists and is enabled
+    // check if the service exists and is enabled
     $service = $DB->get_record('external_services', array('shortname' => $serviceshortname, 'enabled' => 1));
     if (empty($service)) {
         // will throw exception if no token found

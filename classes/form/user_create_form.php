@@ -71,13 +71,12 @@ class user_create_form extends dynamic_form {
         $mform->setType('lastname', PARAM_RAW);
         $mform->addRule('lastname', null, 'required', null, 'server');
 
-
         $mform->addElement('text', 'email', get_string('email'), 'size="20"');
         $mform->setType('email', PARAM_EMAIL);
         $mform->addRule('email', null, 'required', null, 'server');
 
         if (!\local_coodle\advisor::is_advisor()) {
-            //TODO add select
+            // TODO add select
             $userlist = \local_coodle\advisor::get_advisor_list();
         } else {
             global $USER;

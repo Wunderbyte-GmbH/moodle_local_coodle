@@ -99,14 +99,14 @@ class coodle_links {
      * @return stdClass
      */
     // public static function set_link_status(int $linkid, int $status) {
-    //     global $DB, $USER;
-    //     // link: ADD constants. 1 2 3 4 -.
-    //     $params = array(
-    //         'deleted' => $status,
-    //         'id' => $linkid
-    //     );
-    //     $DB->update_record('local_coodle_links', $params);
-    //     unset($params['deleted']);
-    //     return $DB->get_record('local_coodle_links', $params);
+    // global $DB, $USER;
+    // link: ADD constants. 1 2 3 4 -.
+    // $params = array(
+    // 'deleted' => $status,
+    // 'id' => $linkid
+    // );
+    // $DB->update_record('local_coodle_links', $params);
+    // unset($params['deleted']);
+    // return $DB->get_record('local_coodle_links', $params);
     // }
 }

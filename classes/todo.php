@@ -113,7 +113,6 @@ class todo {
     public static function set_todo_status(int $todoid, int $status) {
         global $DB;
 
-
         $params = array(
             'deleted' => $status,
             'id' => $todoid

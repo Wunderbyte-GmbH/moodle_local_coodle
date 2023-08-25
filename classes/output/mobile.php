@@ -73,7 +73,6 @@ class mobile {
         $templatedata->bg = "rgb(94, 160, 242)";
         $templatedata->text = "#fff";
 
-
         return [
             'templates' => [
                 [

@@ -65,7 +65,6 @@ class upload_file extends external_api {
 
         $params = self::validate_parameters(self::execute_parameters(), array('draftid' => $draftid, 'filename' => $filename));
 
-
         if (isguestuser()) {
             throw new \invalid_parameter_exception('Guest users cannot upload files');
         }

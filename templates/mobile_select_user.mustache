@@ -19,12 +19,11 @@
     </h3>
     <%/userchosen.clientfirstname%>
     <%#users%>
-<ion-button expand="block" color="light" core-site-plugins-call-ws
-    name="local_coodle_set_coodle_preferences" [params]='{ "preferences": [ { "name": "coodleuser_chosen", "value": "<%userid%>", "userid": <%advisorid%> } ] }'
-    (onSuccess)="syncData()"
-    >
-    <%clientfirstname%> <%clientlastname%>
-</ion-button>
+    <ion-button expand="block" color="light" core-site-plugins-call-ws
+        name="local_coodle_set_coodle_preferences" [params]='{ "preferences": [ { "name": "coodleuser_chosen", "value": "<%userid%>", "userid": <%advisorid%> } ] }'
+        (onSuccess)="syncData()"
+        >
+        <%clientfirstname%> <%clientlastname%>
+    </ion-button>
     <%/users%>
-
 </div>
