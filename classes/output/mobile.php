@@ -57,7 +57,7 @@ class mobile {
         $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
 
         if ($coodleusersettings->isadvisor) {
-            if($userchosen['userid']) {
+            if ($userchosen['userid']) {
                 $userid = $userchosen['userid'];
             } else {
                 $userid = $USER->id;
@@ -130,7 +130,7 @@ class mobile {
                 $userid = $userchosen['userid'];
             } else {
                 $userid = $USER->id;
-                $template = 'local_coodle/mobile_nouserchosen';
+                return self::select_user();
             }
         } else {
             $userid = $USER->id;
@@ -138,7 +138,6 @@ class mobile {
         $coodleuser->load_user($userid);
         $templatedata = new stdClass();
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(3);
-        $templatedata->hl = "Beratungsinhalt";
         $templatedata->bg = "rgb(33, 181, 98)";
         $templatedata->text = "#fff";
 
