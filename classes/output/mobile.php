@@ -54,11 +54,11 @@ class mobile {
         $coodleuser = new coodle_user();
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
         $template = 'local_coodle/mobile_todos';
-        $userchosen = get_user_preferences('coodleuser_chosen');
+        $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
 
         if ($coodleusersettings->isadvisor) {
-            if($userchosen) {
-                $userid = $userchosen;
+            if($userchosen['userid']) {
+                $userid = $userchosen['userid'];
             } else {
                 $userid = $USER->id;
                 return self::select_user();
@@ -123,11 +123,11 @@ class mobile {
         $coodleuser = new coodle_user();
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
         $template = 'local_coodle/mobile_todos';
-        $userchosen = get_user_preferences('coodleuser_chosen');
+        $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
 
         if ($coodleusersettings->isadvisor) {
-            if($userchosen) {
-                $userid = $userchosen;
+            if($userchosen['userid']) {
+                $userid = $userchosen['userid'];
             } else {
                 $userid = $USER->id;
                 $template = 'local_coodle/mobile_nouserchosen';
@@ -165,11 +165,11 @@ class mobile {
 
         $coodleuser = new coodle_user();
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
-        $userchosen = get_user_preferences('coodleuser_chosen');
+        $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
 
         if ($coodleusersettings->isadvisor) {
-            if ($userchosen) {
-                $userid = $userchosen;
+            if ($userchosen['userid']) {
+                $userid = $userchosen['userid'];
             } else {
                 $userid = $USER->id;
                 return self::select_user();
@@ -287,11 +287,11 @@ class mobile {
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(238, 58, 47)";
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
-        $userchosen = get_user_preferences('coodleuser_chosen');
+        $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
         $todolist = [];
         if ($coodleusersettings->isadvisor) {
             if($userchosen) {
-                $userid = $userchosen;
+                $userid = $userchosen['userid'];
             } else {
                 return self::select_user();
             }
@@ -336,10 +336,10 @@ class mobile {
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(251, 135, 66)";
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
-        $userchosen = get_user_preferences('coodleuser_chosen');
+        $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
         if ($coodleusersettings->isadvisor) {
             if($userchosen) {
-                $userid = $userchosen;
+                $userid = $userchosen['userid'];
             } else {
                 return self::select_user();
             }
@@ -372,15 +372,15 @@ class mobile {
     public static function select_user() {
         global $USER, $OUTPUT, $CFG;
         // TODO: change and write functions!
-        $userchosen = get_user_preferences('coodleuser_chosen');
+        $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
 
         if (\local_coodle\settings_manager::is_advisor()) {
             $users = \local_coodle\coodle_user::get_coodle_users($USER->id);
             $users = array_values($users);
         }
 
-        if ($userchosen > 0) {
-            $user = \local_coodle\coodle_user::get_coodle_user($userchosen);
+        if ($userchosen['userid'] > 0) {
+            $user = \local_coodle\coodle_user::get_coodle_user($userchosen['userid']);
         }
 
         return [

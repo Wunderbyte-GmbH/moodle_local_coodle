@@ -70,6 +70,9 @@ class add_todo extends external_api {
         $todo = new \local_coodle\todo($data);
         $todo->add_todo();
 
+        $message = new \local_coodle\coodle_pushnotification((int) $todo->userid);
+        $message->send_todo_message($todo);
+
         $todoanswer['error'] = '';
 
         return $todoanswer;

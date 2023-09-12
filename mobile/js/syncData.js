@@ -14,6 +14,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 this.syncData = async () => {
+    this.CoreEventsProvider.trigger('USERSELECTED', 'userselected');
     const currentSiteId = this.CoreSitesProvider.getCurrentSiteId();
             try {
                 await this.CoreSettingsHelperProvider.synchronizeSite(false, currentSiteId);
@@ -21,4 +22,6 @@ this.syncData = async () => {
                 this.CoreDomUtilsProvider.showErrorModalDefault(error, 'core.settings.sitesyncfailed', true);
             }
     this.refreshContent();
-}
+};
+
+
