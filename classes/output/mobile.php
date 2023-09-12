@@ -57,8 +57,8 @@ class mobile {
         $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
 
         if ($coodleusersettings->isadvisor) {
-            if ($userchosen['userid']) {
-                $userid = $userchosen['userid'];
+            if ($userchosen->userid) {
+                $userid = $userchosen->userid;
             } else {
                 $userid = $USER->id;
                 return self::select_user();
@@ -126,8 +126,8 @@ class mobile {
         $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
 
         if ($coodleusersettings->isadvisor) {
-            if($userchosen['userid']) {
-                $userid = $userchosen['userid'];
+            if($userchosen->userid) {
+                $userid = $userchosen->userid;
             } else {
                 $userid = $USER->id;
                 return self::select_user();
@@ -167,8 +167,8 @@ class mobile {
         $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
 
         if ($coodleusersettings->isadvisor) {
-            if ($userchosen['userid']) {
-                $userid = $userchosen['userid'];
+            if ($userchosen->userid) {
+                $userid = $userchosen->userid;
             } else {
                 $userid = $USER->id;
                 return self::select_user();
@@ -290,7 +290,7 @@ class mobile {
         $todolist = [];
         if ($coodleusersettings->isadvisor) {
             if($userchosen) {
-                $userid = $userchosen['userid'];
+                $userid = $userchosen->userid;
             } else {
                 return self::select_user();
             }
@@ -338,7 +338,7 @@ class mobile {
         $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
         if ($coodleusersettings->isadvisor) {
             if($userchosen) {
-                $userid = $userchosen['userid'];
+                $userid = $userchosen->userid;
             } else {
                 return self::select_user();
             }
@@ -378,8 +378,8 @@ class mobile {
             $users = array_values($users);
         }
 
-        if ($userchosen['userid'] > 0) {
-            $user = \local_coodle\coodle_user::get_coodle_user($userchosen['userid']);
+        if ($userchosen->userid > 0) {
+            $user = \local_coodle\coodle_user::get_coodle_user($userchosen->userid);
         }
 
         return [
