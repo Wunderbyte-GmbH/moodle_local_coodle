@@ -13,12 +13,8 @@
 }}
 
 {{=<% %>=}}
-<ion-button (click)="openModal()">
-  test
-</ion-button>
-
-<ion-content lines="none" *ngIf="CONTENT_OTHERDATA.showmodal">
-  <ion-input placeholder="Type here" [(ngModel)]="todo"></ion-input>
-  <ion-button slot="end" name="local_coodle_add_todo" refreshOnSuccess="true"
-  core-site-plugins-call-ws [params]="{todo: todo}">Submit</ion-button>
-</ion-content>
+<div>
+{{#events}}
+<li><b>{{timestart}}</b> - {{name}}</li>
+{{/events}}
+</div>

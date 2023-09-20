@@ -348,8 +348,7 @@ class mobile {
         } else {
             $userid = $USER->id;
         }
-        $linklist = $links->load_linklist_by_userid($userid);
-        $templatedata->links = $linklist;
+
         $coodleuser = new \local_coodle\coodle_user();
         $coodleuser->load_user($userid);
         $templatedata->adresscard = \local_coodle\advisor::get_advisor_addrescard($coodleuser->advisorid);
@@ -406,6 +405,15 @@ class mobile {
         global $OUTPUT, $CFG;
         // TODO: change and write functions!
         $templatedata = new stdClass();
+
+        $events = \local_coodle\external\get_calendar_events::execute($id);
+        $templatedata->events = [];
+        foreach($events['events'] as $event) {
+            $templatedata->events[] = [
+                'name' => $event->name,
+                'timestart' => date("d.m H:i", $event->timestart),
+            ];
+        }
 
         return [
             'templates' => [
