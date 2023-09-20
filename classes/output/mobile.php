@@ -402,11 +402,11 @@ class mobile {
      * @return array mobiletemplatedata
      */
     public static function view_test() {
-        global $OUTPUT, $CFG;
+        global $USER, $OUTPUT, $CFG;
         // TODO: change and write functions!
         $templatedata = new stdClass();
 
-        $events = \local_coodle\external\get_calendar_events::execute($id);
+        $events = \local_coodle\external\get_calendar_events::execute($USER->id);
         $templatedata->events = [];
         foreach($events['events'] as $event) {
             $templatedata->events[] = [
