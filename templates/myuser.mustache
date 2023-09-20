@@ -12,7 +12,7 @@
   along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 
-<div class="container">
+<div class="container coodle-dashboard">
   <div class="row">
     <div class="col-md-4 coodle-msg">
       <h3>{{ name }}</h3>
@@ -128,35 +128,22 @@
           {{#links}}
             <li class='list-group-item'>
               <a href='{{url}}'>{{text}}</a>
+              <span
+              class="pull-right"
+              data-action="local-coodle-delete-link"
+              data-id="{{ id }}"
+            >
+              <i
+                class="fa fa-times fa-2x text-danger"
+                aria-hidden="true"
+                data-action="local-coodle-delete-link"
+                data-id="{{ id }}"
+              ></i>
+            </span>
             </li>
           {{/links}}
           </ul>
         </div>
-      </div>
-      <div class="card card-info text-white mb-4">
-        <div class="card-body">
-          <h5 class="card-title">
-            Info<button
-              class="btn btn-dark btn-primary-outline myuserbtn"
-              data-action="local-coodle-add-link"
-              data-clientid="{{ clientid }}"
-            >
-              <i
-                class="fa fa-plus text-white"
-                aria-hidden="true"
-                data-action="local-coodle-add-link"
-                data-clientid="{{ clientid }}"
-              ></i>
-            </button>
-          </h5>
-          <ul class='list-group'>
-          {{#links}}
-            <li class='list-group-item'>
-              <a href='{{url}}'>{{text}}</a>
-            </li>
-          {{/links}}
-          </ul>
-           </div>
       </div>
       <div class="card card-direction text-white mb-4">
         <div class="card-body">
@@ -276,10 +263,11 @@
 
 {{#js}}
 require([ 'local_coodle/form_add_todo','local_coodle/form_add_file',
-'local_coodle/actions_file', 	'local_coodle/form_add_link', 'local_coodle/form_add_direction', 'local_coodle/actions_direction'], function(todoform, fileform, file, links, directionform, directionactions ) {
+'local_coodle/actions_file', 	'local_coodle/form_add_link', 'local_coodle/form_add_direction', 'local_coodle/actions_direction', 'local_coodle/actions_link'], function(todoform, fileform, file, links, directionform, directionactions, linkactions ) {
   directionform.init();
   directionactions.init();
   links.init();
   todoform.init();
+  linkactions.init();
   fileform.init(); file.init('files1-{{ uniqid }}');
   file.init('files3-{{ uniqid }}'); }); {{/js}}

@@ -27,7 +27,7 @@ import Ajax from 'core/ajax';
  */
 const ACTIONS = {
     CHECK: 'local-coodle-todo-check',
-    DELETE: 'local-coodle-link-delete',
+    DELETE: 'local-coodle-delete-link',
     UNCHECK: 'local-coodle-todo-uncheck',
     COLLAPSE: 'local-coodle-todo-collapse',
     MAKEUSERTODO: 'local-coodle-todo-usertodo',
@@ -111,10 +111,11 @@ const todoCheck = (target, id) => {
  * @param {Integer} id the id of the todo
  */
 const linkDelete = (target, id) => {
+    console.log('delete');
     Ajax.call([{
-        methodname: "local_coodle_link_delete",
+        methodname: "local_coodle_delete_link",
         args: {
-            'linkid': parseInt(id),
+            'id': parseInt(id),
         },
         done: function() {
             target.closest('li').remove();

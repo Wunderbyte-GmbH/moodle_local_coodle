@@ -140,12 +140,15 @@ class mobile {
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(3);
         $templatedata->bg = "rgb(33, 181, 98)";
         $templatedata->text = "#fff";
+        $links = new \local_coodle\link();
+        $linklist = $links->load_linklist_by_userid($userid);
+        $templatedata->links = $linklist;
 
         return [
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_beratung', $templatedata),
                     'cache-view' => false
                 ],
             ],
@@ -180,7 +183,7 @@ class mobile {
 
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(163, 96, 239)";
-        $templatedata->adresses = $coodleuser->get_coodleuser_directions($userid);
+        $templatedata->adresses = $coodleuser->get_coodleuser_directions($userchosen->userid);
 
         return [
             'templates' => [

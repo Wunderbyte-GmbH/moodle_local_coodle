@@ -27,6 +27,8 @@ import {get_string as getString} from 'core/str';
 const SELECTORS = {
     ADD_FILE: '[data-action="local-coodle-add-link"]',
 };
+let eventtriggered = false;
+
 
 /**
  * Gets called from mustache template.
@@ -54,7 +56,9 @@ export const init = () => {
  * @param {*} event the click event
  */
  const openForm = event => {
+    if (!eventtriggered) {
 
+    eventtriggered = true;
     let button = event.target;
     const modalForm = new ModalForm({
 
@@ -84,10 +88,11 @@ export const init = () => {
 
     // Show the form.
     modalForm.show().then(() => {
-
+        eventtriggered = false;
         return;
     }).catch(e => {
         // eslint-disable-next-line no-console
         console.log(e);
     });
+    }
 };

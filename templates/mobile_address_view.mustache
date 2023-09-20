@@ -12,18 +12,16 @@
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
   }}
 
-{{=<% %>=}}
-
 <ion-slides pager="true"  class="slide-container" style="background: <%bg%>">
-    <%#adresses%>
+    {{#adresses}}
     <ion-slide class="slide-item">
         <ion-card style="width:100vw;
         padding:20px;">
-            <h2><% title %></h2>
-            <div><% text %></div>
+            <h2>{{title}}</h2>
+            <div>{{{text}}}</div>
         </ion-card>
     </ion-slide>
-    <%/adresses%>
+    {{/adresses}}
 </ion-slides>
 
 <style>

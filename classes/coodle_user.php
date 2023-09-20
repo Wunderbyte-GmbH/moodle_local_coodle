@@ -266,7 +266,6 @@ class coodle_user {
             $tmpdata->title = $direction->title;
             $templatedata[] = $tmpdata;
         }
-
         return $templatedata;
     }
 
