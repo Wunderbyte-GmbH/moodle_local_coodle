@@ -270,4 +270,5 @@
     background: url(https://wuk.wunderbyte.at/local/coodle/pix/coodle.png);
     background-size: contain;
     margin-right: 20px;
+    filter: invert();
 }
