@@ -70,7 +70,8 @@ class mobile {
         $templatedata = new stdClass();
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(1);
         $templatedata->hl = "Dokumente";
-        $templatedata->bg = "rgb(94, 160, 242)";
+        // Green.
+        $templatedata->bg = "rgb(102, 153, 204)";
         $templatedata->text = "#fff";
 
         return [
@@ -99,7 +100,6 @@ class mobile {
         $templatedata->hl = "Bewerbungsunterlagen";
         $templatedata->bg = "#0f47ad";
         $templatedata->text = "#fff";
-        $js = 'const uploadFile = () => { console.log("hijo");}';
 
         return [
             'templates' => [
@@ -122,7 +122,6 @@ class mobile {
         global $USER, $OUTPUT, $CFG;
         $coodleuser = new coodle_user();
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
-        $template = 'local_coodle/mobile_todos';
         $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
 
         if ($coodleusersettings->isadvisor) {
@@ -138,7 +137,7 @@ class mobile {
         $coodleuser->load_user($userid);
         $templatedata = new stdClass();
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(3);
-        $templatedata->bg = "rgb(33, 181, 98)";
+        $templatedata->bg = "#669933;";
         $templatedata->text = "#fff";
         $links = new \local_coodle\link();
         $linklist = $links->load_linklist_by_userid($userid);
@@ -182,8 +181,9 @@ class mobile {
         $coodleuser->load_user($userid);
 
         $templatedata = new stdClass();
-        $templatedata->bg = "rgb(163, 96, 239)";
-        $templatedata->adresses = $coodleuser->get_coodleuser_directions($userchosen->userid);
+        // Address Purple.
+        $templatedata->bg = "rgb(102, 68, 153)";
+        $templatedata->adresses = $coodleuser->get_coodleuser_directions($userid);
 
         return [
             'templates' => [
@@ -256,12 +256,14 @@ class mobile {
         $coodleuser = new coodle_user();
         $coodleuser->load_user($USER->id);
         $templatedata = new stdClass();
+        $templatedata->bg = "rgb(224, 102, 0)";
 
         $events = \local_coodle\external\get_calendar_events::execute($USER->id);
         $templatedata->events = [];
         foreach($events['events'] as $event) {
             $templatedata->events[] = [
                 'name' => $event->name,
+                'location' => $event->name,
                 'timestart' => date("d.m H:i", $event->timestart),
             ];
         }
@@ -287,7 +289,7 @@ class mobile {
         global $USER, $OUTPUT, $CFG;
         $todo = new \local_coodle\todo();
         $templatedata = new stdClass();
-        $templatedata->bg = "rgb(238, 58, 47)";
+        $templatedata->bg = "rgb(204, 0, 51)";
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
         $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
         $todolist = [];
@@ -301,7 +303,7 @@ class mobile {
             $userid = $USER->id;
         }
 
-        $todolist = $todo->load_todolist_by_userid($userid, 0);
+        $todolist = $todo->load_todolist_by_userid($userid, 1);
 
         // TODO: change stats!
         if (empty($todolist['open'])) {
@@ -427,5 +429,3 @@ class mobile {
         ];
     }
 }
-
-

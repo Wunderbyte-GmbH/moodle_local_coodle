@@ -37,8 +37,6 @@ require_once($CFG->libdir . '/externallib.php');
 
 class upload_file extends external_api {
 
-
-
     /**
      * Returns description of method parameters
      *
@@ -84,8 +82,8 @@ class upload_file extends external_api {
         }
 
         // Check if a different user was chosen in the app
-        $userid = get_user_preferences('coodleuser_chosen');
-
+        $coodleuser = json_decode(get_user_preferences('coodleuser_chosen'));
+        $userid = $coodleuser->userid;
         if ($userid < 1) {
             $userid = $USER->id;
         }

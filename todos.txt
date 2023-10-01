@@ -3,4 +3,7 @@
 -delete/edit directions
 -add comments
 
+todo change deleted to status
+
+
 move style to css instead of mustache

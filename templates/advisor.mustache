@@ -41,16 +41,18 @@
           >
         </div>
       </div>
+      {{#advisorcourse}}
       <div class="col-md-4" data-coodleaction="local-coodle-add-advisor-settings">
         <div class="btn-square" data-action="local-coodle-add-advisor-settings">
           <a
-            href="BeraterinnenKurs"
+            href="{{advisorcourse}}"
           >
             <h4>
               <i class="fa fa-cog fa-2x pr-2"></i><br />
               {{#str}} forum, local_coodle {{/str}}            </h4></a
           >
         </div>
+        {{/advisorcourse}}
       </div>
     </div>
   </div>
@@ -72,8 +74,6 @@
     </div>
   </div>
 </div>
-
-
 
   <style>
     .btn-square {

@@ -35,9 +35,9 @@
             ></i>
           </button>
           </h5>
-          <ul>
+          <ul class="list-group">
             {{#events}}
-            <li><b>{{timestart}}</b> - {{name}}</li>
+              {{>local_coodle/events}}
             {{/events}}
           </ul>
         </div>
@@ -59,7 +59,7 @@
               ></i>
             </button>
           </h5>
-          <div class="bg-white">{{>local_coodle/todos}}</div>
+          <div>{{>local_coodle/todos}}</div>
         </div>
       </div>
       <div class="card card-docs text-white mb-4">
@@ -197,23 +197,25 @@
   </div>
 </div>
 
+// TODO: colores
 <style>
   .card-docs {
-    background-color: rgb(94, 160, 242);
+    background-color: rgb(102, 153, 204)
+
   }
   .card-todos {
-    background-color: rgb(238, 58, 47);
+    background-color: rgb(204, 0, 51);
   }
 
   .card-info {
-    background-color: rgb(251, 135, 66);
+    background-color: rgb(224, 102, 0);
   }
   .card-beratung {
-    background-color: rgb(33, 181, 98);
+    background-color: #669933;
   }
 
   .card-direction {
-    background-color: rgb(163, 96, 239);
+    background-color: rgb(102, 68, 153);
   }
   .card-direction img {
     max-width: 100%;

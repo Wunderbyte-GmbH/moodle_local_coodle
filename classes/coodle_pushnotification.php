@@ -82,9 +82,9 @@ class coodle_pushnotification {
     public function send_todo_message($todo) {
         $this->message->name = 'newtodomsg';
         $this->message->subject = get_string('newtodo', 'local_coodle');
-        $this->message->fullmessage = get_string('newtodo:full', 'local_coodle', $todo['text']);
+        $this->message->fullmessage = get_string('newtodo:full', 'local_coodle', $todo->text);
         $this->message->fullmessageformat = FORMAT_MARKDOWN;
-        $this->message->fullmessagehtml = '<p>' . get_string('newtodo:full', 'local_coodle', $todo['text'])
+        $this->message->fullmessagehtml = '<p>' . get_string('newtodo:full', 'local_coodle', $todo->text)
         . '</p>';
         $this->message->smallmessage = get_string('newtodo:small');
 

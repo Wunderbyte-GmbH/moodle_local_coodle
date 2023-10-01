@@ -142,6 +142,18 @@ function xmldb_local_coodle_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2023082200, 'local', 'coodle');
     }
 
+    if ($oldversion < 2023082200) {
+        // Add table local_coodle_adresses
+        $table = new xmldb_table('local_coodle_todos');
+        $field = new xmldb_field('deleted', XMLDB_TYPE_INTEGER, '1', null, null, null, null);
+        if ($dbman->field_exists($table, $field)) {
+            $dbman->rename_field($table, $field, 'rankvalue');
+        }
+
+        // Moodle upgrade complete.
+        upgrade_plugin_savepoint(true, 2023082203, 'local', 'coodle');
+    }
+
     // Automatically generated Moodle v4.0.0 release upgrade line.
     // Put any upgrade step following this.
 

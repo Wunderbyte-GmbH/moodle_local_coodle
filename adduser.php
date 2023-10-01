@@ -47,16 +47,17 @@ $mform = new user_create_form(null, null, 'post', '', [], true, []);
 $mform->add_action_buttons();
 
 if ($mform->is_cancelled()) {
-   // Handle form cancel operation, if cancel button is present on form
+    // Handle form cancel operation, if cancel button is present on form
 
 } else if (!empty($fromform = $mform->get_data())) {
     $userid = user_create_form_helper::create_user($fromform);
-    // TODO: ?.
+    // TODO: ?
     coodle_user::create_coodle_user($userid, $fromform->userid);
     // In this case you process validated data. $mform->get_data() returns data posted in form.
 } else {
     $mform->render();
 }
+
 
 echo $OUTPUT->header();
 

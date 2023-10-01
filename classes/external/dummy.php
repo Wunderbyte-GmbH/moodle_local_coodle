@@ -66,7 +66,7 @@ class dummy extends external_api {
     public static function execute_returns(): external_single_structure {
         return new external_single_structure(array(
             'error' => new external_value(PARAM_TEXT, 'error'),
-            'error' => new external_value(PARAM_TEXT, 'success'),
+            'success' => new external_value(PARAM_TEXT, 'success'),
             )
         );
     }

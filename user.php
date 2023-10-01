@@ -79,6 +79,8 @@ foreach($events['events'] as $event) {
     $templatedata->events[] = [
         'name' => $event->name,
         'timestart' => date("d.m H:i", $event->timestart),
+        'location' => $event->location,
+        'description' => $event->description,
     ];
 }
 

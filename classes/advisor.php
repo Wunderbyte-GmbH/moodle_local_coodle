@@ -55,6 +55,13 @@ class advisor {
 
     protected $data;
 
+    /**
+     * Undocumented function
+     *
+     * @param  integer $userid
+     * @param  integer $courseid
+     * @param  boolean $createadvisor
+     */
     public function __construct(int $userid, int $courseid = 0, bool $createadvisor = false) {
         global $DB;
         if ($createadvisor) {
@@ -69,8 +76,9 @@ class advisor {
     }
 
     /**
+     * Undocumented function
      *
-     * @return $this
+     * @return void
      */
     public function get_advisor() {
         global $DB;

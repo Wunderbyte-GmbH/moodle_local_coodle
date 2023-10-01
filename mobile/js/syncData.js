@@ -23,5 +23,3 @@ this.syncData = async () => {
             }
     this.refreshContent();
 };
-
-

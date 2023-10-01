@@ -63,6 +63,7 @@ class set_advisor_form extends dynamic_form {
      */
     protected function check_access_for_dynamic_submission(): void {
         // TODO: capability to create advisors
+        if(is_siteadmin() || )
         require_capability('moodle/user:manageownfiles', $this->get_context_for_dynamic_submission());
     }
 
@@ -78,7 +79,7 @@ class set_advisor_form extends dynamic_form {
     public function process_dynamic_submission() {
         $data = $this->get_data();
         $courseid = \local_coodle\advisor::create_course_for_adivisor($data->userid);
-        $advisor = new \local_coodle\advisor($data->userid, $courseid,  true);
+        new \local_coodle\advisor($data->userid, $courseid,  true);
         return $data;
     }
 

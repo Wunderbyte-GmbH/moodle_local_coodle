@@ -144,7 +144,11 @@ const todoMakeUserTodo = (target, id) => {
             'method': 'usertodo',
         },
         done: function() {
-            target.closest('li').classList.add('usertodo');
+            target.closest('i').classList.remove('fa-user-o');
+            target.closest('i').classList.add('fa-user');
+
+            target.closest('i').dataset.action = 'local-coodle-todo-usertodo-revoke';
+            target.closest('button').dataset.action = 'local-coodle-todo-usertodo-revoke';
         },
         fail: function(ex) {
             // eslint-disable-next-line no-console
@@ -166,7 +170,11 @@ const todoUndoUserTodo = (target, id) => {
             'method': 'undousertodo',
         },
         done: function() {
-            target.closest('li').classList.remove('usertodo');
+            target.closest('i').classList.remove('fa-user');
+            target.closest('i').classList.add('fa-user-o');
+
+            target.closest('i').dataset.action = 'local-coodle-todo-usertodo';
+            target.closest('button').dataset.action = 'local-coodle-todo-usertodo';
         },
         fail: function(ex) {
             // eslint-disable-next-line no-console

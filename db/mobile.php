@@ -73,7 +73,6 @@ $addons = [
                 'displaydata' => [
                     'title' => 'viewaddress',
                     'icon' => 'map',
-                    'class' => 'CoreSitePluginsPluginPage',
                 ],
                 'priority'  => 10000000000000000,
             ],
@@ -89,11 +88,11 @@ $addons = [
                 ],
                 'priority'  => 10000000000000000,
             ],
-            'viewinfo' => [
+            'viewdates' => [
                 'delegate' => 'CoreMainMenuDelegate',
-                'method' => 'view_info',
+                'method' => 'view_dates',
                 'displaydata' => [
-                    'title' => 'viewinfo',
+                    'title' => 'viewdates',
                     'icon' => 'map',
                 ],
                 'priority'  => 10000000000000000,

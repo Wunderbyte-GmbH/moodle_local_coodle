@@ -51,6 +51,10 @@ class todo {
         $this->todo = $tododata;
     }
 
+    public function get_todo_object() {
+        return $this->todo;
+    }
+
     public function load_todolist($advisorid) {
         global $DB;
         $sql = "SELECT t.*, u.firstname, u.lastname FROM {local_coodle_todos} t
@@ -66,11 +70,12 @@ class todo {
         JOIN {user} u ON u.id = t.userid
         WHERE t.userid = $userid";
         if ($status != 0) {
-            $sql .= " AND t.deleted = $status";
+            $sql .= " AND t.usertodo = 1";
         }
         $todos = $DB->get_records_sql($sql);
         $todolist['open'] = [];
         $todolist['done'] = [];
+
         foreach ($todos as $todo) {
             if ($todo->deleted == 1) {
                 $todo->del = 1;

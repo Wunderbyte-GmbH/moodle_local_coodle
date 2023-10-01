@@ -64,7 +64,7 @@ class delete_coodle_user extends external_api {
             'userid' => $userid,
         ]);
 
-        $settingsmanager = new settings_manager();
+        $settingsmanager = new settings_manager(1);
 
         $settingsmanager->delete_advisor($params['userid']);
 

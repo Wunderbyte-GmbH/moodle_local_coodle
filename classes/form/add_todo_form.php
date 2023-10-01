@@ -61,7 +61,7 @@ class add_todo_form extends dynamic_form {
             $select = \local_coodle\coodle_user::prepare_coodle_users_for_select($myclients);
             $mform->addElement('select', 'clientid', get_string('selectuser', 'local_coodle'), $select);
         }
-        // $mform->addElement('checkbox', 'usertodo', get_string('usertodo', 'local_coodle'));
+        $mform->addElement('checkbox', 'usertodo', get_string('usertodo', 'local_coodle'));
     }
 
     /**

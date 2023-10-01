@@ -37,8 +37,6 @@ $PAGE->set_title($title);
 $PAGE->set_heading($title);
 
 
-
-
 // Create a new ZipArchive object
 
 $pathtofileinzip = '/some/made/up/name.txt';
@@ -91,5 +89,3 @@ if ($zip->open($tempfile, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) 
     // Failed to create the zip archive
     echo 'Failed to create the zip file.';
 }
-
-

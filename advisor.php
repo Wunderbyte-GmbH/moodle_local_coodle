@@ -36,7 +36,7 @@ $secondarynav->initialise();
 $PAGE->set_secondarynav($secondarynav);
 $PAGE->set_secondary_navigation(true);
 
-// Am i advisor
+// Am i advisor.
 
 $PAGE->set_url(new moodle_url('/local/coodle/advisor.php', array('advisorid' => $USER->id)));
 $title = $USER->firstname . ' ' . $USER->lastname;
@@ -46,6 +46,7 @@ $PAGE->set_heading($title);
 echo $OUTPUT->header();
 
 $todo = new \local_coodle\todo();
+$templatedata['advisorcurse'] = get_config('local_coodle', 'advisorcourseid');
 $templatedata['todos'] = $todo->load_todolist($USER->id);
 
 echo $OUTPUT->render_from_template('local_coodle/advisor', $templatedata);
