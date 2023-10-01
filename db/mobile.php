@@ -152,6 +152,7 @@ $addons = [
             ['viewinfo', 'local_coodle'],
             ['impressum', 'local_coodle'],
             ['selectuser', 'local_coodle'],
+            ['viewdates', 'local_coodle'],
         ],
     ],
 ];
