@@ -81,9 +81,13 @@ class upload_file extends external_api {
             $folder = "3";
         }
 
+        $userid = 0;
         // Check if a different user was chosen in the app
-        $coodleuser = json_decode(get_user_preferences('coodleuser_chosen'));
-        $userid = $coodleuser->userid;
+        $coodleuser = get_user_preferences('coodleuser_chosen');
+        if ($coodleuser) {
+            $coodleuser = json_decode($coodleuser);
+            $userid = $coodleuser->userid;
+        }
         if ($userid < 1) {
             $userid = $USER->id;
         }

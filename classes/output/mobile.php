@@ -71,7 +71,7 @@ class mobile {
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(1);
         $templatedata->hl = "Dokumente";
         // Green.
-        $templatedata->bg = "rgb(102, 153, 204)";
+        $templatedata->bg = "#669933";
         $templatedata->text = "#fff";
 
         return [
@@ -137,7 +137,7 @@ class mobile {
         $coodleuser->load_user($userid);
         $templatedata = new stdClass();
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(3);
-        $templatedata->bg = "#669933;";
+        $templatedata->bg = "rgb(102, 153, 204)";
         $templatedata->text = "#fff";
         $links = new \local_coodle\link();
         $linklist = $links->load_linklist_by_userid($userid);
