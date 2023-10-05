@@ -69,7 +69,7 @@ export const init = () => {
  */
  const openForm = event => {
 
-    let button = event.target;
+    let button = event.target.closest('button');
 
     const modalForm = new ModalForm({
         // Name of the class where form is defined (must extend \core_form\dynamic_form):
