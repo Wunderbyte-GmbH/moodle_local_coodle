@@ -280,3 +280,7 @@
 .message .mediaplugin_videojs {
     max-width: 100%;
 }
+
+#audiorecord .editor_atto_toolbar button:not(.atto_recordrtc_button_audio), #audiorecord .atto_group.style1_group, #audiorecord .atto_group.collapse_group {
+    display:none
+}

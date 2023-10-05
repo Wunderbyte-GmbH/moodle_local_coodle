@@ -130,7 +130,7 @@ class add_file_form extends dynamic_form {
                             case 'avi':
                             case 'mkv':
                                 // Handle video extensions
-                                $msg = "This is a video." . $path['filename'];
+                                $msg = "<video><source src='".$path['filename']."'></video>";
                                 break;
 
                             default:

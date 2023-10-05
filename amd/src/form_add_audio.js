@@ -70,8 +70,7 @@ export const init = () => {
  const openForm = event => {
 
     let button = event.target.closest('button');
-    console.log(button.dataset.clientid);
-    console.log(button);
+
     const modalForm = new ModalForm({
         // Name of the class where form is defined (must extend \core_form\dynamic_form):
         formClass: "local_coodle\\form\\add_audio_recording",
@@ -82,7 +81,7 @@ export const init = () => {
         // Pass any configuration settings to the modal dialogue, for example, the title:
         modalConfig: {title: title},
 
-        saveButtonText: getString('add_direction', 'local_coodle'),
+        saveButtonText: getString('add_video', 'local_coodle'),
         // DOM element that should get the focus after the modal dialogue is closed:
         returnFocus: button
     });
