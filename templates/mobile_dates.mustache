@@ -17,19 +17,13 @@
     <ion-list
         color="black"
         style="
+            margin: 5px;
             background-color: transparent;
             background: transparent;">
       <%#events%>
-      <ion-item
-      style="
-          background-color: transparent;
-          background: transparent;
-          --background: transparent;
-      "
-  >
-      <b><%timestart%></b> - <%name%> <br> <%location%>
-      <br>
-      <%description%>
+      <ion-item style="margin: 5px">
+      <ion-label><b><%timestart%></b> - <%name%> | <%location%></ion-label>
+      <ion-lable><%description%></ion-lable>
       </ion-item>
       <%/events%>
     </ion-list>

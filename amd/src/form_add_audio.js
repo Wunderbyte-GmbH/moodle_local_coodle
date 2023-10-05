@@ -54,7 +54,7 @@ export const init = () => {
         switch (target.closest('button').dataset.action) {
             case ACTIONS.ADD_AUDIO:
                 e.stopPropagation();
-                title = getString('add_audio', 'local_coodle');
+                title = getString('add_recording', 'local_coodle');
                 openForm(e);
                 break;
             default:
@@ -81,7 +81,7 @@ export const init = () => {
         // Pass any configuration settings to the modal dialogue, for example, the title:
         modalConfig: {title: title},
 
-        saveButtonText: getString('add_video', 'local_coodle'),
+        saveButtonText: getString('add_recording', 'local_coodle'),
         // DOM element that should get the focus after the modal dialogue is closed:
         returnFocus: button
     });

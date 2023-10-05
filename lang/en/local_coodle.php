@@ -74,7 +74,7 @@ $string['add_user'] = 'add User';
 $string['add_file'] = 'add File';
 $string['add_audio'] = 'record Audio';
 $string['set_inactive'] = 'set inactive';
-
+$string['add_recording'] = 'add recording';
 
 // Menu.
 $string['home'] = 'My Space';

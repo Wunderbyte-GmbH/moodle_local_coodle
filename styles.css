@@ -281,6 +281,11 @@
     max-width: 100%;
 }
 
-#audiorecord .editor_atto_toolbar button:not(.atto_recordrtc_button_audio), #audiorecord .atto_group.style1_group, #audiorecord .atto_group.collapse_group {
+#audiorecord .editor_atto_toolbar button:not(.atto_recordrtc_button_audio):not(.atto_recordrtc_button_video), #audiorecord .atto_group.style1_group, #audiorecord .atto_group.collapse_group {
     display:none
+}
+
+#audiorecord .editor_atto_content_wrap .editor_atto_content  {
+    max-height: 20px !important;
+    min-height: 40px !important;
 }
