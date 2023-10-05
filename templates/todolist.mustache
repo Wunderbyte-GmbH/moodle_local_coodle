@@ -19,13 +19,13 @@
 			<td colspan="1"><a href="/local/coodle/user.php?id={{userid}}">{{firstname}} {{lastname}}</a></td>
 			<td class="text-dark" colspan="4">{{text}}</td>
 			<td class="text-right td-coodle-checkbuttons">
-				<button class="btn btn-primary-outline coodle-checkbutton" data-action="local-coodle-todo-{{^deleted}}check{{/deleted}}{{#deleted}}uncheck{{/deleted}}" data-id="{{id}}">
-				{{^deleted}}
+				<button class="btn btn-primary-outline coodle-checkbutton" data-action="local-coodle-todo-{{^done}}check{{/done}}{{#done}}uncheck{{/done}}" data-id="{{id}}">
+				{{^done}}
 				<i class="fa fa-check-square-o fa-2x text-success " aria-hidden="true" data-action="local-coodle-todo-check" data-id="{{id}}"></i>
-				{{/deleted}}
-				{{#deleted}}
+				{{/done}}
+				{{#done}}
 				<i class="fa fa-play fa-2x text-danger" aria-hidden="true" data-action="local-coodle-todo-uncheck" data-id="{{id}}"></i>
-				{{/deleted}}
+				{{/done}}
 
 				</button>
 				<button class="btn btn-primary-outline" data-action="local-coodle-todo-delete" data-id="{{id}}" >

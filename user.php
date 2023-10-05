@@ -57,6 +57,14 @@ if (!empty($todolist)) {
 } else {
     $templatedata->empty = 1;
 }
+
+$todolistadv = $todo->load_todolist_for_advisor($id);
+if (!empty($todolistadv)) {
+    $templatedata->todos2 = $todolistadv;
+} else {
+    $templatedata->empty = 1;
+}
+
 $templatedata->name = $client->name;
 $convid = local_coodle\coodle_user::get_conversation_between_users($USER->id, $id);
 if ($convid) {
