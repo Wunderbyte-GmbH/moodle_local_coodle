@@ -70,7 +70,8 @@ export const init = () => {
  const openForm = event => {
 
     let button = event.target.closest('button');
-
+    console.log(button.dataset.clientid);
+    console.log(button);
     const modalForm = new ModalForm({
         // Name of the class where form is defined (must extend \core_form\dynamic_form):
         formClass: "local_coodle\\form\\add_audio_recording",
