@@ -46,7 +46,7 @@ class add_file_form extends dynamic_form {
      */
     public function definition() {
         $mform = $this->_form;
-        $customdata = $this->_customdata;
+        $customdata = $this->_ajaxformdata;
 
         $id = optional_param('userid', 0, PARAM_INT);
 
