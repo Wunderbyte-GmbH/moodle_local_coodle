@@ -17,7 +17,7 @@
 /**
  * Entitiesrelation form implemantion to use entities in other plugins
  * @package     local_coodle
- * @copyright   2021 Wunderbyte GmbH
+ * @copyright   2022 Wunderbyte GmbH
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -30,16 +30,17 @@ require_once("$CFG->libdir/formslib.php");
 
 use context;
 use core_form\dynamic_form;
-use local_coodle\user_create_form_helper;
 use moodle_url;
+use context_system;
+use local_coodle\direction;
 use stdClass;
 /**
- * Entities relation form.
+ * Add file form.
  * @copyright Wunderbyte GmbH <info@wunderbyte.at>
  * @author Thomas Winkler
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class set_advisor_form extends dynamic_form {
+class add_audio_recording extends dynamic_form {
 
     /**
      * {@inheritdoc}
@@ -47,13 +48,21 @@ class set_advisor_form extends dynamic_form {
      */
     public function definition() {
         $mform = $this->_form;
+        $data = $this->_ajaxformdata;
+        $mform->addElement('html', '<div id="audiorecord">');
+        $context = context_system::instance();
 
-        $options = array(
-            'ajax' => 'tool_lp/form-user-selector',
-            'multiple' => false
-        );
-        $mform->addElement('autocomplete', 'userid', get_string('selectusers', 'local_coodle'), array(), $options);
-        $mform->addRule('userid', null, 'required');
+        $editoroptions = array('maxfiles' => EDITOR_UNLIMITED_FILES,
+        'noclean' => true,
+        'context' => $context,
+        'format' => FORMAT_HTML);
+
+        $mform->addElement('editor', 'description', get_string('description', 'local_coodle'), '', $editoroptions);
+        $mform->addElement('hidden', 'userid', $data['clientid']);
+        $mform->setType('userid', PARAM_INT);
+        $mform->addElement('hidden', 'id', $data['directionid']);
+        $mform->setType('id', PARAM_INT);
+        $mform->addElement('html', '</div>');
     }
 
     /**
@@ -76,9 +85,51 @@ class set_advisor_form extends dynamic_form {
      * @return mixed
      */
     public function process_dynamic_submission() {
+        global $USER;
         $data = $this->get_data();
-        $courseid = \local_coodle\advisor::create_course_for_adivisor($data->userid);
-        new \local_coodle\advisor($data->userid, $courseid,  true);
+        $context = context_system::instance();
+        $draftitemid = $data->description['itemid'];
+        $data->description = $data->description['text'] ?? $data->description ?? '';
+        $data->text = $data->description;
+
+        $messagetext = file_save_draft_area_files(
+            // The id of the draft file area.
+            $draftitemid,
+
+            // The combination of contextid / component / filearea / itemid
+            // form the virtual bucket that file are stored in.
+            $context->id,
+            'local_coodle',
+            'clientfile',
+            '20', // TODO: Where to put that  ...?
+
+            // The options to pass.
+            [
+                'subdirs' => false,
+            ],
+
+            // The text received from the form.
+            $data->text
+        );
+
+        $messagetext = file_rewrite_pluginfile_urls(
+           $messagetext,
+            // The pluginfile URL which will serve the request.
+            'pluginfile.php',
+
+            // The combination of contextid / component / filearea / itemid
+            // form the virtual bucket that file are stored in.
+            $context->id,
+            'local_coodle',
+            'clientfile',
+            20
+        );
+
+        $conversationid = \core_message\api::get_conversation_between_users([$USER->id, $data->userid]);
+        \core_message\api::send_message_to_conversation($USER->id, $conversationid, $messagetext, FORMAT_HTML);
+
+        // ADD AUDIO
+
         return $data;
     }
 
@@ -92,7 +143,8 @@ class set_advisor_form extends dynamic_form {
      *     $this->set_data(get_entity($this->_ajaxformdata['cmid']));
      */
     public function set_data_for_dynamic_submission(): void {
-        $data = new stdClass();
+        $data = $this->_ajaxformdata;
+        $context = \context_system::instance();
         $this->set_data($data);
     }
 
@@ -121,11 +173,11 @@ class set_advisor_form extends dynamic_form {
      */
     protected function get_page_url_for_dynamic_submission(): moodle_url {
         // TODO: This is shit.
-        $cmid = $this->_ajaxformdata['cmid'];
+        $cmid = $this->_ajaxformdata['clientid'];
         if (!$cmid) {
             $cmid = $this->optional_param('cmid', '', PARAM_RAW);
         }
-        return new moodle_url('/local/coodle/newuser', array('id' => $cmid));
+        return new moodle_url('/local/coodle/user', array('id' => $cmid));
     }
 
     /**

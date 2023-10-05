@@ -60,6 +60,8 @@ class add_file_form extends dynamic_form {
         $mform->setType('id', PARAM_INT);
         $mform->addElement('hidden', 'doctype', $customdata['doctype']);
         $mform->setType('doctype', PARAM_INT);
+        $mform->addElement('hidden', 'sendmsg', $customdata['sendmsg']);
+        $mform->setType('sendmsg', PARAM_BOOL);
 
     }
 
@@ -83,6 +85,8 @@ class add_file_form extends dynamic_form {
      * @return mixed
      */
     public function process_dynamic_submission() {
+        global $USER;
+
         $data = $this->get_data();
         $context = \context_system::instance();
 
@@ -103,10 +107,41 @@ class add_file_form extends dynamic_form {
                         'timecreated'  => time(),
                         'timemodified' => time(),
                     ];
-                    $fs->create_file_from_storedfile($filerecord, $file);
+                    $newfile = $fs->create_file_from_storedfile($filerecord, $file);
                     // Send a push notification
                     $message = new \local_coodle\coodle_pushnotification($data->id);
                     $message->send_newfile_message($file);
+
+                    if ($data->sendmsg) {
+                        $url = moodle_url::make_pluginfile_url(
+                            $newfile->get_contextid(), $newfile->get_component(),
+                            $newfile->get_filearea(), $newfile->get_itemid(), $newfile->get_filepath(), $newfile->get_filename(), false);
+                        $path = pathinfo($url);
+                        switch ($path['extension']) {
+                            case 'jpg':
+                            case 'jpeg':
+                            case 'png':
+                            case 'gif':
+                                // Handle image extensions
+                                $msg = "<img src='$url'>";
+                                break;
+
+                            case 'mp4':
+                            case 'avi':
+                            case 'mkv':
+                                // Handle video extensions
+                                $msg = "This is a video." . $path['filename'];
+                                break;
+
+                            default:
+                                // Handle other extensions
+                                $msg = "<a href='$url' target='_blank'>" . $path['filename'] . "</a>";
+                                break;
+                        }
+                        $conversationid = \core_message\api::get_conversation_between_users([$USER->id,  $data->clientid]);
+                         \core_message\api::send_message_to_conversation($USER->id, $conversationid, $msg, FORMAT_HTML);
+
+                    }
                     // Now delete the original file.
                     $file->delete();
                 }

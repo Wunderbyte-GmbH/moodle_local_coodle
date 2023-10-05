@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
- * Modal Form user create
+ * Modal Form add directon
  * @package    local_coodle
  * @copyright  Wunderbyte GmbH <info@wunderbyte.at>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -24,27 +24,41 @@
 import ModalForm from 'core_form/modalform';
 import {get_string as getString} from 'core/str';
 
-const SELECTORS = {
-    ADD_FILE: '[data-action="local-coodle-add-file"]',
+
+/**
+ * Defines REGIONS
+ */
+const REGIONS = {
+    MSG: '[data-region="coodle-msg-buttons"]',
 };
+
+/**
+ * Defines dataset Actions
+ */
+const ACTIONS = {
+    ADD_AUDIO: 'local-coodle-send-audio',
+};
+
+var title;
 
 /**
  * Gets called from mustache template.
  *
  */
 export const init = () => {
-
-    // Find all container.
-    const containers = document.querySelectorAll(SELECTORS.ADD_FILE);
-
-    containers.forEach(element => {
-        if (!element.dataset.initialized) {
-            element.addEventListener('click', openForm);
-            element.dataset.initialized = true;
-        } else {
-            // Just to make sure during development that this is not called to often.
-            // eslint-disable-next-line no-console
-            console.log('unnecessary call of init');
+    document.querySelector(REGIONS.MSG).addEventListener('click', function(e) {
+        let target = e.target;
+        if (!target.closest('button')) {
+            return;
+        }
+        switch (target.closest('button').dataset.action) {
+            case ACTIONS.ADD_AUDIO:
+                e.stopPropagation();
+                title = getString('add_audio', 'local_coodle');
+                openForm(e);
+                break;
+            default:
+                break;
         }
     });
 };
@@ -55,22 +69,19 @@ export const init = () => {
  */
  const openForm = event => {
 
-    let button = event.target.closest('button');
+    let button = event.target;
 
     const modalForm = new ModalForm({
-
         // Name of the class where form is defined (must extend \core_form\dynamic_form):
-        formClass: "local_coodle\\form\\add_file_form",
+        formClass: "local_coodle\\form\\add_audio_recording",
         // Add as many arguments as you need, they will be passed to the form:
         args: {
             'clientid': button.dataset.clientid,
-            'doctype': button.dataset.doctype,
-            'sendmsg': button.dataset.sendmsg,
         },
         // Pass any configuration settings to the modal dialogue, for example, the title:
-        modalConfig: {title: getString('add_file', 'local_coodle')},
+        modalConfig: {title: title},
 
-        saveButtonText: getString('add_file', 'local_coodle'),
+        saveButtonText: getString('add_direction', 'local_coodle'),
         // DOM element that should get the focus after the modal dialogue is closed:
         returnFocus: button
     });
@@ -82,7 +93,6 @@ export const init = () => {
         const response = e.detail;
         // eslint-disable-next-line no-console
         console.log('Response of the modal: ', response);
-        window.location.reload();
     });
 
     // Show the form.
@@ -94,4 +104,3 @@ export const init = () => {
         console.log(e);
     });
 };
-

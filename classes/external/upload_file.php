@@ -70,7 +70,7 @@ class upload_file extends external_api {
         $params['filename'] = str_replace("dok1_", "", $params['filename'], $dok1count);
         $params['filename'] = str_replace("dok2_", "", $params['filename'], $dok2count);
         $params['filename'] = str_replace("dok3_", "", $params['filename'], $dok3count);
-        $folder = "";
+        $folder = "3";
         if ($dok1count) {
             $folder = "1";
         }
@@ -133,8 +133,8 @@ class upload_file extends external_api {
                     'local_coodle',
                     'clientfiles',
                     0,
-                    '/'.$USER->id.'/'.$folder.'/',
-                    '/' .  $file->get_filename(),
+                    '/'.$userid.'/'.$folder.'/',
+                    $file->get_filename(),
                     false
                 )->out();
             }

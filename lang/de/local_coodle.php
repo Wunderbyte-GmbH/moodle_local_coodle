@@ -84,6 +84,8 @@ $string['dok2'] = 'Bewerbungsunterlagen';
 $string['dok3'] = 'Beratung';
 
 $string['viewinfo'] = 'Info';
+$string['add_audio'] = 'Audio aufnehmen';
+$string['set_inactive'] = 'set inactive';
 
 $string['coodlewelcome'] = 'Herzlich Willkommen in der coodle App';
 $string['setadvisor'] = 'Berater_in setzen';

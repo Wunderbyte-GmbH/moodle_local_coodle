@@ -16,7 +16,10 @@
   <div class="row">
     <div class="col-md-4 coodle-msg">
       <h3>{{ name }}</h3>
-      <div>{{{widget}}}</div>
+      <div>{{{widget}}}
+        {{>local_coodle/messagebuttons}}
+
+      </div>
     </div>
     <div class="col-md-8 coodle-user">
       <div class="card bg-warning text-white mb-4">
@@ -60,28 +63,6 @@
             </button>
           </h5>
           <div>{{>local_coodle/todos}}</div>
-        </div>
-      </div>
-      <div class="card card-docs text-white mb-4">
-        <div class="card-body">
-          <h5 class="card-title">
-            Dokumente
-            <button
-              class="btn btn-dark myuserbtn"
-              data-toggle="modal"
-              data-target="#uploadForm"
-              data-action="local-coodle-add-file"
-              data-clientid="{{ clientid }}"
-              data-doctype="1"
-            >
-              Upload File
-            </button>
-          </h5>
-          <ul class="list-group" id="files1-{{ uniqid }}">
-            {{#files.1}}
-            {{>local_coodle/files}}
-            {{/files.1}}
-          </ul>
         </div>
       </div>
       <div class="card card-beratung text-white mb-4">
@@ -145,6 +126,28 @@
           </ul>
         </div>
       </div>
+      <div class="card card-docs text-white mb-4">
+        <div class="card-body">
+          <h5 class="card-title">
+            Dokumente
+            <button
+              class="btn btn-dark myuserbtn"
+              data-toggle="modal"
+              data-target="#uploadForm"
+              data-action="local-coodle-add-file"
+              data-clientid="{{ clientid }}"
+              data-doctype="1"
+            >
+              Upload File
+            </button>
+          </h5>
+          <ul class="list-group" id="files1-{{ uniqid }}">
+            {{#files.1}}
+            {{>local_coodle/files}}
+            {{/files.1}}
+          </ul>
+        </div>
+      </div>
       <div class="card card-direction text-white mb-4">
         <div class="card-body">
           <h5 class="card-title">Wegbeschreibungen<button
@@ -197,10 +200,9 @@
   </div>
 </div>
 
-// TODO: colores
 <style>
   .card-docs {
-    background-color: rgb(102, 153, 204)
+    background-color: #669933;
 
   }
   .card-todos {
@@ -211,7 +213,7 @@
     background-color: rgb(224, 102, 0);
   }
   .card-beratung {
-    background-color: #669933;
+    background-color: rgb(102, 153, 204);
   }
 
   .card-direction {
@@ -264,8 +266,9 @@
 </style>
 
 {{#js}}
-require([ 'local_coodle/form_add_todo','local_coodle/form_add_file',
-'local_coodle/actions_file', 	'local_coodle/form_add_link', 'local_coodle/form_add_direction', 'local_coodle/actions_direction', 'local_coodle/actions_link'], function(todoform, fileform, file, links, directionform, directionactions, linkactions ) {
+require([ 'local_coodle/form_add_audio', 'local_coodle/form_add_todo','local_coodle/form_add_file',
+'local_coodle/actions_file', 	'local_coodle/form_add_link', 'local_coodle/form_add_direction', 'local_coodle/actions_direction', 'local_coodle/actions_link'], function(audio, todoform, fileform, file, links, directionform, directionactions, linkactions ) {
+  audio.init();
   directionform.init();
   directionactions.init();
   links.init();

@@ -104,6 +104,7 @@ class coodle_user {
             }
             // We either have found a conversation, or created one.
             $conversationid = !empty($conversationid) ? $conversationid : $conversation->id;
+
             $welcomemsg = "Herzlich Willkommen in der coodle App";
             // TODO crete string.
             \core_message\api::send_message_to_conversation($advisorid, $conversationid, $welcomemsg, FORMAT_HTML);

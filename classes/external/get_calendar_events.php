@@ -73,13 +73,28 @@ class get_calendar_events extends external_api {
         // Parameter validation.
         $params = self::validate_parameters(self::execute_parameters(), array('userid' => $userid));
         $warnings = array();
+        $coodleusersettings = get_user_preferences('coodle_settings');
+        if ($coodleusersettings) {
+            $coodleusersettings = json_decode($coodleusersettings);
+        }
 
+        $userchosen = (get_user_preferences('coodleuser_chosen'));
+        if ($userchosen) {
+            $userchosen = json_decode($userchosen);
+        }
+        if ($coodleusersettings && $coodleusersettings->isadvisor) {
+            if ($userchosen && $userchosen->userid) {
+                $userid = $userchosen->userid;
+            }
+        } else {
+            $userid = $USER->id;
+        }
         $cu = new \local_coodle\coodle_user();
-        $cu->load_user($params['userid']);
+        $cu->load_user($userid);
         $courseid = \local_coodle\advisor::get_courseid_from_advisorid((int)$cu->advisorid);
-        $groups = groups_get_user_groups($courseid, $params['userid']);
+        $groups = groups_get_user_groups($courseid, $userid);
         $eventlist = calendar_get_legacy_events(strtotime("-1 day"), strtotime("+1 month"),
-        $params['userid'], $groups[0][0], $courseid, true,
+        $userid, $groups[0][0], $courseid, true,
         $params['options']['ignorehidden']);
         $events = $eventlist;
         return array('events' => $events, 'warnings' => $warnings);

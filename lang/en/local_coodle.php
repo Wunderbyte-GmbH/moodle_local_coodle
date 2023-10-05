@@ -59,6 +59,11 @@ $string['add_todo'] = 'Add Todo';
 $string['todolist'] = 'Todolist';
 $string['selectuser'] = 'User?';
 
+$string['coodleadvisorcourse'] = '';
+$string['coodleadvisorcourseid:description'] = '';
+
+$string['coodledeleteusertime'] = '';
+$string['coodledeleteusertime:description'] = '';
 
 $string['users'] = 'users';
 $string['groups'] = 'groups';
@@ -67,6 +72,9 @@ $string['forum'] = 'forum';
 $string['files'] = 'files';
 $string['add_user'] = 'add User';
 $string['add_file'] = 'add File';
+$string['add_audio'] = 'record Audio';
+$string['set_inactive'] = 'set inactive';
+
 
 // Menu.
 $string['home'] = 'My Space';
