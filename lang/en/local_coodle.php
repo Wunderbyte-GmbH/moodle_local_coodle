@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'coodle Manager';
+$string['pluginname'] = 'COODLE Manager';
 $string['create_user'] = 'Create User';
 $string['createadvisor'] = 'Create Advisor';
 $string['advisorcourse'] = 'Advisor Course';
@@ -74,6 +74,8 @@ $string['add_user'] = 'add User';
 $string['add_file'] = 'add File';
 $string['add_audio'] = 'record Audio';
 $string['set_inactive'] = 'set inactive';
+$string['setinactive'] = 'set inactive';
+
 $string['add_recording'] = 'add recording';
 
 // Menu.
@@ -100,7 +102,7 @@ $string['dok2'] = 'Bewerbungsunterlagen';
 $string['dok3'] = 'Beratungsinhalt';
 $string['viewinfo'] = 'Info';
 
-$string['coodlewelcome'] = 'Welcome to the coodle App';
+$string['coodlewelcome'] = 'Welcome to the COODLE App';
 $string['setadvisor'] = 'Set advisor';
 
 // INFO.

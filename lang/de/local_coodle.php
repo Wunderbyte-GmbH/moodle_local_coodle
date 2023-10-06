@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'COOdLe Manager';
+$string['pluginname'] = 'COODLE Manager';
 $string['create_user'] = 'Create User';
 $string['createadvisor'] = 'Create Advisor';
 $string['advisorcourse'] = 'Advisor Course';
@@ -55,7 +55,7 @@ $string['userpage'] = 'TN Seite';
 $string['selectuser'] = 'Teilnehmer_in?';
 
 // Menu.
-$string['home'] = 'COOdLe';
+$string['home'] = 'COODLE';
 $string['myclients'] = 'Meine Teilnehmer_innen';
 $string['calendar'] = 'Kalendar';
 $string['advisorlist'] = 'Berater_innen';
@@ -85,10 +85,12 @@ $string['dok3'] = 'Beratung';
 
 $string['viewinfo'] = 'Info';
 $string['add_audio'] = 'Audio aufnehmen';
-$string['set_inactive'] = 'set inactive';
+$string['setinactive'] = 'Inaktiv setzen';
+$string['set_inactive'] = 'Inaktiv setzen';
+
 $string['add_recording'] = 'Aufnahme hinzufügen';
 
-$string['coodlewelcome'] = 'Herzlich Willkommen in der coodle App';
+$string['coodlewelcome'] = 'Herzlich Willkommen in der COODLE App';
 $string['setadvisor'] = 'Berater_in setzen';
 
 // INFO.

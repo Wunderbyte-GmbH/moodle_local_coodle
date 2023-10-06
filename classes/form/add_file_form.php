@@ -54,7 +54,7 @@ class add_file_form extends dynamic_form {
         $options['subdirs'] = 0;
         $options['maxbytes'] = 204800;
         $options['maxfiles'] = null;
-        $options['accepted_types'] = ['jpg', 'jpeg', 'png', 'pdf' , 'doc', 'xls', 'docx'];
+        $options['accepted_types'] = ['jpg', 'jpeg', 'png', 'pdf' , 'doc', 'xls', 'docx', 'mp4', 'avi'];
         $mform->addElement('filemanager', 'clientfiles_filemanager', get_string('uploadfile', 'local_coodle'), null, $options);
         $mform->addElement('hidden', 'id', $customdata['clientid']);
         $mform->setType('id', PARAM_INT);
@@ -89,8 +89,7 @@ class add_file_form extends dynamic_form {
 
         $data = $this->get_data();
         $context = \context_system::instance();
-
-        $options = array('subdirs' => 0, 'maxbytes' => 204800, 'maxfiles' => 10, 'accepted_types' => array('jpg', 'png', 'jpeg'));
+        $options = array('subdirs' => 0, 'maxbytes' => 204800, 'maxfiles' => 10, 'accepted_types' => array('jpg', 'png', 'jpeg', 'pdf' , 'doc', 'xls', 'docx', 'mp4', 'avi'));
         if (isset($data->clientfiles_filemanager)) {
             file_postupdate_standard_filemanager($data, 'clientfiles', $options, $context, 'local_coodle', 'clientfiles', $data->id);
             $fs = get_file_storage();
