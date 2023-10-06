@@ -81,6 +81,30 @@
     </ion-list>
     <ion-row class="row">
         <ion-col class="col-md-12">
+                <%#adresscard%>
+                <ion-card>
+                  <ion-card-header>
+                    <ion-card-title>
+                      <%name%>
+                    </ion-card-title>
+                    <ion-card-subtitle>
+                      Visitenkarte
+                    </ion-card-subtitle>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <p><%adress%><%nr%></p>
+                    <p><%zipcode%> <%city%></p>
+                    <p><%phone%></p>
+                    <p><%email%></p>
+                    <p><%berufsbezeichnung%></p>
+                    <p><%institution%></p>
+                  </ion-card-content>
+                </ion-card>
+                <%/adresscard%>
+          </ion-col>
+        </ion-row>
+    <ion-row class="row">
+        <ion-col class="col-md-12">
                 <%#links%>
                 <ion-button expand="full" href="<%url%>" color="dark" style="width: 100%;"><%text%></ion-button>
                 <%/links%>

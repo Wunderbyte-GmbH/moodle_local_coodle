@@ -142,6 +142,7 @@ class mobile {
         $links = new \local_coodle\link();
         $linklist = $links->load_linklist_by_userid($userid);
         $templatedata->links = $linklist;
+        $templatedata->adresscard = \local_coodle\advisor::get_advisor_addrescard($coodleuser->advisorid);
 
         return [
             'templates' => [
