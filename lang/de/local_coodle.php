@@ -62,13 +62,7 @@ $string['advisorlist'] = 'Berater_innen';
 $string['allclients'] = 'Alle Teilnehmer_innen';
 $string['mobilelogin'] = 'Mobile';
 
-// TODO: add all strings.
-$string[''] = 'Teilnehmer_innen';
-$string['groups'] = 'Gruppen';
-$string['calendar'] = 'Kalender';
 $string['forum'] = 'BeraterinnenAustausch';
-$string[''] = 'Vorlagen';
-$string[''] = 'User hinzufügen';
 
 $string['myfiles'] = 'Meine Dateien';
 $string['viewaddress'] = 'Adresse';

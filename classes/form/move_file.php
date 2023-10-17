@@ -31,16 +31,13 @@ require_once("$CFG->libdir/formslib.php");
 use context;
 use core_form\dynamic_form;
 use moodle_url;
-use context_system;
-use local_coodle\coodle_direction;
-use stdClass;
 /**
  * Add file form.
  * @copyright Wunderbyte GmbH <info@wunderbyte.at>
  * @author Thomas Winkler
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class add_direction_form extends dynamic_form {
+class add_file_form extends dynamic_form {
 
     /**
      * {@inheritdoc}
@@ -48,21 +45,23 @@ class add_direction_form extends dynamic_form {
      */
     public function definition() {
         $mform = $this->_form;
-        $data = $this->_ajaxformdata;
-        $mform->addElement('text', 'title', get_string('description', 'local_coodle'));
+        $customdata = $this->_ajaxformdata;
 
-        $context = context_system::instance();
+        $id = optional_param('userid', 0, PARAM_INT);
 
-        $editoroptions = array('maxfiles' => EDITOR_UNLIMITED_FILES,
-        'noclean' => true,
-        'context' => $context,
-        'format' => FORMAT_HTML);
-
-        $mform->addElement('editor', 'description', get_string('description', 'local_coodle'), '', $editoroptions);
-        $mform->addElement('hidden', 'userid', $data['clientid']);
-        $mform->setType('userid', PARAM_INT);
-        $mform->addElement('hidden', 'id', $data['directionid']);
+        // IMAGE CONTENT.
+        $options['subdirs'] = 0;
+        $options['maxbytes'] = 204800;
+        $options['maxfiles'] = null;
+        $options['accepted_types'] = ['jpg', 'jpeg', 'png', 'pdf' , 'doc', 'xls', 'docx'];
+        $mform->addElement('filemanager', 'clientfiles_filemanager', get_string('uploadfile', 'local_coodle'), null, $options);
+        $mform->addElement('hidden', 'id', $customdata['clientid']);
         $mform->setType('id', PARAM_INT);
+        $mform->addElement('hidden', 'doctype', $customdata['doctype']);
+        $mform->setType('doctype', PARAM_INT);
+        $mform->addElement('hidden', 'sendmsg', $customdata['sendmsg']);
+        $mform->setType('sendmsg', PARAM_BOOL);
+
     }
 
     /**
@@ -85,29 +84,69 @@ class add_direction_form extends dynamic_form {
      * @return mixed
      */
     public function process_dynamic_submission() {
+        global $USER;
+
         $data = $this->get_data();
-        $context = context_system::instance();
-        $draftitemid = $data->description['itemid'];
-        $data->description = $data->description['text'] ?? $data->description ?? '';
-        $data->text = $data->description;
+        $context = \context_system::instance();
 
-        $adress = new \local_coodle\coodle_direction($data);
-        $adressid = $data->id;
-        if (!empty($adressid)) {
-            $adress->update_direction($data);
-        } else {
-            $adressid = $adress->add_direction();
-        }
-        if (isset($draftitemid)) {
-            $data->description = file_save_draft_area_files($draftitemid, $context->id,
-            'local_coodle', 'direction',
-            $adressid, array('subdirs' => true), $data->description);
-            $updatedate = new stdClass();
-            $updatedate->id = $adressid;
-            $updatedate->text = $data->description;
-            $adress->update_direction($updatedate);
-        }
+        $options = array('subdirs' => 0, 'maxbytes' => 204800, 'maxfiles' => 10, 'accepted_types' => array('jpg', 'png', 'jpeg'));
+        if (isset($data->clientfiles_filemanager)) {
+            file_postupdate_standard_filemanager($data, 'clientfiles', $options, $context, 'local_coodle', 'clientfiles', $data->id);
+            $fs = get_file_storage();
+            $files = $fs->get_area_files($context->id, 'local_coodle', 'clientfiles', $data->id);
+            foreach ($files as $file) {
+                if ($file->get_filename() != '.') {
+                    $filerecord = [
+                        'contextid'    => $file->get_contextid(),
+                        'component'    => $file->get_component(),
+                        'filearea'     => 'clientfiles',
+                        'itemid'       => 0,
+                        'filepath'     => '/'.$data->id.'/'.$data->doctype.'/',
+                        'filename'     => $file->get_filename(),
+                        'timecreated'  => time(),
+                        'timemodified' => time(),
+                    ];
+                    $newfile = $fs->create_file_from_storedfile($filerecord, $file);
+                    // Send a push notification
+                    $message = new \local_coodle\coodle_pushnotification($data->id);
+                    $message->send_newfile_message($file);
 
+                    if ($data->sendmsg) {
+                        $url = moodle_url::make_pluginfile_url(
+                            $newfile->get_contextid(), $newfile->get_component(),
+                            $newfile->get_filearea(), $newfile->get_itemid(), $newfile->get_filepath(), $newfile->get_filename(), false);
+                        $path = pathinfo($url);
+                        switch ($path['extension']) {
+                            case 'jpg':
+                            case 'jpeg':
+                            case 'png':
+                            case 'gif':
+                                // Handle image extensions
+                                $msg = "<img src='$url'>";
+                                break;
+
+                            case 'mp4':
+                            case 'avi':
+                            case 'mkv':
+                                // Handle video extensions
+                                $msg = "This is a video." . $path['filename'];
+                                break;
+
+                            default:
+                                // Handle other extensions
+                                $msg = "<a href='$url' target='_blank'>" . $path['filename'] . "</a>";
+                                break;
+                        }
+                        $conversationid = \core_message\api::get_conversation_between_users([$USER->id,  $data->clientid]);
+                         \core_message\api::send_message_to_conversation($USER->id, $conversationid, $msg, FORMAT_HTML);
+
+                    }
+                    // Now delete the original file.
+                    $file->delete();
+                }
+            }
+
+        }
         return $data;
     }
 
@@ -122,27 +161,9 @@ class add_direction_form extends dynamic_form {
      */
     public function set_data_for_dynamic_submission(): void {
         $data = $this->_ajaxformdata;
-        $context = \context_system::instance();
+        $data['id'] = $this->_ajaxformdata['clientid'];
+        $data['doctype'] = $this->_ajaxformdata['doctype'];
 
-        if (isset($data['directionid']) && is_numeric($data['directionid']) && $data['directionid'] > 0) {
-            $direction = new coodle_direction(null, $data['directionid']);
-            $data['title'] = $direction->direction->title;
-            $data['description']['text'] = $direction->direction->text;
-            $data['description']['format'] = FORMAT_HTML;
-            $data['description']['text'] = file_rewrite_pluginfile_urls(
-                // The content of the text stored in the database.
-                $data['description']['text'],
-                // The pluginfile URL which will serve the request.
-                'pluginfile.php',
-
-                // The combination of contextid / component / filearea / itemid
-                // form the virtual bucket that file are stored in.
-                $context->id,
-                'local_coodle',
-                'direction',
-                $data['directionid']
-            );
-        }
         $this->set_data($data);
     }
 

@@ -321,6 +321,19 @@ class advisor {
     }
 
     /**
+     * Check is user has advisor xy
+     *
+     * @param  int  $userid
+     * @param  int  $advisorid
+     *
+     * @return boolean
+     */
+    public static function is_advisor_from($userid, $advisorid): bool {
+        global $DB;
+        return $DB->record_exists('local_coodle_user', array('userid' => $userid, 'advisorid' => $advisorid));
+    }
+
+    /**
      * Checks if user is advisor
      *
      * @param integer $userid

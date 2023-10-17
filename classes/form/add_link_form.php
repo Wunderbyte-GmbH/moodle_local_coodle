@@ -75,7 +75,7 @@ class add_link_form extends dynamic_form {
      */
     public function process_dynamic_submission() {
         $data = $this->get_data();
-        $link = new \local_coodle\link($data);
+        $link = new \local_coodle\coodle_link($data);
         $link->add_link();
         return $data;
     }

@@ -32,7 +32,6 @@ use context;
 use core_form\dynamic_form;
 use moodle_url;
 use context_system;
-use local_coodle\direction;
 use stdClass;
 /**
  * Add file form.

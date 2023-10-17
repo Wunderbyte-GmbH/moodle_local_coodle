@@ -25,7 +25,7 @@ use stdClass;
  * @copyright 2022 Wunderbyte GmbH
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class link {
+class coodle_link {
 
     public $userid;
     public $advisorid;

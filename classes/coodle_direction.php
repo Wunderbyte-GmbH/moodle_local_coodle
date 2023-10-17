@@ -25,7 +25,7 @@ use stdClass;
  * @copyright 2022 Wunderbyte GmbH
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class direction {
+class coodle_direction {
 
     public $userid;
     public $advisorid;

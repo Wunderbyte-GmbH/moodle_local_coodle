@@ -139,7 +139,7 @@ class mobile {
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(3);
         $templatedata->bg = "rgb(102, 153, 204)";
         $templatedata->text = "#fff";
-        $links = new \local_coodle\link();
+        $links = new \local_coodle\coodle_link();
         $linklist = $links->load_linklist_by_userid($userid);
         $templatedata->links = $linklist;
         $templatedata->adresscard = \local_coodle\advisor::get_advisor_addrescard($coodleuser->advisorid);
@@ -337,7 +337,7 @@ class mobile {
         global $USER, $OUTPUT;
 
         // TODO: change and write functions!
-        $links = new \local_coodle\link();
+        $links = new \local_coodle\coodle_link();
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(251, 135, 66)";
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));

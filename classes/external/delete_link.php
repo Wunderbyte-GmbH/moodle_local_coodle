@@ -59,7 +59,7 @@ class delete_link extends external_api {
             'id' => $id,
         ]);
 
-        \local_coodle\link::delete_link($params['id']);
+        \local_coodle\coodle_link::delete_link($params['id']);
 
         $linkdelete['error'] = '';
 

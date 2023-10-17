@@ -62,7 +62,8 @@ class set_advisor_form extends dynamic_form {
      * @return void
      */
     protected function check_access_for_dynamic_submission(): void {
-        // TODO: capability to create advisors
+        // TODO: capability to create advisors.
+        // permissionclass.
         require_capability('moodle/user:manageownfiles', $this->get_context_for_dynamic_submission());
     }
 

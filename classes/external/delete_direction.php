@@ -59,7 +59,7 @@ class delete_direction extends external_api {
             'id' => $id,
         ]);
 
-        \local_coodle\direction::delete_direction($params['id']);
+        \local_coodle\coodle_direction::delete_direction($params['id']);
 
         $changetodo['error'] = '';
 

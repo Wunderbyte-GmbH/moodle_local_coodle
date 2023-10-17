@@ -66,15 +66,25 @@ function local_coodle_pluginfile($course, $cm, $context, $filearea, $args, $forc
         return false;
     }
 
+    global $USER;
+
     // Check if user can view file
     $itemid = array_shift($args);
     // Extract the filename / filepath from the $args array.
     $filename = array_pop($args);
+    if ($filearea == 'clientfiles' && $args[0] > 0) {
+        if (!$USER->id == $args[0] && ! \local_coodle\advisor::is_advisor_from($args[0], $USER->id)) {
+            return;
+        }
+    }
     if (!$args) {
         $filepath = '/';
     } else {
         $filepath = '/' . implode('/', $args) . '/';
     }
+
+    //TODO if user = itemid?
+    // or is advisor user?
 
     // Retrieve the file from the Files API.
 

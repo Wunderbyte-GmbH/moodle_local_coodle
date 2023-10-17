@@ -242,7 +242,7 @@ class coodle_user {
 
     public function get_coodleuser_directions($userid) {
 
-        $direction = new direction();
+        $direction = new coodle_direction();
         $directions = $direction->load_directionlist_by_userid($userid);
         $context = \context_system::instance();
 

@@ -112,7 +112,7 @@ class settings_manager {
     /**
      * Deletes an advisor fomr coodle table
      */
-    private function delete_coodle_user($userid) {
+    public function delete_coodle_user($userid) {
         global $DB;
         return $DB->delete_records('local_coodle_user', array('userid' => $userid));
     }
@@ -150,6 +150,11 @@ class settings_manager {
         return $token;
     }
 
+    /**
+     * Return usertoken
+     *
+     * @return string
+     */
     public function get_token() {
         return $this->token;
     }

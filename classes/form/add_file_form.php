@@ -31,7 +31,7 @@ require_once("$CFG->libdir/formslib.php");
 use context;
 use core_form\dynamic_form;
 use moodle_url;
-use stdClass;
+
 /**
  * Add file form.
  * @copyright Wunderbyte GmbH <info@wunderbyte.at>
@@ -48,15 +48,11 @@ class add_file_form extends dynamic_form {
         $mform = $this->_form;
         $customdata = $this->_ajaxformdata;
 
-        $id = optional_param('userid', 0, PARAM_INT);
-
-        // IMAGE CONTENT.
         $options['subdirs'] = 0;
-        $options['maxbytes'] = 204800;
         $options['maxfiles'] = null;
         $options['accepted_types'] = ['jpg', 'jpeg', 'png', 'pdf' , 'doc', 'xls', 'docx', 'mp4', 'avi'];
         $mform->addElement('filemanager', 'clientfiles_filemanager', get_string('uploadfile', 'local_coodle'), null, $options);
-        $mform->addElement('hidden', 'id', $customdata['clientid']);
+        $mform->addElement('hidden', 'clientid', $customdata['clientid']);
         $mform->setType('id', PARAM_INT);
         $mform->addElement('hidden', 'doctype', $customdata['doctype']);
         $mform->setType('doctype', PARAM_INT);
@@ -89,11 +85,11 @@ class add_file_form extends dynamic_form {
 
         $data = $this->get_data();
         $context = \context_system::instance();
-        $options = array('subdirs' => 0, 'maxbytes' => 204800, 'maxfiles' => 10, 'accepted_types' => array('jpg', 'png', 'jpeg', 'pdf' , 'doc', 'xls', 'docx', 'mp4', 'avi'));
+        $options = array('subdirs' => 0, 'maxfiles' => 10, 'accepted_types' => array('jpg', 'png', 'jpeg', 'pdf' , 'doc', 'xls', 'docx', 'mp4', 'avi'));
         if (isset($data->clientfiles_filemanager)) {
-            file_postupdate_standard_filemanager($data, 'clientfiles', $options, $context, 'local_coodle', 'clientfiles', $data->id);
+            file_postupdate_standard_filemanager($data, 'clientfiles', $options, $context, 'local_coodle', 'clientfiles', $data->clientid);
             $fs = get_file_storage();
-            $files = $fs->get_area_files($context->id, 'local_coodle', 'clientfiles', $data->id);
+            $files = $fs->get_area_files($context->id, 'local_coodle', 'clientfiles', $data->clientid);
             foreach ($files as $file) {
                 if ($file->get_filename() != '.') {
                     $filerecord = [
@@ -101,14 +97,14 @@ class add_file_form extends dynamic_form {
                         'component'    => $file->get_component(),
                         'filearea'     => 'clientfiles',
                         'itemid'       => 0,
-                        'filepath'     => '/'.$data->id.'/'.$data->doctype.'/',
+                        'filepath'     => '/'.$data->clientid.'/'.$data->doctype.'/',
                         'filename'     => $file->get_filename(),
                         'timecreated'  => time(),
                         'timemodified' => time(),
                     ];
                     $newfile = $fs->create_file_from_storedfile($filerecord, $file);
                     // Send a push notification
-                    $message = new \local_coodle\coodle_pushnotification($data->id);
+                    $message = new \local_coodle\coodle_pushnotification($data->clientid);
                     $message->send_newfile_message($file);
 
                     if ($data->sendmsg) {
@@ -137,8 +133,11 @@ class add_file_form extends dynamic_form {
                                 $msg = "<a href='$url' target='_blank'>" . $path['filename'] . "</a>";
                                 break;
                         }
-                        $conversationid = \core_message\api::get_conversation_between_users([$USER->id,  $data->clientid]);
-                         \core_message\api::send_message_to_conversation($USER->id, $conversationid, $msg, FORMAT_HTML);
+                        if ($data->clientid) {
+                            $conversationid = \core_message\api::get_conversation_between_users([$USER->id,  $data->clientid]);
+                            \core_message\api::send_message_to_conversation($USER->id, $conversationid, $msg, FORMAT_HTML);
+                        }
+
 
                     }
                     // Now delete the original file.
