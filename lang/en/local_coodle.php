@@ -49,7 +49,6 @@ $string['ongoing_clients'] = 'Aktive Teilnehmer_innen';
 $string['qrlogin'] = 'QR-Login';
 $string['actions'] = 'Bearbeiten';
 
-
 $string['clientsince'] = 'Client since';
 $string['addadvisor'] = 'Add advisor';
 $string['add_new_user'] = 'Add new client';

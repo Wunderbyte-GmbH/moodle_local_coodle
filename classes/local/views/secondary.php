@@ -36,9 +36,9 @@ class secondary extends core_secondary {
      */
 
     public function initialise(): void {
-
         $isadvisor = \local_coodle\settings_manager::is_advisor();
         $isadmin = is_siteadmin();
+        $advisorcoursid = get_config('local_coodle', 'coodleadvisorcourseid');
 
         if ($isadvisor) {
             $this->add(get_string('home', 'local_coodle') , '/local/coodle/myusers.php', \navigation_node::TYPE_CUSTOM,
@@ -47,6 +47,10 @@ class secondary extends core_secondary {
             'calendar', 'calendar');
             $this->add(get_string('mobilelogin', 'local_coodle'), '/local/coodle/myqrcode.php', \navigation_node::TYPE_CUSTOM,
             'mobilelogin', 'mobilelogin');
+            if ($advisorcoursid > 0) {
+                $this->add(get_string('advisorcourse', 'local_coodle'), '/course/view.php?id=' . $advisorcoursid , \navigation_node::TYPE_CUSTOM,
+                'advisorcourse', 'advisorcourse');
+            }
         }
         if ($isadmin) {
             $this->add(get_string('advisorlist', 'local_coodle') , '/local/coodle/advisorlist.php', \navigation_node::TYPE_CUSTOM,

@@ -46,6 +46,7 @@ $string['clients'] = 'Teilnehmer_innen';
 $string['ongoing_clients'] = 'Aktive Teilnehmer_innen';
 $string['qrlogin'] = 'QR-Login';
 $string['actions'] = 'Bearbeiten';
+$string['clientsince'] = 'Anlagedatum';
 
 $string['none'] = 'Select User for Advisorrole';
 $string['advisorlist'] = 'Berater_innenliste';
@@ -70,7 +71,7 @@ $string['myclients'] = 'Meine Teilnehmer_innen';
 $string['calendar'] = 'Kalendar';
 $string['advisorlist'] = 'Berater_innen';
 $string['allclients'] = 'Alle Teilnehmer_innen';
-$string['mobilelogin'] = 'Mobile';
+$string['mobilelogin'] = 'QR-Login';
 
 $string['forum'] = 'Berater_innenAustausch';
 
