@@ -78,10 +78,10 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile/mobile_files', $templatedata),
                 ],
             ],
-            'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/test.js"),
+            'javascript' => '',
             'otherdata' => '',
         ];
     }
@@ -105,10 +105,10 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_files', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile/mobile_files', $templatedata),
                 ],
             ],
-            'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/test.js"),
+            'javascript' => '',
             'otherdata' => '',
         ];
     }
@@ -148,11 +148,11 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_beratung', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile/mobile_beratung', $templatedata),
                     'cache-view' => false
                 ],
             ],
-            'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/test.js"),
+            'javascript' => '',
             'otherdata' => '',
         ];
     }
@@ -190,7 +190,7 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_address_view', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile/mobile_address_view', $templatedata),
                 ],
             ],
             'javascript' => '',
@@ -215,7 +215,7 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_test', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile/mobile_test', $templatedata),
                 ],
             ],
             'javascript' => '',
@@ -239,7 +239,7 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_impressum', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile/mobile_impressum', $templatedata),
                 ],
             ],
             'javascript' => '',
@@ -273,7 +273,7 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_dates', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile/mobile_dates', $templatedata),
                 ],
             ],
             'javascript' => '',
@@ -319,7 +319,7 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_todos', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile/mobile_todos', $templatedata),
                     'cache-view' => false
                 ],
             ],
@@ -360,7 +360,7 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_linklist', $templatedata),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile/mobile_linklist', $templatedata),
                 ],
             ],
             'javascript' => '',
@@ -391,7 +391,7 @@ class mobile {
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => $OUTPUT->render_from_template('local_coodle/mobile_select_user', ['users' => $users, 'userchosen' => $user]),
+                    'html' => $OUTPUT->render_from_template('local_coodle/mobile/mobile_select_user', ['users' => $users, 'userchosen' => $user]),
                 ],
             ],
             'javascript' => file_get_contents($CFG->dirroot . "/local/coodle/mobile/js/syncData.js"),

@@ -111,7 +111,6 @@ const todoCheck = (target, id) => {
  * @param {Integer} id the id of the todo
  */
 const linkDelete = (target, id) => {
-    console.log('delete');
     Ajax.call([{
         methodname: "local_coodle_delete_link",
         args: {

@@ -45,7 +45,7 @@ $string['advisors'] = 'Advisors';
 $string['advisorsince'] = 'Advisor since';
 $string['client'] = 'Client';
 $string['clients'] = 'Clients';
-$string['ongoing_clients'] = 'Ongoing Clients';
+$string['ongoing_clients'] = 'Aktive Teilnehmer_innen';
 $string['qrlogin'] = 'QR-Login';
 $string['actions'] = 'Bearbeiten';
 
@@ -96,6 +96,7 @@ $string['usertodo'] = 'sendtouser';
 $string['viewtodos'] = 'Todos';
 $string['viewdates'] = 'Events';
 $string['todos'] = 'Todos';
+$string['add_contactcard'] = 'Add contactinfos';
 
 $string['dok1'] = 'Dokumente';
 $string['dok2'] = 'Bewerbungsunterlagen';
@@ -121,5 +122,4 @@ $string['doornr'] = 'Nr';
 $string['zipcode'] = 'Zip';
 $string['city'] = 'City';
 $string['berufsbezeichnung'] = 'job title';
-
 $string['impressum'] = 'Impressum';

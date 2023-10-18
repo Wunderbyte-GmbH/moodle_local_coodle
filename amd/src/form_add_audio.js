@@ -24,7 +24,6 @@
 import ModalForm from 'core_form/modalform';
 import {get_string as getString} from 'core/str';
 
-
 /**
  * Defines REGIONS
  */

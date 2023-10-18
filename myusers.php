@@ -24,8 +24,8 @@
 require_once('../../config.php');
 use local_coodle\local\views\secondary;
 
-// TODO: probably delete.
-$delid = optional_param('del', 0, PARAM_INT);
+global $USER;
+
 $context = \context_system::instance();
 $PAGE->set_context($context);
 require_login();
@@ -37,7 +37,8 @@ $PAGE->set_secondary_navigation(true);
 
 $PAGE->set_url(new moodle_url('/local/coodle/myusers.php', array()));
 $PAGE->set_pagelayout('standard');
-$title = "COOdLe Manager";
+$title = $USER->firstname . ' ' . $USER->lastname;
+
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
 

@@ -38,8 +38,17 @@ $string['status:starting'] = 'Starting';
 $string['status:finshed'] = 'Finished';
 $string['selectusers'] = 'Select User for Advisorrole';
 
+$string['advisor'] = 'Berater_in';
+$string['advisors'] = 'Berater_innen';
+$string['advisorsince'] = 'Anlagedatum';
+$string['client'] = 'Teilnehmer_in';
+$string['clients'] = 'Teilnehmer_innen';
+$string['ongoing_clients'] = 'Aktive Teilnehmer_innen';
+$string['qrlogin'] = 'QR-Login';
+$string['actions'] = 'Bearbeiten';
+
 $string['none'] = 'Select User for Advisorrole';
-$string['advisorlist'] = 'Advisorlist';
+$string['advisorlist'] = 'Berater_innenliste';
 $string['setadvisor'] = 'Berater setzen';
 
 $string['users'] = 'Teilnehmer_innen';
@@ -53,6 +62,7 @@ $string['add_user'] = 'Teilnehmer_in hinzufügen';
 $string['add_file'] = 'Datei hochladen';
 $string['userpage'] = 'TN Seite';
 $string['selectuser'] = 'Teilnehmer_in?';
+$string['add_contactcard'] = 'Kontaktinfos hinzufügen';
 
 // Menu.
 $string['home'] = 'COODLE';
@@ -62,7 +72,7 @@ $string['advisorlist'] = 'Berater_innen';
 $string['allclients'] = 'Alle Teilnehmer_innen';
 $string['mobilelogin'] = 'Mobile';
 
-$string['forum'] = 'BeraterinnenAustausch';
+$string['forum'] = 'Berater_innenAustausch';
 
 $string['myfiles'] = 'Meine Dateien';
 $string['viewaddress'] = 'Adresse';
@@ -103,6 +113,4 @@ $string['doornr'] = 'Nr';
 $string['zipcode'] = 'PLZ';
 $string['city'] = 'Stadt';
 $string['berufsbezeichnung'] = 'Berufsbezeichnung';
-
 $string['impressum'] = 'Impressum';
-

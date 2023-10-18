@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="col-md-8 coodle-user">
-      <div class="card bg-warning text-white mb-4">
+      <div class="card bg-warning text-white mb-4" data-region="coodle-dates">
         <div class="card-body">
           <h5 class="card-title">Termine
             <button
@@ -267,7 +267,7 @@
 
 {{#js}}
 require([ 'local_coodle/form_add_audio', 'local_coodle/form_add_todo','local_coodle/form_add_file',
-'local_coodle/actions_file', 	'local_coodle/form_add_link', 'local_coodle/form_add_direction', 'local_coodle/actions_direction', 'local_coodle/actions_link'], function(audio, todoform, fileform, file, links, directionform, directionactions, linkactions ) {
+'local_coodle/actions_file', 	'local_coodle/form_add_link', 'local_coodle/form_add_direction', 'local_coodle/actions_direction', 'local_coodle/actions_link', 'local_coodle/form_add_calendarentry'], function(audio, todoform, fileform, file, links, directionform, directionactions, linkactions, calendarentry ) {
   audio.init();
   directionform.init();
   directionactions.init();
@@ -275,4 +275,7 @@ require([ 'local_coodle/form_add_audio', 'local_coodle/form_add_todo','local_coo
   todoform.init();
   linkactions.init();
   fileform.init(); file.init('files1-{{ uniqid }}');
-  file.init('files3-{{ uniqid }}'); }); {{/js}}
+  file.init('files3-{{ uniqid }}');
+  calendarentry.init();
+});
+{{/js}}

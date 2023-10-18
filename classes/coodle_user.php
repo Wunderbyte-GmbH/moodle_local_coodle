@@ -27,6 +27,7 @@ use moodle_exception;
 use file_exception;
 use dml_transaction_exception;
 use stdClass;
+use local_coodle\todo;
 
 /**
  * Class coodle user.
@@ -193,7 +194,8 @@ class coodle_user {
 
     public static function get_coodle_todos($userid) {
         global $DB;
-        $data = $DB->get_records('local_coodle_todos', array('userid' => $userid));
+        $todo = new \local_coodle\todo();
+        $data = $todo->load_todolist_by_userid($userid);
         return $data;
     }
     /**
@@ -222,7 +224,7 @@ class coodle_user {
             $mobileqr .= \html_writer::div(\html_writer::img($qrcodeimg, 'token',
              ['class' => 'qrcode']), 'collapse mt-4', ['id' => 'qrcode-'.$coodleuser->userid]);
             $tdata->qrcode = $mobileqr;
-            $tdata->todos = array_values(self::get_coodle_todos($coodleuser->userid));
+            $tdata->todos = self::get_coodle_todos($coodleuser->userid);
             $templatedata[] = $tdata;
         }
         return $templatedata;
