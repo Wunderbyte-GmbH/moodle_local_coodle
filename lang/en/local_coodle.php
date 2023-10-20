@@ -122,3 +122,8 @@ $string['zipcode'] = 'Zip';
 $string['city'] = 'City';
 $string['berufsbezeichnung'] = 'job title';
 $string['impressum'] = 'Impressum';
+
+// Dates
+$string['add_calendar_entry_notification'] = 'Calendar entry';
+$string['add_calendar_entry_added'] = 'Calendar entry added';
+$string['add_calendar_entry_error'] = 'Something went wrong';

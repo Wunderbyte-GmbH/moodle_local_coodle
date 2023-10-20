@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 $string['pluginname'] = 'COODLE Manager';
 $string['create_user'] = 'Create User';
 $string['createadvisor'] = 'Create Advisor';
-$string['advisorcourse'] = 'Advisor Course';
+$string['advisorcourse'] = 'Berater_innen Kurs';
 $string['registeredsince'] = 'Registered since';
 $string['usergroup'] = 'Usergroup';
 $string['status'] = 'Status';
@@ -115,3 +115,8 @@ $string['zipcode'] = 'PLZ';
 $string['city'] = 'Stadt';
 $string['berufsbezeichnung'] = 'Berufsbezeichnung';
 $string['impressum'] = 'Impressum';
+
+// Dates
+$string['add_calendar_entry_notification'] = 'Kalendereintrag';
+$string['add_calendar_entry_added'] = 'Kalendereintrag hinzugefügt';
+$string['add_calendar_entry_error'] = 'Leider ist etwas schief gelaufen';

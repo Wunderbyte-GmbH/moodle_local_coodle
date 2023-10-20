@@ -276,6 +276,6 @@ require([ 'local_coodle/form_add_audio', 'local_coodle/form_add_todo','local_coo
   linkactions.init();
   fileform.init(); file.init('files1-{{ uniqid }}');
   file.init('files3-{{ uniqid }}');
-  calendarentry.init();
+  calendarentry.init({{userid}});
 });
 {{/js}}
