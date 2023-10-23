@@ -38,55 +38,59 @@ $title = "COOdLe Manager";
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
 
-// Create a new ZipArchive object
 
-$pathtofileinzip = '/some/made/up/name.txt';
+echo $OUTPUT->header();
 
-// $zipwriter = archive_writer::get_file_writer('test.zip', archive_writer::ZIP_WRITER);
-// $zipwriter->add_file_from_stored_file($pathtofileinzip, $storedfile);
-// $zipwriter->finish();
+echo '  <input type="color" id="head" name="head" value="#e66465" />';
+// // Create a new ZipArchive object
 
+// $pathtofileinzip = '/some/made/up/name.txt';
+
+// // $zipwriter = archive_writer::get_file_writer('test.zip', archive_writer::ZIP_WRITER);
+// // $zipwriter->add_file_from_stored_file($pathtofileinzip, $storedfile);
+// // $zipwriter->finish();
+
+// // $zip = new ZipArchive();
+
+// // Specify the name and path of the output zip file.
+// // Create a new ZipArchive object.
 // $zip = new ZipArchive();
 
-// Specify the name and path of the output zip file.
-// Create a new ZipArchive object.
-$zip = new ZipArchive();
+// // Create a temporary file to hold the zip archive.
+// $tempfile = tempnam(sys_get_temp_dir(), 'zip');
 
-// Create a temporary file to hold the zip archive.
-$tempfile = tempnam(sys_get_temp_dir(), 'zip');
+// // Open the temporary file for writing.
+// if ($zip->open($tempfile, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
+//     // Array of files to add to the zip archive.
+//     $files = [
+//         '/path/to/file1.txt',
+//         '/path/to/file2.jpg',
+//         '/path/to/file3.pdf',
+//     ];
 
-// Open the temporary file for writing.
-if ($zip->open($tempfile, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
-    // Array of files to add to the zip archive.
-    $files = [
-        '/path/to/file1.txt',
-        '/path/to/file2.jpg',
-        '/path/to/file3.pdf',
-    ];
+//     // Add each file to the zip archive.
+//     foreach ($files as $file) {
+//         // Read the file contents.
+//         $filecontents = file_get_contents($file);
 
-    // Add each file to the zip archive.
-    foreach ($files as $file) {
-        // Read the file contents.
-        $filecontents = file_get_contents($file);
+//         // Add the file to the zip archive with a custom name (optional).
+//         $zip->addFromString(basename($file), $filecontents);
+//     }
 
-        // Add the file to the zip archive with a custom name (optional).
-        $zip->addFromString(basename($file), $filecontents);
-    }
+//     // Close the zip archive.
+//     $zip->close();
 
-    // Close the zip archive.
-    $zip->close();
+//     // Set appropriate headers for the download.
+//     header('Content-Type: application/zip');
+//     header('Content-Disposition: attachment; filename="archive.zip"');
+//     header('Content-Length: ' . filesize($tempfile));
 
-    // Set appropriate headers for the download.
-    header('Content-Type: application/zip');
-    header('Content-Disposition: attachment; filename="archive.zip"');
-    header('Content-Length: ' . filesize($tempfile));
+//     // Read and output the zip file.
+//     readfile($tempfile);
 
-    // Read and output the zip file.
-    readfile($tempfile);
-
-    // Delete the temporary file.
-    unlink($tempfile);
-} else {
-    // Failed to create the zip archive.
-    echo 'Failed to create the zip file.';
-}
+//     // Delete the temporary file.
+//     unlink($tempfile);
+// } else {
+//     // Failed to create the zip archive.
+//     echo 'Failed to create the zip file.';
+// }

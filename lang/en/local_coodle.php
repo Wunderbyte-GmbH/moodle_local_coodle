@@ -127,3 +127,4 @@ $string['impressum'] = 'Impressum';
 $string['add_calendar_entry_notification'] = 'Calendar entry';
 $string['add_calendar_entry_added'] = 'Calendar entry added';
 $string['add_calendar_entry_error'] = 'Something went wrong';
+$string['add_calendar_entry'] = 'Add date';

@@ -45,7 +45,7 @@ $PAGE->set_pagelayout('standard');
 $client = new stdClass();
 $client->name = fullname(get_complete_user_data('id', $id));
 $title = $client->name;
-$PAGE->set_title("cOOdle");
+$PAGE->set_title("COODLE");
 
 echo $OUTPUT->header();
 

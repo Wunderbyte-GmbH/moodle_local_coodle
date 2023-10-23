@@ -120,3 +120,4 @@ $string['impressum'] = 'Impressum';
 $string['add_calendar_entry_notification'] = 'Kalendereintrag';
 $string['add_calendar_entry_added'] = 'Kalendereintrag hinzugefügt';
 $string['add_calendar_entry_error'] = 'Leider ist etwas schief gelaufen';
+$string['add_calendar_entry'] = 'Termin hinzufügen';

@@ -1,0 +1,67 @@
+{{!
+  This file is part of Moodle - http://moodle.org/
+  Moodle is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  Moodle is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+
+{{=<% %>=}}
+<div style="min-height:100%; background: <%bg%>">
+  <ion-grid class="container mt-4">
+    <ion-row class="row">
+      <ion-col class="col-md-12">
+            <%#empty%>
+            <ion-list>
+              <ion-item>
+                <ion-label style="margin-left: 10px;">Derzeit keine Todos</ion-label>
+              </ion-item>
+            </ion-list>
+            <%/empty%>
+            <ion-list>
+              <%#todosopen%>
+              <ion-item>
+                <ion-checkbox
+                core-site-plugins-call-ws
+                name="local_coodle_change_todo" [params]="{todoid: <%id%>, method: 'done'}"
+                confirmMessage="Aufgabe abschließen?"
+                refreshOnSuccess="true"></ion-checkbox>
+                <ion-label style="margin-left: 10px;"> <%text%></ion-label>
+              </ion-item>
+              <%/todosopen%>
+            </ion-list>
+            <ion-list style="margin-top: 20px">
+              <%#todosdone%>
+              <ion-item>
+                <ion-checkbox
+                core-site-plugins-call-ws checked
+                name="local_coodle_change_todo" [params]="{todoid: <%id%>, method: 'uncheck'}"
+                confirmMessage="Aufgabe öffnen?"
+                refreshOnSuccess="true"></ion-checkbox>
+                <ion-label style="margin-left: 10px;"> <%text%></ion-label>
+              </ion-item>
+              <%/todosdone%>
+            </ion-list>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+</div>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="openModal()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<div style="position: absolute; bottom: 0; height: 200px; width:100vw; border: 1px solid" *ngIf="CONTENT_OTHERDATA.showmodal">
+  <ion-input style="" placeholder="Schreiben..." [(ngModel)]="todo"></ion-input>
+  <ion-button slot="end" name="local_coodle_add_todo" refreshOnSuccess="true"
+  core-site-plugins-call-ws [params]="{userid: <%userid%>, todo: todo}"><ion-icon name="send" aria-label="senden"></ion-icon>
+</ion-button>
+</div>
