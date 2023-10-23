@@ -142,7 +142,7 @@ class add_calendar_form extends dynamic_form {
             $event = new stdClass();
             $event->eventtype = "group";
             $event->name = $data->name;
-            $event->description = $data->description;
+            $event->description = format_text($data->description, FORMAT_MOODLE);
             $event->modulename = "0";
             $event->component = null;
             $event->format = FORMAT_HTML;
