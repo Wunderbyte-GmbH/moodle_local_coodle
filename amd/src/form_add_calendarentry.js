@@ -98,6 +98,7 @@ export const init = (userid) => {
             Notification.alert(getString('add_calendar_entry_notification', 'local_coodle'), getString('add_calendar_entry_error', 'local_coodle'));
             } else {
             Notification.alert(getString('add_calendar_entry_notification', 'local_coodle'), getString('add_calendar_entry_added', 'local_coodle'));
+            window.location.reload();
         }
         // eslint-disable-next-line no-console
         console.log('Response of the modal: ', response);
