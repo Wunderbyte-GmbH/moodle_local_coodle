@@ -158,9 +158,8 @@ class add_calendar_form extends dynamic_form {
             $event->duration = "0";
             $event->location = $data->location;
 
-            if(calendar_event::create($event)) {
-                return json_encode(array("error" => false, "event" => $event));
-            };
+            calendar_event::create($event);
+            return json_encode(array("error" => false, "event" => $event));
         }
 
         return json_encode(array("error" => true));
