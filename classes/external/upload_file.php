@@ -114,16 +114,33 @@ class upload_file extends external_api {
         foreach ($files as $file) {
             if ($file->get_filename() == $params['filename']) {
                 $context = \context_system::instance();
-                $filerecord = [
-                    'contextid'    => $context->id,
-                    'component'    => $file->get_component(),
-                    'filearea'     => 'clientfiles',
-                    'itemid'       => 0,
-                    'filepath'     => '/'.$userid.'/'.$folder.'/',
-                    'filename'     => $file->get_filename(),
-                    'timecreated'  => time(),
-                    'timemodified' => time(),
-                ];
+                $filename = $file->get_filename();
+                $newfilename = $filename;
+                do {
+                    $filerecord = [
+                        'contextid'    => $file->get_contextid(),
+                        'component'    => $file->get_component(),
+                        'filearea'     => 'clientfiles',
+                        'itemid'       => 0,
+                        'filepath'     => '/'.$data->clientid.'/'.$data->doctype.'/',
+                        'filename'     => $newfilename,
+                        'timecreated'  => time(),
+                        'timemodified' => time(),
+                    ];
+                    $fileexist = $fs->get_file(
+                        $filerecord['contextid'],
+                        $filerecord['component'],
+                        $filerecord['filearea'],
+                        $filerecord['itemid'],
+                        $filerecord['filepath'],
+                        $filerecord['filename']
+                    );
+                    if ($fileexist) {
+                        $newfilename = $postfix . $filename;
+                        $postfix++;
+                    }
+                } while ($fileexist);
+
                 $fs->create_file_from_storedfile($filerecord, $file);
                 // // Send a push notification
                 // // Now delete the original file.
