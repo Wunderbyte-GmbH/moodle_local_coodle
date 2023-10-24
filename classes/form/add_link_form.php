@@ -137,7 +137,12 @@ class add_link_form extends dynamic_form {
     public function validation($data, $files) {
 
         $errors = array();
-
+        if (empty($data['link'])) {
+            $errors['link'] = get_string('required');
+        }
+        if (!empty($data['link']) && filter_var($data['link'], FILTER_VALIDATE_URL) === false) {
+            $errors['link'] = 'Invalid website URL';
+        }
         return $errors;
     }
 

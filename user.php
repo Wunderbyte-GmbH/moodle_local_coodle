@@ -81,7 +81,6 @@ $templatedata->files[2] = $coodle->get_coodleuser_files(2);
 $templatedata->files[3] = $coodle->get_coodleuser_files(3);
 $templatedata->files[4] = $coodle->get_coodleuser_userfiles($id);
 
-
 $templatedata->directions = $coodle->get_coodleuser_directions($id);
 $templatedata->links = array_values($coodle->get_coodleuser_links($id));
 $events = \local_coodle\external\get_calendar_events::execute($id);

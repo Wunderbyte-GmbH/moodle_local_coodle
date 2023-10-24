@@ -51,7 +51,7 @@ class add_todo_form extends dynamic_form {
         $data = $this->_ajaxformdata;
 
         $mform->addElement('html', '<div class="coodle_todolist">');
-        $mform->addElement('text', 'text', 'Todo');
+        $mform->addElement('text', 'text', 'Todo'); // string Aufgabe
         if ($data['clientid'] != "undefined") {
             $mform->addElement('hidden', 'clientid');
             $mform->addElement('html', '</div>');
@@ -147,7 +147,9 @@ class add_todo_form extends dynamic_form {
     public function validation($data, $files) {
 
         $errors = array();
-
+        if (empty($data['text'])) {
+            $errors['text'] = get_string('required');
+        }
         return $errors;
     }
 

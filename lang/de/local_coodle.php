@@ -61,6 +61,7 @@ $string['forum'] = 'Forum';
 $string['files'] = 'Vorlagen';
 $string['add_user'] = 'Teilnehmer_in hinzufügen';
 $string['add_file'] = 'Datei hochladen';
+$string['add_todo'] = 'Aufgabe hinzufügen';
 $string['userpage'] = 'TN Seite';
 $string['selectuser'] = 'Teilnehmer_in?';
 $string['add_contactcard'] = 'Kontaktinfos hinzufügen';
@@ -77,7 +78,7 @@ $string['forum'] = 'Berater_innenAustausch';
 
 $string['myfiles'] = 'Meine Dateien';
 $string['viewaddress'] = 'Adresse';
-$string['uploadfile'] = 'uploadfile';
+$string['uploadfile'] = 'Datei hochladen';
 $string['usertodo'] = 'zum User senden';
 $string['viewtodos'] = 'Aufgaben';
 $string['viewdates'] = 'Termine';

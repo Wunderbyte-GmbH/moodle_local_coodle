@@ -90,18 +90,36 @@ class add_file_form extends dynamic_form {
             file_postupdate_standard_filemanager($data, 'clientfiles', $options, $context, 'local_coodle', 'clientfiles', $data->clientid);
             $fs = get_file_storage();
             $files = $fs->get_area_files($context->id, 'local_coodle', 'clientfiles', $data->clientid);
+            $postfix = 0;
             foreach ($files as $file) {
                 if ($file->get_filename() != '.') {
-                    $filerecord = [
-                        'contextid'    => $file->get_contextid(),
-                        'component'    => $file->get_component(),
-                        'filearea'     => 'clientfiles',
-                        'itemid'       => 0,
-                        'filepath'     => '/'.$data->clientid.'/'.$data->doctype.'/',
-                        'filename'     => $file->get_filename(),
-                        'timecreated'  => time(),
-                        'timemodified' => time(),
-                    ];
+                    $filename = $file->get_filename();
+                    $newfilename = $filename;
+                    do {
+                        $filerecord = [
+                            'contextid'    => $file->get_contextid(),
+                            'component'    => $file->get_component(),
+                            'filearea'     => 'clientfiles',
+                            'itemid'       => 0,
+                            'filepath'     => '/'.$data->clientid.'/'.$data->doctype.'/',
+                            'filename'     => $newfilename,
+                            'timecreated'  => time(),
+                            'timemodified' => time(),
+                        ];
+                        $fileexist = $fs->get_file(
+                            $filerecord['contextid'],
+                            $filerecord['component'],
+                            $filerecord['filearea'],
+                            $filerecord['itemid'],
+                            $filerecord['filepath'],
+                            $filerecord['filename']
+                        );
+                        if ($fileexist) {
+                            $newfilename = $postfix . $filename;
+                            $postfix++;
+                        }
+                    } while ($fileexist);
+
                     $newfile = $fs->create_file_from_storedfile($filerecord, $file);
                     // Send a push notification
                     $message = new \local_coodle\coodle_pushnotification($data->clientid);

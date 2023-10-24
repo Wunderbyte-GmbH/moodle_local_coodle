@@ -94,7 +94,7 @@ export const init = (userid) => {
     modalForm.addEventListener(modalForm.events.FORM_SUBMITTED, (e) => {
         const response = e.detail;
 
-        if (response.error) {
+        if (response.error == true) {
             Notification.alert(getString('add_calendar_entry_notification', 'local_coodle'), getString('add_calendar_entry_error', 'local_coodle'));
             } else {
             Notification.alert(getString('add_calendar_entry_notification', 'local_coodle'), getString('add_calendar_entry_added', 'local_coodle'));

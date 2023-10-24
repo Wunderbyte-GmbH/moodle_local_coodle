@@ -173,7 +173,15 @@ class user_create_form extends dynamic_form {
         if (preg_match('/[A-Z]/', $data['username'])) {
             $errors['username'] = 'asdasd'; // TODO getstring.
         }
-
+        if (!validate_email($data['email'])) {
+            $errors['email'] = get_string('invalidemail');
+        }
+        if (empty($data['firstname'])) {
+            $errors['firstname'] = get_string('required');
+        }
+        if (empty($data['lastname'])) {
+            $errors['lastname'] = get_string('required');
+        }
         return $errors;
     }
 

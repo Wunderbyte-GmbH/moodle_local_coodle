@@ -57,8 +57,6 @@ const initEventListener = () => {
         // eslint-disable-next-line no-console
         console.log(target.dataset.action);
         if (!target.dataset.action) {
-            // eslint-disable-next-line no-console
-            console.log('nix');
             return;
         }
         switch (target.dataset.action) {
