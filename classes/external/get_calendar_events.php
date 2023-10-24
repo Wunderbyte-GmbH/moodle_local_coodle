@@ -92,9 +92,9 @@ class get_calendar_events extends external_api {
         $cu = new \local_coodle\coodle_user();
         $cu->load_user($params['userid']);
         $courseid = \local_coodle\advisor::get_courseid_from_advisorid((int)$cu->advisorid);
-        $groups = groups_get_user_groups($courseid, $userid);
+        $groups = groups_get_user_groups($courseid, $params['userid']);
         $eventlist = calendar_get_legacy_events(strtotime("-1 day"), strtotime("+1 month"),
-        $userid, $groups[0][0], $courseid, true,
+        $params['userid'], $groups[0][0], $courseid, true,
         $params['options']['ignorehidden']);
         $events = $eventlist;
         return array('events' => $events, 'warnings' => $warnings);
