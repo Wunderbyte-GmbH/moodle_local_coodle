@@ -254,12 +254,23 @@ class mobile {
      */
     public static function view_dates() {
         global $USER, $OUTPUT;
-        $coodleuser = new coodle_user();
-        $coodleuser->load_user($USER->id);
+        $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
+        $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
+
+        if ($coodleusersettings->isadvisor) {
+            if ($userchosen->userid) {
+                $userid = $userchosen->userid;
+            } else {
+                $userid = $USER->id;
+                return self::select_user();
+            }
+        } else {
+            $userid = $USER->id;
+        }
         $templatedata = new stdClass();
         $templatedata->bg = "rgb(224, 102, 0)";
 
-        $events = \local_coodle\external\get_calendar_events::execute($USER->id);
+        $events = \local_coodle\external\get_calendar_events::execute($userid);
         $templatedata->events = [];
         foreach($events['events'] as $event) {
             $templatedata->events[] = [

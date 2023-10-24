@@ -16,16 +16,17 @@
 
 /*
  * Modal Form user create
- * @package    local_coodle
+ * @package    local_rk_manager
  * @copyright  Wunderbyte GmbH <info@wunderbyte.at>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 
 import ModalForm from 'core_form/modalform';
 import {get_string as getString} from 'core/str';
 
 const SELECTORS = {
-    ADD_FILE: '[data-action="local-coodle-add-file"]',
+    DELETE: '[data-action="coodle-set-inactive"]',
 };
 
 /**
@@ -35,7 +36,7 @@ const SELECTORS = {
 export const init = () => {
 
     // Find all container.
-    const containers = document.querySelectorAll(SELECTORS.ADD_FILE);
+    const containers = document.querySelectorAll(SELECTORS.DELETE);
 
     containers.forEach(element => {
         if (!element.dataset.initialized) {
@@ -53,30 +54,28 @@ export const init = () => {
  * Opens the Modal to edit questions.
  * @param {*} event the click event
  */
- const openForm = event => {
-    event.stopPropagation();
+ const openForm = event =>{
     let button = event.target.closest('button');
+    event.stopPropagation();
     const modalForm = new ModalForm({
 
         // Name of the class where form is defined (must extend \core_form\dynamic_form):
-        formClass: "local_coodle\\form\\add_file_form",
+        formClass: "local_coodle\\form\\set_inactive",
         // Add as many arguments as you need, they will be passed to the form:
         args: {
-            'clientid': button.dataset.clientid,
-            'doctype': button.dataset.doctype,
-            'sendmsg': button.dataset.sendmsg,
-        },
-        // Pass any configuration settings to the modal dialogue, for example, the title:
-        modalConfig: {title: getString('add_file', 'local_coodle')},
+            'id': button.dataset.id,
+            'setinactive': button.dataset.setinactive,
 
-        saveButtonText: getString('add_file', 'local_coodle'),
-        // DOM element that should get the focus after the modal dialogue is closed:
+        },
+        modalConfig: {title: getString('areyousure', '')},
+        buttons: {
+            save: getString('delete')
+        },
         returnFocus: button
     });
 
     // Listen to events if you want to execute something on form submit.
     // Event detail will contain everything the process() function returned:
-
     modalForm.addEventListener(modalForm.events.FORM_SUBMITTED, (e) => {
         const response = e.detail;
         // eslint-disable-next-line no-console
@@ -93,4 +92,3 @@ export const init = () => {
         console.log(e);
     });
 };
-

@@ -24,7 +24,7 @@
     <div class="col-md-8 coodle-user">
       <div class="card bg-warning text-white mb-4" data-region="coodle-dates">
         <div class="card-body">
-          <h5 class="card-title">Termine
+          <h5 class="card-title">{{#str}} dates, local_coodle {{/str}}
             <button
             class="btn btn-dark btn-primary-outline myuserbtn"
             data-action="local-coodle-add-date"
@@ -48,7 +48,7 @@
       <div class="card card-todos text-white mb-4 coodle-dashboard">
         <div class="card-body">
           <h5 class="card-title">
-            Aufgaben
+            {{#str}} todos, local_coodle {{/str}}
             <button
               class="btn btn-dark btn-primary-outline myuserbtn"
               data-action="local-coodle-add-todo"
@@ -68,7 +68,7 @@
       <div class="card card-beratung text-white mb-4">
         <div class="card-body">
           <h5 class="card-title my-2">
-            Beratung
+            {{#str}} dok3 , local_coodle {{/str}}
             <button
               class="btn btn-dark pull-right"
               data-toggle="modal"
@@ -129,7 +129,7 @@
       <div class="card card-docs text-white mb-4">
         <div class="card-body">
           <h5 class="card-title">
-            Dokumente
+            {{#str}} dok1 , local_coodle {{/str}}
             <button
               class="btn btn-dark myuserbtn"
               data-toggle="modal"
@@ -155,7 +155,8 @@
       </div>
       <div class="card card-direction text-white mb-4">
         <div class="card-body">
-          <h5 class="card-title">Wegbeschreibungen<button
+          <h5 class="card-title">{{#str}} directions , local_coodle {{/str}}
+            <button
             class="btn btn-dark btn-primary-outline myuserbtn"
             data-action="local-coodle-add-direction"
             data-clientid="{{ clientid }}"

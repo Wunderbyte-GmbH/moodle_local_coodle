@@ -43,7 +43,7 @@ var title;
 
 /**
  * Gets called from mustache template.
- *
+ *  @param {*} userid
  */
 export const init = (userid) => {
     const clientid = userid;

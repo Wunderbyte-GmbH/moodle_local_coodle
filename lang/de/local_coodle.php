@@ -77,7 +77,7 @@ $string['mobilelogin'] = 'QR-Login';
 $string['forum'] = 'Berater_innenAustausch';
 
 $string['myfiles'] = 'Meine Dateien';
-$string['viewaddress'] = 'Adresse';
+$string['viewaddress'] = 'Wege';
 $string['uploadfile'] = 'Datei hochladen';
 $string['usertodo'] = 'zum User senden';
 $string['viewtodos'] = 'Aufgaben';
@@ -92,6 +92,8 @@ $string['dok3'] = 'Beratung';
 $string['viewinfo'] = 'Info';
 $string['add_audio'] = 'Audio aufnehmen';
 $string['setinactive'] = 'Inaktiv setzen';
+$string['setactive'] = 'Aktiv setzen';
+
 $string['set_inactive'] = 'Inaktiv setzen';
 
 $string['add_recording'] = 'Aufnahme hinzufügen';
@@ -118,6 +120,7 @@ $string['berufsbezeichnung'] = 'Berufsbezeichnung';
 $string['impressum'] = 'Impressum';
 
 // Dates
+$string['dates'] = 'Termine';
 $string['add_calendar_entry_notification'] = 'Kalendereintrag';
 $string['add_calendar_entry_added'] = 'Kalendereintrag hinzugefügt';
 $string['add_calendar_entry_error'] = 'Leider ist etwas schief gelaufen';

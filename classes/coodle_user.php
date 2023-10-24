@@ -151,7 +151,7 @@ class coodle_user {
         ua.firstname as 'advisorfirstname', ua.lastname as 'advisorlastname', a.courseid
          FROM {local_coodle_advisor} a RIGHT JOIN {local_coodle_user} cu on a.userid = cu.advisorid
          JOIN {user} u on cu.userid = u.id
-         LEFT JOIN {user} ua on cu.advisorid = ua.id";
+         LEFT JOIN {user} ua on cu.advisorid = ua.id  ORDER BY cu.deleted";
         $data = $DB->get_records_sql($sql);
         return $data;
     }
@@ -168,7 +168,7 @@ class coodle_user {
          FROM {local_coodle_advisor} a RIGHT JOIN {local_coodle_user} cu on a.userid = cu.advisorid
          JOIN {user} u on cu.userid = u.id
          LEFT JOIN {user} ua on cu.advisorid = ua.id
-         WHERE cu.advisorid = $userid";
+         WHERE cu.advisorid = $userid ORDER BY cu.deleted";
         $data = $DB->get_records_sql($sql);
         return $data;
     }

@@ -114,15 +114,16 @@ class upload_file extends external_api {
         foreach ($files as $file) {
             if ($file->get_filename() == $params['filename']) {
                 $context = \context_system::instance();
+                $postfix = 0;
                 $filename = $file->get_filename();
                 $newfilename = $filename;
                 do {
                     $filerecord = [
-                        'contextid'    => $file->get_contextid(),
+                        'contextid'    => $context->id,
                         'component'    => $file->get_component(),
                         'filearea'     => 'clientfiles',
                         'itemid'       => 0,
-                        'filepath'     => '/'.$data->clientid.'/'.$data->doctype.'/',
+                        'filepath'     => '/'.$userid.'/'.$folder.'/',
                         'filename'     => $newfilename,
                         'timecreated'  => time(),
                         'timemodified' => time(),

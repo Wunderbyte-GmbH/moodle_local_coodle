@@ -74,6 +74,7 @@ $string['add_file'] = 'add File';
 $string['add_audio'] = 'record Audio';
 $string['set_inactive'] = 'set inactive';
 $string['setinactive'] = 'set inactive';
+$string['setactive'] = 'set active';
 
 $string['add_recording'] = 'add recording';
 
@@ -124,6 +125,7 @@ $string['berufsbezeichnung'] = 'job title';
 $string['impressum'] = 'Impressum';
 
 // Dates
+$string['dates'] = 'Dates';
 $string['add_calendar_entry_notification'] = 'Calendar entry';
 $string['add_calendar_entry_added'] = 'Calendar entry added';
 $string['add_calendar_entry_error'] = 'Something went wrong';
