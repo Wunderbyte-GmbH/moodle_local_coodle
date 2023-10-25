@@ -71,6 +71,7 @@ class set_inactive extends dynamic_form {
         }    else {
             $data->deleted = 0;
         }
+        unset($data->setinactive);
         $data->timemodified = time();
         $DB->update_record('local_coodle_user', $data);
         return $data;

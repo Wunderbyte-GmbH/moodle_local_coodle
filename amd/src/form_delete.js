@@ -57,15 +57,17 @@ export const init = () => {
  const openForm = event =>{
     let button = event.target.closest('button');
     event.stopPropagation();
-    const modalForm = new ModalForm({
+    console.log(button.dataset);
 
+    console.log(button.dataset.setinactive);
+
+    const modalForm = new ModalForm({
         // Name of the class where form is defined (must extend \core_form\dynamic_form):
         formClass: "local_coodle\\form\\set_inactive",
         // Add as many arguments as you need, they will be passed to the form:
         args: {
             'id': button.dataset.id,
             'setinactive': button.dataset.setinactive,
-
         },
         modalConfig: {title: getString('areyousure', '')},
         buttons: {
