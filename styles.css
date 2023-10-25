@@ -264,13 +264,14 @@
 }
 
 [data-key="clientlist"] a::before {
-    content:" ";
-    width:50px;
-    height:50px;
-    background: url(https://wuk.wunderbyte.at/local/coodle/pix/coodle.png);
-    background-size: contain;
-    margin-right: 20px;
+    content: "";
+    width: 50px;
+    height: 50px;
+    background: url([[pix:local_coodle|blk_logo]]);
+    transform: scale();
+    display: inline-block;
     filter: invert();
+    background-size: contain;
 }
 
 .message audio {
