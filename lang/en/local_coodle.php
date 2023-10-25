@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 $string['pluginname'] = 'COODLE Manager';
 $string['create_user'] = 'Create User';
 $string['createadvisor'] = 'Create Advisor';
-$string['advisorcourse'] = 'Advisor Course';
+$string['advisorcourse'] = 'Info';
 $string['registeredsince'] = 'Registered since';
 $string['usergroup'] = 'Usergroup';
 $string['status'] = 'Status';
@@ -37,7 +37,6 @@ $string['status:inprogress'] = 'In progress';
 $string['status:starting'] = 'Starting';
 $string['status:finshed'] = 'Finished';
 $string['selectusers'] = 'Select User for Advisorrole';
-
 
 // ADVISOR Page.
 $string['advisor'] = 'Advisor';
