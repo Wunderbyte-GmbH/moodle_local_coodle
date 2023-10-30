@@ -111,6 +111,7 @@ $string['linkname'] = 'linktitle';
 $string['addlink'] = 'link';
 
 // Adresse.
+$string['directions'] = 'Directions';
 $string['description'] = 'Description';
 $string['add_direction'] = 'Add directions';
 
@@ -129,3 +130,8 @@ $string['add_calendar_entry_notification'] = 'Calendar entry';
 $string['add_calendar_entry_added'] = 'Calendar entry added';
 $string['add_calendar_entry_error'] = 'Something went wrong';
 $string['add_calendar_entry'] = 'Add date';
+
+// Filter
+$string['inactive'] = 'Inactive';
+$string['active'] = 'Active';
+$string['search'] = 'Search';

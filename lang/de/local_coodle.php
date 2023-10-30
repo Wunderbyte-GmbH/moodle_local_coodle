@@ -107,6 +107,7 @@ $string['linkname'] = 'Linkname';
 $string['addlink'] = 'Link';
 
 // Adresse.
+$string['directions'] = 'Wege';
 $string['description'] = 'Beschreibung';
 $string['add_direction'] = 'Wegbeschreibung hinzufügen';
 
@@ -125,3 +126,9 @@ $string['add_calendar_entry_notification'] = 'Kalendereintrag';
 $string['add_calendar_entry_added'] = 'Kalendereintrag hinzugefügt';
 $string['add_calendar_entry_error'] = 'Leider ist etwas schief gelaufen';
 $string['add_calendar_entry'] = 'Termin hinzufügen';
+
+// Filter
+$string['all'] = 'Zeige Alle';
+$string['inactive'] = 'Nur Inaktive';
+$string['active'] = 'Nur Aktive';
+$string['search'] = 'Suche...';
