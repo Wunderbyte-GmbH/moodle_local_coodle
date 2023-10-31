@@ -119,7 +119,7 @@ $addons = [
                 'method' => 'view_impressum',
                 'displaydata' => [
                     'title' => 'impressum',
-                    'icon' => 'info',
+                    'icon' => 'information',
                 ],
                 'priority'  => 10000000000000000,
                 'styles' => array(
