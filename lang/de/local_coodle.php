@@ -118,7 +118,7 @@ $string['doornr'] = 'Nr';
 $string['zipcode'] = 'PLZ';
 $string['city'] = 'Stadt';
 $string['berufsbezeichnung'] = 'Berufsbezeichnung';
-$string['impressum'] = 'Impressum';
+$string['impressum'] = 'Über COODLE';
 
 // Dates
 $string['dates'] = 'Termine';
