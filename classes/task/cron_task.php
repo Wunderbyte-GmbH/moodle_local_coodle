@@ -56,11 +56,10 @@ class cron_task extends \core\task\scheduled_task {
         }
 
 
-        $records = $DB->get_records('local_coodle_users', ['deleted' => 1])
+        $records = $DB->get_records('local_coodle_users', ['deleted' => 1]);
 
         foreach ($records as $record) {
             if ($record->timemodified + $coodledeletetime < time()) {
-                $this->delete()
             }
         }
         // coodle_user delete

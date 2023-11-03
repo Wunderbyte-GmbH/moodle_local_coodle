@@ -69,6 +69,12 @@ class mobile {
         $coodleuser->load_user($userid);
         $templatedata = new stdClass();
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(1);
+
+        $templatedata->header = get_string('docsdesc', 'local_coodle');
+        $templatedata->nodata = 1;
+        $templatedata->nodatastring = get_string('docsdesc', 'local_coodle');
+
+        $templatedata->text = "#fff";
         $templatedata->hl = "Dokumente";
         // Green.
         $templatedata->bg = "#669933";
@@ -137,6 +143,10 @@ class mobile {
         $coodleuser->load_user($userid);
         $templatedata = new stdClass();
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(3);
+        $templatedata->header = get_string('docsadvdesc', 'local_coodle');
+        $templatedata->nodata = 1;
+        $templatedata->nodatastring = get_string('nodocsadv', 'local_coodle');
+
         $templatedata->bg = "rgb(102, 153, 204)";
         $templatedata->text = "#fff";
         $links = new \local_coodle\coodle_link();
@@ -185,6 +195,9 @@ class mobile {
         // Address Purple.
         $templatedata->bg = "rgb(102, 68, 153)";
         $templatedata->adresses = $coodleuser->get_coodleuser_directions($userid);
+        $templatedata->header = get_string('directionsdesc', 'local_coodle');
+        $templatedata->nodata = 1;
+        $templatedata->nodatastring = get_string('nodirections', 'local_coodle');
 
         return [
             'templates' => [
@@ -279,6 +292,9 @@ class mobile {
                 'timestart' => date("d.m H:i", $event->timestart),
             ];
         }
+        $templatedata->header = get_string('datesdesc', 'local_coodle');
+        $templatedata->nodata = 1;
+        $templatedata->nodatastring = get_string('nodates', 'local_coodle');
 
         return [
             'templates' => [
@@ -325,6 +341,10 @@ class mobile {
         $templatedata->todosopen = $todolist['open'];
         $templatedata->todosdone = $todolist['done'];
         $templatedata->userid = $userid;
+
+        $templatedata->header = get_string('todosdesc', 'local_coodle');
+        $templatedata->nodata = 1;
+        $templatedata->nodatastring = get_string('notodos', 'local_coodle');
 
         return [
             'templates' => [
