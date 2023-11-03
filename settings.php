@@ -46,7 +46,7 @@ if ($hassiteconfig) {
     // TODO: Date
     $settings->add(
         new admin_setting_configtext(
-            $componentname .'/coodle',
+            $componentname .'/coodledeletetime',
             get_string('coodledeleteusertime', $componentname),
             get_string('coodledeleteusertime:description', $componentname),
             0,

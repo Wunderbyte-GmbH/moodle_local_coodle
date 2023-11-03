@@ -123,6 +123,7 @@ class coodle_direction {
      */
     public static function delete_direction(int $directionid) {
         global $DB, $USER;
+        // Check that user who deltes is advisor.
         $conditons = ['advisorid' => $USER->id, 'id' => $directionid];
         $DB->delete_records('local_coodle_directions', $conditons);
     }

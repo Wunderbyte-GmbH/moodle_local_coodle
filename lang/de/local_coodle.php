@@ -132,3 +132,19 @@ $string['all'] = 'Zeige Alle';
 $string['inactive'] = 'Nur Inaktive';
 $string['active'] = 'Nur Aktive';
 $string['search'] = 'Suche...';
+
+// No Data
+$string['todosdesc'] = 'Du kannst Aufgaben als erledigt markieren.';
+$string['notodos'] = 'Zeige Alle';
+
+$string['datesdesc'] = 'Hier findest du deine bevorstehenden Termine.';
+$string['nodates'] = 'Nur Inaktive';
+
+$string['directionsdesc'] = 'Hier findest du Wegbeschreibungen, die für dich hinterlegt wurden.';
+$string['nodirections'] = 'Noch keine Wegbeschreibungen vorhanden.';
+
+$string['docsdesc'] = 'Lade hier deine persönlichen Dokumente (z.B. Bewerbungsunterlagen) hoch.';
+$string['nodocs'] = 'Noch keine persönlichen Dokumente vorhanden.';
+
+$string['docsadvdesc'] = 'Hier findest du Kontaktdaten und Dokumente aus deiner Beratung. ';
+$string['nodocsadv'] = 'Noch keine Beratungsdokumente vorhanden.';

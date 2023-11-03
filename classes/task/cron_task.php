@@ -47,10 +47,22 @@ class cron_task extends \core\task\scheduled_task {
      */
     public function execute() {
         global $CFG, $DB;
-        // get config ...
+        $config = get_config('local_coodle');
 
-        // $DB->get_records
+        if ($config->coodledeletetime > 0) {
+            $coodledeletetime = $config->coodledeletetime;
+        } else {
+            $coodledeletetime = 3600 * 31;
+        }
 
+
+        $records = $DB->get_records('local_coodle_users', ['deleted' => 1])
+
+        foreach ($records as $record) {
+            if ($record->timemodified + $coodledeletetime < time()) {
+                $this->delete()
+            }
+        }
         // coodle_user delete
         // coodle_files delete
         // coodle_todos delete

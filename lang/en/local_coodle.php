@@ -135,3 +135,19 @@ $string['add_calendar_entry'] = 'Add date';
 $string['inactive'] = 'Inactive';
 $string['active'] = 'Active';
 $string['search'] = 'Search';
+
+// Mobile
+$string['todosdesc'] = 'You can mark tasks as completed.';
+$string['notodos'] = 'Currently, no open tasks.';
+
+$string['datesdesc'] = 'Here you can find your upcoming appointments.';
+$string['nodates'] = 'Currently, no upcoming appointments.';
+
+$string['directionsdesc'] = 'Here you can find directions that have been provided for you.';
+$string['nodirections'] = 'No directions available yet.';
+
+$string['docsdesc'] = 'Upload your personal documents here (e.g., application materials).';
+$string['nodocs'] = 'No personal documents available yet.';
+
+$string['docsadvdesc'] = 'Here you can find contact information and documents from your counseling.';
+$string['nodocsadv'] = 'No counseling documents available yet.';

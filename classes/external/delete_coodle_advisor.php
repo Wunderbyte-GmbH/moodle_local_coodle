@@ -30,6 +30,7 @@ use external_api;
 use external_function_parameters;
 use external_value;
 use external_single_structure;
+use local_coodle\permission;
 use local_coodle\settings_manager;
 
 defined('MOODLE_INTERNAL') || die();
@@ -59,6 +60,8 @@ class delete_coodle_user extends external_api {
         // TODO if user can delete coodle user -> delete coodle user;
 
         $answer['error'] = "";
+
+        permission::require_is_coodleadmin();
 
         $params = self::validate_parameters(self::execute_parameters(), [
             'userid' => $userid,

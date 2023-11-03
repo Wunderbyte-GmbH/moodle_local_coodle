@@ -30,21 +30,19 @@ use context_system;
  */
 class permission {
 
-    // TODO: add class
     /**
      * Require given user can view reports list
      *
      * @param int|null $userid User ID to check, or the current user if omitted
-     * @param context|null $context
      * @throws exception
      */
-    public static function require_is_coodleadmin(?int $userid = null, ?context $context = null): void {
-        if (!static::is_superadmin($userid, $context)) {
+    public static function require_is_coodleadmin(?int $userid = null): void {
+        if (!static::is_superadmin($userid)) {
             throw new \exception('not allowed');
         }
     }
 
-    public static function is_superadmin(?int $userid = null, ?context $context = null): void {
+    public static function is_superadmin(?int $userid = null): bool {
         global $CFG, $USER, $DB;
         $userid = $userid ?: (int) $USER->id;
         if (is_siteadmin($userid) ||

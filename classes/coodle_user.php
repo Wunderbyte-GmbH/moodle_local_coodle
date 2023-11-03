@@ -209,7 +209,8 @@ class coodle_user {
         } else {
             $coodleusers = self::get_coodle_users($userid);
         }
-
+        $countdeleted = 0;
+        $countactive = 0;
         $templatedata = [];
         foreach ($coodleusers as $coodleuser) {
             $tdata = $coodleuser;
@@ -226,7 +227,12 @@ class coodle_user {
             $tdata->qrcode = $mobileqr;
             $tdata->todos = self::get_coodle_todos($coodleuser->userid);
             $templatedata[] = $tdata;
+            // Count Users.
+            $coodleuser->deleted ? $countdeleted++ : $countactive++;
         }
+        $templatedata['countdeleted'] = $countdeleted;
+        $templatedata['countactive'] = $countactive;
+
         return $templatedata;
     }
 

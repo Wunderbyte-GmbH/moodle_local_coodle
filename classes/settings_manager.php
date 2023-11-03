@@ -110,11 +110,20 @@ class settings_manager {
     }
 
     /**
-     * Deletes an advisor fomr coodle table
+     * Deletes an user fomr coodle table
      */
     public function delete_coodle_user($userid) {
         global $DB;
-        return $DB->delete_records('local_coodle_user', array('userid' => $userid));
+        // Delete the user entry.
+        $DB->delete_records('local_coodle_user', array('userid' => $userid));
+        // Delete the todo records.
+        $DB->delete_records('local_coodle_todos', array('userid' => $userid));
+        // Delete the link records.
+        $DB->delete_records('local_coodle_links', array('userid' => $userid));
+        $DB->delete_records('local_coodle_directions', array('userid' => $userid));
+        // Delete the conversation.
+        // Delete file records.
+        // Delete moodle specific data
     }
 
     /**
