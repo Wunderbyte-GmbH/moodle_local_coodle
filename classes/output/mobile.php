@@ -71,7 +71,7 @@ class mobile {
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(1);
 
         $templatedata->header = get_string('docsdesc', 'local_coodle');
-        $templatedata->nodata = (is_array($templatedata->otherfiles) && !empty($templatedata->otherfiles)) ? 0 : 1;
+        $templatedata->nodata = (!empty($templatedata->otherfiles)) ? 0 : 1;
         $templatedata->nodatastring = get_string('docsdesc', 'local_coodle');
 
         $templatedata->text = "#fff";
@@ -144,7 +144,7 @@ class mobile {
         $templatedata = new stdClass();
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(3);
         $templatedata->header = get_string('docsadvdesc', 'local_coodle');
-        $templatedata->nodata = (is_array($templatedata->otherfiles) && !empty($templatedata->otherfiles)) ? 0 : 1;
+        $templatedata->nodata = (!empty($templatedata->otherfiles)) ? 0 : 1;
         $templatedata->nodatastring = get_string('nodocsadv', 'local_coodle');
 
         $templatedata->bg = "rgb(102, 153, 204)";
