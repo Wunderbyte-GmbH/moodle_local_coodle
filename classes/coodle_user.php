@@ -228,12 +228,17 @@ class coodle_user {
             $tdata->todos = self::get_coodle_todos($coodleuser->userid);
             $templatedata[] = $tdata;
             // Count Users.
-            $coodleuser->deleted ? $countdeleted++ : $countactive++;
+            if($coodleuser->deleted == "1" ) {
+                $countdeleted++;
+            } else {
+                $countactive++;
+            }
         }
-        $templatedata['countdeleted'] = $countdeleted;
-        $templatedata['countactive'] = $countactive;
+        $returnarray['users'] = array_values($templatedata);
+        $returnarray['countdeleted'] = $countdeleted;
+        $returnarray['countactive'] = $countactive;
 
-        return $templatedata;
+        return $returnarray;
     }
 
     /**

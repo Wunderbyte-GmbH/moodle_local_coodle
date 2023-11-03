@@ -42,12 +42,12 @@
                         <div class="title">
                             {{#str}} ongoing_clients, local_coodle {{/str}}
                         </div>
-                        <div class="count">| {{ count }} Clients</div>
+                        <div class="count">| {{ countactive }} Clients</div>
                         <i class="zmdi zmdi-download"></i>
                     </header>
                     <div class="filter mb-4">
                         <input id="coodle-usersearch" type="text" />
-                        <label for="coodle-showinactive">Show Inactive:</label>
+                        <label for="coodle-showinactive">Show Inactive: {{countdeleted}}</label>
                         <input
                             id="coodle-showinactive"
                             type="checkbox"
