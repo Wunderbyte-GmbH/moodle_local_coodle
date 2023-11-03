@@ -135,10 +135,10 @@ $string['search'] = 'Suche...';
 
 // No Data
 $string['todosdesc'] = 'Du kannst Aufgaben als erledigt markieren.';
-$string['notodos'] = 'Zeige Alle';
+$string['notodos'] = 'Derzeit keine offenen Aufgaben.';
 
 $string['datesdesc'] = 'Hier findest du deine bevorstehenden Termine.';
-$string['nodates'] = 'Nur Inaktive';
+$string['nodates'] = 'Derzeit keine bevorstehenden Termine';
 
 $string['directionsdesc'] = 'Hier findest du Wegbeschreibungen, die für dich hinterlegt wurden.';
 $string['nodirections'] = 'Noch keine Wegbeschreibungen vorhanden.';

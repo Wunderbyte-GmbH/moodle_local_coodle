@@ -71,7 +71,7 @@ class mobile {
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(1);
 
         $templatedata->header = get_string('docsdesc', 'local_coodle');
-        $templatedata->nodata = 1;
+        $templatedata->nodata = (is_array($templatedata->otherfiles) && !empty($templatedata->otherfiles)) ? 0 : 1;
         $templatedata->nodatastring = get_string('docsdesc', 'local_coodle');
 
         $templatedata->text = "#fff";
@@ -144,7 +144,7 @@ class mobile {
         $templatedata = new stdClass();
         $templatedata->otherfiles = $coodleuser->get_coodleuser_files(3);
         $templatedata->header = get_string('docsadvdesc', 'local_coodle');
-        $templatedata->nodata = 1;
+        $templatedata->nodata = (is_array($templatedata->otherfiles) && !empty($templatedata->otherfiles)) ? 0 : 1;
         $templatedata->nodatastring = get_string('nodocsadv', 'local_coodle');
 
         $templatedata->bg = "rgb(102, 153, 204)";
@@ -196,7 +196,7 @@ class mobile {
         $templatedata->bg = "rgb(102, 68, 153)";
         $templatedata->adresses = $coodleuser->get_coodleuser_directions($userid);
         $templatedata->header = get_string('directionsdesc', 'local_coodle');
-        $templatedata->nodata = 1;
+        $templatedata->nodata = (is_array($templatedata->adresses) && !empty($templatedata->adresses)) ? 0 : 1;
         $templatedata->nodatastring = get_string('nodirections', 'local_coodle');
 
         return [
@@ -293,7 +293,7 @@ class mobile {
             ];
         }
         $templatedata->header = get_string('datesdesc', 'local_coodle');
-        $templatedata->nodata = 1;
+        $templatedata->nodata = (is_array($templatedata->events) && !empty($templatedata->events)) ? 0 : 1;
         $templatedata->nodatastring = get_string('nodates', 'local_coodle');
 
         return [
@@ -343,7 +343,7 @@ class mobile {
         $templatedata->userid = $userid;
 
         $templatedata->header = get_string('todosdesc', 'local_coodle');
-        $templatedata->nodata = 1;
+        $templatedata->nodata = (is_array($templatedata->todosopen) && !empty($templatedata->todosopen)) ? 0 : 1;
         $templatedata->nodatastring = get_string('notodos', 'local_coodle');
 
         return [
