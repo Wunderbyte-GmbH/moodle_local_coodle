@@ -42,9 +42,7 @@ $PAGE->set_heading($title);
 
 echo $OUTPUT->header();
 
-$coodleusers = \local_coodle\coodle_user::prepare_for_template();
-$templatedata['users'] = array_values($coodleusers);
-$templatedata['count'] = count($templatedata['users']);
+$templatedata = \local_coodle\coodle_user::prepare_for_template();
 
 echo $OUTPUT->render_from_template('local_coodle/clientlist', $templatedata);
 echo $OUTPUT->footer();

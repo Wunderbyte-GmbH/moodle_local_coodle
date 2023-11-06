@@ -110,23 +110,6 @@ class settings_manager {
     }
 
     /**
-     * Deletes an user fomr coodle table
-     */
-    public function delete_coodle_user($userid) {
-        global $DB;
-        // Delete the user entry.
-        $DB->delete_records('local_coodle_user', array('userid' => $userid));
-        // Delete the todo records.
-        $DB->delete_records('local_coodle_todos', array('userid' => $userid));
-        // Delete the link records.
-        $DB->delete_records('local_coodle_links', array('userid' => $userid));
-        $DB->delete_records('local_coodle_directions', array('userid' => $userid));
-        // Delete the conversation.
-        // Delete file records.
-        // Delete moodle specific data
-    }
-
-    /**
      * Load user
      *
      * @param integer $userid
@@ -194,5 +177,48 @@ class settings_manager {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Delete everything from user
+     * @param int $userid - userid of user
+     */
+    public function delete_user(int $userid) {
+        global $DB;
+        $this->delete_user_files($userid);
+        coodle_direction::delete_all_user_directions($userid);
+        $DB->delete_records('local_coodle_user', ['userid' => $userid]);
+        $DB->delete_records('local_coodle_todos', ['userid' => $userid]);
+        $DB->delete_records('local_coodle_links', ['userid' => $userid]);
+
+        $user = \user_get_users_by_id([$userid]);
+        \user_delete_user($user);
+    }
+
+    /**
+     * Delete user files
+     *
+     * @param  integer $userid
+     *
+     * @return void
+     */
+    public function delete_user_files(int $userid) {
+        $fs = new \file_storage();
+        $context = \context_system::instance();
+        $files = $fs->get_area_files($context->id, 'local_coodle', 'clientfiles', $userid);
+        foreach ($files as $file) {
+            $file->delete();
+        }
+    }
+
+    /**
+     * Delete user files
+     *
+     * @param  integer $userid
+     *
+     * @return void
+     */
+    public function delete_user_messages(int $userid) {
+
     }
 }

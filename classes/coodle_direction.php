@@ -16,6 +16,7 @@
 
 namespace local_coodle;
 
+use file_storage;
 use stdClass;
 
 /**
@@ -119,13 +120,30 @@ class coodle_direction {
     /**
      * Gets all coodle users (clients) with user data from MOODLE user table
      *
-     * @return array
      */
     public static function delete_direction(int $directionid) {
         global $DB, $USER;
         // Check that user who deltes is advisor.
         $conditons = ['advisorid' => $USER->id, 'id' => $directionid];
         $DB->delete_records('local_coodle_directions', $conditons);
+    }
+
+    /**
+     * Gets all coodle users (clients) with user data from MOODLE user table
+     *
+     * @return array
+     */
+    public static function delete_all_user_directions(int $userid) {
+        global $DB;
+        // Check that user who deltes is advisor.
+        $context = \context_system::instance();
+        $conditons = ['userid' => $userid];
+        $directions = $DB->get_records('local_coodle_directions', $conditons);
+        foreach($directions as $direction) {
+            $DB->delete_record('local_coodle_directions', ['id' => $direction->id]);
+            $fs = new file_storage();
+            $fs->delete_area_files($context->id, 'local_coodle', 'direction', $direction->id);
+        }
     }
 
     /**

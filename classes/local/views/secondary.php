@@ -48,7 +48,7 @@ class secondary extends core_secondary {
             $this->add(get_string('mobilelogin', 'local_coodle'), '/local/coodle/myqrcode.php', \navigation_node::TYPE_CUSTOM,
             'mobilelogin', 'mobilelogin');
             if ($advisorcoursid > 0) {
-                $this->add(get_string('advisorcourse', 'local_coodle'), '/course/view.php?id=' . $advisorcoursid , \navigation_node::TYPE_CUSTOM,
+                $this->add(get_string('advisorinfocourse', 'local_coodle'), '/course/view.php?id=' . $advisorcoursid , \navigation_node::TYPE_CUSTOM,
                 'advisorcourse', 'advisorcourse');
             }
         }

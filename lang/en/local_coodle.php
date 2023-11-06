@@ -29,6 +29,7 @@ $string['pluginname'] = 'COODLE Manager';
 $string['create_user'] = 'Create User';
 $string['createadvisor'] = 'Create Advisor';
 $string['advisorcourse'] = 'Info';
+$string['advisorinfocourse'] = 'Advisorcourse';
 $string['registeredsince'] = 'Registered since';
 $string['usergroup'] = 'Usergroup';
 $string['status'] = 'Status';

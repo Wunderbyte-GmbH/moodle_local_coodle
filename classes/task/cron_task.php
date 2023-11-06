@@ -24,6 +24,8 @@
 
 namespace local_cohorts\task;
 
+use local_coodle\settings_manager;
+
 defined('MOODLE_INTERNAL') || die();
 /**
  * Class handling cohort user deletion.
@@ -55,17 +57,13 @@ class cron_task extends \core\task\scheduled_task {
             $coodledeletetime = 3600 * 31;
         }
 
-
         $records = $DB->get_records('local_coodle_users', ['deleted' => 1]);
 
         foreach ($records as $record) {
             if ($record->timemodified + $coodledeletetime < time()) {
+               \local_coodle\settings_manager::delete_user($records->userid);
             }
         }
-        // coodle_user delete
-        // coodle_files delete
-        // coodle_todos delete
-        // coodle_
     }
 
 }
