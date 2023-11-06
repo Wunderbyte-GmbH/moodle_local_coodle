@@ -149,3 +149,10 @@ $string['nodocs'] = 'Noch keine persönlichen Dokumente vorhanden.';
 
 $string['docsadvdesc'] = 'Hier findest du Kontaktdaten und Dokumente aus deiner Beratung. ';
 $string['nodocsadv'] = 'Noch keine Beratungsdokumente vorhanden.';
+
+$string['newfile'] = 'Neues File angelegt';
+$string['newfilewasadded:small'] = 'Neues File angelegt';
+
+$string['messageprovider:testfile'] = 'Testfile';
+$string['messageprovider:newfilemsg'] = 'Neues File';
+$string['messageprovider:newtodomsg'] = 'Neue Aufgabe hinzugefügt';

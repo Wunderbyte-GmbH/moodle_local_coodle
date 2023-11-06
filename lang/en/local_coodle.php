@@ -152,3 +152,10 @@ $string['nodocs'] = 'No personal documents available yet.';
 
 $string['docsadvdesc'] = 'Here you can find contact information and documents from your counseling.';
 $string['nodocsadv'] = 'No counseling documents available yet.';
+
+$string['newfile'] = 'New File added';
+$string['newfilewasadded:small'] = 'New File added';
+
+$string['messageprovider:testfile'] = 'Testfile';
+$string['messageprovider:newfilemsg'] = 'New File';
+$string['messageprovider:newtodomsg'] = 'New Todo';
