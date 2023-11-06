@@ -56,7 +56,7 @@ $string['adduserfromplatform'] = 'Add client from platform';
 $string['user'] = 'User';
 $string['add_todo'] = 'Add Todo';
 $string['todolist'] = 'Todolist';
-$string['selectuser'] = 'User?';
+$string['selectuser'] = 'Choose User';
 
 $string['coodleadvisorcourse'] = '';
 $string['coodleadvisorcourseid:description'] = '';

@@ -64,7 +64,7 @@ $string['add_user'] = 'Teilnehmer_in hinzufügen';
 $string['add_file'] = 'Datei hochladen';
 $string['add_todo'] = 'Aufgabe hinzufügen';
 $string['userpage'] = 'TN Seite';
-$string['selectuser'] = 'Teilnehmer_in?';
+$string['selectuser'] = 'Teilnehmer_in auswählen';
 $string['add_contactcard'] = 'Kontaktinfos hinzufügen';
 
 // Menu.
