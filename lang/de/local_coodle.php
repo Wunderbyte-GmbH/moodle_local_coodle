@@ -153,6 +153,9 @@ $string['nodocsadv'] = 'Noch keine Beratungsdokumente vorhanden.';
 $string['newfile'] = 'Neues File angelegt';
 $string['newfilewasadded:small'] = 'Neues File angelegt';
 
+$string['newtodo'] = 'Neue Aufgabe angelegt';
+$string['newtodo:small'] = 'Neue Aufgabe angelegt';
+
 $string['messageprovider:testfile'] = 'Testfile';
 $string['messageprovider:newfilemsg'] = 'Neues File';
 $string['messageprovider:newtodomsg'] = 'Neue Aufgabe hinzugefügt';

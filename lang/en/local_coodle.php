@@ -98,9 +98,9 @@ $string['viewdates'] = 'Events';
 $string['todos'] = 'Todos';
 $string['add_contactcard'] = 'Add contactinfos';
 
-$string['dok1'] = 'Dokumente';
+$string['dok1'] = 'Docuemnts';
 $string['dok2'] = 'Bewerbungsunterlagen';
-$string['dok3'] = 'Beratungsinhalt';
+$string['dok3'] = 'Advisments';
 $string['viewinfo'] = 'Info';
 
 $string['coodlewelcome'] = 'Welcome to the COODLE App';
@@ -155,6 +155,9 @@ $string['nodocsadv'] = 'No counseling documents available yet.';
 
 $string['newfile'] = 'New File added';
 $string['newfilewasadded:small'] = 'New File added';
+
+$string['newtodo'] = 'New Todo added';
+$string['newtodo:small'] = 'New Todo added';
 
 $string['messageprovider:testfile'] = 'Testfile';
 $string['messageprovider:newfilemsg'] = 'New File';
