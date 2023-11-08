@@ -12,20 +12,22 @@
   along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
 
-{{=<% %>=}}
-<div style="min-height: 100%; background: <%bg%>">
-  <%>local_coodle/mobile/mobile_header%>
+<div style="min-height: 100%; background: {{bg}}">
+  {{>local_coodle/mobile/mobile_header}}
     <ion-list
         color="black"
         style="
             margin: 5px;
             background-color: transparent;
             background: transparent;">
-      <%#events%>
+      {{#events}}
       <ion-item style="margin: 5px">
-      <ion-label><b><%timestart%></b> - <%name%> | <%location%></ion-label>
-      <ion-lable><%description%></ion-lable>
+      <div><b>{{timestart}}</b> - {{name}} | {{location}}</div>
+      <br>
+      {{#description}}
+      <ion-label>{{{description}}}</ion-label>
+      {{/description}}
       </ion-item>
-      <%/events%>
+      {{/events}}
     </ion-list>
 </div>

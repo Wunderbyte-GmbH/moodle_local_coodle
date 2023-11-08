@@ -91,7 +91,7 @@ class coodle_pushnotification {
         $customdata = new stdClass();
         $customdata->coodle = true;
         $customdata->coodleurl = 'view_todos/0';
-        $customdata->title = 'addon.local.coodle.viewtodos';
+        $customdata->title = 'addon.local_coodle.viewtodos';
 
         $this->message->customdata = json_encode($customdata);
         $messageid = message_send($this->message);
@@ -117,7 +117,7 @@ class coodle_pushnotification {
         $customdata = new stdClass();
         $customdata->coodle = true;
         $customdata->coodleurl = 'view_files3/0';
-        $customdata->title = 'addon.local.coodle.dok3';
+        $customdata->title = 'addon.local_coodle.dok3';
 
         $this->message->customdata = json_encode($customdata);
 

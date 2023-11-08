@@ -56,7 +56,6 @@ $string['adduserfromplatform'] = 'Add client from platform';
 $string['user'] = 'User';
 $string['add_todo'] = 'Add Todo';
 $string['todolist'] = 'Todolist';
-$string['selectuser'] = 'Choose User';
 
 $string['coodleadvisorcourse'] = '';
 $string['coodleadvisorcourseid:description'] = '';
@@ -86,22 +85,12 @@ $string['advisorlist'] = 'Advisors';
 $string['allclients'] = 'All Clients';
 $string['mobilelogin'] = 'Mobile Login';
 
-$string['myfiles'] = 'My Files';
-
-$string['viewaddress'] = 'Address';
 $string['uploadfile'] = 'upload file';
 
 $string['userpage'] = 'User Page';
 $string['usertodo'] = 'sendtouser';
-$string['viewtodos'] = 'Todos';
-$string['viewdates'] = 'Events';
-$string['todos'] = 'Todos';
-$string['add_contactcard'] = 'Add contactinfos';
 
-$string['dok1'] = 'Docuemnts';
-$string['dok2'] = 'Bewerbungsunterlagen';
-$string['dok3'] = 'Advisments';
-$string['viewinfo'] = 'Info';
+$string['add_contactcard'] = 'Add contactinfos';
 
 $string['coodlewelcome'] = 'Welcome to the COODLE App';
 $string['setadvisor'] = 'Set advisor';
@@ -123,7 +112,6 @@ $string['doornr'] = 'Nr';
 $string['zipcode'] = 'Zip';
 $string['city'] = 'City';
 $string['berufsbezeichnung'] = 'job title';
-$string['impressum'] = 'Impressum';
 
 // Dates
 $string['dates'] = 'Dates';
@@ -162,3 +150,16 @@ $string['newtodo:small'] = 'New Todo added';
 $string['messageprovider:testfile'] = 'Testfile';
 $string['messageprovider:newfilemsg'] = 'New File';
 $string['messageprovider:newtodomsg'] = 'New Todo';
+
+// Mobile Strings.
+$string['viewtodos'] = 'Todos';
+$string['viewdates'] = 'Events';
+$string['todos'] = 'Todos';
+$string['dok1'] = 'Docuemnts';
+$string['dok2'] = 'Advisery Service';
+$string['dok3'] = 'Advisments';
+$string['viewinfo'] = 'Info';
+$string['viewaddress'] = 'Address';
+$string['selectuser'] = 'Choose User';
+$string['myfiles'] = 'My Files';
+$string['impressum'] = 'Impressum';

@@ -290,6 +290,7 @@ class mobile {
                 'name' => $event->name,
                 'location' => $event->name,
                 'timestart' => date("d.m H:i", $event->timestart),
+                'description' => $event->description,
             ];
         }
         $templatedata->header = get_string('datesdesc', 'local_coodle');

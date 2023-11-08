@@ -70,6 +70,7 @@ class advisor {
             $advisorid = $DB->insert_record('local_coodle_advisor', $data, true);
             $this->data = $data;
             $this->data['id'] = $advisorid;
+            $this->set_coodle_preferences($userid);
         }
         $this->userid = $userid;
         $this->courseid = $courseid;
@@ -382,5 +383,14 @@ class advisor {
     public static function count_advisors() {
         global $DB;
         return $DB->count_records('local_coodle_advisor', null);
+    }
+
+    /**
+     * Set User preferencese
+     * @param int $userid
+     */
+    public function set_coodle_preferences(int $userid) {
+        $value = '{"isadvisor":true, "isuser":false}';
+        set_user_preferences(['coodle_settings' => $value], $userid);
     }
 }

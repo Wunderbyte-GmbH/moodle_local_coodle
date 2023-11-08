@@ -64,7 +64,6 @@ $string['add_user'] = 'Teilnehmer_in hinzufügen';
 $string['add_file'] = 'Datei hochladen';
 $string['add_todo'] = 'Aufgabe hinzufügen';
 $string['userpage'] = 'TN Seite';
-$string['selectuser'] = 'Teilnehmer_in auswählen';
 $string['add_contactcard'] = 'Kontaktinfos hinzufügen';
 
 // Menu.
@@ -77,20 +76,9 @@ $string['mobilelogin'] = 'QR-Login';
 
 $string['forum'] = 'Berater_innenAustausch';
 
-$string['myfiles'] = 'Meine Dateien';
-$string['viewaddress'] = 'Wege';
 $string['uploadfile'] = 'Datei hochladen';
 $string['usertodo'] = 'zum User senden';
-$string['viewtodos'] = 'Aufgaben';
-$string['viewdates'] = 'Termine';
 
-$string['todos'] = 'Aufgaben';
-
-$string['dok1'] = 'Dokumente';
-$string['dok2'] = 'Bewerbungsunterlagen';
-$string['dok3'] = 'Beratung';
-
-$string['viewinfo'] = 'Info';
 $string['add_audio'] = 'Audio aufnehmen';
 $string['setinactive'] = 'Inaktiv setzen';
 $string['setactive'] = 'Aktiv setzen';
@@ -119,7 +107,6 @@ $string['doornr'] = 'Nr';
 $string['zipcode'] = 'PLZ';
 $string['city'] = 'Stadt';
 $string['berufsbezeichnung'] = 'Berufsbezeichnung';
-$string['impressum'] = 'Über COODLE';
 
 // Dates
 $string['dates'] = 'Termine';
@@ -159,3 +146,16 @@ $string['newtodo:small'] = 'Neue Aufgabe angelegt';
 $string['messageprovider:testfile'] = 'Testfile';
 $string['messageprovider:newfilemsg'] = 'Neues File';
 $string['messageprovider:newtodomsg'] = 'Neue Aufgabe hinzugefügt';
+
+// Mobile Strings.
+$string['viewtodos'] = 'Aufgaben';
+$string['viewdates'] = 'Termine';
+$string['dok1'] = 'Dokumente';
+$string['dok2'] = 'Bewerbungsunterlagen';
+$string['dok3'] = 'Beratung';
+$string['viewaddress'] = 'Wege';
+$string['viewinfo'] = 'Info';
+$string['todos'] = 'Aufgaben';
+$string['selectuser'] = 'Teilnehmer_in auswählen';
+$string['myfiles'] = 'Meine Dateien';
+$string['impressum'] = 'Über COODLE';
