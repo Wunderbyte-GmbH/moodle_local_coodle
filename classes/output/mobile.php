@@ -288,7 +288,7 @@ class mobile {
         foreach($events['events'] as $event) {
             $templatedata->events[] = [
                 'name' => $event->name,
-                'location' => $event->name,
+                'location' => $event->location,
                 'timestart' => date("d.m H:i", $event->timestart),
                 'description' => $event->description,
             ];

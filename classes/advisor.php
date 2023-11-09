@@ -393,4 +393,23 @@ class advisor {
         $value = '{"isadvisor":true, "isuser":false}';
         set_user_preferences(['coodle_settings' => $value], $userid);
     }
+
+
+    /**
+     * Delete Advisor
+     */
+    public static function delete_advisor(int $userid) {
+        global $DB;
+        $DB->delete_records('local_coodle_advisor', ['userid' => $userid]);
+        // SQL query to update records
+        $sql = "
+        UPDATE {local_coodle_advisor}
+        SET advisorid = NULL
+        WHERE advisorid = :advisorid";
+
+        $params = array('advisorid' => $userid);
+
+        // Execute the SQL query
+        $DB->execute($sql, $params);
+    }
 }

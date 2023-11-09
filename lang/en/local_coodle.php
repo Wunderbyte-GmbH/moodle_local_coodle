@@ -140,6 +140,7 @@ $string['nodocs'] = 'No personal documents available yet.';
 
 $string['docsadvdesc'] = 'Here you can find contact information and documents from your counseling.';
 $string['nodocsadv'] = 'No counseling documents available yet.';
+$string['deleteadvisor'] = 'Delete Advisor';
 
 $string['newfile'] = 'New File added';
 $string['newfilewasadded:small'] = 'New File added';
@@ -155,9 +156,9 @@ $string['messageprovider:newtodomsg'] = 'New Todo';
 $string['viewtodos'] = 'Todos';
 $string['viewdates'] = 'Events';
 $string['todos'] = 'Todos';
-$string['dok1'] = 'Docuemnts';
+$string['dok1'] = 'Documents';
 $string['dok2'] = 'Advisery Service';
-$string['dok3'] = 'Advisments';
+$string['dok3'] = 'Advisery Service';
 $string['viewinfo'] = 'Info';
 $string['viewaddress'] = 'Address';
 $string['selectuser'] = 'Choose User';

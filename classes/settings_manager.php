@@ -183,9 +183,9 @@ class settings_manager {
      * Delete everything from user
      * @param int $userid - userid of user
      */
-    public function delete_user(int $userid) {
+    public static function delete_user(int $userid) {
         global $DB;
-        $this->delete_user_files($userid);
+        self::delete_user_files($userid);
         coodle_direction::delete_all_user_directions($userid);
         $DB->delete_records('local_coodle_user', ['userid' => $userid]);
         $DB->delete_records('local_coodle_todos', ['userid' => $userid]);
@@ -202,7 +202,7 @@ class settings_manager {
      *
      * @return void
      */
-    public function delete_user_files(int $userid) {
+    public static function delete_user_files(int $userid) {
         $fs = new \file_storage();
         $context = \context_system::instance();
         $files = $fs->get_area_files($context->id, 'local_coodle', 'clientfiles', $userid);

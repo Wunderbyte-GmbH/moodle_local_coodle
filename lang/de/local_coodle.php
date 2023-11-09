@@ -26,8 +26,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'COODLE Manager';
-$string['create_user'] = 'Create User';
-$string['createadvisor'] = 'Create Advisor';
+$string['create_user'] = 'Teilnehmer_in erstellen';
+$string['createadvisor'] = 'Berater_in erstellen';
 $string['advisorcourse'] = 'Berater_innen Kurs';
 $string['advisorinfocourse'] = 'Info & Austausch';
 $string['registeredsince'] = 'Registered since';
@@ -61,6 +61,7 @@ $string['calendar'] = 'Kalender';
 $string['forum'] = 'Forum';
 $string['files'] = 'Vorlagen';
 $string['add_user'] = 'Teilnehmer_in hinzufügen';
+$string['add_new_user']  = 'Teilnehmer_in hinzufügen';
 $string['add_file'] = 'Datei hochladen';
 $string['add_todo'] = 'Aufgabe hinzufügen';
 $string['userpage'] = 'TN Seite';
@@ -130,6 +131,7 @@ $string['nodates'] = 'Derzeit keine bevorstehenden Termine';
 
 $string['directionsdesc'] = 'Hier findest du Wegbeschreibungen, die für dich hinterlegt wurden.';
 $string['nodirections'] = 'Noch keine Wegbeschreibungen vorhanden.';
+$string['deleteadvisor'] = 'Berater_in löschen';
 
 $string['docsdesc'] = 'Lade hier deine persönlichen Dokumente (z.B. Bewerbungsunterlagen) hoch.';
 $string['nodocs'] = 'Noch keine persönlichen Dokumente vorhanden.';

@@ -147,8 +147,8 @@ class coodle_user {
      */
     public static function get_all_coodle_users() {
         global $DB;
-        $sql = "SELECT cu.*, u.firstname as 'clientfirstname', u.lastname as 'clientlastname',
-        ua.firstname as 'advisorfirstname', ua.lastname as 'advisorlastname', a.courseid
+        $sql = "SELECT cu.*, u.firstname as clientfirstname, u.lastname as clientlastname,
+        ua.firstname as advisorfirstname, ua.lastname as advisorlastname, a.courseid
          FROM {local_coodle_advisor} a RIGHT JOIN {local_coodle_user} cu on a.userid = cu.advisorid
          JOIN {user} u on cu.userid = u.id
          LEFT JOIN {user} ua on cu.advisorid = ua.id  ORDER BY cu.deleted";
@@ -163,8 +163,8 @@ class coodle_user {
         if(!$userid) {
             $userid = $USER->id;
         }
-        $sql = "SELECT cu.*, u.firstname as 'clientfirstname', u.lastname as 'clientlastname',
-        ua.firstname as 'advisorfirstname', ua.lastname as 'advisorlastname', a.courseid
+        $sql = "SELECT cu.*, u.firstname as clientfirstname, u.lastname as clientlastname,
+        ua.firstname as advisorfirstname, ua.lastname as advisorlastname, a.courseid
          FROM {local_coodle_advisor} a RIGHT JOIN {local_coodle_user} cu on a.userid = cu.advisorid
          JOIN {user} u on cu.userid = u.id
          LEFT JOIN {user} ua on cu.advisorid = ua.id
@@ -175,7 +175,7 @@ class coodle_user {
 
     public static function get_coodle_user(int $userid) {
         global $DB;
-        $sql = "SELECT cu.*, u.firstname as 'clientfirstname', u.lastname as 'clientlastname'
+        $sql = "SELECT cu.*, u.firstname as clientfirstname, u.lastname as clientlastname
          FROM {local_coodle_user} cu
          JOIN {user} u on cu.userid = u.id
          WHERE cu.userid = $userid";
