@@ -10,7 +10,7 @@
                 <FIELD NAME="token" TYPE="char" LENGTH="255" NOTNULL="false" DEFAULT="" SEQUENCE="false"/>
                 <FIELD NAME="tokencreated" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
                 <FIELD NAME="deleted" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-                <FIELD NAME="settings" TYPE="text" LENGTH="0" NOTNULL="false" SEQUENCE="false" DEFAULT=""/>
+                <FIELD NAME="settings" TYPE="text" NOTNULL="false" SEQUENCE="false" DEFAULT=""/>
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
@@ -38,7 +38,7 @@
                 <KEY NAME="advisorid" TYPE="foreign" FIELDS="advisorid" REFFIELDS="id" REFTABLE="local_coodle_advisor"/>
             </KEYS>
         </TABLE>
-        <TABLE NAME="local_coodle_todos" COMMENT="Coodle Users">>
+        <TABLE NAME="local_coodle_todos" COMMENT="Coodle Todos">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" COMMENT="Id"/>
                 <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Userid of the concerned user."/>
@@ -46,9 +46,8 @@
                 <FIELD NAME="text" TYPE="text" LENGTH="255" NOTNULL="false" SEQUENCE="false" COMMENT="All the data as json"/>
                 <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Time this entry was created."/>
                 <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-                <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-                <FIELD NAME="usertodo" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
                 <FIELD NAME="deleted" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
+                <FIELD NAME="usertodo" TYPE="int" LENGTH="1" NOTNULL="false" DEFAULT="0" SEQUENCE="false"/>
             </FIELDS>
              <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
