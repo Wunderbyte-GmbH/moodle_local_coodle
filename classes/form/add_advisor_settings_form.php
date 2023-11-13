@@ -47,7 +47,6 @@ class add_advisor_settings_form extends dynamic_form {
      */
     public function definition() {
         $mform = $this->_form;
-        $data = $this->_ajaxformdata;
         $mform->addElement('text', 'name', get_string('name', ''));
         $mform->addElement('text', 'adress', get_string('adress', 'local_coodle'));
         $mform->addElement('text', 'nr', get_string('doornr', 'local_coodle'));
@@ -57,8 +56,6 @@ class add_advisor_settings_form extends dynamic_form {
         $mform->addElement('text', 'email', get_string('email', ''));
         $mform->addElement('text', 'berufsbezeichnung', get_string('berufsbezeichnung', 'local_coodle'));
         $mform->addElement('text', 'institution', get_string('institution', ''));
-        $mform->addElement('hidden', 'userid', $data['clientid']);
-        $mform->setType('userid', PARAM_INT);
     }
 
     /**
