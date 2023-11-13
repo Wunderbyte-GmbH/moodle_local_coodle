@@ -121,7 +121,7 @@ class advisor {
      * @param int $advisorid
      * @return int
      */
-    public static function get_courseid_from_advisorid(int $advisorid) : int {
+    public static function get_courseid_from_advisorid(int $advisorid) {
         global $DB;
         $record = $DB->get_record('local_coodle_advisor', ['userid' => $advisorid], 'courseid', IGNORE_MISSING);
         return $record->courseid;
