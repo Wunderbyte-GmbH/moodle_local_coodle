@@ -292,7 +292,9 @@ class advisor {
     public static function get_advisor_addrescard(int $advisorid) {
         global $DB;
         $record = $DB->get_record('local_coodle_advisor', array('userid' => $advisorid), 'settings');
-        $settings = json_decode($record->settings);
+        if (!empty($record->settings)) {
+            $settings = json_decode($record->settings);
+        }
         return $settings;
     }
 
