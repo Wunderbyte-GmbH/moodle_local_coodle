@@ -107,7 +107,6 @@ class add_advisor_settings_form extends dynamic_form {
         global $USER;
         if (\local_coodle\advisor::is_advisor()) {
             $data = \local_coodle\advisor::get_advisor_addrescard($USER->id);
-            $data->id = $this->_ajaxformdata['clientid'];
         }
         $this->set_data($data);
     }
