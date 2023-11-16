@@ -208,7 +208,7 @@ class coodle_user {
             ['class' => 'btn btn-primary mt-2 fa fa-2x fa-qrcode coodle-qr', 'data-toggle' => 'collapse',
             'role' => 'button', 'aria-expanded' => 'false']);
         $mobileqr = '<a class="btn btn-primary mt-2 coodle-qr" data-toggle="collapse" role="button"' .
-         'aria-expanded="false" href="#qrcode-"' .$coodleuser->userid .'"><i class="fa fa-2x fa-qrcode"></i></a>';
+         'aria-expanded="false" href="#qrcode-' .$coodleuser->userid .'"><i class="fa fa-2x fa-qrcode"></i></a>';
         $mobileqr .= \html_writer::div(\html_writer::img($qrcodeimg, 'token',
          ['class' => 'qrcode']), 'collapse mt-4', ['id' => 'qrcode-'.$coodleuser->userid]);
         return $mobileqr;
@@ -239,7 +239,7 @@ class coodle_user {
                 ['class' => 'btn btn-primary mt-2 fa fa-2x fa-qrcode coodle-qr', 'data-toggle' => 'collapse',
                 'role' => 'button', 'aria-expanded' => 'false']);
             $mobileqr = '<a class="btn btn-primary mt-2 coodle-qr" data-toggle="collapse" role="button"' .
-             'aria-expanded="false" href="#qrcode-1004"><i class="fa fa-2x fa-qrcode"></i></a>';
+             'aria-expanded="false" href="#qrcode-'.$coodleuser->userid .'"><i class="fa fa-2x fa-qrcode"></i></a>';
             $mobileqr .= \html_writer::div(\html_writer::img($qrcodeimg, 'token',
              ['class' => 'qrcode']), 'collapse mt-4', ['id' => 'qrcode-'.$coodleuser->userid]);
             $tdata->qrcode = $mobileqr;
