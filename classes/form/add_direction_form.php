@@ -49,7 +49,7 @@ class add_direction_form extends dynamic_form {
     public function definition() {
         $mform = $this->_form;
         $data = $this->_ajaxformdata;
-        $mform->addElement('text', 'title', get_string('description', 'local_coodle'));
+        $mform->addElement('text', 'title', get_string('title'));
 
         $context = context_system::instance();
 

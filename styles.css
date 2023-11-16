@@ -378,6 +378,10 @@
     background-color: rgb(102, 153, 204);
 }
 
+.card.card-beratung .list-item {
+    background: #fff;
+}
+
 .card.card-direction {
     background-color: rgb(102, 68, 153);
 }

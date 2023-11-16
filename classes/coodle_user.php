@@ -88,7 +88,7 @@ class coodle_user {
             $advisorcourseid = \local_coodle\advisor::get_advisor_course($advisorid);
 
             // Enrol user in course.
-            \local_coodle\advisor::course_manual_enrolments(array($advisorcourseid), array($coodleuserid), 5);
+            \local_coodle\advisor::course_manual_enrolments(array($advisorcourseid), array($userid), 5);
 
             // Add user to contacts.
             \core_message\api::create_contact_request($advisorid, $userid);
@@ -198,6 +198,22 @@ class coodle_user {
         $data = $todo->load_todolist_by_userid($userid);
         return $data;
     }
+
+    public function prepare_qr_code_for_template(coodle_user $coodleuser) {
+        $qrcodeimg = \local_coodle\overrides\mobileapioverrides::generate_login_qrcode_from_userid(
+            $coodleuser->token,
+            $coodleuser->userid
+        );
+        $mobileqr = \html_writer::link('#qrcode-'.$coodleuser->userid, '',
+            ['class' => 'btn btn-primary mt-2 fa fa-2x fa-qrcode coodle-qr', 'data-toggle' => 'collapse',
+            'role' => 'button', 'aria-expanded' => 'false']);
+        $mobileqr = '<a class="btn btn-primary mt-2 coodle-qr" data-toggle="collapse" role="button"' .
+         'aria-expanded="false" href="#qrcode-1004"><i class="fa fa-2x fa-qrcode"></i></a>';
+        $mobileqr .= \html_writer::div(\html_writer::img($qrcodeimg, 'token',
+         ['class' => 'qrcode']), 'collapse mt-4', ['id' => 'qrcode-'.$coodleuser->userid]);
+        return $mobileqr;
+    }
+
     /**
      * Prepares date for mustache template
      *
@@ -222,6 +238,8 @@ class coodle_user {
             $mobileqr = \html_writer::link('#qrcode-'.$coodleuser->userid, '',
                 ['class' => 'btn btn-primary mt-2 fa fa-2x fa-qrcode coodle-qr', 'data-toggle' => 'collapse',
                 'role' => 'button', 'aria-expanded' => 'false']);
+            $mobileqr = '<a class="btn btn-primary mt-2 coodle-qr" data-toggle="collapse" role="button"' .
+             'aria-expanded="false" href="#qrcode-1004"><i class="fa fa-2x fa-qrcode"></i></a>';
             $mobileqr .= \html_writer::div(\html_writer::img($qrcodeimg, 'token',
              ['class' => 'qrcode']), 'collapse mt-4', ['id' => 'qrcode-'.$coodleuser->userid]);
             $tdata->qrcode = $mobileqr;

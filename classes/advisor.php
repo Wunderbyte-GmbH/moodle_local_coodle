@@ -100,7 +100,7 @@ class advisor {
      * @return int
      */
     public static function create_course_for_adivisor($userid) {
-        global $CFG;
+        global $CFG, $DB;
         $userdata = \core_user::get_user($userid);
         $data = new stdClass();
         $data->fullname = $userdata->firstname . '_'  . $userdata->lastname;
@@ -110,6 +110,12 @@ class advisor {
         $data->groupmode = 1;
         $data->category = \local_coodle\settings_manager::create_or_get_standard_coursecategory();
         require_once($CFG->dirroot.'/course/lib.php');
+        $i = 1;
+        while ($DB->record_exists('course', array('shortname' => $data->shortname)) || $DB->record_exists('course', array('shortname' => $data->id))) {
+            $data->shortname = $data->shortname . "($i)";
+            $data->idnumber = $data->idnumber . "($i)";
+            $i++;
+        }
         $course = create_course($data);
         self::course_manual_enrolments(array($course->id), array($userid), 3);
         return $course->id;
@@ -399,18 +405,25 @@ class advisor {
 
     /**
      * Delete Advisor
+     * @param int $userid - the id of the advisor
      */
     public static function delete_advisor(int $userid) {
         global $DB;
+
+        $record = $DB->get_record('local_coodle_advisor', ['userid' => $userid]);
         $DB->delete_records('local_coodle_advisor', ['userid' => $userid]);
-        // SQL query to update records
+        // SQL to remove the advisors from the coodle users.
         $sql = "
-        UPDATE {local_coodle_advisor}
+        UPDATE {local_coodle_user}
         SET advisorid = NULL
         WHERE advisorid = :advisorid";
 
         $params = array('advisorid' => $userid);
+        // Reset user prefs.
+        set_user_preferences(['coodle_settings' => 'null'], $userid);
 
+        // Delete course from advisor.
+        delete_course($record->courseid);
         // Execute the SQL query
         $DB->execute($sql, $params);
     }

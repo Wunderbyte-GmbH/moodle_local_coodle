@@ -42,6 +42,9 @@ $PAGE->set_heading($title);
 echo $OUTPUT->header();
 
 echo '  <input type="color" id="head" name="head" value="#e66465" />';
+
+\local_coodle\advisor::delete_advisor(17);
+
 // // Create a new ZipArchive object
 
 // $pathtofileinzip = '/some/made/up/name.txt';

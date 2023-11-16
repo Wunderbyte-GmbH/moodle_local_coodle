@@ -56,8 +56,6 @@ class delete_coodle_user extends external_api {
     public static function execute(int $userid): array {
         global $USER;
 
-        // TODO if user can delete coodle user -> delete coodle user.
-
         $answer['error'] = "";
 
         $params = self::validate_parameters(self::execute_parameters(), [

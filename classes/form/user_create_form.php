@@ -168,10 +168,13 @@ class user_create_form extends dynamic_form {
      * @param array $files array of uploaded files "element_name"=>tmp_file_path
      */
     public function validation($data, $files) {
-
+        global $DB;
         $errors = array();
         if (preg_match('/[A-Z]/', $data['username'])) {
             $errors['username'] = get_string('invalidlogin');
+        }
+        if ($DB->record_exists('user', ['username' => $data['username']])) {
+            $errors['username'] = get_string('exists');
         }
         if (!validate_email($data['email'])) {
             $errors['email'] = get_string('invalidemail');
