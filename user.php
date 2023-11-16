@@ -76,8 +76,6 @@ $coodle->load_user($id);
 // Load different templatedata
 $templatedata->userid = $id;
 $templatedata->qrcode = $coodle->prepare_qr_code_for_template($coodle);
-$templatedata->pw = $coodle->prepare_userpw_for_template($coodle);
-
 
 $templatedata->files[1] = $coodle->get_coodleuser_files(1);
 $templatedata->files[2] = $coodle->get_coodleuser_files(2);
