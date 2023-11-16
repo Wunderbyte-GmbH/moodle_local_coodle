@@ -58,11 +58,6 @@ class user_create_form extends dynamic_form {
         else (die());
         */
 
-        $mform->addElement('text', 'username', get_string('username'), 'size="20"');
-        $mform->addHelpButton('username', 'username', 'auth');
-        $mform->setType('username', PARAM_RAW);
-        $mform->addRule('username', null, 'required', null, 'client');
-
         $mform->addElement('text', 'firstname', get_string('firstname'), 'size="20"');
         $mform->setType('firstname', PARAM_RAW);
         $mform->addRule('firstname', null, 'required', null, 'server');
@@ -71,9 +66,6 @@ class user_create_form extends dynamic_form {
         $mform->setType('lastname', PARAM_RAW);
         $mform->addRule('lastname', null, 'required', null, 'server');
 
-        $mform->addElement('text', 'email', get_string('email'), 'size="20"');
-        $mform->setType('email', PARAM_EMAIL);
-        $mform->addRule('email', null, 'required', null, 'server');
 
         if (!\local_coodle\advisor::is_advisor()) {
             // TODO add select
@@ -110,7 +102,11 @@ class user_create_form extends dynamic_form {
      * @return mixed
      */
     public function process_dynamic_submission() {
+        global $DB;
         $data = $this->get_data();
+        $data->username = "c." . sprintf('%06d', $DB->count_records('local_coodle_user'));
+        $data->email = $data->username . "@example.com";
+
         $userid = user_create_form_helper::create_user($data);
         coodle_user::create_coodle_user($userid, $data->advisorid);
         return $data;
@@ -170,14 +166,8 @@ class user_create_form extends dynamic_form {
     public function validation($data, $files) {
         global $DB;
         $errors = array();
-        if (preg_match('/[A-Z]/', $data['username'])) {
-            $errors['username'] = get_string('invalidlogin');
-        }
         if ($DB->record_exists('user', ['username' => $data['username']])) {
             $errors['username'] = get_string('exists');
-        }
-        if (!validate_email($data['email'])) {
-            $errors['email'] = get_string('invalidemail');
         }
         if (empty($data['firstname'])) {
             $errors['firstname'] = get_string('required');

@@ -78,6 +78,22 @@
                                 >
                                 <p></p>
                             </td>
+                            <td>
+                                <button
+                                class="btn btn-primary-outline  pull-right"
+                                data-action="coodle-delete-advisor"
+                                data-id="{{ id }}"
+                                data-class="advisor"
+                              >
+                                <i
+                                  class="fa fa-trash text-danger"
+                                  aria-hidden="true"
+                                  data-action="coodle-delete-advisor"
+                                  data-id="{{ id }}"
+                                  data-class="advisor"
+                                ></i>
+                                </button>
+                            </td>
                         </tr>
                         {{/users}}
                     </table>
@@ -88,6 +104,6 @@
 </div>
 
 {{#js}}
-require(['local_coodle/form_user_create', 'local_coodle/form_create_advisor'],
-function(userform, advisorform) { userform.init(); advisorform.init(); });
+require(['local_coodle/form_user_create', 'local_coodle/form_create_advisor', 'local_coodle/form_delete_advisor'],
+function(userform, advisorform, deleteadvisorform) { userform.init(); advisorform.init(); deleteadvisorform.init(); });
 {{/js}}

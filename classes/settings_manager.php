@@ -183,16 +183,17 @@ class settings_manager {
      * Delete everything from user
      * @param int $userid - userid of user
      */
-    public static function delete_user(int $userid) {
+    public static function delete_user(int $userid, bool $deletemoodleuser = false) {
         global $DB;
         self::delete_user_files($userid);
-        coodle_direction::delete_all_user_directions($userid);
+        \local_coodle\coodle_direction::delete_all_user_directions($userid);
         $DB->delete_records('local_coodle_user', ['userid' => $userid]);
         $DB->delete_records('local_coodle_todos', ['userid' => $userid]);
         $DB->delete_records('local_coodle_links', ['userid' => $userid]);
-
-        $user = \user_get_users_by_id([$userid]);
-        \user_delete_user($user);
+        if ($deletemoodleuser) {
+            $user = \user_get_users_by_id([$userid]);
+            \user_delete_user($user[$userid]);
+        }
     }
 
     /**

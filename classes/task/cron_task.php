@@ -22,7 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_cohorts\task;
+namespace local_coodle\task;
 
 use local_coodle\settings_manager;
 
@@ -39,7 +39,7 @@ class cron_task extends \core\task\scheduled_task {
 
     public function get_name() {
         // Return the name of the task.
-        return get_string('cron_trask', 'local_coodle');
+        return get_string('cron_task', 'local_coodle');
     }
 
     /**
@@ -52,18 +52,17 @@ class cron_task extends \core\task\scheduled_task {
         $config = get_config('local_coodle');
 
         if ($config->coodledeletetime > 0) {
-            $coodledeletetime = $config->coodledeletetime;
+            $coodledeletetime = $config->coodledeletetime * 3600;
         } else {
             $coodledeletetime = 3600 * 31;
         }
 
-        $records = $DB->get_records('local_coodle_users', ['deleted' => 1]);
+        $records = $DB->get_records('local_coodle_user', ['deleted' => 1]);
 
         foreach ($records as $record) {
-            if ($record->timemodified + $coodledeletetime < time()) {
-               \local_coodle\settings_manager::delete_user($records->userid);
+            if ((int)$record->timemodified + $coodledeletetime < time()) {
+               \local_coodle\settings_manager::delete_user($record->userid, true);
             }
         }
     }
-
 }

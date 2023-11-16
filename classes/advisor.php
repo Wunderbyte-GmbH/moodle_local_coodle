@@ -407,7 +407,7 @@ class advisor {
      * Delete Advisor
      * @param int $userid - the id of the advisor
      */
-    public static function delete_advisor(int $userid) {
+    public static function delete(int $userid) {
         global $DB;
 
         $record = $DB->get_record('local_coodle_advisor', ['userid' => $userid]);

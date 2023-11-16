@@ -57,9 +57,6 @@ export const init = () => {
  const openForm = event =>{
     let button = event.target.closest('button');
     event.stopPropagation();
-    console.log(button.dataset);
-
-    console.log(button.dataset.setinactive);
 
     const modalForm = new ModalForm({
         // Name of the class where form is defined (must extend \core_form\dynamic_form):

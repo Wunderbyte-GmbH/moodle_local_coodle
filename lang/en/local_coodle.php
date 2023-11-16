@@ -164,3 +164,5 @@ $string['viewaddress'] = 'Address';
 $string['selectuser'] = 'Choose User';
 $string['myfiles'] = 'My Files';
 $string['impressum'] = 'Impressum';
+
+$string['cron_task'] = 'Cron Task';

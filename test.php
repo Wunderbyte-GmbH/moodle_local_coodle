@@ -43,8 +43,7 @@ echo $OUTPUT->header();
 
 echo '  <input type="color" id="head" name="head" value="#e66465" />';
 
-\local_coodle\advisor::delete_advisor(17);
-
+\local_coodle\settings_manager::delete_user(1004, true);
 // // Create a new ZipArchive object
 
 // $pathtofileinzip = '/some/made/up/name.txt';
@@ -97,3 +96,5 @@ echo '  <input type="color" id="head" name="head" value="#e66465" />';
 //     // Failed to create the zip archive.
 //     echo 'Failed to create the zip file.';
 // }
+
+echo 'bla';

@@ -140,7 +140,7 @@ class coodle_direction {
         $conditons = ['userid' => $userid];
         $directions = $DB->get_records('local_coodle_directions', $conditons);
         foreach($directions as $direction) {
-            $DB->delete_record('local_coodle_directions', ['id' => $direction->id]);
+            $DB->delete_records('local_coodle_directions', ['id' => $direction->id]);
             $fs = new file_storage();
             $fs->delete_area_files($context->id, 'local_coodle', 'direction', $direction->id);
         }
