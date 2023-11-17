@@ -104,7 +104,8 @@ class user_create_form extends dynamic_form {
     public function process_dynamic_submission() {
         global $DB;
         $data = $this->get_data();
-        $data->username = "c." . sprintf('%06d', $DB->count_records('local_coodle_user'));
+        $sql = "SELECT MAX(id) FROM {user}";
+        $data->username = "c." . sprintf('%06d', ($DB->get_field_sql($sql) + 1));
         $data->email = $data->username . "@example.com";
 
         $userid = user_create_form_helper::create_user($data);

@@ -427,4 +427,5 @@ class advisor {
         // Execute the SQL query
         $DB->execute($sql, $params);
     }
+
 }
