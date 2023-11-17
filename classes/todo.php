@@ -131,7 +131,11 @@ class todo {
      */
     public static function delete_todo(int $todoid) {
         global $DB, $USER;
-        $conditons = ['advisorid' => $USER->id, 'id' => $todoid];
+        if (!$DB->record_exists('local_coodle_advisor', ['userid' => $USER->id])) {
+            return;
+        }
+        $conditons = ['id' => $todoid];
+
         $DB->delete_records('local_coodle_todos', $conditons);
     }
 

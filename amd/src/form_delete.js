@@ -16,7 +16,7 @@
 
 /*
  * Modal Form user create
- * @package    local_rk_manager
+ * @package    local_coodle
  * @copyright  Wunderbyte GmbH <info@wunderbyte.at>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
