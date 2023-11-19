@@ -42,8 +42,8 @@ $PAGE->set_heading($title);
 echo $OUTPUT->header();
 
 echo '  <input type="color" id="head" name="head" value="#e66465" />';
+\local_coodle\external\delete_calendar_event::execute(39);
 
-\local_coodle\settings_manager::delete_user(1004, true);
 // // Create a new ZipArchive object
 
 // $pathtofileinzip = '/some/made/up/name.txt';

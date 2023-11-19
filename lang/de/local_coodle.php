@@ -149,6 +149,9 @@ $string['messageprovider:testfile'] = 'Testfile';
 $string['messageprovider:newfilemsg'] = 'Neues File';
 $string['messageprovider:newtodomsg'] = 'Neue Aufgabe hinzugefügt';
 
+$string['date_delete'] = 'Event löschen';
+
+
 // Mobile Strings.
 $string['viewtodos'] = 'Aufgaben';
 $string['viewdates'] = 'Termine';

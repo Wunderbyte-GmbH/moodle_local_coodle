@@ -152,6 +152,8 @@ $string['messageprovider:testfile'] = 'Testfile';
 $string['messageprovider:newfilemsg'] = 'New File';
 $string['messageprovider:newtodomsg'] = 'New Todo';
 
+$string['date_delete'] = 'Delete Event.';
+
 // Mobile Strings.
 $string['viewtodos'] = 'Todos';
 $string['viewdates'] = 'Events';

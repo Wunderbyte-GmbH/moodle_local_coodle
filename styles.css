@@ -416,6 +416,11 @@
     height: 100%;
 }
 
+.coodle-msg-buttons {
+    border: 1px solid lightgray;
+    border-top: none;
+}
+
 .myuserbtn {
     position: absolute;
     top: 5px;

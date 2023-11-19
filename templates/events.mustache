@@ -17,6 +17,21 @@
         <div class="col text-dark">
             <b>{{timestart}} | {{location}}</b> - {{name}}
         </div>
+        <div class="col-lg-2">
+        <button
+            class="btn btn-primary-outline  pull-right"
+            data-action="delete"
+            data-id="{{ id }}"
+            data-class="date"
+          >
+            <i
+              class="fa fa-trash text-danger"
+              aria-hidden="true"
+              data-action="delete"
+              data-id="{{ id }}"
+              data-class="date"
+            ></i>
+            </button></div>
     </div>
     <div class="row">
         <div class="col text-dark">

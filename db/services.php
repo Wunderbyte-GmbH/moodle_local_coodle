@@ -161,5 +161,4 @@ $functions = array(
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
         ),
-
 );

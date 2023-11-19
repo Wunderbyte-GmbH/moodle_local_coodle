@@ -20,7 +20,14 @@
         {{>local_coodle/messagebuttons}}
 
       </div>
-      {{{qrcode}}}
+
+      <div class="card mt-4">
+        <div class="card-body text-dark">
+          <h5 class="card-title">
+            Nutzer_in Details</h5>
+        {{{qrcode}}}
+        </div>
+      </div>
     </div>
     <div class="col-md-8 coodle-user">
       <div class="card bg-warning text-white mb-4" data-region="coodle-dates">
@@ -211,7 +218,7 @@
 
 {{#js}}
 require(['local_coodle/form_add_audio', 'local_coodle/form_add_todo','local_coodle/form_add_file',
-'local_coodle/actions_file', 	'local_coodle/form_add_link', 'local_coodle/form_add_direction', 'local_coodle/actions_direction', 'local_coodle/actions_link', 'local_coodle/form_add_calendarentry'], function(audio, todoform, fileform, file, links, directionform, directionactions, linkactions, calendarentry ) {
+'local_coodle/actions_file', 	'local_coodle/form_add_link', 'local_coodle/form_add_direction', 'local_coodle/actions_direction', 'local_coodle/actions_link', 'local_coodle/form_add_calendarentry', 'local_coodle/form_delete_event'], function(audio, todoform, fileform, file, links, directionform, directionactions, linkactions, calendarentry, deleteevent ) {
   audio.init();
   directionform.init();
   directionactions.init();
@@ -221,5 +228,6 @@ require(['local_coodle/form_add_audio', 'local_coodle/form_add_todo','local_cood
   fileform.init(); file.init('files1-{{ uniqid }}');
   file.init('files3-{{ uniqid }}');
   calendarentry.init({{userid}});
+  deleteevent.init({{userid}});
 });
 {{/js}}
