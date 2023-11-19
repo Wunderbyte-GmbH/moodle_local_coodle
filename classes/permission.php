@@ -64,6 +64,6 @@ class permission {
         global $DB, $USER;
         $userid = $userid ?: (int) $USER->id;
 
-        return $DB->record_exists('local_coodle_advisor', ['userid' => $userid]) || is_siteadmin();
+        return ($DB->record_exists('local_coodle_advisor', ['userid' => $userid]) || is_siteadmin());
     }
 }
