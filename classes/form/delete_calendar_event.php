@@ -49,7 +49,7 @@ class delete_calendar_event extends dynamic_form {
      * @return void
      */
     protected function check_access_for_dynamic_submission(): void {
-        \local_coodle\permission::require_is_advisor();
+        //\local_coodle\permission::require_is_advisor();
     }
 
     /**
