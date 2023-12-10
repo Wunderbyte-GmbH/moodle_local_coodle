@@ -35,7 +35,7 @@ use stdClass;
  * @author Thomas Winkler
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class set_inactive extends dynamic_form {
+class set_password extends dynamic_form {
 
     /**
      * Get context for dynamic submission.
@@ -50,7 +50,8 @@ class set_inactive extends dynamic_form {
      * @return void
      */
     protected function check_access_for_dynamic_submission(): void {
-        permission::require_is_advisor();
+        $data = $this->_ajaxformdata;
+        permission::require_is_advisor_from_user($data['id']);
     }
 
     /**
@@ -64,16 +65,15 @@ class set_inactive extends dynamic_form {
      * @return stdClass|null
      */
     public function process_dynamic_submission(): stdClass {
-        global $DB;
+        global $CFG;
         $data = $this->get_data();
-        if ($data->setinactive) {
-            $data->deleted = 1;
-        } else {
-            $data->deleted = 0;
-        }
-        unset($data->setinactive);
-        $data->timemodified = time();
-        $DB->update_record('local_coodle_user', $data);
+        $user = new stdClass();
+        $user->id = $data->id;
+        $user->password = $data->password;
+        permission::require_is_advisor_from_user($user->id);
+        require_once($CFG->dirroot.'/user/lib.php');
+
+        \user_update_user($user, true, false);
         return $data;
     }
 
@@ -88,8 +88,8 @@ class set_inactive extends dynamic_form {
 
         $mform->addElement('hidden', 'id',  $customdata['id']);
         $mform->setType('id', PARAM_INT);
-        $mform->addElement('hidden', 'setinactive',  $customdata['setinactive']);
-        $mform->setType('setinactive', PARAM_BOOL);
+        $mform->addElement('text', 'password', get_string('newpassword'));
+
     }
 
     /**
@@ -100,7 +100,10 @@ class set_inactive extends dynamic_form {
      */
     public function validation($data, $files): array {
         $errors = [];
-
+        check_password_policy($data['password'], $errmsg);
+        if (!empty($errmsg)) {
+            $errors['password'] = $errmsg;
+        }
         return $errors;
     }
 

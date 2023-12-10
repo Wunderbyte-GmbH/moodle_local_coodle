@@ -67,7 +67,7 @@ class add_file_form extends dynamic_form {
      * @return void
      */
     protected function check_access_for_dynamic_submission(): void {
-        // TODO: capability to create advisors
+        // TODO: capability to create advisors.
         require_capability('moodle/user:manageownfiles', $this->get_context_for_dynamic_submission());
     }
 
@@ -85,9 +85,31 @@ class add_file_form extends dynamic_form {
 
         $data = $this->get_data();
         $context = \context_system::instance();
-        $options = array('subdirs' => 0, 'maxfiles' => 10, 'accepted_types' => array('jpg', 'png', 'jpeg', 'pdf' , 'doc', 'xls', 'docx', 'mp4', 'avi'));
+        $options = [
+            'subdirs' => 0,
+            'maxfiles' => 10,
+            'accepted_types' => [
+                'jpg',
+                'png',
+                'jpeg',
+                'pdf',
+                'doc',
+                'xls',
+                'docx',
+                'mp4',
+                'avi',
+            ],
+        ];
         if (isset($data->clientfiles_filemanager)) {
-            file_postupdate_standard_filemanager($data, 'clientfiles', $options, $context, 'local_coodle', 'clientfiles', $data->clientid);
+            file_postupdate_standard_filemanager(
+                $data,
+                'clientfiles',
+                $options,
+                $context,
+                'local_coodle',
+                'clientfiles',
+                $data->clientid
+            );
             $fs = get_file_storage();
             $files = $fs->get_area_files($context->id, 'local_coodle', 'clientfiles', $data->clientid);
             $postfix = 0;
@@ -121,33 +143,39 @@ class add_file_form extends dynamic_form {
                     } while ($fileexist);
 
                     $newfile = $fs->create_file_from_storedfile($filerecord, $file);
-                    // Send a push notification
+                    // Send a push notification.
                     $message = new \local_coodle\coodle_pushnotification($data->clientid);
                     $message->send_newfile_message($file);
 
                     if ($data->sendmsg) {
                         $url = moodle_url::make_pluginfile_url(
-                            $newfile->get_contextid(), $newfile->get_component(),
-                            $newfile->get_filearea(), $newfile->get_itemid(), $newfile->get_filepath(), $newfile->get_filename(), false);
+                            $newfile->get_contextid(),
+                            $newfile->get_component(),
+                            $newfile->get_filearea(),
+                            $newfile->get_itemid(),
+                            $newfile->get_filepath(),
+                            $newfile->get_filename(),
+                            false
+                        );
                         $path = pathinfo($url);
                         switch ($path['extension']) {
                             case 'jpg':
                             case 'jpeg':
                             case 'png':
                             case 'gif':
-                                // Handle image extensions
+                                // Handle image extensions.
                                 $msg = "<img src='$url'>";
                                 break;
 
                             case 'mp4':
                             case 'avi':
                             case 'mkv':
-                                // Handle video extensions
+                                // Handle video extensions.
                                 $msg = "<video><source src='".$path['filename']."'></video>";
                                 break;
 
                             default:
-                                // Handle other extensions
+                                // Handle other extensions.
                                 $msg = "<a href='$url' target='_blank'>" . $path['filename'] . "</a>";
                                 break;
                         }
@@ -155,8 +183,6 @@ class add_file_form extends dynamic_form {
                             $conversationid = \core_message\api::get_conversation_between_users([$USER->id,  $data->clientid]);
                             \core_message\api::send_message_to_conversation($USER->id, $conversationid, $msg, FORMAT_HTML);
                         }
-
-
                     }
                     // Now delete the original file.
                     $file->delete();
@@ -213,7 +239,7 @@ class add_file_form extends dynamic_form {
         if (!$cmid) {
             $cmid = $this->optional_param('cmid', '', PARAM_RAW);
         }
-        return new moodle_url('/local/coodle/user', array('id' => $cmid));
+        return new moodle_url('/local/coodle/user', ['id' => $cmid]);
     }
 
     /**
@@ -224,7 +250,7 @@ class add_file_form extends dynamic_form {
      */
     public function validation($data, $files) {
 
-        $errors = array();
+        $errors = [];
 
         return $errors;
     }

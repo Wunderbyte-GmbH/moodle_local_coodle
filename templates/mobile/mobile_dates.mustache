@@ -17,17 +17,13 @@
     <ion-list
         color="black"
         style="
-            margin: 5px;
-            background-color: transparent;
+            margin: 0px 15px;
             background: transparent;">
       {{#events}}
-      <ion-item style="margin: 5px">
-      <div><b>{{timestart}}</b> - {{name}} | {{location}}</div>
-      <br>
-      {{#description}}
-      <ion-label>{{{description}}}</ion-label>
-      {{/description}}
-      </ion-item>
+      <div style="padding: 10px; background: white; margin-bottom: 5px">
+      <div><b>{{timestart}}</b> - {{name}} {{#location}}|{{/location}} {{location}}</div>
+      <div>{{{description}}}</div>
+     </div>
       {{/events}}
     </ion-list>
 </div>

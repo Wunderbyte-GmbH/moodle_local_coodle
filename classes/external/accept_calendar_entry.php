@@ -35,7 +35,7 @@ use external_single_structure;
 
 defined('MOODLE_INTERNAL') || die();
 
-// TODO: check names;
+// TODO: check names.
 
 require_once($CFG->libdir . '/externallib.php');
 
@@ -76,9 +76,9 @@ class add_calendar_entry extends external_api {
      * @return external_single_structure
      */
     public static function execute_returns(): external_single_structure {
-        return new external_single_structure(array(
+        return new external_single_structure([
             'error' => new external_value(PARAM_TEXT, 'error'),
-            )
+            ]
         );
     }
 }

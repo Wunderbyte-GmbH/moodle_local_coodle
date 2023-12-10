@@ -375,7 +375,7 @@ class mobile {
         $coodleusersettings = json_decode(get_user_preferences('coodle_settings'));
         $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
         if ($coodleusersettings->isadvisor) {
-            if($userchosen) {
+            if ($userchosen) {
                 $userid = $userchosen->userid;
             } else {
                 return self::select_user();
@@ -443,7 +443,7 @@ class mobile {
 
         $events = \local_coodle\external\get_calendar_events::execute($USER->id);
         $templatedata->events = [];
-        foreach($events['events'] as $event) {
+        foreach ($events['events'] as $event) {
             $templatedata->events[] = [
                 'name' => $event->name,
                 'timestart' => date("d.m H:i", $event->timestart),

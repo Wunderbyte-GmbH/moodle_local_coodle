@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Show QR Code of coodle advisor.
+ *
  * @package    local_coodle
  * @copyright  2022 Wunderbyte GmbH
  * @author     Thomas Winkler
@@ -23,19 +25,21 @@
 
 require_once('../../config.php');
 use local_coodle\local\views\secondary;
+use local_coodle\permission;
 use local_coodle\settings_manager;
 
 $delid = optional_param('userid', 0, PARAM_INT);
 $context = \context_system::instance();
 $PAGE->set_context($context);
 require_login();
+permission::require_is_advisor();
 
 $secondarynav = new secondary($PAGE);
 $secondarynav->initialise();
 $PAGE->set_secondarynav($secondarynav);
 $PAGE->set_secondary_navigation(true);
 
-$PAGE->set_url(new moodle_url('/local/coodle/myqrcode.php', array()));
+$PAGE->set_url(new moodle_url('/local/coodle/myqrcode.php', []));
 $PAGE->set_pagelayout('standard');
 $title = "My QR Code";
 $PAGE->set_title($title);

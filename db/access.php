@@ -24,8 +24,11 @@
  */
 defined('MOODLE_INTERNAL') || die();
 
-$capabilities = array(
-    'local/coodle:canmanageadvisors' => array('riskbitmask' => RISK_CONFIG, 'captype' => 'write',
+$capabilities = [
+    'local/coodle:canmanageadvisors' => [
+        'riskbitmask' => RISK_CONFIG,
+        'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-        'archetypes' => array('manager' => CAP_ALLOW)),
-    );
+        'archetypes' => ['manager' => CAP_ALLOW],
+        ],
+    ];

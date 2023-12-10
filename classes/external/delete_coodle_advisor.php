@@ -37,7 +37,7 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . '/externallib.php');
 
-class delete_coodle_user extends external_api {
+class delete_coodle_advisor extends external_api {
 
     /**
      * Describes the paramters for add_advisor.
@@ -57,7 +57,7 @@ class delete_coodle_user extends external_api {
     public static function execute(int $userid): array {
         global $USER;
 
-        // TODO if user can delete coodle user -> delete coodle user;
+        // TODO if user can delete coodle user -> delete coodle user.
 
         $answer['error'] = "";
 
@@ -82,9 +82,9 @@ class delete_coodle_user extends external_api {
      * @return external_single_structure
      */
     public static function execute_returns(): external_single_structure {
-        return new external_single_structure(array(
+        return new external_single_structure([
             'error' => new external_value(PARAM_TEXT, 'error'),
-            )
+            ]
         );
     }
 }

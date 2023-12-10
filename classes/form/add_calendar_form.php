@@ -47,14 +47,12 @@ class add_calendar_form extends dynamic_form {
      * @see moodleform::definition()
      */
     public function definition() {
-        global $USER, $DB;
         $mform = $this->_form;
         $data = $this->_ajaxformdata;
 
-        // get advisor courseid
-        // get ad
+        // get advisor courseid.
 
-        // Add some hidden fields
+        // Add some hidden fields.
         $mform->addElement('hidden', 'id');
         $mform->setType('id', PARAM_INT);
         $mform->setDefault('id', 0);
@@ -77,12 +75,12 @@ class add_calendar_form extends dynamic_form {
         $mform->addElement('hidden', 'action');
         $mform->setType('action', PARAM_INT);
 
-        // Normal fields
-        $mform->addElement('text', 'name', get_string('eventname','calendar'), 'size="50"');
+        // Normal fields.
+        $mform->addElement('text', 'name', get_string('eventname', 'calendar'), 'size="50"');
         $mform->addRule('name', get_string('required'), 'required');
         $mform->setType('name', PARAM_TEXT);
 
-        $mform->addElement('editor', 'description', get_string('eventdescription','calendar'), null);
+        $mform->addElement('editor', 'description', get_string('eventdescription', 'calendar'), null);
         $mform->setType('description', PARAM_RAW);
 
         $mform->addElement('date_time_selector', 'timestart', get_string('date'));
@@ -90,7 +88,7 @@ class add_calendar_form extends dynamic_form {
 
         $mform->addElement('header', 'durationdetails', get_string('eventduration', 'calendar'));
 
-        $group = array();
+        $group = [];
         $group[] =& $mform->createElement('radio', 'duration', null, get_string('durationnone', 'calendar'), 0);
         $group[] =& $mform->createElement('radio', 'duration', null, get_string('durationuntil', 'calendar'), 1);
         $group[] =& $mform->createElement('date_time_selector', 'timedurationuntil', '');
@@ -107,7 +105,7 @@ class add_calendar_form extends dynamic_form {
         $mform->disabledIf('timedurationuntil[minute]', 'duration', 'noteq', 1);
 
         $mform->setType('timedurationminutes', PARAM_INT);
-        $mform->disabledIf('timedurationminutes','duration','noteq', 2);
+        $mform->disabledIf('timedurationminutes', 'duration', 'noteq', 2);
 
     }
 
@@ -117,7 +115,7 @@ class add_calendar_form extends dynamic_form {
      * @return void
      */
     protected function check_access_for_dynamic_submission(): void {
-        // TODO: capability to create advisors
+        // TODO: capability to create advisors.
         require_capability('moodle/user:manageownfiles', $this->get_context_for_dynamic_submission());
     }
 
@@ -136,7 +134,7 @@ class add_calendar_form extends dynamic_form {
         $user = \core_user::get_user($data->userid);
         $courseid = \local_coodle\advisor::get_advisor_course($USER->id);
         $groupname = fullname($user) . ' (' . $data->userid . ')';
-        $group = $DB->get_record('groups', array('courseid' => $courseid, 'name' => $groupname));
+        $group = $DB->get_record('groups', ['courseid' => $courseid, 'name' => $groupname]);
         require_once($CFG->dirroot.'/calendar/lib.php');
         if ($group && $courseid && $user) {
             $event = new stdClass();
@@ -159,10 +157,10 @@ class add_calendar_form extends dynamic_form {
             $event->location = $data->location;
 
             calendar_event::create($event);
-            return json_encode(array("error" => false, "event" => $event));
+            return json_encode(["error" => false, "event" => $event]);
         }
 
-        return json_encode(array("error" => true));
+        return json_encode(["error" => true]);
     }
 
     /**
@@ -207,7 +205,7 @@ class add_calendar_form extends dynamic_form {
         if (!$cmid) {
             $cmid = $this->optional_param('cmid', '', PARAM_RAW);
         }
-        return new moodle_url('/local/coodle/user', array('id' => $cmid));
+        return new moodle_url('/local/coodle/user', ['id' => $cmid]);
     }
 
     /**
@@ -218,7 +216,7 @@ class add_calendar_form extends dynamic_form {
      */
     public function validation($data, $files) {
 
-        $errors = array();
+        $errors = [];
 
         return $errors;
     }

@@ -119,7 +119,7 @@ class advanced_message_form extends dynamic_form {
         if (!$cmid) {
             $cmid = $this->optional_param('cmid', '', PARAM_RAW);
         }
-        return new moodle_url('/local/coodle/user', array('id' => $cmid));
+        return new moodle_url('/local/coodle/user', ['id' => $cmid]);
     }
 
     /**
@@ -130,7 +130,7 @@ class advanced_message_form extends dynamic_form {
      */
     public function validation($data, $files) {
 
-        $errors = array();
+        $errors = [];
 
         return $errors;
     }

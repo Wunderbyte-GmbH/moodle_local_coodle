@@ -37,7 +37,7 @@ class coodle_link {
 
     public function __construct($data = null) {
         global $USER;
-        if(empty($data)) {
+        if (empty($data)) {
             return;
         }
         $linkdata = new stdClass();
@@ -62,7 +62,7 @@ class coodle_link {
 
     public function load_linklist_by_userid(int $userid) {
         global $DB;
-        $data = $DB->get_records('local_coodle_links', array('userid' => $userid));
+        $data = $DB->get_records('local_coodle_links', ['userid' => $userid]);
         return array_values($data);
     }
 
@@ -95,11 +95,11 @@ class coodle_link {
      */
     public static function set_link_status(int $linkid, int $status) {
         global $DB, $USER;
-        // link: ADD constants. 1 2 3 4 -.
-        $params = array(
+        // Link: ADD constants. 1 2 3 4 -.
+        $params = [
             'deleted' => $status,
-            'id' => $linkid
-        );
+            'id' => $linkid,
+        ];
         $DB->update_record('local_coodle_links', $params);
         unset($params['deleted']);
         return $DB->get_record('local_coodle_links', $params);

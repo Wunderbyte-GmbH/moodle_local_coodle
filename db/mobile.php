@@ -36,10 +36,10 @@ $addons = [
                     'icon' => 'file',
                 ],
                 'priority'  => 10000000000000000,
-                'styles' => array(
+                'styles' => [
                     'url' => $CFG->wwwroot . '/local/coodle/mobile/css/styles_app.css',
-                    'version' => '0.2'
-                ),
+                    'version' => '0.2',
+                ],
             ],
             'files2' => [
                 'delegate' => 'CoreMainMenuDelegate',
@@ -49,10 +49,10 @@ $addons = [
                     'icon' => 'file',
                 ],
                 'priority'  => 10000000000000000,
-                'styles' => array(
+                'styles' => [
                     'url' => $CFG->wwwroot . '/local/coodle/mobile/css/styles_app.css',
-                    'version' => '0.2'
-                ),
+                    'version' => '0.2',
+                ],
             ],
             'files3' => [
                 'delegate' => 'CoreMainMenuDelegate',
@@ -62,10 +62,10 @@ $addons = [
                     'icon' => 'file',
                 ],
                 'priority'  => 10000000000000000,
-                'styles' => array(
+                'styles' => [
                     'url' => $CFG->wwwroot . '/local/coodle/mobile/css/styles_app.css',
-                    'version' => '0.2'
-                ),
+                    'version' => '0.2',
+                ],
             ],
             'viewaddress' => [
                 'delegate' => 'CoreMainMenuDelegate',
@@ -96,10 +96,10 @@ $addons = [
                     'icon' => 'map',
                 ],
                 'priority'  => 10000000000000000,
-                'styles' => array(
+                'styles' => [
                     'url' => $CFG->wwwroot . '/local/coodle/mobile/css/styles_app.css',
-                    'version' => '0.2'
-                ),
+                    'version' => '0.2',
+                ],
             ],
             'selectuser' => [
                 'delegate' => 'CoreMainMenuDelegate',
@@ -109,10 +109,10 @@ $addons = [
                     'icon' => 'map',
                 ],
                 'priority'  => 10000000000000000,
-                'styles' => array(
+                'styles' => [
                     'url' => $CFG->wwwroot . '/local/coodle/mobile/css/styles_app.css',
-                    'version' => '0.2'
-                ),
+                    'version' => '0.2',
+                ],
             ],
             'impressum' => [
                 'delegate' => 'CoreSettingsDelegate',
@@ -122,10 +122,10 @@ $addons = [
                     'icon' => 'information',
                 ],
                 'priority'  => 10000000000000000,
-                'styles' => array(
+                'styles' => [
                     'url' => $CFG->wwwroot . '/local/coodle/mobile/css/styles_app.css',
-                    'version' => '0.2'
-                ),
+                    'version' => '0.2',
+                ],
             ],
         ],
         'lang' => [

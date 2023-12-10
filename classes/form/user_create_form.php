@@ -32,6 +32,7 @@ use context;
 use core_form\dynamic_form;
 use local_coodle\form\user_create_form_helper;
 use local_coodle\coodle_user;
+use local_coodle\permission;
 use moodle_url;
 use stdClass;
 /**
@@ -66,9 +67,8 @@ class user_create_form extends dynamic_form {
         $mform->setType('lastname', PARAM_RAW);
         $mform->addRule('lastname', null, 'required', null, 'server');
 
-
         if (!\local_coodle\advisor::is_advisor()) {
-            // TODO add select
+            // TODO add select.
             $userlist = \local_coodle\advisor::get_advisor_list();
         } else {
             global $USER;
@@ -80,7 +80,7 @@ class user_create_form extends dynamic_form {
 
         // Shared fields.
         // Next the customisable profile fields.
-        // profile_definition($mform, 0);
+        // P profile_definition($mform, 0);.
     }
 
     /**
@@ -89,7 +89,7 @@ class user_create_form extends dynamic_form {
      * @return void
      */
     protected function check_access_for_dynamic_submission(): void {
-        require_capability('moodle/user:manageownfiles', $this->get_context_for_dynamic_submission());
+        permission::require_is_advisor();
     }
 
     /**
@@ -155,7 +155,7 @@ class user_create_form extends dynamic_form {
         if (!$cmid) {
             $cmid = $this->optional_param('cmid', '', PARAM_RAW);
         }
-        return new moodle_url('/local/coodle/newuser', array('id' => $cmid));
+        return new moodle_url('/local/coodle/newuser', ['id' => $cmid]);
     }
 
     /**
@@ -166,7 +166,7 @@ class user_create_form extends dynamic_form {
      */
     public function validation($data, $files) {
         global $DB;
-        $errors = array();
+        $errors = [];
         if ($DB->record_exists('user', ['username' => $data['username']])) {
             $errors['username'] = get_string('exists');
         }

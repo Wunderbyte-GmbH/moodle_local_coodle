@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * List all users page.
+ *
  * @package    local_coodle
  * @copyright  2022 Wunderbyte GmbH
  * @author     Thomas Winkler
@@ -34,7 +36,7 @@ $secondarynav->initialise();
 $PAGE->set_secondarynav($secondarynav);
 $PAGE->set_secondary_navigation(true);
 
-$PAGE->set_url(new moodle_url('/local/coodle/allusers.php', array()));
+$PAGE->set_url(new moodle_url('/local/coodle/allusers.php', []));
 $PAGE->set_pagelayout('standard');
 $title = "COOdLe Manager";
 $PAGE->set_title($title);

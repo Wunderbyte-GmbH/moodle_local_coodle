@@ -51,10 +51,12 @@ class add_audio_recording extends dynamic_form {
         $mform->addElement('html', '<div id="audiorecord">');
         $context = context_system::instance();
 
-        $editoroptions = array('maxfiles' => EDITOR_UNLIMITED_FILES,
-        'noclean' => true,
-        'context' => $context,
-        'format' => FORMAT_HTML);
+        $editoroptions = [
+            'maxfiles' => EDITOR_UNLIMITED_FILES,
+            'noclean' => true,
+            'context' => $context,
+            'format' => FORMAT_HTML,
+        ];
 
         $mform->addElement('editor', 'description', get_string('description', 'local_coodle'), '', $editoroptions);
         $mform->addElement('hidden', 'userid', $data['clientid']);
@@ -70,7 +72,6 @@ class add_audio_recording extends dynamic_form {
      * @return void
      */
     protected function check_access_for_dynamic_submission(): void {
-        // TODO: capability to create advisors
         require_capability('moodle/user:manageownfiles', $this->get_context_for_dynamic_submission());
     }
 
@@ -176,7 +177,7 @@ class add_audio_recording extends dynamic_form {
         if (!$cmid) {
             $cmid = $this->optional_param('cmid', '', PARAM_RAW);
         }
-        return new moodle_url('/local/coodle/user', array('id' => $cmid));
+        return new moodle_url('/local/coodle/user', ['id' => $cmid]);
     }
 
     /**
@@ -187,7 +188,7 @@ class add_audio_recording extends dynamic_form {
      */
     public function validation($data, $files) {
 
-        $errors = array();
+        $errors = [];
 
         return $errors;
     }

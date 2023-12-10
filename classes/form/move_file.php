@@ -89,7 +89,7 @@ class add_file_form extends dynamic_form {
         $data = $this->get_data();
         $context = \context_system::instance();
 
-        $options = array('subdirs' => 0, 'maxbytes' => 204800, 'maxfiles' => 10, 'accepted_types' => array('jpg', 'png', 'jpeg'));
+        $options = ['subdirs' => 0, 'maxbytes' => 204800, 'maxfiles' => 10, 'accepted_types' => ['jpg', 'png', 'jpeg']];
         if (isset($data->clientfiles_filemanager)) {
             file_postupdate_standard_filemanager($data, 'clientfiles', $options, $context, 'local_coodle', 'clientfiles', $data->id);
             $fs = get_file_storage();
@@ -196,7 +196,7 @@ class add_file_form extends dynamic_form {
         if (!$cmid) {
             $cmid = $this->optional_param('cmid', '', PARAM_RAW);
         }
-        return new moodle_url('/local/coodle/user', array('id' => $cmid));
+        return new moodle_url('/local/coodle/user', ['id' => $cmid]);
     }
 
     /**
@@ -207,7 +207,7 @@ class add_file_form extends dynamic_form {
      */
     public function validation($data, $files) {
 
-        $errors = array();
+        $errors = [];
 
         return $errors;
     }

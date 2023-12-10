@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Testfile for developing
+ * Calendar view
  * @package    local_coodle
  * @copyright  2022 Wunderbyte GmbH
  * @author     Thomas Winkler
@@ -32,7 +32,7 @@ require_login();
 
 require_once($CFG->dirroot.'/calendar/lib.php');
 
-$PAGE->set_url(new moodle_url('/local/coodle/calendar.php', array()));
+$PAGE->set_url(new moodle_url('/local/coodle/calendar.php', []));
 $secondarynav = new secondary($PAGE);
 $secondarynav->initialise();
 $PAGE->set_secondarynav($secondarynav);
@@ -72,7 +72,7 @@ $renderer = $PAGE->get_renderer('core_calendar');
 $content->text .= $renderer->render_from_template($template, $data);
 
 $options = [
-    'showfullcalendarlink' => true
+    'showfullcalendarlink' => true,
 ];
 list($footerdata, $footertemplate) = calendar_get_footer_options($calendar, $options);
 $content->footer .= $renderer->render_from_template($footertemplate, $footerdata);

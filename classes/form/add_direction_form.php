@@ -33,6 +33,7 @@ use core_form\dynamic_form;
 use moodle_url;
 use context_system;
 use local_coodle\coodle_direction;
+use local_coodle\permission;
 use stdClass;
 /**
  * Add file form.
@@ -53,10 +54,12 @@ class add_direction_form extends dynamic_form {
 
         $context = context_system::instance();
 
-        $editoroptions = array('maxfiles' => EDITOR_UNLIMITED_FILES,
-        'noclean' => true,
-        'context' => $context,
-        'format' => FORMAT_HTML);
+        $editoroptions = [
+            'maxfiles' => EDITOR_UNLIMITED_FILES,
+            'noclean' => true,
+            'context' => $context,
+            'format' => FORMAT_HTML,
+        ];
 
         $mform->addElement('editor', 'description', get_string('description', 'local_coodle'), '', $editoroptions);
         $mform->addElement('hidden', 'userid', $data['clientid']);
@@ -71,8 +74,7 @@ class add_direction_form extends dynamic_form {
      * @return void
      */
     protected function check_access_for_dynamic_submission(): void {
-        // TODO: capability to create advisors
-        require_capability('moodle/user:manageownfiles', $this->get_context_for_dynamic_submission());
+        permission::require_is_advisor();
     }
 
     /**
@@ -101,7 +103,7 @@ class add_direction_form extends dynamic_form {
         if (isset($draftitemid)) {
             $data->description = file_save_draft_area_files($draftitemid, $context->id,
             'local_coodle', 'direction',
-            $adressid, array('subdirs' => true), $data->description);
+            $adressid, ['subdirs' => true], $data->description);
             $updatedate = new stdClass();
             $updatedate->id = $adressid;
             $updatedate->text = $data->description;
@@ -175,7 +177,7 @@ class add_direction_form extends dynamic_form {
         if (!$cmid) {
             $cmid = $this->optional_param('cmid', '', PARAM_RAW);
         }
-        return new moodle_url('/local/coodle/user', array('id' => $cmid));
+        return new moodle_url('/local/coodle/user', ['id' => $cmid]);
     }
 
     /**
@@ -186,7 +188,7 @@ class add_direction_form extends dynamic_form {
      */
     public function validation($data, $files) {
 
-        $errors = array();
+        $errors = [];
 
         return $errors;
     }

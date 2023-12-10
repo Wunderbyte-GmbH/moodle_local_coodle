@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * List of all advisors page.
+ *
  * @package    local_coodle
  * @copyright  2022 Wunderbyte GmbH
  * @author     Thomas Winkler
@@ -23,18 +25,20 @@
 
 require_once('../../config.php');
 use local_coodle\local\views\secondary;
+use local_coodle\permission;
 
 $delid = optional_param('del', 0, PARAM_INT);
 $context = \context_system::instance();
 $PAGE->set_context($context);
 require_login();
-// TODO: rights to view this page.
+
+permission::is_superadmin();
 $secondarynav = new secondary($PAGE);
 $secondarynav->initialise();
 $PAGE->set_secondarynav($secondarynav);
 $PAGE->set_secondary_navigation(true);
 
-$PAGE->set_url(new moodle_url('/local/coodle/index.php', array()));
+$PAGE->set_url(new moodle_url('/local/coodle/advisorlist.php', []));
 $PAGE->set_pagelayout('standard');
 $title = "COOdLe Manager";
 $PAGE->set_title($title);

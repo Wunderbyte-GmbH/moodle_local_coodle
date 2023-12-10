@@ -83,7 +83,7 @@ class add_advisor_settings_form extends dynamic_form {
         $json = json_encode($data);
         // Save settings json in advisor
         if (\local_coodle\advisor::is_advisor($USER->id)) {
-            $id = $DB->get_field('local_coodle_advisor', 'id', array('userid' => $USER->id), IGNORE_MISSING);
+            $id = $DB->get_field('local_coodle_advisor', 'id', ['userid' => $USER->id], IGNORE_MISSING);
             if ($id) {
                 $newrecord = new stdClass();
                 $newrecord->id = $id;
@@ -140,7 +140,7 @@ class add_advisor_settings_form extends dynamic_form {
         if (!$cmid) {
             $cmid = $this->optional_param('cmid', '', PARAM_RAW);
         }
-        return new moodle_url('/local/coodle/user', array('id' => $cmid));
+        return new moodle_url('/local/coodle/user', ['id' => $cmid]);
     }
 
     /**
@@ -151,7 +151,7 @@ class add_advisor_settings_form extends dynamic_form {
      */
     public function validation($data, $files) {
 
-        $errors = array();
+        $errors = [];
 
         return $errors;
     }

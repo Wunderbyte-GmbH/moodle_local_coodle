@@ -25,9 +25,9 @@
 namespace core_search;
 
 use core_user\external\user_summary_exporter;
-use \external_value;
-use \external_single_structure;
-use \external_multiple_structure;
+use external_value;
+use external_single_structure;
+use external_multiple_structure;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -65,7 +65,7 @@ class external extends \external_api {
                 new external_single_structure([
                     'id' => new external_value(PARAM_INT, 'User id'),
                     'fullname' => new external_value(PARAM_RAW, 'Full name as text'),
-                    'profileimageurlsmall' => new external_value(PARAM_URL, 'URL to small profile image')
+                    'profileimageurlsmall' => new external_value(PARAM_URL, 'URL to small profile image'),
                 ]));
     }
 
@@ -118,8 +118,11 @@ class external extends \external_api {
 
             // To avoid leaking private data to students, only include the specific information we
             // are going to display (and not the email, idnumber, etc).
-            $result[] = (object)['id' => $fulldetails->id, 'fullname' => $fulldetails->fullname,
-                    'profileimageurlsmall' => $fulldetails->profileimageurlsmall];
+            $result[] = (object)[
+                'id' => $fulldetails->id,
+                'fullname' => $fulldetails->fullname,
+                'profileimageurlsmall' => $fulldetails->profileimageurlsmall,
+            ];
         }
         return $result;
     }

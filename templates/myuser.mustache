@@ -23,9 +23,16 @@
 
       <div class="card mt-4">
         <div class="card-body text-dark">
-          <h5 class="card-title">
-            Nutzer_in Details</h5>
+          <h5 class="card-title">{{#str}} details, local_coodle {{/str}}: {{username}}
+            </h5>
         {{{qrcode}}}
+        <button class="btn w-100 btn btn-primary w-100 mt-2 " data-action="coodle-set-password" data-id="{{userid}}">{{#str}} setpassword, local_coodle {{/str}}</button>
+        </div>
+      </div>
+      <div class="usercard card mt-4 d-none">
+        <div class="card-body text-dark">
+        <h5>{{username}}</h5>
+        <h5 id="thepassword"></h5>
         </div>
       </div>
     </div>
@@ -181,7 +188,8 @@
         </h5>
           {{#directions}}
           <div class="mt-4" data-type="direction">
-          {{title}}
+          <div class="bg-white text-dark" style="border-radius: 10px; padding: 10px">
+          <h5 style="display: inline;">{{title}}</h3>
           <button
           class="btn btn-dark pull-right btn-primary-outline text-white ml-2"
           data-action="local-coodle-edit-direction"
@@ -209,6 +217,7 @@
           ></i></button>
             {{{text}}}
           </div>
+          </div>
           {{/directions}}
         </div>
       </div>
@@ -217,8 +226,15 @@
 </div>
 
 {{#js}}
-require(['local_coodle/form_add_audio', 'local_coodle/form_add_todo','local_coodle/form_add_file',
-'local_coodle/actions_file', 	'local_coodle/form_add_link', 'local_coodle/form_add_direction', 'local_coodle/actions_direction', 'local_coodle/actions_link', 'local_coodle/form_add_calendarentry', 'local_coodle/form_delete_event'], function(audio, todoform, fileform, file, links, directionform, directionactions, linkactions, calendarentry, deleteevent ) {
+require([
+'local_coodle/form_set_password',
+'local_coodle/form_add_audio',
+'local_coodle/form_add_todo',
+'local_coodle/form_add_file',
+'local_coodle/actions_file',
+'local_coodle/form_add_link',
+'local_coodle/form_add_direction', 'local_coodle/actions_direction', 'local_coodle/actions_link', 'local_coodle/form_add_calendarentry', 'local_coodle/form_delete_event'], function(pass, audio, todoform, fileform, file, links, directionform, directionactions, linkactions, calendarentry, deleteevent ) {
+  pass.init();
   audio.init();
   directionform.init();
   directionactions.init();

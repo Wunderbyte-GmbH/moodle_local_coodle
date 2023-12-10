@@ -14,12 +14,22 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * Class to handle coodle advisors.
+ *
+ * @package local_coodle
+ * @author Thomas Winkler
+ * @copyright 2022 Wunderbyte GmbH
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 namespace local_coodle;
 
 use stdClass;
 
 /**
  * Class advisor.
+ *
  * @package local_coodle
  * @author Thomas Winkler
  * @copyright 2022 Wunderbyte GmbH
@@ -41,18 +51,48 @@ class advisor {
      */
     public $courseid;
 
+    /**
+     * Settings of Advisor
+     *
+     * @var string
+     */
     public $settings;
 
+    /**
+     * Timecreated
+     *
+     * @var int
+     */
     public $timecreated;
 
+    /**
+     * Timemodified
+     *
+     * @var int
+     */
     public $timemodified;
 
+    /**
+     * Undocumented variable
+     *
+     * @var string
+     */
     public $token;
 
     public $tokencreated;
 
+    /**
+     * Variable if advisor is deleted
+     *
+     * @var int
+     */
     public $deleted;
 
+    /**
+     * Whole data
+     *
+     * @var array
+     */
     protected $data;
 
     /**
@@ -71,6 +111,7 @@ class advisor {
             $this->data = $data;
             $this->data['id'] = $advisorid;
             $this->set_coodle_preferences($userid);
+            $this->enrol_advisor_to_advisorcourse($userid);
         }
         $this->userid = $userid;
         $this->courseid = $courseid;
@@ -83,7 +124,7 @@ class advisor {
      */
     public function get_advisor() {
         global $DB;
-        $record = $DB->get_record('local_coodle_advisor', array('userid' => $this->userid));
+        $record = $DB->get_record('local_coodle_advisor', ['userid' => $this->userid]);
         $this->data = $record;
         $this->timecreated = $record->timecreated;
         $this->token = $record->token;
@@ -111,13 +152,13 @@ class advisor {
         $data->category = \local_coodle\settings_manager::create_or_get_standard_coursecategory();
         require_once($CFG->dirroot.'/course/lib.php');
         $i = 1;
-        while ($DB->record_exists('course', array('shortname' => $data->shortname)) || $DB->record_exists('course', array('shortname' => $data->id))) {
+        while ($DB->record_exists('course', ['shortname' => $data->shortname]) || $DB->record_exists('course', ['shortname' => $data->id])) {
             $data->shortname = $data->shortname . "($i)";
             $data->idnumber = $data->idnumber . "($i)";
             $i++;
         }
         $course = create_course($data);
-        self::course_manual_enrolments(array($course->id), array($userid), 3);
+        self::course_manual_enrolments([$course->id], [$userid], 3);
         return $course->id;
     }
 
@@ -148,21 +189,21 @@ class advisor {
         $coursectx = \context_course::instance($courseid);
         if (!empty($coursectx->id)) {
             if (!is_enrolled($coursectx, $user, '', true)) {
-                self::course_manual_enrolments(array($courseid), array($userid), 5);
+                self::course_manual_enrolments([$courseid], [$userid], 5);
             }
             require_once("$CFG->dirroot/group/lib.php");
             $groupname = fullname($user) . ' (' . $user->id . ')';
-            $group = $DB->get_record('groups', array('courseid' => $courseid, 'name' => $groupname));
+            $group = $DB->get_record('groups', ['courseid' => $courseid, 'name' => $groupname]);
             if (empty($group->id)) {
                 // Create a group for this user.
-                $group = (object) array(
+                $group = (object) [
                     'courseid' => $courseid,
                     'name' => $groupname,
                     'description' => '',
                     'descriptionformat' => 1,
                     'timecreated' => time(),
                     'timemodified' => time(),
-                );
+                ];
                 $group->id = groups_create_group($group, false);
             }
             if (!empty($group->id)) {
@@ -186,10 +227,10 @@ class advisor {
     public static function course_manual_enrolments(array $courseids, array $userids, int $roleid): bool {
         global $DB;
         if (!is_array($courseids)) {
-            $courseids = array($courseids);
+            $courseids = [$courseids];
         }
         if (!is_array($userids)) {
-            $userids = array($userids);
+            $userids = [$userids];
         }
 
         // Check manual enrolment plugin instance is enabled/exist.
@@ -197,10 +238,10 @@ class advisor {
         if (empty($enrol)) {
             throw new \moodle_exception('manualpluginnotinstalled', 'enrol_manual');
         }
-        $instances = array();
+        $instances = [];
         foreach ($courseids as $courseid) {
             // Check if course exists.
-            $course = $DB->get_record('course', array('id' => $courseid), '*', IGNORE_MISSING);
+            $course = $DB->get_record('course', ['id' => $courseid], '*', IGNORE_MISSING);
             if (empty($course->id)) {
                 continue;
             }
@@ -209,7 +250,7 @@ class advisor {
             }
 
             foreach ($userids as $userid) {
-                $user = $DB->get_record('user', array('id' => $userid));
+                $user = $DB->get_record('user', ['id' => $userid]);
                 if (empty($user->id)) {
                     continue;
                 }
@@ -285,7 +326,7 @@ class advisor {
      */
     public static function get_advisor_course(int $advisorid) {
         global $DB;
-        $record = $DB->get_record('local_coodle_advisor', array('userid' => $advisorid), 'courseid');
+        $record = $DB->get_record('local_coodle_advisor', ['userid' => $advisorid], 'courseid');
         return $record->courseid;
     }
 
@@ -297,7 +338,7 @@ class advisor {
      */
     public static function get_advisor_addrescard(int $advisorid) {
         global $DB;
-        $record = $DB->get_record('local_coodle_advisor', array('userid' => $advisorid), 'settings');
+        $record = $DB->get_record('local_coodle_advisor', ['userid' => $advisorid], 'settings');
         if (!empty($record->settings)) {
             $settings = json_decode($record->settings);
         }
@@ -318,13 +359,13 @@ class advisor {
             }
             return $userlist;
         }
-        return array();
+        return [];
     }
 
     public static function set_coodle_advisor($data) {
         global $DB;
         if ($DB->update_record('local_coodle_user', $data)) {
-            $record = $DB->get_record('local_coodle_user', array('id' => $data->id));
+            $record = $DB->get_record('local_coodle_user', ['id' => $data->id]);
             self::create_group_for_advisor($record->advisorid, $record->userid);
         }
     }
@@ -339,7 +380,7 @@ class advisor {
      */
     public static function is_advisor_from($userid, $advisorid): bool {
         global $DB;
-        return $DB->record_exists('local_coodle_user', array('userid' => $userid, 'advisorid' => $advisorid));
+        return $DB->record_exists('local_coodle_user', ['userid' => $userid, 'advisorid' => $advisorid]);
     }
 
     /**
@@ -418,7 +459,7 @@ class advisor {
         SET advisorid = NULL
         WHERE advisorid = :advisorid";
 
-        $params = array('advisorid' => $userid);
+        $params = ['advisorid' => $userid];
         // Reset user prefs.
         set_user_preferences(['coodle_settings' => 'null'], $userid);
 
@@ -428,4 +469,10 @@ class advisor {
         $DB->execute($sql, $params);
     }
 
+    public function enrol_advisor_to_advisorcourse($userid) {
+        $advisorcourse = get_config('local_coodle', 'coodleadvisorcourseid');
+        if ($advisorcourse) {
+            self::course_manual_enrolments([$advisorcourse], [$userid], 5);
+        }
+    }
 }

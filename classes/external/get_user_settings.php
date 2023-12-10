@@ -74,10 +74,10 @@ class get_user_settings extends external_api {
      * @return external_single_structure
      */
     public static function execute_returns(): external_single_structure {
-        return new external_single_structure(array(
+        return new external_single_structure([
             'settings' => new external_value(PARAM_TEXT, 'settings'),
             'error' => new external_value(PARAM_TEXT, 'error'),
-            )
+            ]
         );
     }
 }

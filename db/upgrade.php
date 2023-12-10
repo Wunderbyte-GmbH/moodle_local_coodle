@@ -22,10 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
- * Quiz module upgrade function.
+ * Coodle Plugin Upgrade.
  * @param string $oldversion the version we are upgrading from.
  */
 function xmldb_local_coodle_upgrade($oldversion) {
@@ -50,7 +48,7 @@ function xmldb_local_coodle_upgrade($oldversion) {
     }
 
     if ($oldversion < 2023060701) {
-        // Add table local_coodle_adresses
+        // Add table local_coodle_adresses.
         $table = new xmldb_table('local_coodle_directions');
         $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE);
         $table->add_field('userid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL);
@@ -61,20 +59,18 @@ function xmldb_local_coodle_upgrade($oldversion) {
         $table->add_field('timemodified', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
         $table->add_field('status', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0');
 
-        $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
+        $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
 
         if (!$dbman->table_exists($table)) {
             $dbman->create_table($table);
         }
-
-        // Add other upgrade steps if needed
 
         // Moodle upgrade complete.
         upgrade_plugin_savepoint(true, 2023060701, 'local', 'coodle');
     }
 
     if ($oldversion < 2023060601) {
-        // Add table local_coodle_links
+        // Add table local_coodle_links.
         $table = new xmldb_table('local_coodle_links');
         $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE);
         $table->add_field('userid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL);
@@ -85,17 +81,16 @@ function xmldb_local_coodle_upgrade($oldversion) {
         $table->add_field('timemodified', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
         $table->add_field('deleted', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0');
 
-        $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
+        $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
 
         if (!$dbman->table_exists($table)) {
             $dbman->create_table($table);
         }
         upgrade_plugin_savepoint(true, 2023060601, 'local', 'coodle');
-        // Replace XXXXXXXXXX with the version you are upgrading to
     }
 
     if ($oldversion < 2023070601) {
-        // Add table local_coodle_adresses
+        // Add table local_coodle_adresses.
         $table = new xmldb_table('local_coodle_advisor');
         $field = new xmldb_field('settings', XMLDB_TYPE_TEXT, null, null, null, null, null, 'tokencreated');
         if (!$dbman->field_exists($table, $field)) {
@@ -121,7 +116,7 @@ function xmldb_local_coodle_upgrade($oldversion) {
     if ($oldversion < 2023070602) {
         global $DB;
         $records = $DB->get_records('local_coodle_advisor');
-        foreach($records as $record) {
+        foreach ($records as $record) {
             $settings = json_encode(['isadvisor' => true, 'isuser' => false]);
             set_user_preference('coodle_settings', $settings, $record->userid);
         }

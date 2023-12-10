@@ -59,7 +59,7 @@ class coodle_user {
      */
     public function load_user(int $userid) {
         global $DB;
-        $coodleuser = $DB->get_record('local_coodle_user', array('userid' => $userid));
+        $coodleuser = $DB->get_record('local_coodle_user', ['userid' => $userid]);
         $this->token = $coodleuser->token;
         $this->id = $coodleuser->id;
         $this->userid = $coodleuser->userid;
@@ -88,7 +88,7 @@ class coodle_user {
             $advisorcourseid = \local_coodle\advisor::get_advisor_course($advisorid);
 
             // Enrol user in course.
-            \local_coodle\advisor::course_manual_enrolments(array($advisorcourseid), array($userid), 5);
+            \local_coodle\advisor::course_manual_enrolments([$advisorcourseid], [$userid], 5);
 
             // Add user to contacts.
             \core_message\api::create_contact_request($advisorid, $userid);
@@ -99,7 +99,7 @@ class coodle_user {
                     \core_message\api::MESSAGE_CONVERSATION_TYPE_INDIVIDUAL,
                     [
                     $advisorid,
-                    $userid
+                    $userid,
                     ]
                 );
             }
@@ -131,7 +131,7 @@ class coodle_user {
                 \core_message\api::MESSAGE_CONVERSATION_TYPE_INDIVIDUAL,
                 [
                 $advisorid,
-                $userid
+                $userid,
                 ]
             );
         }
@@ -160,7 +160,7 @@ class coodle_user {
     public static function get_coodle_users(int $userid = null) {
         global $DB, $USER;
 
-        if(!$userid) {
+        if (!$userid) {
             $userid = $USER->id;
         }
         $sql = "SELECT cu.*, u.firstname as clientfirstname, u.lastname as clientlastname,
@@ -199,16 +199,20 @@ class coodle_user {
         return $data;
     }
 
+    /**
+     * Prepare QR Code for template
+     *
+     * @param  coodle_user $coodleuser
+     *
+     * @return string
+     */
     public function prepare_qr_code_for_template(coodle_user $coodleuser) {
         $qrcodeimg = \local_coodle\overrides\mobileapioverrides::generate_login_qrcode_from_userid(
             $coodleuser->token,
             $coodleuser->userid
         );
-        $mobileqr = \html_writer::link('#qrcode-'.$coodleuser->userid, '',
-            ['class' => 'btn btn-primary mt-2 fa fa-2x fa-qrcode coodle-qr', 'data-toggle' => 'collapse',
-            'role' => 'button', 'aria-expanded' => 'false']);
-        $mobileqr = '<a class="btn btn-primary mt-2 coodle-qr" data-toggle="collapse" role="button"' .
-         'aria-expanded="false" href="#qrcode-' .$coodleuser->userid .'"><i class="fa fa-2x fa-qrcode"></i></a>';
+        $mobileqr = '<a class="btn btn-primary w-100 mt-2 coodle-qr" data-toggle="collapse" role="button"' .
+         'aria-expanded="false" href="#qrcode-' .$coodleuser->userid .'">QR-Code</a>';
         $mobileqr .= \html_writer::div(\html_writer::img($qrcodeimg, 'token',
          ['class' => 'qrcode']), 'collapse mt-4', ['id' => 'qrcode-'.$coodleuser->userid]);
         return $mobileqr;
@@ -237,7 +241,7 @@ class coodle_user {
             );
             $mobileqr = \html_writer::link('#qrcode-'.$coodleuser->userid, '',
                 ['class' => 'btn btn-primary mt-2 fa fa-2x fa-qrcode coodle-qr', 'data-toggle' => 'collapse',
-                'role' => 'button', 'aria-expanded' => 'false']);
+                'role' => 'button', 'aria-expanded' => 'false', ]);
             $mobileqr = '<a class="btn btn-primary mt-2 coodle-qr" data-toggle="collapse" role="button"' .
              'aria-expanded="false" href="#qrcode-'.$coodleuser->userid .'"><i class="fa fa-2x fa-qrcode"></i></a>';
             $mobileqr .= \html_writer::div(\html_writer::img($qrcodeimg, 'token',
@@ -246,7 +250,7 @@ class coodle_user {
             $tdata->todos = self::get_coodle_todos($coodleuser->userid);
             $templatedata[] = $tdata;
             // Count Users.
-            if($coodleuser->deleted == "1" ) {
+            if ($coodleuser->deleted == "1" ) {
                 $countdeleted++;
             } else {
                 $countactive++;
@@ -267,7 +271,7 @@ class coodle_user {
      */
     public function get_coodleuser_links($userid) {
         global $DB;
-        $data = $DB->get_records('local_coodle_links', array('userid' => $userid));
+        $data = $DB->get_records('local_coodle_links', ['userid' => $userid]);
         return $data;
     }
 
@@ -315,7 +319,7 @@ class coodle_user {
 
         // Get all files from the file storage.
         $files = $filestorage->get_directory_files($context->id, 'local_coodle', 'clientfile', 0, '/');
-        $fileoutput = array();
+        $fileoutput = [];
         // Output the file information.
         foreach ($files as $file) {
             if ($file->get_filename() != '.') {
@@ -360,7 +364,7 @@ class coodle_user {
         $files = $filestorage->get_directory_files(
             $context->id, 'local_coodle', 'clientfiles', 0, '/' . $this->userid . '/' . $doctype . '/'
         );
-        $fileoutput = array();
+        $fileoutput = [];
         // Output the file information.
         foreach ($files as $file) {
             if ($file->get_filename() != '.') {
@@ -446,11 +450,11 @@ class coodle_user {
      */
     public static function delete_user($clientid) {
         global $DB;
-        $params = array(
+        $params = [
             'timemodified' => time(),
             'userid' => $clientid,
-            'deleted' => 1
-        );
+            'deleted' => 1,
+        ];
         return $DB->update_record('local_coodle_user', $params);
     }
 }

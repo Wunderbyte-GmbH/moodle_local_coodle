@@ -37,7 +37,7 @@ class todo {
 
     public function __construct($data = null) {
         global $USER;
-        if(empty($data)) {
+        if (empty($data)) {
             return;
         }
         $tododata = new stdClass();
@@ -147,10 +147,10 @@ class todo {
     public static function set_todo_status(int $todoid, int $status) {
         global $DB;
 
-        $params = array(
+        $params = [
             'deleted' => $status,
-            'id' => $todoid
-        );
+            'id' => $todoid,
+        ];
         $DB->update_record('local_coodle_todos', $params);
         unset($params['deleted']);
         return $DB->get_record('local_coodle_todos', $params);
@@ -159,10 +159,10 @@ class todo {
     public static function set_todo_usertodo(int $todoid, int $usertodo) {
         global $DB;
 
-        $params = array(
+        $params = [
             'usertodo' => $usertodo,
-            'id' => $todoid
-        );
+            'id' => $todoid,
+        ];
         $DB->update_record('local_coodle_todos', $params);
         unset($params['deleted']);
         return $DB->get_record('local_coodle_todos', $params);

@@ -23,19 +23,22 @@
 
 require_once('../../config.php');
 use local_coodle\local\views\secondary;
+use local_coodle\permission;
+
 global $USER;
 
 $delid = optional_param('del', 0, PARAM_INT);
 $context = \context_system::instance();
 $PAGE->set_context($context);
 require_login();
+permission::require_is_advisor();
 
 $secondarynav = new secondary($PAGE);
 $secondarynav->initialise();
 $PAGE->set_secondarynav($secondarynav);
 $PAGE->set_secondary_navigation(true);
 
-$PAGE->set_url(new moodle_url('/local/coodle/todos.php', array()));
+$PAGE->set_url(new moodle_url('/local/coodle/todos.php', []));
 $PAGE->set_pagelayout('standard');
 $title = get_string('todolist', 'local_coodle');
 $PAGE->set_title($title);

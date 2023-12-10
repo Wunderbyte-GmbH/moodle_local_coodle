@@ -48,11 +48,11 @@ class set_advisor_form extends dynamic_form {
     public function definition() {
         $mform = $this->_form;
 
-        $options = array(
+        $options = [
             'ajax' => 'tool_lp/form-user-selector',
-            'multiple' => false
-        );
-        $mform->addElement('autocomplete', 'userid', get_string('selectusers', 'local_coodle'), array(), $options);
+            'multiple' => false,
+        ];
+        $mform->addElement('autocomplete', 'userid', get_string('selectusers', 'local_coodle'), [], $options);
         $mform->addRule('userid', null, 'required');
     }
 
@@ -126,7 +126,7 @@ class set_advisor_form extends dynamic_form {
         if (!$cmid) {
             $cmid = $this->optional_param('cmid', '', PARAM_RAW);
         }
-        return new moodle_url('/local/coodle/newuser', array('id' => $cmid));
+        return new moodle_url('/local/coodle/newuser', ['id' => $cmid]);
     }
 
     /**
@@ -137,7 +137,7 @@ class set_advisor_form extends dynamic_form {
      */
     public function validation($data, $files) {
 
-        $errors = array();
+        $errors = [];
 
         return $errors;
     }

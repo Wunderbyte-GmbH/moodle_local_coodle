@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Show one user of coodle.
+ *
  * @package    local_coodle
  * @copyright  2022 Wunderbyte GmbH
  * @author     Thomas Winkler
@@ -24,8 +26,9 @@
 require_once('../../config.php');
 use local_coodle\local\views\secondary;
 use local_coodle\coodle_user;
+use local_coodle\permission;
 
-$id = optional_param('id', 0, PARAM_INT);
+$id = required_param('id', PARAM_INT);
 /*
 if (!iscoodleclient_from_manager($id)) {
     exit();
@@ -34,16 +37,18 @@ $context = \context_system::instance();
 $PAGE->set_context($context);
 require_login();
 
+permission::require_is_advisor_from_user($id);
 $secondarynav = new secondary($PAGE);
 $secondarynav->initialise();
 $PAGE->set_secondarynav($secondarynav);
 $PAGE->set_secondary_navigation(true);
 
-$PAGE->set_url(new moodle_url('/local/coodle/user.php', array('id' => $id)));
+$PAGE->set_url(new moodle_url('/local/coodle/user.php', ['id' => $id]));
 $PAGE->set_pagelayout('standard');
-// Get User Object
+// Get User Object.
 $client = new stdClass();
-$client->name = fullname(get_complete_user_data('id', $id));
+$user = get_complete_user_data('id', $id);
+$client->name = fullname($user);
 $title = $client->name;
 $PAGE->set_title("COODLE");
 
@@ -66,6 +71,8 @@ if (!empty($todolistadv)) {
 }
 
 $templatedata->name = $client->name;
+$templatedata->username = $user->username;
+
 $convid = local_coodle\coodle_user::get_conversation_between_users($USER->id, $id);
 if ($convid) {
     $templatedata->widget = \core_message\helper::render_messaging_widget(false, $id, $convid);
@@ -73,9 +80,10 @@ if ($convid) {
 $templatedata->clientid = $id;
 $coodle = new local_coodle\coodle_user();
 $coodle->load_user($id);
-// Load different templatedata
+// Load different templatedata.
 $templatedata->userid = $id;
 $templatedata->qrcode = $coodle->prepare_qr_code_for_template($coodle);
+$templatedata->password = $coodle->prepare_qr_code_for_template($coodle);
 
 $templatedata->files[1] = $coodle->get_coodleuser_files(1);
 $templatedata->files[2] = $coodle->get_coodleuser_files(2);
@@ -86,7 +94,7 @@ $templatedata->directions = $coodle->get_coodleuser_directions($id);
 $templatedata->links = array_values($coodle->get_coodleuser_links($id));
 $events = \local_coodle\external\get_calendar_events::execute($id);
 $templatedata->events = [];
-foreach($events['events'] as $event) {
+foreach ($events['events'] as $event) {
     $templatedata->events[] = [
         'name' => $event->name,
         'timestart' => date("d.m H:i", $event->timestart),

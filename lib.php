@@ -36,7 +36,7 @@ function local_coodle_render_navbar_output(\renderer_base $renderer) {
     }
 
     global $OUTPUT, $PAGE;
-    $templatedata = array('image' => $OUTPUT->image_url('coodle', 'local_coodle'));
+    $templatedata = ['image' => $OUTPUT->image_url('coodle', 'local_coodle')];
     $nav = $OUTPUT->render_from_template('local_coodle/navicon', $templatedata);
 
     if (get_config('local_coodle', 'calendaronlyallowintervalls')) {
@@ -83,7 +83,7 @@ function local_coodle_pluginfile($course, $cm, $context, $filearea, $args, $forc
         $filepath = '/' . implode('/', $args) . '/';
     }
 
-    //TODO if user = itemid?
+    // TODO if user = itemid?
     // or is advisor user?
 
     // Retrieve the file from the Files API.

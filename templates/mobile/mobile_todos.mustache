@@ -26,7 +26,7 @@
                 name="local_coodle_change_todo" [params]="{todoid: <%id%>, method: 'done'}"
                 confirmMessage="Aufgabe abschließen?"
                 refreshOnSuccess="true"></ion-checkbox>
-                <ion-label style="margin-left: 10px;"> <%text%></ion-label>
+                <div style="margin-left: 10px;"> <%text%></div>
               </ion-item>
               <%/todosopen%>
             </ion-list>
@@ -38,7 +38,7 @@
                 name="local_coodle_change_todo" [params]="{todoid: <%id%>, method: 'uncheck'}"
                 confirmMessage="Aufgabe öffnen?"
                 refreshOnSuccess="true"></ion-checkbox>
-                <ion-label style="margin-left: 10px;"> <%text%></ion-label>
+                <div style="margin-left: 10px;"> <%text%></div>
               </ion-item>
               <%/todosdone%>
             </ion-list>

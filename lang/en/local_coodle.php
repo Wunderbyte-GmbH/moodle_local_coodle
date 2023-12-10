@@ -113,19 +113,19 @@ $string['zipcode'] = 'Zip';
 $string['city'] = 'City';
 $string['berufsbezeichnung'] = 'job title';
 
-// Dates
+// Dates.
 $string['dates'] = 'Dates';
 $string['add_calendar_entry_notification'] = 'Calendar entry';
 $string['add_calendar_entry_added'] = 'Calendar entry added';
 $string['add_calendar_entry_error'] = 'Something went wrong';
 $string['add_calendar_entry'] = 'Add date';
 
-// Filter
+// Filter.
 $string['inactive'] = 'Inactive';
 $string['active'] = 'Active';
 $string['search'] = 'Search';
 
-// Mobile
+// Mobile.
 $string['todosdesc'] = 'You can mark tasks as completed.';
 $string['notodos'] = 'Currently, no open tasks.';
 
@@ -153,6 +153,8 @@ $string['messageprovider:newfilemsg'] = 'New File';
 $string['messageprovider:newtodomsg'] = 'New Todo';
 
 $string['date_delete'] = 'Delete Event.';
+$string['details'] = 'User';
+$string['setpassword'] = 'Neues Passwort';
 
 // Mobile Strings.
 $string['viewtodos'] = 'Todos';

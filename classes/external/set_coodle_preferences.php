@@ -54,17 +54,17 @@ class set_coodle_preferences extends external_api {
      */
     public static function execute_parameters() {
         return new external_function_parameters(
-        array(
+        [
             'preferences' => new external_multiple_structure(
                 new external_single_structure(
-                    array(
+                    [
                         'name' => new external_value(PARAM_RAW, 'The name of the preference'),
                         'value' => new external_value(PARAM_RAW, 'The value of the preference'),
                         'userid' => new external_value(PARAM_INT, 'Id of the user to set the preference'),
-                    )
+                    ]
                 )
-            )
-        )
+            ),
+        ]
         );
     }
 
@@ -78,9 +78,9 @@ class set_coodle_preferences extends external_api {
     public static function execute($preferences) {
         global $USER;
 
-        $params = self::validate_parameters(self::execute_parameters(), array('preferences' => $preferences));
-        $warnings = array();
-        $saved = array();
+        $params = self::validate_parameters(self::execute_parameters(), ['preferences' => $preferences]);
+        $warnings = [];
+        $saved = [];
 
         $context = context_system::instance();
         self::validate_context($context);
@@ -89,19 +89,19 @@ class set_coodle_preferences extends external_api {
             // Check to which user set the preference.
             if (in_array($pref['name'], self::$allowedsettingsarray)) {
                 if ($pref['name'] == 'refresh') {
-                    return array();
+                    return [];
                 }
                 if ($USER->id == $pref['userid']) {
                     set_user_preference($pref['name'], $pref['value'], $pref['userid']);
-                    $saved[] = array(
+                    $saved[] = [
                         'name' => $pref['name'],
                         'userid' => $pref['userid'],
-                    );
+                    ];
                 }
             }
         }
 
-        $result = array();
+        $result = [];
         $result['saved'] = $saved;
         $result['warnings'] = $warnings;
         return $result;
@@ -115,17 +115,17 @@ class set_coodle_preferences extends external_api {
      */
     public static function execute_returns() {
         return new external_single_structure(
-        array(
+        [
             'saved' => new external_multiple_structure(
                 new external_single_structure(
-                    array(
+                    [
                         'name' => new external_value(PARAM_RAW, 'The name of the preference'),
                         'userid' => new external_value(PARAM_INT, 'The user the preference was set for'),
-                    )
+                    ]
                 ), 'Preferences saved'
             ),
-            'warnings' => new external_warnings()
-        )
+            'warnings' => new external_warnings(),
+        ]
         );
     }
 }

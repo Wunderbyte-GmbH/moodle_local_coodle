@@ -25,13 +25,13 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$observers = array(
-    array(
+$observers = [
+    [
         'eventname' => '\core\event\course_category_deleted',
         'callback'    => 'local_coodle_observer::course_category_deleted',
-    ),
-    array(
+    ],
+    [
         'eventname' => '\core\event\user_deleted',
-        'callback' => 'local_coodle_observer::user_deleted'
-    ),
-);
+        'callback' => 'local_coodle_observer::user_deleted',
+    ],
+];

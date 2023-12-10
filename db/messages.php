@@ -33,13 +33,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$messageproviders = array (
-    // Testmessage
-    'testmessage' => [
-        'defaults' => [
-            'airnotifier' => MESSAGE_PERMITTED + MESSAGE_DEFAULT_ENABLED,
-        ],
-    ],
+$messageproviders = [
     'newfilemsg' => [
         'defaults' => [
             'airnotifier' => MESSAGE_PERMITTED + MESSAGE_DEFAULT_ENABLED,
@@ -50,4 +44,4 @@ $messageproviders = array (
             'airnotifier' => MESSAGE_PERMITTED + MESSAGE_DEFAULT_ENABLED,
         ],
     ],
-);
+];

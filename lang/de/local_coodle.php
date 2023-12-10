@@ -109,20 +109,20 @@ $string['zipcode'] = 'PLZ';
 $string['city'] = 'Stadt';
 $string['berufsbezeichnung'] = 'Berufsbezeichnung';
 
-// Dates
+// Dates.
 $string['dates'] = 'Termine';
 $string['add_calendar_entry_notification'] = 'Kalendereintrag';
 $string['add_calendar_entry_added'] = 'Kalendereintrag hinzugefügt';
 $string['add_calendar_entry_error'] = 'Leider ist etwas schief gelaufen';
 $string['add_calendar_entry'] = 'Termin hinzufügen';
 
-// Filter
+// Filter.
 $string['all'] = 'Zeige Alle';
 $string['inactive'] = 'Nur Inaktive';
 $string['active'] = 'Nur Aktive';
 $string['search'] = 'Suche...';
 
-// No Data
+// No Data.
 $string['todosdesc'] = 'Du kannst Aufgaben als erledigt markieren.';
 $string['notodos'] = 'Derzeit keine offenen Aufgaben.';
 
@@ -135,6 +135,8 @@ $string['deleteadvisor'] = 'Berater_in löschen';
 
 $string['docsdesc'] = 'Lade hier deine persönlichen Dokumente (z.B. Bewerbungsunterlagen) hoch.';
 $string['nodocs'] = 'Noch keine persönlichen Dokumente vorhanden.';
+$string['details'] = 'Teilnehmer_in';
+$string['setpassword'] = 'Neues Passwort';
 
 $string['docsadvdesc'] = 'Hier findest du Kontaktdaten und Dokumente aus deiner Beratung. ';
 $string['nodocsadv'] = 'Noch keine Beratungsdokumente vorhanden.';
@@ -150,7 +152,6 @@ $string['messageprovider:newfilemsg'] = 'Neues File';
 $string['messageprovider:newtodomsg'] = 'Neue Aufgabe hinzugefügt';
 
 $string['date_delete'] = 'Event löschen';
-
 
 // Mobile Strings.
 $string['viewtodos'] = 'Aufgaben';

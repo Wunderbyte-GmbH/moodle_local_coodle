@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Show my coodle advised coodle users.
+ *
  * @package    local_coodle
  * @copyright  2022 Wunderbyte GmbH
  * @author     Thomas Winkler
@@ -23,19 +25,21 @@
 
 require_once('../../config.php');
 use local_coodle\local\views\secondary;
+use local_coodle\permission;
 
 global $USER;
 
 $context = \context_system::instance();
 $PAGE->set_context($context);
 require_login();
+permission::is_advisor();
 
 $secondarynav = new secondary($PAGE);
 $secondarynav->initialise();
 $PAGE->set_secondarynav($secondarynav);
 $PAGE->set_secondary_navigation(true);
 
-$PAGE->set_url(new moodle_url('/local/coodle/myusers.php', array()));
+$PAGE->set_url(new moodle_url('/local/coodle/myusers.php', []));
 $PAGE->set_pagelayout('standard');
 $title = $USER->firstname . ' ' . $USER->lastname;
 

@@ -25,32 +25,32 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$functions = array(
-        'local_coodle_add_advisor' => array(
+$functions = [
+        'local_coodle_add_advisor' => [
                 'classname' => '\local_coodle\external\add_advisor',
                 'methodname' => 'execute',
                 'description' => 'Add a advisor',
                 'type' => 'write',
                 'ajax' => true,
                 'loginrequired' => true,
-        ),
-        'local_coodle_delete_coodle_advisor' => array(
+        ],
+        'local_coodle_delete_coodle_advisor' => [
                 'classname' => '\local_coodle\external\delete_coodle_user',
                 'methodname' => 'execute',
                 'description' => 'Delete a advisor',
                 'type' => 'write',
                 'ajax' => true,
                 'loginrequired' => true,
-        ),
-        'local_coodle_add_user' => array(
+        ],
+        'local_coodle_add_user' => [
                 'classname' => '\local_coodle\external\add_user',
                 'methodname' => 'execute',
                 'description' => 'Add a coodle user',
                 'type' => 'write',
                 'ajax' => true,
                 'loginrequired' => true,
-        ),
-        'local_coodle_change_todo' => array(
+        ],
+        'local_coodle_change_todo' => [
                 'classname' => '\local_coodle\external\change_todo',
                 'methodname' => 'execute',
                 'description' => 'Change todo status to done or delete it',
@@ -60,8 +60,8 @@ $functions = array(
                 'services'    => [
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
-        ),
-        'local_coodle_delete_file' => array(
+        ],
+        'local_coodle_delete_file' => [
                 'classname' => '\local_coodle\external\delete_file',
                 'classpath' => '',
                 'description' => 'delete_file',
@@ -70,8 +70,8 @@ $functions = array(
                 'services'    => [
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
-        ),
-        'local_coodle_upload_file' => array(
+        ],
+        'local_coodle_upload_file' => [
                 'classname' => '\local_coodle\external\upload_file',
                 'method' => 'execute',
                 'description' => 'upload_file',
@@ -80,8 +80,8 @@ $functions = array(
                 'services'    => [
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
-        ),
-        'local_coodle_get_files' => array(
+        ],
+        'local_coodle_get_files' => [
                 'classname' => '\local_coodle\external\get_files',
                 'method' => 'execute',
                 'description' => 'get_files',
@@ -90,8 +90,8 @@ $functions = array(
                 'services'    => [
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
-        ),
-        'local_coodle_get_user_settings' => array(
+        ],
+        'local_coodle_get_user_settings' => [
                 'classname' => '\local_coodle\external\get_user_settings',
                 'method' => 'execute',
                 'description' => 'gets settings',
@@ -100,8 +100,8 @@ $functions = array(
                 'services'    => [
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
-        ),
-        'local_coodle_delete_direction' => array(
+        ],
+        'local_coodle_delete_direction' => [
                 'classname' => '\local_coodle\external\delete_direction',
                 'method' => 'execute',
                 'description' => 'delete_direction',
@@ -110,8 +110,8 @@ $functions = array(
                 'services'    => [
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
-        ),
-        'local_coodle_delete_link' => array(
+        ],
+        'local_coodle_delete_link' => [
                 'classname' => '\local_coodle\external\delete_link',
                 'method' => 'execute',
                 'description' => 'delete_link',
@@ -120,8 +120,8 @@ $functions = array(
                 'services'    => [
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
-        ),
-        'local_coodle_set_coodle_preferences' => array(
+        ],
+        'local_coodle_set_coodle_preferences' => [
                 'classname' => '\local_coodle\external\set_coodle_preferences',
                 'method' => 'execute',
                 'description' => 'set_coodle_preferences',
@@ -130,8 +130,8 @@ $functions = array(
                 'services'    => [
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
-        ),
-        'local_coodle_get_calendar_events' => array(
+        ],
+        'local_coodle_get_calendar_events' => [
                 'classname' => '\local_coodle\external\get_calendar_events',
                 'method' => 'execute',
                 'description' => 'get_calendar_events',
@@ -140,8 +140,8 @@ $functions = array(
                 'services'    => [
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
-        ),
-        'local_coodle_dummy' => array(
+        ],
+        'local_coodle_dummy' => [
                 'classname' => '\local_coodle\external\dummy',
                 'method' => 'execute',
                 'description' => 'dummy',
@@ -150,8 +150,8 @@ $functions = array(
                 'services'    => [
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
-        ),
-        'local_coodle_add_todo' => array(
+        ],
+        'local_coodle_add_todo' => [
                 'classname' => '\local_coodle\external\add_todo',
                 'method' => 'execute',
                 'description' => 'add_todo',
@@ -160,5 +160,5 @@ $functions = array(
                 'services'    => [
                         MOODLE_OFFICIAL_MOBILE_SERVICE,
                     ],
-        ),
-);
+        ],
+];

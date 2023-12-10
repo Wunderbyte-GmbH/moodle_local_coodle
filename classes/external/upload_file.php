@@ -44,10 +44,10 @@ class upload_file extends external_api {
      */
     public static function execute_parameters() {
         return new external_function_parameters(
-            array(
+            [
                 'draftid' => new external_value(PARAM_INT, 'draft area id'),
-                'filename' => new external_value(PARAM_TEXT, 'text')
-            )
+                'filename' => new external_value(PARAM_TEXT, 'text'),
+            ]
         );
     }
     /**
@@ -61,7 +61,7 @@ class upload_file extends external_api {
         global $CFG, $USER;
         require_once($CFG->libdir . "/filelib.php");
 
-        $params = self::validate_parameters(self::execute_parameters(), array('draftid' => $draftid, 'filename' => $filename));
+        $params = self::validate_parameters(self::execute_parameters(), ['draftid' => $draftid, 'filename' => $filename]);
 
         if (isguestuser()) {
             throw new \invalid_parameter_exception('Guest users cannot upload files');
@@ -82,7 +82,7 @@ class upload_file extends external_api {
         }
 
         $userid = 0;
-        // Check if a different user was chosen in the app
+        // Check if a different user was chosen in the app.
         $coodleuser = get_user_preferences('coodleuser_chosen');
         if ($coodleuser) {
             $coodleuser = json_decode($coodleuser);
@@ -102,10 +102,12 @@ class upload_file extends external_api {
             $maxareabytes = FILE_AREA_MAX_BYTES_UNLIMITED;
         }
 
-        $options = array('subdirs' => 1,
-                         'maxbytes' => $maxbytes,
-                         'maxfiles' => -1,
-                         'areamaxbytes' => $maxareabytes);
+        $options = [
+            'subdirs' => 1,
+            'maxbytes' => $maxbytes,
+            'maxfiles' => -1,
+            'areamaxbytes' => $maxareabytes,
+        ];
 
         file_merge_files_from_draft_area_into_filearea($draftid, $context->id, 'local_coodle', 'clientfile', 0, $options);
         $fs = get_file_storage();
@@ -143,7 +145,7 @@ class upload_file extends external_api {
                 } while ($fileexist);
 
                 $fs->create_file_from_storedfile($filerecord, $file);
-                // // Send a push notification
+                // // Send a push notification.
                 // // Now delete the original file.
                 $file->delete();
                 $fileurl = \moodle_url::make_pluginfile_url(
@@ -157,7 +159,7 @@ class upload_file extends external_api {
                 )->out();
             }
         }
-        return array('fileurl' => $fileurl);
+        return ['fileurl' => $fileurl];
     }
 
     /**
@@ -166,9 +168,9 @@ class upload_file extends external_api {
      * @return external_description
      */
     public static function execute_returns() {
-        return new external_single_structure(array(
+        return new external_single_structure([
             'fileurl' => new external_value(PARAM_TEXT, 'fileurl'),
-            )
+            ]
         );
     }
 }

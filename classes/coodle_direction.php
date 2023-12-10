@@ -38,8 +38,8 @@ class coodle_direction {
 
     public function __construct($data = null, $id = null) {
         global $USER;
-        if(empty($data)) {
-            if(!empty($id)) {
+        if (empty($data)) {
+            if (!empty($id)) {
                 $this->set_direction($id);
                 return;
             }
@@ -90,7 +90,7 @@ class coodle_direction {
      */
     public function load_directionlist_by_userid(int $userid) {
         global $DB;
-        $data = $DB->get_records('local_coodle_directions', array('userid' => $userid));
+        $data = $DB->get_records('local_coodle_directions', ['userid' => $userid]);
         return array_values($data);
     }
 
@@ -139,7 +139,7 @@ class coodle_direction {
         $context = \context_system::instance();
         $conditons = ['userid' => $userid];
         $directions = $DB->get_records('local_coodle_directions', $conditons);
-        foreach($directions as $direction) {
+        foreach ($directions as $direction) {
             $DB->delete_records('local_coodle_directions', ['id' => $direction->id]);
             $fs = new file_storage();
             $fs->delete_area_files($context->id, 'local_coodle', 'direction', $direction->id);
@@ -153,11 +153,11 @@ class coodle_direction {
      */
     public static function set_direction_status(int $directionid, int $status) {
         global $DB, $USER;
-        // direction: ADD constants. 1 2 3 4 -.
-        $params = array(
+        // Direction: ADD constants. 1 2 3 4 -.
+        $params = [
             'deleted' => $status,
-            'id' => $directionid
-        );
+            'id' => $directionid,
+        ];
         $DB->update_record('local_coodle_directions', $params);
         unset($params['deleted']);
         return $DB->get_record('local_coodle_directions', $params);

@@ -26,7 +26,6 @@ namespace local_coodle\task;
 
 use local_coodle\settings_manager;
 
-defined('MOODLE_INTERNAL') || die();
 /**
  * Class handling cohort user deletion.
  *
@@ -61,7 +60,7 @@ class cron_task extends \core\task\scheduled_task {
 
         foreach ($records as $record) {
             if ((int)$record->timemodified + $coodledeletetime < time()) {
-               \local_coodle\settings_manager::delete_user($record->userid, true);
+                \local_coodle\settings_manager::delete_user($record->userid, true);
             }
         }
     }
@@ -69,7 +68,7 @@ class cron_task extends \core\task\scheduled_task {
     public function enrol_advisors_to_advisorcourse() {
         global $DB;
         $lastupdate = get_config('local_coodle', 'last_enrolement');
-        \local_coodle\advisor::enrol_advisors_to_advisorcourse();
+        // \local_coodle\advisor::enrol_advisors_to_advisorcourse();
         set_config('last_enrolement', time(), 'local_coodle');
     }
 }

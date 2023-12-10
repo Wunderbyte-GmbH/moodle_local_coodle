@@ -39,7 +39,7 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . '/externallib.php');
 
-class set_coodle_preferences extends external_api {
+class show_password extends external_api {
 
     private static $allowedsettingsarray = [
         'coodle_settings',
@@ -54,17 +54,17 @@ class set_coodle_preferences extends external_api {
      */
     public static function execute_parameters() {
         return new external_function_parameters(
-        array(
+        [
             'preferences' => new external_multiple_structure(
                 new external_single_structure(
-                    array(
+                    [
                         'name' => new external_value(PARAM_RAW, 'The name of the preference'),
                         'value' => new external_value(PARAM_RAW, 'The value of the preference'),
                         'userid' => new external_value(PARAM_INT, 'Id of the user to set the preference'),
-                    )
+                    ]
                 )
-            )
-        )
+            ),
+        ]
         );
     }
 
@@ -75,16 +75,16 @@ class set_coodle_preferences extends external_api {
      * @return array of warnings and preferences saved
      * @throws moodle_exception
      */
-    public static function execute($userid)
+    public static function execute($userid) {
         global $USER;
-        $result = array();
+        $result = [];
         if (!is_siteadmin() && !\local_coodle\advisor::is_advisor_from($userid, $USER->id)) {
             $result['error'] = "true";
             $result['errortext'] = "No permission";
 
             return $result;
         }
-        $params = self::validate_parameters(self::execute_parameters(), array('userid' => $userid));
+        $params = self::validate_parameters(self::execute_parameters(), ['userid' => $userid]);
 
         $user = user_get_users_by_id($params['userid']);
 
@@ -104,17 +104,17 @@ class set_coodle_preferences extends external_api {
      */
     public static function execute_returns() {
         return new external_single_structure(
-        array(
-            'saved' => new external_multiple_structure(
-                new external_single_structure(
-                    array(
-                        'name' => new external_value(PARAM_RAW, 'The name of the preference'),
-                        'userid' => new external_value(PARAM_INT, 'The user the preference was set for'),
-                    )
-                ), 'Preferences saved'
-            ),
-            'warnings' => new external_warnings()
-        )
+            [
+                'saved' => new external_multiple_structure(
+                    new external_single_structure(
+                        [
+                            'name' => new external_value(PARAM_RAW, 'The name of the preference'),
+                            'userid' => new external_value(PARAM_INT, 'The user the preference was set for'),
+                        ]
+                    ), 'Preferences saved'
+                ),
+                'warnings' => new external_warnings(),
+            ]
         );
     }
 }

@@ -33,14 +33,14 @@ use external_single_structure;
 use external_multiple_structure;
 use external_warnings;
 use external_format_value;
-use \core_calendar\local\event\container as event_container;
-use \core_calendar\local\event\forms\create as create_event_form;
-use \core_calendar\local\event\forms\update as update_event_form;
-use \core_calendar\local\event\mappers\create_update_form_mapper;
-use \core_calendar\external\event_exporter;
-use \core_calendar\external\events_exporter;
-use \core_calendar\external\events_grouped_by_course_exporter;
-use \core_calendar\external\events_related_objects_cache;
+use core_calendar\local\event\container as event_container;
+use core_calendar\local\event\forms\create as create_event_form;
+use core_calendar\local\event\forms\update as update_event_form;
+use core_calendar\local\event\mappers\create_update_form_mapper;
+use core_calendar\external\event_exporter;
+use core_calendar\external\events_exporter;
+use core_calendar\external\events_grouped_by_course_exporter;
+use core_calendar\external\events_related_objects_cache;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -55,9 +55,9 @@ class get_calendar_events extends external_api {
      */
     public static function execute_parameters() : external_function_parameters {
         return new external_function_parameters(
-            array(
+            [
                 'userid' => new external_value(PARAM_INT, 'userid', VALUE_REQUIRED),
-            )
+            ]
         );
     }
     /**
@@ -71,8 +71,8 @@ class get_calendar_events extends external_api {
         require_once($CFG->dirroot.'/calendar/lib.php');
 
         // Parameter validation.
-        $params = self::validate_parameters(self::execute_parameters(), array('userid' => $userid));
-        $warnings = array();
+        $params = self::validate_parameters(self::execute_parameters(), ['userid' => $userid]);
+        $warnings = [];
         $coodleusersettings = get_user_preferences('coodle_settings');
         if ($coodleusersettings) {
             $coodleusersettings = json_decode($coodleusersettings);
@@ -97,7 +97,7 @@ class get_calendar_events extends external_api {
         $params['userid'], $groups[0][0], $courseid, true,
         $params['options']['ignorehidden']);
         $events = $eventlist;
-        return array('events' => $events, 'warnings' => $warnings);
+        return ['events' => $events, 'warnings' => $warnings];
     }
 
     /*
@@ -106,9 +106,9 @@ class get_calendar_events extends external_api {
      * @return external_single_structure
      */
     public static function execute_returns(): external_single_structure {
-        return new external_single_structure(array(
+        return new external_single_structure([
             'events' => new external_multiple_structure( new external_single_structure(
-                    array(
+                    [
                         'id' => new external_value(PARAM_INT, 'event id'),
                         'name' => new external_value(PARAM_RAW, 'event name'),
                         'description' => new external_value(PARAM_RAW, 'Description', VALUE_OPTIONAL, null, NULL_ALLOWED),
@@ -125,14 +125,15 @@ class get_calendar_events extends external_api {
                         'timestart' => new external_value(PARAM_INT, 'timestart'),
                         'timeduration' => new external_value(PARAM_INT, 'time duration'),
                         'visible' => new external_value(PARAM_INT, 'visible'),
-                        'uuid' => new external_value(PARAM_TEXT, 'unique id of ical events', VALUE_OPTIONAL, null, NULL_NOT_ALLOWED),
+                        'uuid' => new external_value(PARAM_TEXT, 'unique id of ical events', VALUE_OPTIONAL,
+                         null, NULL_NOT_ALLOWED),
                         'sequence' => new external_value(PARAM_INT, 'sequence'),
                         'timemodified' => new external_value(PARAM_INT, 'time modified'),
                         'subscriptionid' => new external_value(PARAM_INT, 'Subscription id', VALUE_OPTIONAL, null, NULL_ALLOWED),
-                    ), 'event')
+                    ], 'event')
              ),
-             'warnings' => new external_warnings()
-            )
+             'warnings' => new external_warnings(),
+            ]
         );
     }
 }

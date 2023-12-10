@@ -66,7 +66,7 @@ class settings_manager {
     public static function create_or_get_standard_coursecategory() : int {
         $categoryid = get_config('local_coodle', 'coursecategory');
         if (empty(get_config('local_coodle', 'coursecategory'))) {
-            $coursecategory = \core_course_category::create(array('name' => 'BeraterInnen'));
+            $coursecategory = \core_course_category::create(['name' => 'BeraterInnen']);
             set_config('coursecategory', $coursecategory->id, 'local_coodle');
             $categoryid = $coursecategory->id;
         }
@@ -84,7 +84,7 @@ class settings_manager {
         if (empty($userid)) {
             $userid = $USER->id;
         }
-        return $DB->record_exists('local_coodle_advisor', array('userid' => $userid));
+        return $DB->record_exists('local_coodle_advisor', ['userid' => $userid]);
     }
 
     /**
@@ -98,7 +98,7 @@ class settings_manager {
         if (empty($userid)) {
             $userid = $USER->id;
         }
-        return $DB->record_exists('local_coodle_user', array('userid' => $userid));
+        return $DB->record_exists('local_coodle_user', ['userid' => $userid]);
     }
 
     /**
@@ -106,7 +106,7 @@ class settings_manager {
      */
     public function delete_advisor($userid) {
         global $DB;
-        return $DB->delete_records('local_coodle_advisor', array('userid' => $userid));
+        return $DB->delete_records('local_coodle_advisor', ['userid' => $userid]);
     }
 
     /**
@@ -120,7 +120,7 @@ class settings_manager {
         if (empty($userid)) {
             $userid = $USER->id;
         }
-        $user = $DB->get_record($this->table, array('userid' => $userid));
+        $user = $DB->get_record($this->table, ['userid' => $userid]);
         $this->token = $user->token;
         $this->id = $user->id;
         $this->userid = $user->userid;
@@ -158,11 +158,11 @@ class settings_manager {
      */
     public function renew_token() {
         global $DB;
-        $params = array(
+        $params = [
             'tokencreated' => time(),
             'token' => self::generate_coodle_token(),
-            'id' => $this->id
-        );
+            'id' => $this->id,
+        ];
         $DB->update_record($this->table, $params);
         return $params['token'];
     }

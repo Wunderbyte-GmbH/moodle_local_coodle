@@ -30,6 +30,7 @@ require_once("$CFG->libdir/formslib.php");
 
 use context;
 use core_form\dynamic_form;
+use local_coodle\permission;
 use moodle_url;
 use stdClass;
 /**
@@ -60,8 +61,7 @@ class add_link_form extends dynamic_form {
      * @return void
      */
     protected function check_access_for_dynamic_submission(): void {
-        // TODO: capability to create advisors
-        require_capability('moodle/user:manageownfiles', $this->get_context_for_dynamic_submission());
+        permission::require_is_advisor();
     }
 
     /**
@@ -125,7 +125,7 @@ class add_link_form extends dynamic_form {
         if (!$cmid) {
             $cmid = $this->optional_param('cmid', '', PARAM_RAW);
         }
-        return new moodle_url('/local/coodle/user', array('id' => $cmid));
+        return new moodle_url('/local/coodle/user', ['id' => $cmid]);
     }
 
     /**
@@ -136,7 +136,7 @@ class add_link_form extends dynamic_form {
      */
     public function validation($data, $files) {
 
-        $errors = array();
+        $errors = [];
         if (empty($data['link'])) {
             $errors['link'] = get_string('required');
         }

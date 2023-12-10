@@ -66,4 +66,17 @@ class permission {
 
         return ($DB->record_exists('local_coodle_advisor', ['userid' => $userid]) || is_siteadmin());
     }
+
+    public static function is_advisor_from_user(int $userid): void {
+        if (!static::is_advisor($userid)) {
+            throw new \exception('not allowed');
+        }
+    }
+
+    public static function require_is_advisor_from_user(int $userid) {
+        global $DB, $USER;
+        $userid = $userid ?: (int) $USER->id;
+
+        return ($DB->record_exists('local_coodle_user', ['userid' => $userid, 'advisorid' => $USER->id]) || is_siteadmin());
+    }
 }

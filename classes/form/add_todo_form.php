@@ -135,7 +135,7 @@ class add_todo_form extends dynamic_form {
         if (!$cmid) {
             $cmid = $this->optional_param('cmid', '', PARAM_RAW);
         }
-        return new moodle_url('/local/coodle/addtodo', array('id' => $cmid));
+        return new moodle_url('/local/coodle/addtodo', ['id' => $cmid]);
     }
 
     /**
@@ -146,7 +146,7 @@ class add_todo_form extends dynamic_form {
      */
     public function validation($data, $files) {
 
-        $errors = array();
+        $errors = [];
         if (empty($data['text'])) {
             $errors['text'] = get_string('required');
         }

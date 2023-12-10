@@ -42,9 +42,9 @@ class get_files extends external_api {
      * @throws moodle_exception if the entry is not found or the user is not authorized to delete the entry
      */
     public static function execute_parameters() : external_function_parameters {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             // 'userid' => new external_value(PARAM_INT, 'The ID of the entry to delete'),
-        ));
+        ]);
     }
 
     /**
@@ -67,7 +67,7 @@ class get_files extends external_api {
         foreach ($files as $file) {
             if ($file->get_filename() != '.') {
 
-                $fileinfo = array(
+                $fileinfo = [
                     'contextid' => $context->id,
                     'component' => 'local_coodle',
                     'filearea'  => 'clientfile',
@@ -84,7 +84,7 @@ class get_files extends external_api {
                         false
                     )->out(),
                     'timemodified' => time(),
-                );
+                ];
                 $fileoutput[] = $fileinfo;
             }
         }
@@ -104,13 +104,13 @@ class get_files extends external_api {
      */
     public static function execute_returns() {
         return new external_single_structure(
-            array(
+            [
                 'parents' => new external_single_structure(
-                    array()
+                    []
                 ),
                 'files' => new external_multiple_structure(
                     new external_single_structure(
-                        array(
+                        [
                             'contextid' => new external_value(PARAM_INT, ''),
                             'component' => new external_value(PARAM_COMPONENT, ''),
                             'filearea'  => new external_value(PARAM_AREA, ''),
@@ -124,10 +124,10 @@ class get_files extends external_api {
                             'filesize' => new external_value(PARAM_INT, 'File size', VALUE_OPTIONAL),
                             'author' => new external_value(PARAM_TEXT, 'File owner', VALUE_OPTIONAL),
                             'license' => new external_value(PARAM_TEXT, 'File license', VALUE_OPTIONAL),
-                        )
+                        ]
                     )
-                )
-            )
+                ),
+            ]
         );
     }
 }
