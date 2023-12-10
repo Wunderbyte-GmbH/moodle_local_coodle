@@ -155,6 +155,7 @@ $string['messageprovider:newtodomsg'] = 'New Todo';
 $string['date_delete'] = 'Delete Event.';
 $string['details'] = 'User';
 $string['setpassword'] = 'Neues Passwort';
+$string['set_password'] = 'Neues Passwort';
 
 // Mobile Strings.
 $string['viewtodos'] = 'Todos';

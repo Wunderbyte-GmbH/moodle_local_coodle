@@ -137,6 +137,7 @@ $string['docsdesc'] = 'Lade hier deine persönlichen Dokumente (z.B. Bewerbungsu
 $string['nodocs'] = 'Noch keine persönlichen Dokumente vorhanden.';
 $string['details'] = 'Teilnehmer_in';
 $string['setpassword'] = 'Neues Passwort';
+$string['set_password'] = 'Neues Passwort';
 
 $string['docsadvdesc'] = 'Hier findest du Kontaktdaten und Dokumente aus deiner Beratung. ';
 $string['nodocsadv'] = 'Noch keine Beratungsdokumente vorhanden.';
