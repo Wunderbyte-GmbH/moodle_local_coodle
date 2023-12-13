@@ -49,7 +49,7 @@ class cron_task extends \core\task\scheduled_task {
     public function execute() {
         global $CFG, $DB;
         $config = get_config('local_coodle');
-
+        $this->enrol_advisors_to_advisorcourse();
         if ($config->coodledeletetime > 0) {
             $coodledeletetime = $config->coodledeletetime * 3600;
         } else {
