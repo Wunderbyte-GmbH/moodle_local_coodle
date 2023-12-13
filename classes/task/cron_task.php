@@ -66,9 +66,8 @@ class cron_task extends \core\task\scheduled_task {
     }
 
     public function enrol_advisors_to_advisorcourse() {
-        global $DB;
         $lastupdate = get_config('local_coodle', 'last_enrolement');
-        // \local_coodle\advisor::enrol_advisors_to_advisorcourse();
+        \local_coodle\advisor::enrol_advisors_to_advisorcourse();
         set_config('last_enrolement', time(), 'local_coodle');
     }
 }

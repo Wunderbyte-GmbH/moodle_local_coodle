@@ -475,4 +475,15 @@ class advisor {
             self::course_manual_enrolments([$advisorcourse], [$userid], 5);
         }
     }
+
+    public static function enrol_advisors_to_advisorcourse() {
+        global $DB;
+        $advisorcourse = get_config('local_coodle', 'coodleadvisorcourseid');
+        if ($advisorcourse) {
+            $records = $DB->get_records('coodle_advisors');
+            foreach ($records as $record) {
+                self::course_manual_enrolments([$advisorcourse], [$record->userid], 5);
+            }
+        }
+    }
 }
