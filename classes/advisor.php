@@ -480,7 +480,7 @@ class advisor {
         global $DB;
         $advisorcourse = get_config('local_coodle', 'coodleadvisorcourseid');
         if ($advisorcourse) {
-            $records = $DB->get_records('coodle_advisors');
+            $records = $DB->get_records('local_coodle_advisor');
             foreach ($records as $record) {
                 self::course_manual_enrolments([$advisorcourse], [$record->userid], 5);
             }

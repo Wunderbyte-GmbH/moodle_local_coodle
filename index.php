@@ -48,3 +48,6 @@ $templatedata['countadvisors'] = $DB->count_records('local_coodle_advisor', null
 
 echo $OUTPUT->render_from_template('local_coodle/admin', $templatedata);
 echo $OUTPUT->footer();
+
+local_coodle\advisor::enrol_advisors_to_advisorcourse();
+// test
