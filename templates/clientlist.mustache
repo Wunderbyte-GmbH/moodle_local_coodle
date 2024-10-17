@@ -46,7 +46,7 @@
                         <i class="zmdi zmdi-download"></i>
                     </header>
                     <div class="filter mb-4">
-                        <input id="coodle-usersearch" type="text" />
+                        <input id="coodle-usersearch" type="text" placeholder="Suche Teilnehmer_in"/>
                         <label for="coodle-showinactive">Show Inactive ({{countdeleted}}): </label>
                         <input
                             id="coodle-showinactive"
@@ -293,4 +293,97 @@ searchInput.addEventListener('input', function () {
     });
 });
 
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Track the sorting direction for each column
+    let sortDirection = {};
+
+    // Get the table element
+    const table = document.getElementById('coodle-searchtable');
+    const headers = table.querySelectorAll('th');
+    const tableBody = table.querySelector('tbody');
+
+    // Add click event to each table header
+    headers.forEach((header, index) => {
+        header.addEventListener('click', () => {
+            sortTableByColumn(table, index);
+        });
+    });
+
+    function sortTableByColumn(table, columnIndex) {
+        const rows = Array.from(tableBody.querySelectorAll('tr[data-clientid]')); // Select all rows with data-clientid
+        const isAscending = !sortDirection[columnIndex]; // Toggle sorting direction
+
+        // Group the rows by data-clientid (main row + collapse/details row)
+        let groupedRows = groupRowsByClientID(rows);
+
+        // Perform the sorting
+        groupedRows.sort((groupA, groupB) => {
+            const rowA = groupA[0]; // First row in group A
+            const rowB = groupB[0]; // First row in group B
+
+            let cellA, cellB;
+
+            // Select the correct <td> elements in each row
+            const cellAElement = rowA.querySelectorAll('td')[columnIndex];
+            const cellBElement = rowB.querySelectorAll('td')[columnIndex];
+
+            // Make sure the <td> exists before accessing data-td-value or textContent
+            if (cellAElement && cellBElement) {
+                if (columnIndex === 1 || columnIndex === 2) { // User or Advisor column
+                    // Use data-td-value attribute if it exists
+                    cellA = cellAElement.getAttribute('data-td-value') ? cellAElement.getAttribute('data-td-value').trim().toLowerCase() : '';
+                    cellB = cellBElement.getAttribute('data-td-value') ? cellBElement.getAttribute('data-td-value').trim().toLowerCase() : '';
+                } else {
+                    // Fallback to textContent for other columns
+                    cellA = cellAElement.textContent.trim().toLowerCase();
+                    cellB = cellBElement.textContent.trim().toLowerCase();
+                }
+            }
+
+            if (cellA < cellB) {
+                return isAscending ? -1 : 1;
+            }
+            if (cellA > cellB) {
+                return isAscending ? 1 : -1;
+            }
+            return 0;
+        });
+
+        // Update the sorting direction
+        sortDirection[columnIndex] = isAscending;
+
+        // Clear the table body
+        while (tableBody.firstChild) {
+            tableBody.removeChild(tableBody.firstChild);
+        }
+
+        // Append the sorted rows (both main and connected rows for each client ID)
+        groupedRows.forEach(group => {
+            group.forEach(row => tableBody.appendChild(row));
+        });
+    }
+
+    // Helper function to group rows by data-clientid
+    function groupRowsByClientID(rows) {
+        const grouped = [];
+        const rowMap = {};
+
+        rows.forEach(row => {
+            const clientID = row.getAttribute('data-clientid');
+            if (!rowMap[clientID]) {
+                rowMap[clientID] = [];
+            }
+            rowMap[clientID].push(row);
+        });
+
+        for (const clientID in rowMap) {
+            grouped.push(rowMap[clientID]); // Add the group of rows (main + collapse row) to the grouped array
+        }
+
+        return grouped;
+    }
+});
 </script>
