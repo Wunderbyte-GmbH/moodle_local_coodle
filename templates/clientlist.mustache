@@ -54,7 +54,7 @@
                             unchecked
                         />
                     </div>
-                    <table class="coodle-table">
+                    <table class="coodle-table" id="coodle-searchtable">
                         <thead>
                             <tr>
                                 <th>
@@ -74,7 +74,7 @@
                             <td>
                                 <p>{{ userdatecreated }}</p>
                             </td>
-                            <td class="member">
+                            <td class="member" data-td-value="{{ clientfirstname }} {{ clientlastname }}">
                                 <div
                                     class="member-info"
                                     data-clientid="{{ id }}"
@@ -91,7 +91,7 @@
                                     >
                                 </div>
                             </td>
-                            <td>
+                            <td  data-td-value="{{#advisorfirstname}}{{ advisorfirstname }} {{ advisorlastname }}{{/advisorfirstname}}">
                                 {{#advisorfirstname}}
                                 <a
                                     class="btn btn-primary"

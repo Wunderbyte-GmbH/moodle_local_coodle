@@ -50,7 +50,7 @@ class add_file_form extends dynamic_form {
 
         $options['subdirs'] = 0;
         $options['maxfiles'] = null;
-        $options['accepted_types'] = ['jpg', 'jpeg', 'png', 'pdf' , 'doc', 'xls', 'docx', 'mp4', 'avi'];
+        $options['accepted_types'] = ['jpg', 'jpeg', 'png', 'pdf' , 'doc', 'xls', 'docx', 'mp4', 'avi', 'odt', 'ods', 'odp'];
         $mform->addElement('filemanager', 'clientfiles_filemanager', get_string('uploadfile', 'local_coodle'), null, $options);
         $mform->addElement('hidden', 'clientid', $customdata['clientid']);
         $mform->setType('id', PARAM_INT);
