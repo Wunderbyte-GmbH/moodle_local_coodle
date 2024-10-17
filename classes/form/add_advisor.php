@@ -66,7 +66,7 @@ class add_advisor extends dynamic_form {
      * @return void
      */
     protected function check_access_for_dynamic_submission(): void {
-        permission::require_is_coodleadmin();
+        permission::require_is_advisor();
     }
 
     /**
