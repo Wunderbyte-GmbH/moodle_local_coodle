@@ -67,7 +67,7 @@
                         </thead>
                         {{#users}}
                         <tr
-                            class="{{#deleted}}coodle-inactive{{/deleted}}
+                            class="{{#deleted}}coodle-inactive{{/deleted}} data-row
                         "
                             data-clientid="{{ id }}"
                         >
@@ -153,7 +153,7 @@
                                 {{/advisorfirstname}}
                             </td>
                         </tr>
-                        <tr class="{{#deleted}}coodle-inactive{{/deleted}}" data-clientid="{{ id }}">
+                        <tr class="{{#deleted}}coodle-inactive{{/deleted}} collapse-row" data-clientid="{{ id }}">
                             <td colspan="100%">
                                 <button
                                     class="btn btn-primary-outline"
