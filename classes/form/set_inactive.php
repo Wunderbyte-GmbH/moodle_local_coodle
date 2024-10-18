@@ -73,11 +73,12 @@ class set_inactive extends dynamic_form {
             $data->deleted = 0;
         }
         unset($data->setinactive);
+        $cuser = $DB->get_record('local_coodle_user', ['id' => $data->id], IGNORE_MISSING);
+
         $data->timemodified = time();
         $DB->update_record('local_coodle_user', $data);
 
-        $cuser = $DB->get_records('local_coodle_user', ['id' => $data->id], IGNORE_MISSING);
-        if ($cuser[0]->userid) {
+        if ($cuser->userid) {
             exit();
             $user = $DB->get_record('user', ['id' => $cuser->userid]);
             $data->test = 1;
