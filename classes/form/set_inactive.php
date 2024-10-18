@@ -83,6 +83,7 @@ class set_inactive extends dynamic_form {
                 $user->suspended = 1;
                 $data->suspended = 1;
                 user_update_user($user);
+                exit();
             }
         }
 
