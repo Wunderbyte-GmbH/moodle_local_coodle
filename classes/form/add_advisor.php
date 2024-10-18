@@ -57,6 +57,9 @@ class add_advisor extends dynamic_form {
         ];
         $mform->addElement('autocomplete', 'advisorid', get_string('advisorlist', 'local_coodle'), $userlist, $options);
         $mform->addElement('hidden', 'id', $data['clientid']);
+
+        $mform->addElement('checkbox', 'switchall', "Alle Teilnehmer_innen der Berater_in wechseln", 0);
+
         $mform->setType('id', PARAM_INT);
     }
 
@@ -80,7 +83,11 @@ class add_advisor extends dynamic_form {
      */
     public function process_dynamic_submission() {
         $data = $this->get_data();
-        \local_coodle\advisor::set_coodle_advisor($data);
+        if ($data->switchall) {
+            \local_coodle\advisor::advisor_switch($data);
+        } else {
+            \local_coodle\advisor::set_coodle_advisor($data);
+        }
         return $data;
     }
 

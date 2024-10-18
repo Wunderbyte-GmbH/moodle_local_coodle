@@ -362,6 +362,24 @@ class advisor {
         return [];
     }
 
+    public static function advisor_switch($data) {
+        global $DB;
+        $record = $DB->get_record('local_coodle_user', ['id' => $data->id]);
+
+        if ($record) {
+            $sql = "SELECT * FROM {local_coodle_user} WHERE advisorid = :advisorid";
+            $params = ['advisorid' => $record->advisorid];
+            $advisorusers = $DB->get_records_sql($sql, $params);
+            $newdata = new stdClass();
+            $newdata->advisorid = $data->advisorid;
+            foreach ($advisorusers as $cuser) {
+                $newdata->id = $cuser->id;
+                self::set_coodle_advisor($newdata);
+            }
+        }
+    }
+
+
     public static function set_coodle_advisor($data) {
         global $DB;
         if ($DB->update_record('local_coodle_user', $data)) {
