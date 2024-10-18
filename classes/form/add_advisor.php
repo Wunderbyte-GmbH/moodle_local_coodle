@@ -55,7 +55,7 @@ class add_advisor extends dynamic_form {
             'multiple' => false,
             'noselectionstring' => get_string('none', 'local_coodle'),
         ];
-        $mform->addElement('autocomplete', 'advisorid', get_string('advisorlist', 'local_coodle'), $userlist, $options);
+        $mform->addElement('autocomplete', 'advisorid', get_string('newadvisor', 'local_coodle'), $userlist, $options);
         $mform->addElement('hidden', 'id', $data['clientid']);
 
         $mform->addElement('checkbox', 'switchall', "Alle Teilnehmer_innen des_der Berater_in wechseln", 0);

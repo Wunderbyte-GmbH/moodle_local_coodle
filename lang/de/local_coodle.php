@@ -74,6 +74,7 @@ $string['calendar'] = 'Kalendar';
 $string['advisorlist'] = 'Berater_innen';
 $string['allclients'] = 'Alle Teilnehmer_innen';
 $string['mobilelogin'] = 'QR-Login';
+$string['newadvisor'] = 'Berater_innen';
 
 $string['forum'] = 'Berater_innenAustausch';
 
