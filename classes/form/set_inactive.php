@@ -20,6 +20,7 @@ defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 require_once("$CFG->libdir/formslib.php");
+require_once($CFG->dirroot.'/user/lib.php');
 
 use context;
 use context_system;
@@ -74,6 +75,16 @@ class set_inactive extends dynamic_form {
         unset($data->setinactive);
         $data->timemodified = time();
         $DB->update_record('local_coodle_user', $data);
+        $cuser = $DB->get_record('local_coodle_user', ['id' => $data->id], IGNORE_MISSING);
+        if ($cuser->userid) {
+            $user = $DB->get_record('user', ['id' => $cuser->userid]);
+
+            if ($user) {
+                $user->suspended = 1;
+                user_update_user($user);
+            }
+        }
+
         return $data;
     }
 
