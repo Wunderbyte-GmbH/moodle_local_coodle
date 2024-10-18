@@ -57,11 +57,11 @@
                     <table class="coodle-table" id="coodle-searchtable">
                         <thead>
                             <tr>
-                                <th>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i>
                                     {{#str}} clientsince, local_coodle {{/str}}
                                 </th>
-                                <th>{{#str}} user, local_coodle {{/str}}</th>
-                                <th>{{#str}} advisor, local_coodle {{/str}}</th>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i>{{#str}} user, local_coodle {{/str}}</th>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i>{{#str}} advisor, local_coodle {{/str}}</th>
                                 <th class="text-right"></th>
                             </tr>
                         </thead>
@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Track the sorting direction for each column
     let sortDirection = {};
 
-    // Get the table element
+    // Get the table and its headers
     const table = document.getElementById('coodle-searchtable');
     const headers = table.querySelectorAll('th');
     const tableBody = table.querySelector('tbody');
@@ -308,12 +308,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add click event to each table header
     headers.forEach((header, index) => {
         header.addEventListener('click', () => {
+            // Sort the table by this column
             sortTableByColumn(table, index);
+
+            // Reset icons for all columns
+            resetIcons(headers);
+
+            // Update the clicked column's icon
+            updateSortIcon(header, sortDirection[index]);
         });
     });
 
     function sortTableByColumn(table, columnIndex) {
-        const rows = Array.from(tableBody.querySelectorAll('tr[data-clientid]')); // Select all rows with data-clientid
+        const rows = Array.from(tableBody.querySelectorAll('tr[data-clientid]')); // Only select the rows with data-clientid
         const isAscending = !sortDirection[columnIndex]; // Toggle sorting direction
 
         // Group the rows by data-clientid (main row + collapse/details row)
@@ -385,5 +392,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
         return grouped;
     }
+
+    // Reset all icons to unsorted state
+    function resetIcons(headers) {
+        headers.forEach(header => {
+            const icon = header.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-sort-up', 'fa-sort-down');
+                icon.classList.add('fa-sort'); // Default unsorted icon
+            }
+        });
+    }
+
+    // Update the sort icon for the clicked column
+    function updateSortIcon(header, isAscending) {
+        const icon = header.querySelector('i');
+        if (icon) {
+            icon.classList.remove('fa-sort'); // Remove default unsorted icon
+            if (isAscending) {
+                icon.classList.add('fa-sort-up'); // Ascending
+            } else {
+                icon.classList.add('fa-sort-down'); // Descending
+            }
+        }
+    }
 });
 </script>
+
