@@ -89,7 +89,9 @@ $string['set_inactive'] = 'Inaktiv setzen';
 $string['add_recording'] = 'Aufnahme hinzufügen';
 
 $string['coodlewelcome'] = 'Herzlich Willkommen in der COODLE App';
-$string['setadvisor'] = 'Berater_in setzen';
+$string['setadvisor'] = 'Berater_in wechseln';
+
+$string['newadvisor'] = 'Neue_r Berater_in';
 
 // INFO.
 $string['add_link'] = 'Link hinzufügen';

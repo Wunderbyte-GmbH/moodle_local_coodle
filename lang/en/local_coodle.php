@@ -94,6 +94,7 @@ $string['add_contactcard'] = 'Add contactinfos';
 
 $string['coodlewelcome'] = 'Welcome to the COODLE App';
 $string['setadvisor'] = 'Set advisor';
+$string['newadvisor'] = 'New advisor';
 
 // INFO.
 $string['add_link'] = 'add link';
