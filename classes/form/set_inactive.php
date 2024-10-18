@@ -82,7 +82,7 @@ class set_inactive extends dynamic_form {
             $user = $DB->get_record('user', ['id' => $cuser->userid]);
             if ($user) {
                 $user->suspended = 1;
-                user_update_user($user);
+                user_update_user($user, false);
 
             }
         }
