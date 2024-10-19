@@ -69,8 +69,10 @@ class set_inactive extends dynamic_form {
         $data = $this->get_data();
         if ($data->setinactive) {
             $data->deleted = 1;
+            $setinactive = 1;
         } else {
             $data->deleted = 0;
+            $setinactive = 0;
         }
         unset($data->setinactive);
         $cuser = $DB->get_record('local_coodle_user', ['id' => $data->id]);
@@ -81,7 +83,7 @@ class set_inactive extends dynamic_form {
         if ($cuser->userid) {
             $user = $DB->get_record('user', ['id' => $cuser->userid]);
             if ($user) {
-                $user->suspended = 1;
+                $user->suspended = $setinactive;
                 user_update_user($user, false);
 
             }
