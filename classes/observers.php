@@ -15,33 +15,41 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Event observers used in newsletter.
+ * Event observers used in coodle.
  *
  * @package local_coodle
  * @copyright 2023 Thomas Winkler
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-defined('MOODLE_INTERNAL') || die();
+declare(strict_types=1);
+
+namespace local_coodle;
+
+use core\event\user_deleted;
+use local_coodle\settings_manager;
+use local_coodle\advisor;
 
 /**
- * Event observer for mod_newsletter.
+ * Event observer for local_coodle.
  */
-class local_coodle_observer {
+class observers {
 
     /**
      * Observer for the user_deleted event deletes all newsletter subscriptions of the user
      *
      * @param \core\event\user_deleted $event
      */
-    public static function user_deleted(\core\event\user_deleted $event) {
+    public static function user_deleted(user_deleted $event) {
         global $DB;
-        $userid = $event->relateduserid;
-        if ($DB->record_exists('coodle_user', ['userid' => $userid])) {
-            local_coodle\settings_manager::delete_user($event->relateduserid, false);
+
+        $userid = (int)$event->objectid;
+        if ($DB->record_exists('local_coodle_user', ['userid' => $userid])) {
+            settings_manager::delete_user($userid, false);
             return;
         }
-        if ($DB->record_exists('coodle_advisor', ['userid' => $userid])) {
-            local_coodle\advisor::delete($event->relateduserid);
+        if ($DB->record_exists('local_coodle_advisor', ['userid' => $userid])) {
+            advisor::delete($userid);
+            return;
         }
     }
 }
