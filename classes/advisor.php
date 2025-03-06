@@ -470,21 +470,23 @@ class advisor {
         global $DB;
 
         $record = $DB->get_record('local_coodle_advisor', ['userid' => $userid]);
-        $DB->delete_records('local_coodle_advisor', ['userid' => $userid]);
-        // SQL to remove the advisors from the coodle users.
-        $sql = "
-        UPDATE {local_coodle_user}
-        SET advisorid = NULL
-        WHERE advisorid = :advisorid";
-
-        $params = ['advisorid' => $userid];
-        // Reset user prefs.
-        set_user_preferences(['coodle_settings' => 'null'], $userid);
-
-        // Delete course from advisor.
-        delete_course($record->courseid);
-        // Execute the SQL query
-        $DB->execute($sql, $params);
+        if ($record) {
+            $DB->delete_records('local_coodle_advisor', ['userid' => $userid]);
+            // SQL to remove the advisors from the coodle users.
+            $sql = "
+            UPDATE {local_coodle_user}
+            SET advisorid = NULL
+            WHERE advisorid = :advisorid";
+    
+            $params = ['advisorid' => $userid];
+            // Reset user prefs.
+            set_user_preferences(['coodle_settings' => 'null'], $userid);
+    
+            // Delete course from advisor.
+            delete_course($record->courseid, false);
+            // Execute the SQL query
+            $DB->execute($sql, $params);
+        }
     }
 
     public function enrol_advisor_to_advisorcourse($userid) {

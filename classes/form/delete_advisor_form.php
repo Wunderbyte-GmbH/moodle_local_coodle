@@ -67,9 +67,8 @@ class delete_advisor_form extends dynamic_form {
     public function process_dynamic_submission(): stdClass {
         $data = $this->get_data();
 
-        if ($data->class == "advsior") {
-            advisor::delete($data->id);
-        }
+        advisor::delete($data->id);
+        
         return $data;
     }
 
@@ -81,7 +80,7 @@ class delete_advisor_form extends dynamic_form {
         $mform = $this->_form;
 
         $customdata = $this->_ajaxformdata;
-        $identifier = $customdata['class'] . '_delete';
+        $identifier = 'deleteadvisor';
         $html = "<h5>" . get_string($identifier, 'local_coodle') . "</h5>";
         $mform->addElement('html', $html);
 
