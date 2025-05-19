@@ -156,7 +156,7 @@ class coodle_user {
         return $data;
     }
 
-    // TODO: user to advisor.
+    // TODO: user to advisor.    
     public static function get_coodle_users(int $userid = null, int $withoutinactive = null) {
         global $DB, $USER;
 
@@ -165,7 +165,7 @@ class coodle_user {
         }
 
         if ($withoutinactive) {
-            $where = "WHERE cu.advisorid = $userid  AND WHERE cu.deleted = 0";
+            $where = "WHERE cu.advisorid = $userid  AND cu.deleted = 0";
         } else {
             $where = "WHERE cu.advisorid = $userid ORDER BY cu.deleted";
         }
