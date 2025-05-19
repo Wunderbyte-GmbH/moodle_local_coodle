@@ -411,7 +411,7 @@ class mobile {
         $userchosen = json_decode(get_user_preferences('coodleuser_chosen'));
 
         if (\local_coodle\settings_manager::is_advisor()) {
-            $users = \local_coodle\coodle_user::get_coodle_users($USER->id);
+            $users = \local_coodle\coodle_user::get_coodle_users($USER->id, 1);
             $users = array_values($users);
         }
 

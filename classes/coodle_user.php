@@ -157,18 +157,24 @@ class coodle_user {
     }
 
     // TODO: user to advisor.
-    public static function get_coodle_users(int $userid = null) {
+    public static function get_coodle_users(int $userid = null, int $withoutinactive = null) {
         global $DB, $USER;
 
         if (!$userid) {
             $userid = $USER->id;
         }
+
+        if ($withoutinactive) {
+            $where = "WHERE cu.advisorid = $userid  AND WHERE cu.deleted = 0";
+        } else {
+            $where = "WHERE cu.advisorid = $userid ORDER BY cu.deleted";
+        }
         $sql = "SELECT cu.*, u.firstname as clientfirstname, u.lastname as clientlastname,
         ua.firstname as advisorfirstname, ua.lastname as advisorlastname, a.courseid
          FROM {local_coodle_advisor} a RIGHT JOIN {local_coodle_user} cu on a.userid = cu.advisorid
          JOIN {user} u on cu.userid = u.id
-         LEFT JOIN {user} ua on cu.advisorid = ua.id
-         WHERE cu.advisorid = $userid ORDER BY cu.deleted";
+         LEFT JOIN {user} ua on cu.advisorid = ua.id 
+         " . $where;
         $data = $DB->get_records_sql($sql);
         return $data;
     }
