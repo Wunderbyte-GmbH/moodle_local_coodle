@@ -29,5 +29,5 @@ $plugin->component = 'local_coodle';
 $plugin->release = '1.1.1';
 $plugin->version = 2024022907;
 $plugin->requires = 2020061500;
-$plugin->supported = [40, 41];
+$plugin->supported = [400, 401];
 $plugin->maturity = MATURITY_ALPHA;
